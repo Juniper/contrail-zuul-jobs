@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf3e73b7_e59e3c53",
+        "filename": "roles/contrail-helm-deployer/files/helm-deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-02-06T11:12:30Z",
+      "side": 1,
+      "message": "add set -e so that the script exits early",
+      "revId": "ffd7ed3ec753b982a4c79bc93f1d92efdd8f7833",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
