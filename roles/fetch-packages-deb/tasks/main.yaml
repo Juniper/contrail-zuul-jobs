@@ -1,0 +1,20 @@
+- name: create package dir on the executor
+  file:
+    path: "{{ zuul.executor.work_root }}/packages"
+    state: directory
+  delegate_to: localhost
+
+- name: get a list of package files
+  find:
+    paths: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/"
+    patterns:
+      - '*.deb'
+  register: packages
+
+- name: Fetch packages from the build VM to the executor
+  synchronize:
+    src: "{{ item.path }}"
+    dest: "{{ zuul.executor.work_root }}/packages/"
+    mode: pull
+  with_items: "{{ packages.files }}"
+
