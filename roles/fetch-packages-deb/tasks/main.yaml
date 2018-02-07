@@ -6,7 +6,7 @@
 
 - name: get a list of package files
   find:
-    paths: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/"
+    paths: "{{ ansible_env.HOME }}/"
     patterns:
       - '*.deb'
   register: packages
