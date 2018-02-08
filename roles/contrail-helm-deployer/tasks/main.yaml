@@ -1,11 +1,11 @@
 - name: Set variables
   set_fact:
-    repos_dir: "{{ ansible_env.HOME }}"
+    repos_dir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper"
 
 # TODO Change this to zuul-merger prepared checkouts
 - name: Clone test repositories
   git:
-    repo: "https://github.com/{{ item.org }}"
+    repo: "https://github.com/{{ item.org }}/{{ item.name }}"
     dest: "{{ repos_dir }}/{{ item.name }}"
     version: "{{ item.version | default('master') }}"
   with_dict:
