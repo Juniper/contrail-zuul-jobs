@@ -1,0 +1,12 @@
+- name: Acquire IP address on the second interface
+  command: /usr/sbin/dhclient ens4
+  become: true
+  become_user: root
+
+- name: Get IP address for the second interface
+  shell: |
+    ip route show | grep ens4 | cut -d' ' -f12
+  register: ens4_ip_addr
+
+- set_fact:
+    ansible_ens4: "{{ ens4_ip_addr.stdout_lines }}"
