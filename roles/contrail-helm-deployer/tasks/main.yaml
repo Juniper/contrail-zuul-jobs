@@ -2,6 +2,12 @@
   set_fact:
     repos_dir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper"
 
+- name: Set deployment address
+  set_fact:
+    deploy_address: "{{ item }}"
+  with_items: "{{ (hostvars[inventory_hostname]['ansible_all_ipv4_addresses'] | ipaddr(deploy_subnet))[0] }}"
+  when: hostvars[inventory_hostname]['ansible_all_ipv4_addresses'] | ipaddr(deploy_subnet) | length > 0
+
 # TODO Change this to zuul-merger prepared checkouts
 - name: Clone test repositories
   git:
@@ -20,5 +26,5 @@
     OSH_PATH: "{{ repos_dir }}/openstack-helm"
     OSH_INFRA_PATH: "{{ repos_dir }}/openstack-helm-infra"
     CHD_PATH: "{{ repos_dir }}/contrail-helm-deployer"
-    CONTROLLER_NODE: "{{ ansible_all_ipv4_addresses[0] }}"
-    CONFIG_NODE: "{{ ansible_all_ipv4_addresses[0] }}"
+    CONTROLLER_NODE: "{{ deploy_address }}"
+    CONFIG_NODE: "{{ deploy_address }}"
