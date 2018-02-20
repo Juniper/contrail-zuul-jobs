@@ -2,6 +2,16 @@
   set_fact:
     repos_dir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper"
 
+- name: Acquire IP address on the second interface
+  command: /usr/sbin/dhclient ens4
+  become: true
+  become_user: root
+
+- name: Get IP address for the second interface
+  shell: |
+    ip route show | grep ens4 | cut -d' ' -f12
+  register: ens4_ip_addr
+
 # TODO Change this to zuul-merger prepared checkouts
 - name: Clone test repositories
   git:
@@ -20,5 +30,5 @@
     OSH_PATH: "{{ repos_dir }}/openstack-helm"
     OSH_INFRA_PATH: "{{ repos_dir }}/openstack-helm-infra"
     CHD_PATH: "{{ repos_dir }}/contrail-helm-deployer"
-    CONTROLLER_NODE: "{{ ansible_all_ipv4_addresses[0] }}"
-    CONFIG_NODE: "{{ ansible_all_ipv4_addresses[0] }}"
+    CONTROLLER_NODE: "{{ ens_ipv4_addr.stdout_lines }}"
+    CONFIG_NODE: "{{ ens_ipv4_addr.stdout_lines }}"
