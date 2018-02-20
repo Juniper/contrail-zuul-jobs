@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf3e73b7_28362a05",
+        "filename": "roles/acquire-deployment-address/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-02-20T12:52:16Z",
+      "side": 1,
+      "message": "We should be able to iterate over all ipv4 interfaces and get their list so this role can be reused between different types of nodes with different interface names.\n\nSomething akin to:\n\n- name: Aquire IP address on other interfaces\n   command: /usr/sbin/dhclient {{ item }}\n   when: hostvars[inventory_hostname][\u0027ansible_\u0027 + item][\u0027type\u0027] \u003d\u003d \u0027ether\u0027 and not \u0027ipv4\u0027 in hostvars[inventory_hostname][\u0027ansible_\u0027 + item]\n   with_items:\n    - \"{{ hostvars[inventory_hostname][\u0027ansible_interfaces\u0027] }}\"",
+      "revId": "68d3cf09b11c8fd9c5461d04dd121d31f43a5689",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf3e73b7_48316e0b",
+        "filename": "roles/acquire-deployment-address/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-02-20T12:52:16Z",
+      "side": 1,
+      "message": "Why not use:\n- name: Reload ansible facts\n   setup:\n\nor something similar? That will basically do the same as this and the next tasks",
+      "revId": "68d3cf09b11c8fd9c5461d04dd121d31f43a5689",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
