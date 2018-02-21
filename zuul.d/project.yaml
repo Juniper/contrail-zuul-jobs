@@ -4,8 +4,10 @@
       jobs:
         - contrail-infra-base-integration-centos-7
         - contrail-infra-base-integration-ubuntu-xenial
+        - zuul-jobs-linters
     gate:
       jobs:
         - contrail-infra-base-integration-centos-7
         - contrail-infra-base-integration-ubuntu-xenial
+        - zuul-jobs-linters
 
