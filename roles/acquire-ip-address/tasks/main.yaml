@@ -1,5 +1,5 @@
 - name: Acquire IP address for interfaces that miss it
-  command: "/usr/sbin/dhclient {{ item }}"
+  command: dhclient {{ item }}
   with_items:
     - "{{ hostvars[inventory_hostname]['ansible_interfaces'] }}"
   when: >

@@ -1,0 +1,16 @@
+# A set of tests for our fundamental zuul roles that don't require
+# a full run of CI.
+
+- name: Test the acquire-ip-address role
+  hosts: all
+  roles:
+    - role: acquire-ip-address
+  post_tasks:
+    - name: Check that IP address is available on all physical interfaces
+      fail:
+        msg: "Interface {{ item }} has no IP address. Failing."
+      with_items:
+        - "{{ hostvars[inventory_hostname]['ansible_interfaces'] }}"
+      when: hostvars[inventory_hostname]['ansible_' + item]['type'] == 'ether'
+        and not 'ipv4' in hostvars[inventory_hostname]['ansible_' + item]
+
