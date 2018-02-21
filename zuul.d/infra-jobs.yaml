@@ -1,3 +1,5 @@
+# A set of jobs for testing CI itself
+
 - job:
     name: contrail-infra-base-integration
     description: |

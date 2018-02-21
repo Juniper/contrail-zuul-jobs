@@ -1,0 +1,39 @@
+# Regular Contrail jobs used for testing various parts of Contrail project
+
+- job:
+    name: contrail-vnc-unittest-ubuntu-trusty
+    required-projects:
+      - Juniper/contrail-api-client
+      - Juniper/contrail-build
+      - Juniper/contrail-controller
+      - name: Juniper/contrail-dpdk
+        override-checkout: contrail_dpdk_17_02
+      - Juniper/contrail-generateDS
+      - Juniper/contrail-third-party
+      - Juniper/contrail-packages
+      - Juniper/contrail-packaging
+      - Juniper/contrail-provisioning
+      - Juniper/contrail-sandesh
+      - Juniper/contrail-vrouter
+      - Juniper/contrail-nova-vif-driver
+      - Juniper/contrail-common
+      - Juniper/contrail-analytics
+    irrelevant-files:
+      - specs/.*
+    run: playbooks/unittest/main
+    post-run: playbooks/unittest/post
+    nodeset:
+      nodes:
+        - name: builder
+          label: ubuntu-trusty-builder
+
+- job:
+    name: contrail-vnc-unittest-webui
+    parent: contrail-vnc-base
+    run: playbooks/unittest-webui/main
+    post-run: playbooks/unittest-webui/post
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-builder
+
