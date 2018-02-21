@@ -1,0 +1,25 @@
+- job:
+    name: contrail-infra-base-integration
+    description: |
+      Runs roles that are included by default in any of our "base"
+      roles to prevent total CI meltdown.
+    parent: base-minimal
+    required-projects:
+      - Juniper/contrail-project-config
+    roles:
+      - zuul: Juniper/zuul-jobs
+    run: tests/base.yaml
+    files:
+      - ^roles/acquire-ip-address/.*
+      - ^tests/.*
+
+- job:
+    name: contrail-infra-base-integration-centos-7
+    parent: contrail-infra-base-integration
+    nodeset: centos-7-4-builder
+
+- job:
+    name: contrail-infra-base-integration-ubuntu-xenial
+    parent: contrail-infra-base-integration
+    nodeset: ubuntu-xenial
+
