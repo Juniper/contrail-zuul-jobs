@@ -1,3 +1,5 @@
+# A set of jobs for testing CI itself
+
 - job:
     name: contrail-infra-base-integration
     description: |
@@ -10,7 +12,6 @@
       - zuul: Juniper/zuul-jobs
     run: tests/base.yaml
     files:
-      - ^roles/acquire-ip-address/.*
       - ^tests/.*
 
 - job:
@@ -22,4 +23,46 @@
     name: contrail-infra-base-integration-ubuntu-xenial
     parent: contrail-infra-base-integration
     nodeset: ubuntu-xenial
+
+- job:
+    name: contrail-vnc-integration
+    description: |
+      Runs a set of roles that provide basic contrail-vnc environment
+      for unit testing and package building - creates sandbox using repo,
+      installs additional packages and goes through other steps, ending just
+      before executing long-running tasks.
+    parent: base-minimal
+    required-projects:
+      - Juniper/contrail-project-config
+    roles:
+      - zuul: Juniper/zuul-jobs
+    run: tests/contrail-vnc.yaml
+    files:
+      - ^roles/acquire-ip-address/.*
+      - ^tests/.*
+
+- job:
+    name: contrail-systest-common-integration
+    description: |
+      Runs roles that are included in all systest jobs, to prevent
+      regressions.
+    parent: base-minimal
+    required-projects:
+      - Juniper/contrail-project-config
+    roles:
+      - zuul: Juniper/zuul-jobs
+    run: tests/systest-common.yaml
+    files:
+      - ^roles/acquire-ip-address/.*
+      - ^tests/.*
+
+  #- job:
+  #    name: contrail-systest-base-integration-centos-7
+  #    parent: contrail-systest-integration
+  #    nodeset: centos-7
+  #
+  #- job:
+  #    name: contrail-systest-base-integration-ubuntu-xenial
+  #    parent: contrail-systest-integration
+  #    nodeset: ubuntu-xenial
 

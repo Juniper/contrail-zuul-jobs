@@ -1,4 +1,9 @@
+# A set of tests for roles that are part of the base job.
+#
+# Make sure you update zuul.d/jobs.yaml, modyfying base-integration
+# files set.
+
+- include: emit-job-header.yaml
 - include: configure-hosts-entries.yaml
-- include: acquire-ip-address.yaml
 - include: configure-mirrors.yaml
 

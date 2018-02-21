@@ -1,0 +1,6 @@
+# A set of roles common to all systest jobs
+#
+# Make sure you update zuul.d/jobs.yaml, modyfying systest-integration
+# files set.
+#
+- include: acquire-ip-address.yaml

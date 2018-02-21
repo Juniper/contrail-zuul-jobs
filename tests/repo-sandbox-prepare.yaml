@@ -1,0 +1,5 @@
+- name: Test the repo-sandbox-prepare role
+  hosts: all
+  roles:
+    - repo-sandbox-prepare
+

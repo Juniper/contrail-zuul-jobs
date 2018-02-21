@@ -1,0 +1,9 @@
+# A set of tests for roles that are part of every job working
+# with contrail-vnc code.
+#
+# Make sure you update zuul.d/jobs.yaml, modyfying base-integration
+# files set.
+#
+
+- include: repo-sandbox-prepare.yaml
+

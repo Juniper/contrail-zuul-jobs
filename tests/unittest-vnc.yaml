@@ -1,0 +1,4 @@
+# This playbook loads and tests roles that are part of our main unittest job
+
+# First, load base.yaml to execute all roles that are part of the base job
+- include: base.yaml
