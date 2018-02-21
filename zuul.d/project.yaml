@@ -1,0 +1,4 @@
+- project:
+    name: Juniper/contrail-zuul-jobs
+    templates:
+      - noops
