@@ -1,0 +1,11 @@
+# A set of tests for our fundamental zuul roles that don't require
+# a full run of CI.
+
+- name: Test the acquire-ip-address role
+  hosts: all
+  roles:
+    - role: acquire-ip-address
+  post_tasks:
+    - name: Check that IP address is available on all physical interfaces
+      shell: /bin/false
+
