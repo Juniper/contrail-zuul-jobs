@@ -1,5 +1,7 @@
 - name: Acquire IP address for interfaces that miss it
-  command: "/usr/sbin/dhclient {{ item }}"
+  command: "dhclient {{ item }}"
+  environment:
+    PATH: /usr/sbin:/sbin:{{ ansible_env.PATH }}
   with_items:
     - "{{ hostvars[inventory_hostname]['ansible_interfaces'] }}"
   when: >
