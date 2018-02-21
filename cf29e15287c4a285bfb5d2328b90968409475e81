@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf3e73b7_6a6d4297",
+        "filename": "roles/install-docker-daemon/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-02-21T13:52:08Z",
+      "side": 1,
+      "message": "I\u0027d go with |lower and rename the files to lowercase for easier autocorrecting in shell ;-)",
+      "range": {
+        "startLine": 4,
+        "startChar": 7,
+        "endLine": 4,
+        "endChar": 33
+      },
+      "revId": "cf29e15287c4a285bfb5d2328b90968409475e81",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
