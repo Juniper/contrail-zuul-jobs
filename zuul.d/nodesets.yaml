@@ -1,0 +1,11 @@
+- nodeset:
+    name: centos-7
+    nodes:
+      - name: centos-7
+        label: centos-7-4-builder
+
+- nodeset:
+    name: ubuntu-xenial
+    nodes:
+      - name: ubuntu-xenial
+        label: ubuntu-xenial
