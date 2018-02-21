@@ -1,0 +1,70 @@
+- name: Prepare packaging variables
+  contrail_packaging:
+    zuul: "{{ zuul }}"
+    release_type: "{{ release_type }}"
+
+- name: Ensure that hostname is in /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ ansible_default_ipv4.address }} {{ ansible_hostname }}"
+  become: True
+  become_user: root
+
+- name: Copy over unittest scripts to the builder VM
+  copy:
+    src: "{{ item }}"
+    dest: "."
+    mode: 0755
+  with_fileglob:
+    - "*"
+
+- name: Add Google Chrome repo
+  yum_repository:
+    name: google-chrome
+    description: Google Chrome
+    file: google-chrome
+    baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
+    enabled: yes
+    gpgcheck: no
+  become: yes
+
+- name: install the Development tools package group
+  yum:
+    name: "@Development tools"
+    state: present
+  become: True
+
+- name: Install additional packages used by unittest scripts
+  package:
+    name: "{{ item }}"
+    state: present
+  become: True
+  become_user: root
+  with_items:
+    - nodejs-0.10.35
+    - python-lxml
+    - wget
+    - google-chrome-stable
+
+- name: Run unittest script
+  shell: "{{ ansible_env.HOME }}/contrail-webui-unittest.sh"
+  become: yes
+  become_user: root
+  environment:
+    USER: root
+    WORKSPACE: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+    UPSTREAM_VERSION: "{{ packaging.version.upstream }}"
+    ZUUL_CHANGES: "{{ zuul.ref }}"
+    ZUUL_PROJECT: "{{ zuul.project.short_name }}"
+    PROJECT_NAME: "{{ zuul.project.short_name }}"
+    SCONS_JOBS: "1"
+    LC_ALL: "C"
+    GIT_REFS: >-
+      {% set git_refs = [] -%}
+      {% for item in zuul['items'] -%}
+        {% set ref = "refs/changes/" + item.change[-2:] + "/" + item.change + "/" + item.patchset -%}
+        {% set git_ref = item.project.short_name + "^" + ref -%}
+        {% set _ =  git_refs.append(git_ref) -%}
+      {% endfor -%}
+      {{- git_refs|join(",") -}}
+

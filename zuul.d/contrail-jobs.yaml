@@ -1,0 +1,23 @@
+# Regular Contrail jobs used for testing various parts of Contrail project
+
+- job:
+    name: contrail-vnc-unittest-ubuntu-trusty
+    irrelevant-files:
+      - specs/.*
+    run: playbooks/unittest/main
+    post-run: playbooks/unittest/post
+    nodeset:
+      nodes:
+        - name: builder
+          label: ubuntu-trusty-builder
+
+- job:
+    name: contrail-vnc-unittest-webui
+    parent: contrail-vnc-base
+    run: playbooks/unittest-webui/main
+    post-run: playbooks/unittest-webui/post
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-builder
+
