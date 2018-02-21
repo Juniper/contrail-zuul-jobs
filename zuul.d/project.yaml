@@ -1,4 +1,11 @@
 - project:
     name: Juniper/contrail-zuul-jobs
-    templates:
-      - noops
+    check:
+      jobs:
+        - contrail-infra-base-integration-centos-7
+        - contrail-infra-base-integration-ubuntu-xenial
+    gate:
+      jobs:
+        - contrail-infra-base-integration-centos-7
+        - contrail-infra-base-integration-ubuntu-xenial
+
