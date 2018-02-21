@@ -4,8 +4,14 @@
       jobs:
         - contrail-infra-base-integration-centos-7
         - contrail-infra-base-integration-ubuntu-xenial
+        - zuul-jobs-linters:
+            vars:
+              mirror_fqdn: "{{ zuul_site_mirror_fqdn|default(omit) }}"
+              pypi_mirror: "http://{{ mirror_fqdn }}/pypi/simple"
+              wheel_mirror: "http://{{ mirror_fqdn }}/wheel/{{ ansible_distribution | lower }}-{{ ansible_distribution_version }}-{{ ansible_architecture | lower }}"
     gate:
       jobs:
         - contrail-infra-base-integration-centos-7
         - contrail-infra-base-integration-ubuntu-xenial
+        - zuul-jobs-linters
 
