@@ -1,0 +1,16 @@
+- name: Set up Contrail third-party apt-get repository
+  apt_repository:
+    repo: "deb http://repo01-jnpr.opencontrail.org/ubuntu {{ ansible_distribution_release }}-{{ zuul.branch }} main"
+  become: True
+  when: "'ubuntu-trusty' in hostvars" or "'ubuntu-xenial' in hostvars"
+
+- name: Set up Contrail third-party yum repository
+  yum_repository:
+    name: contrail-tpc
+    description: Contrail third-party dependencies
+    file: contrail-tpc
+    baseurl: "http://10.84.5.81/pulp/repos/opencontrail-tpc/"
+    enabled: yes
+    gpgcheck: no
+  become: True
+  when: "'centos7' in hostvars"
