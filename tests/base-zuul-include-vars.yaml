@@ -1,0 +1,18 @@
+- name: Test the zuul-include-vars role
+  hosts: all
+  pre_tasks:
+    # Fake zuul_return invocation by creating results.json on the executor
+    - name: Create fake results.json
+      copy:
+        content: |
+          {"fake_var": "fake_value"}
+        dest: "{{ zuul.executor.work_root }}/results.json"
+      delegate_to: localhost
+  roles:
+    - role: zuul-include-vars
+  post_tasks:
+    - name: Ensure that the variable has been loaded
+      fail:
+        msg: Exported variable is missing
+      when: fake_var is undefined or fake_var != 'fake_value'
+
