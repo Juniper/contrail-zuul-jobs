@@ -1,0 +1,13 @@
+- name: Enable EPEL repository (RedHat)
+  command: yum-config-manager --enable epel
+  become: True
+
+# XXX(kklimonda): workaround for yum-builddep force-enabling non-existing repo
+- name: Remove epel-source repository completely (RedHat)
+  command: sed -e '/\[epel-source\]/,+6 s/^/#/' -i /etc/yum.repos.d/epel.repo
+  become: True
+
+- name: Install package dependencies for the build (RedHat)
+  command: yum-builddep -y "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packages/rpm/contrail/contrail.spec"
+  become: True
+
