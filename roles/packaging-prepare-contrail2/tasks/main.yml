@@ -1,0 +1,28 @@
+- name: Add a repository with Contrail dependencies
+  apt_repository:
+    repo: "deb http://repo01-jnpr.opencontrail.org/ubuntu {{ ansible_distribution_release }}-{{ zuul.branch }} main"
+  become: True
+  become_user: root
+
+- name: symlink debian packaging to enable ubuntu package building
+  file:
+    state: link
+    src: "{{ ansible_env.HOME }}/{{ packaging.debian_dir }}"
+    dest: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/"
+
+- name: Update debian/changelog
+  shell: |
+      dch -v "{{ packaging.full_version }}" -m ""
+      dch --release --distribution "{{ ansible_distribution_release }}" -m "Releasing version {{ packaging.full_version }}."
+  args:
+    chdir: "{{ packaging.target_dir }}"
+
+- name: Create orig tarball
+  shell: |
+      fakeroot debian/rules get-orig-source
+      mv contrail_{{ packaging.full_version }}.orig.tar.gz ../
+  args:
+    chdir: "{{ packaging.target_dir }}"
+  environment:
+    DEB_BUILD_OPTIONS: "parallel={{ ansible_processor_vcpus }} site-mirror={{ zuul_site_mirror_fqdn }}"
+
