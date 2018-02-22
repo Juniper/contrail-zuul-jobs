@@ -1,0 +1,5 @@
+- hosts: all
+  roles:
+    - contrail-common-libs
+    - repo-sandbox-prepare
+    - gitlog-upload
