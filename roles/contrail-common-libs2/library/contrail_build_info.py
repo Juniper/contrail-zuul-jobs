@@ -90,7 +90,7 @@ def main():
         'docker_version': docker_version,
     }
 
-    module.exit_json(ansible_facts={'packaging': packaging}, **result)
+    module.exit_json(ansible_facts={'build_info': packaging}, **result)
 
 
 if __name__ == "__main__":

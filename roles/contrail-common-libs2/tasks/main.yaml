@@ -1,12 +1,11 @@
 - name: Load contrail packaging variables
-  contrail_packaging:
+  contrail_build_info:
     zuul: "{{ zuul }}"
     release_type: "{{ release_type }}"
-  delegate_to: localhost
 
 - name: Return contrail_packaging variable back to zuul
   zuul_return:
     data:
-      contrail_packaging: "{{ packaging }}"
+      contrail_build_info: "{{ build_info }}"
   delegate_to: localhost
 
