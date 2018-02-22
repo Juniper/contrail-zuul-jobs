@@ -1,3 +1,7 @@
 - include: base.yaml
 
+- include: contrail-base.yaml
+
+- include: contrail-tpc-repos.yaml
+
 - include: fetch-packages.yaml
