@@ -25,6 +25,27 @@
     nodeset: ubuntu-xenial
 
 - job:
+    name: contrail-infra-contrail-base-integratio
+    parent: base-minimal
+    roles:
+      - zuul: Juniper/zuul-jobs
+    run: tests/contrail-base.yaml
+    files:
+      - ^roles/zuul-include-vars/.*
+      - ^roles/contrail-helm-deployer/.*
+      - ^tests/.*
+
+- job:
+    name: contrail-infra-contrail-base-integration-centos-7
+    parent: contrail-infra-contrail-base-integration
+    nodeset: centos-7
+
+- job:
+    name: contrail-infra-contrail-base-integration-ubuntu-xenial
+    parent: contrail-infra-contrail-base-integration
+    nodeset: ubuntu-xenial
+
+- job:
     name: contrail-infra-packaging-integration
     description: |
       Run roles that are used for packaging jobs to prevent regressions.
