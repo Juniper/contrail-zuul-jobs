@@ -1,0 +1,84 @@
+- name: Prepare packaging variables
+  contrail_packaging:
+    zuul: "{{ zuul }}"
+    release_type: "{{ release_type }}"
+
+- name: Add a repository with Contrail dependencies
+  apt_repository:
+    repo: "deb http://repo01-jnpr.opencontrail.org/ubuntu {{ ansible_distribution_release }}-{{ zuul.branch }} main"
+  become: True
+  become_user: root
+
+# rsync requires that target parent directories are already in place,
+# so create everything ahead of time.
+- name: Create directory structure for rsync
+  file:
+    path: "{{ ansible_env.HOME }}/{{ item }}"
+    state: directory
+  with_items:
+    - "{{ packaging.target_dir }}/"
+    - "{{ packaging.target_dir }}/src/"
+    - "{{ packaging.target_dir }}/tools/"
+    - "{{ packaging.target_dir }}/openstack/"
+
+- name: Hard-link gerrit repositories into expected structure
+  synchronize:
+    src: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/{{ item.dest }}"
+    rsync_opts:
+      - --no-motd
+      - --quiet
+  with_items:
+    - { src: 'contrail-controller/', dest: 'controller' }
+    - { src: 'contrail-build/', dest: 'tools/build' }
+    - { src: 'contrail-generateDS/', dest: 'tools/generateds' }
+    - { src: 'contrail-sandesh/', dest: 'tools/sandesh' }
+    - { src: 'contrail-third-party/', dest: 'third_party' }
+    - { src: 'contrail-vrouter/', dest: 'vrouter' }
+    - { src: 'contrail-packages/', dest: 'tools/packages' }
+    - { src: 'contrail-packaging/', dest: 'tools/packaging' }
+    - { src: 'contrail-provisioning/', dest: 'tools/provisioning' }
+    - { src: 'contrail-nova-extensions/', dest: 'openstack/nova_extensions' }
+    - { src: 'contrail-nova-vif-driver/', dest: 'openstack/nova_contrail_vif' }
+    - { src: 'contrail-common', dest: 'src' }
+    - { src: 'contrail-build/SConstruct', dest: '' }
+    - { src: 'contrail-analytics', dest: 'src' }
+  delegate_to: "{{ inventory_hostname }}"
+
+- name: Hard-link github repositories into expected structure
+  synchronize:
+    src: "{{ ansible_env.HOME }}/src/github.com/Juniper/{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/{{ item.dest }}"
+    rsync_opts:
+      - --no-motd
+      - --quiet
+  with_items:
+    - { src: 'contrail-api-client', dest: 'src' }
+  delegate_to: "{{ inventory_hostname }}"
+
+- name: Copy debian/ to enable package building
+  synchronize:
+    src: "{{ ansible_env.HOME}}/{{ packaging.debian_dir }}"
+    dest: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/"
+    rsync_opts:
+      - --no-motd
+      - --exclude=.git
+      - --quiet
+  delegate_to: "{{ inventory_hostname }}"
+
+- name: Update debian/changelog
+  shell: |
+      dch -v "{{ packaging.full_version }}" -m ""
+      dch --release --distribution "{{ ansible_distribution_release }}" -m "Releasing version {{ packaging.full_version }}."
+  args:
+    chdir: "{{ packaging.target_dir }}"
+
+- name: Create orig tarball
+  shell: |
+      fakeroot debian/rules get-orig-source
+      mv contrail_{{ packaging.full_version }}.orig.tar.gz ../
+  args:
+    chdir: "{{ packaging.target_dir }}"
+  environment:
+    DEB_BUILD_OPTIONS: "parallel={{ ansible_processor_vcpus }} site-mirror={{ zuul_site_mirror_fqdn }}"
+

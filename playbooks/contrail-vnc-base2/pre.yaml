@@ -1,0 +1,5 @@
+- hosts: all
+  roles:
+    - contrail-common-libs2
+    - repo-sandbox-prepare2
+
