@@ -1,1 +1,3 @@
 - include: acquire-ip-address.yaml
+- include: configure-mirrors.yaml
+
