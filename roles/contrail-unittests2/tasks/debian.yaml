@@ -1,0 +1,22 @@
+- name: Install package dependencies for the build (Debian)
+  command: |
+    mk-build-deps -r -i debian/control \
+      --tool="apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes"
+  args:
+    chdir: "{{ packaging.target_dir }}"
+  become: True
+  register: deps
+  failed_when: "'mk-build-deps: Unable to install all build-dep packages' in deps.stdout"
+
+# DPDK is built from the same sources, but the dependencies were split
+# to another source package, so make sure we also install them.
+- name: Install DPDK build dependencies (Debian)
+  command: |
+    mk-build-deps -r -i tools/packages/debian/contrail-vrouter-dpdk/debian/control \
+      --tool="apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes"
+  args:
+    chdir: "{{ packaging.target_dir }}"
+  become: True
+  register: deps
+  failed_when: "'mk-build-deps: Unable to install all build-dep packages' in deps.stdout"
+
