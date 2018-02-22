@@ -1,0 +1,23 @@
+- name: Test the zuul-include-vars role
+  hosts: all
+  pre_tasks:
+    # Read the existing results.json to get the log_url value
+    - name: Read the existing results.json
+      include_vars:
+        file: "{{ zuul.executor.work_root }}/results.json"
+      delegate_to: localhost
+    # Fake zuul_return invocation by creating results.json on the executor
+    - name: Create fake results.json
+      copy:
+        content: |
+          "{\"fake_var\": \"fake_value\", \"log_url\": \"{{ log_url }}\"}"
+        dest: "{{ zuul.executor.work_root }}/results.json"
+      delegate_to: localhost
+  roles:
+    - role: zuul-include-vars
+  post_tasks:
+    - name: Ensure that the variable has been loaded
+      fail:
+        msg: Exported variable is missing
+      when: fake_var is undefined or fake_var != 'fake_value'
+
