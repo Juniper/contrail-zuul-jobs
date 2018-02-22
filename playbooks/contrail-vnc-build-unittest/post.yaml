@@ -1,0 +1,5 @@
+- name: send unittest logs to the executor
+  hosts: all
+  roles:
+    - contrail-upload-logs-unittests
+    - contrail-upload-dmesg
