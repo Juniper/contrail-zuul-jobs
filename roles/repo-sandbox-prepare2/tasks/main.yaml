@@ -1,0 +1,47 @@
+- name: Create directory for the sandbox
+  file:
+    path: "{{ packaging.target_dir }}"
+    state: directory
+
+# XXX(kklimonda): Rewrite it as ansible module
+- name: copy scripts
+  copy:
+    src: "{{ item }}"
+    dest: "{{ executor_sandbox_path }}"
+    mode: preserve
+  with_items:
+    - manifest_translator.py
+
+- name: Initialize android repo
+  command: "./repo init -u {{ zuul._projects['review.opencontrail.org/Juniper/contrail-vnc'].src_dir }}"
+  args:
+    chdir: "{{ packaging.target_dir }}"
+
+- name: Dump zuul variables to a file
+  copy:
+    content: "{{ zuul }}"
+    dest: "zuul_var.yaml"
+
+- name: snapshot last commits SHAs into the manifest
+  command: ./manifest_translator.py snapshot ./zuul_var.yaml {{ packaging.target_dir }}/.repo/manifest.xml manifest.xml
+  args:
+    chdir: "{{ packaging.target_dir }}"
+  delegate_to: localhost
+
+- name: Modify manifest.xml to use source code checked out by zuul
+  command: ./manifest_translator.py translate ./zuul_var.yaml {{ packaging.target_dir }}/.repo/manifest.xml
+  delegate_to: localhost
+
+- name: Synchronize repositories to the sandbox
+  command: repo sync
+  args:
+    chdir: "{{ packaging.target_dir }}"
+
+- name: Clean-up auxiliary repo files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - manifest_translator.py
+    - zuul_var.yaml
+
