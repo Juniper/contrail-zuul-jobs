@@ -1,0 +1,82 @@
+- name: Ensure that hostname is in /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ ansible_default_ipv4.address }} {{ ansible_hostname }}"
+  become: True
+  become_user: root
+
+# Some tests (like test.test_flow.FlowQuerierTest.test_1_noarg_query) expect
+# PST timezone, and fail otherwise.
+- name: Change the timezone to America/Los_Angeles
+  timezone:
+    name: America/Los_Angeles
+  become: True
+  become_user: root
+
+- name: Copy over unittest scripts to the builder VM
+  copy:
+    src: "{{ item }}"
+    dest: "."
+    mode: 0755
+  with_fileglob:
+    - "*"
+
+- name: Update apt repositories
+  apt:
+    update_cache: yes
+  become: True
+  become_user: root
+
+- name: Install additional packages used by unittest scripts
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: True
+  become_user: root
+  with_items:
+    - ruby
+    - ack-grep
+
+- name: Install package dependencies for the build
+  command: |
+    mk-build-deps -r -i debian/control \
+      --tool="apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes"
+  args:
+    chdir: "{{ packaging.target_dir }}"
+  become: True
+  become_user: root
+  register: deps
+  failed_when: "'mk-build-deps: Unable to install all build-dep packages' in deps.stdout"
+
+- name: Run a full Contrail VNC build
+  command: "scons -j {{ ansible_processor_vcpus }}"
+  args:
+    chdir: "{{ packaging.target_dir }}"
+  become: yes
+  become_user: root
+  environment:
+    BUILD_ONLY: 1
+    ZUUL_CHANGES: "{{ zuul.ref }}"
+    CONTRAIL_COMPILE_WITHOUT_SYMBOLS: yes
+    LC_ALL: "C"
+
+- name: Run unittest script
+  command: "{{ ansible_env.HOME }}/contrail-unittests-job.sh"
+  become: yes
+  become_user: root
+  environment:
+    WORKSPACE: "{{ ansible_env.HOME }}"
+    UPSTREAM_VERSION: "{{ packaging.version.upstream }}"
+    ZUUL_CHANGES: "{{ zuul.ref }}"
+    ZUUL_PROJECT: "{{ zuul.project.short_name }}"
+    SCONS_JOBS: "1"
+    LC_ALL: "C"
+    GIT_REFS: >-
+      {% set git_refs = [] -%}
+      {% for item in zuul['items'] -%}
+        {% set ref = "refs/changes/" + item.change[-2:] + "/" + item.change + "/" + item.patchset -%}
+        {% set git_ref = item.project.short_name + "^" + ref -%}
+        {% set _ =  git_refs.append(git_ref) -%}
+      {% endfor -%}
+      {{- git_refs|join(",") -}}
+
