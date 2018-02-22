@@ -1,0 +1,6 @@
+- hosts: all
+  roles:
+    - zuul-include-vars
+    - packaging-prepare-contrail2
+    - contrail-unittests2
+
