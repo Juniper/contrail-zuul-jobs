@@ -1,0 +1,6 @@
+- hosts: all
+  roles:
+    - contrail-common-libs
+    - packaging-prepare-contrail
+    - contrail-unittests
+
