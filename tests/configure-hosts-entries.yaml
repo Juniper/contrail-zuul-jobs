@@ -1,0 +1,5 @@
+- name: Test the configure-mirrors role
+  hosts: all
+  roles:
+    - role: configure-hosts-entries
+
