@@ -1,0 +1,35 @@
+- name: Add review.opencontrail.org remote
+  shell: git remote add gerrit https://review.opencontrail.org/Juniper/{{ item }}
+  args:
+    chdir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/{{ item }}"
+  failed_when: False
+  with_items:
+    - contrail-controller
+    - contrail-build
+    - contrail-vrouter
+    - contrail-sandesh
+    - contrail-generateDS
+
+- name: Fetch all remotes
+  shell: git fetch --all
+  args:
+    chdir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/{{ item }}"
+  with_items:
+    - contrail-controller
+    - contrail-build
+    - contrail-vrouter
+    - contrail-sandesh
+    - contrail-generateDS
+
+- name: Checkout Juniper/contrail-nova-extensions from github.com
+  git:
+    repo: "https://github.com/Juniper/contrail-nova-extensions.git"
+    dest: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-nova-extensions/"
+
+- name: Change contrail-packages to custom repo
+  shell: |
+    git remote add kklimonda https://github.com/kklimonda/contrail-packages
+    git fetch --all
+    git reset --hard kklimonda/feature/zuulv3
+  args:
+    chdir: "{{ ansible_env.HOME}}/src/review.opencontrail.org/Juniper/contrail-packages/"
