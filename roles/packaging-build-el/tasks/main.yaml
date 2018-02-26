@@ -1,0 +1,122 @@
+- name: Install build requirements with yum
+  shell: yum-builddep -y tools/packages/rpm/contrail/contrail.spec
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+  become: True
+  become_user: root
+
+# XXX(kklimonda): Expand role to install dependencies for all .spec files used
+- name: Install additional DPDK dependencies
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libnl3
+    - liburcu2
+    - libnl3-devel
+    - liburcu-devel
+    - numactl-devel
+  become: true
+
+- name: Fetch third-party packages
+  shell: python fetch_packages.py
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/third_party/"
+
+- name: Get the kernel-devel version
+  command: rpm -q --qf "%{VERSION}-%{RELEASE}.%{ARCH}" kernel-devel
+  register: kver
+
+- name: Build binary & source packages for contrail-vnc
+  shell: |
+    rpmbuild \
+      --define '_sbtop {{ ansible_env.HOME }}/{{ packaging.target_dir }}' \
+      --define "_opt production" \
+      --define "_kVers {{ kver.stdout }}" \
+      --define "_buildTag {{ packaging.version.distrib }}" \
+      --define "_srcVer {{ packaging.version.upstream }}" \
+      -ba tools/packages/rpm/contrail/contrail.spec
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+  environment:
+    SCONSFLAGS: "-j {{ ansible_processor_vcpus }} --opt=production"
+
+- name: Build binary & source packages for contrail-nodemgr
+  shell: |
+    rpmbuild \
+      --define '_topdir {{ ansible_env.HOME }}/{{ packaging.target_dir }}' \
+      --define '_builddir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/controller' \
+      --define "_buildTag {{ packaging.version.distrib }}" \
+      --define "_srcVer {{ packaging.version.upstream }}" \
+      -ba {{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/common/rpm/contrail-nodemgr.spec
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/controller"
+
+- name: "Build binary package for contrail-setup"
+  shell: |
+    rpmbuild \
+      --define "_topdir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/" \
+      --define "_buildTag {{ packaging.version.distrib }}" \
+      --define "_srcVer {{ packaging.version.upstream }}" \
+      --define "_skuTag mitaka" \
+      --define "_builddir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/controller" \
+      -bb {{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/common/rpm/contrail-setup.spec
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/controller"
+
+- name: Build additional packages
+  include: build_package.yaml
+  with_items:
+    - { name: 'contrail-openstack-analytics', workdir: 'controller' }
+    - { name: 'contrail-openstack-control',   workdir: 'controller' }
+    - { name: 'contrail-openstack-config-common',   workdir: 'controller' }
+    - { name: 'contrail-openstack-config',   workdir: 'controller' }
+    - { name: 'contrail-openstack-vrouter',   workdir: 'controller' }
+    - { name: 'contrail-openstack-webui',   workdir: 'controller' }
+    - { name: 'contrail-vrouter-init' }
+    - { name: 'contrail-vrouter-dpdk' }
+    - { name: 'contrail-vrouter-dpdk-init' }
+#    - { name: 'contrail-test' }
+    - { name: 'fabric-utils' }
+    - { name: 'neutron-plugin-contrail' }
+
+- name: Install nodejs 0.10.35
+  yum:
+    name: nodejs-0.10.35-1contrail.el7
+  become: true
+  become_user: root
+
+- name: "Build binary package for ironic-notification-manager"
+  shell: |
+    rpmbuild \
+      --define "_topdir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/" \
+      --define "_builddir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/controller" \
+      --define "_buildTag {{ packaging.version.distrib }}" \
+      --define "_srcVer {{ packaging.version.upstream }}" \
+      -bb {{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/common/rpm/ironic-notification-manager.spec
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/"
+
+- name: Build binary packages for Contrail WebUI
+  shell: |
+    make package REPO=../{{ item.name }}{{ item.component }}
+    rpmbuild \
+      --define "_builddir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/BUILD" \
+      --define "_buildTag {{ packaging.version.distrib }}" \
+      --define "_srcVer {{ packaging.version.upstream }}" \
+      --bb {{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/common/rpm/{{ item.name }}.spec
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/contrail-web-core"
+  with_items:
+    - { name: "contrail-web-core", component: "" }
+    - { name: "contrail-web-controller", component: ",webController" }
+
+- name: Collect all packages from workspace
+  synchronize:
+    src: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/RPMS/"
+    dest: "{{ ansible_env.HOME }}/rpmbuild/RPMS"
+    rsync_opts:
+      - --no-motd
+      - --quiet
+  delegate_to: "{{ inventory_hostname }}"
+

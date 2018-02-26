@@ -1,0 +1,11 @@
+- name: "Build binary package for {{ item.name }}"
+  shell: |
+    rpmbuild \
+      --define "_buildTag {{ build_tag | default(packaging.version.distrib) }}" \
+      --define "_skuTag mitaka" \
+      --define "_srcVer {{ packaging.version.upstream }}" \
+      --define "_topdir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/" \
+      {{ item.extra|default('') }} \
+      -bb {{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/common/rpm/{{ item.name }}.spec
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/{{ item.workdir|default('') }}"
