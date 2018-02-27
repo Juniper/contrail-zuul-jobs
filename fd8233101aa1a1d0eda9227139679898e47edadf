@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f287b81_49d08251",
+        "filename": "roles/contrail-helm-deployer/templates/helm-deploy.sh.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-02-27T11:37:21Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 1
+      },
+      "revId": "fd8233101aa1a1d0eda9227139679898e47edadf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
