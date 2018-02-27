@@ -22,11 +22,13 @@
 - name: copy deployment script template to target machine
   template:
     src: templates/helm-deploy.sh.j2
-    dest: "{{ ansible_env_HOME }}/helm-deploy.sh"
-    mode: 755
+    dest: "{{ ansible_env.HOME }}/helm-deploy.sh"
+    mode: 0755
 
 - name: run helm deployment script
   shell: ./helm-deploy.sh
+  args:
+    chdir: "{{ ansible_env.HOME }}"
   environment:
     BASE_DIR: "{{ repos_dir }}"
     OSH_PATH: "{{ repos_dir }}/openstack-helm"
