@@ -11,6 +11,7 @@
     run: tests/base.yaml
     files:
       - ^roles/acquire-ip-address/.*
+      - ^roles/contrail-helm-deployer/.*
       - ^tests/.*
 
 - job:
