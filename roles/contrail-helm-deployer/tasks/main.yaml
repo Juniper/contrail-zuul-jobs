@@ -19,8 +19,14 @@
     - { org: madhukar32, name: openstack-helm, version: contrail_5_0 }
     - { org: madhukar32, name: openstack-helm-infra, version: contrail_5_0 }
 
+- name: copy deployment script template to target machine
+  template:
+    src: templates/helm-deploy.sh.j2
+    dest: "{{ ansible_env_HOME }}/helm-deploy.sh"
+    mode: 755
+
 - name: run helm deployment script
-  script: helm-deploy.sh
+  shell: ./helm-deploy.sh
   environment:
     BASE_DIR: "{{ repos_dir }}"
     OSH_PATH: "{{ repos_dir }}/openstack-helm"
