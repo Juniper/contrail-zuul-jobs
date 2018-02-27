@@ -1,10 +1,3 @@
-- name: Install build requirements with yum.
-  command: yum-builddep -y tools/packages/rpm/contrail/contrail.spec
-  args:
-    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
-  become: True
-  become_user: root
-
 # XXX(kklimonda): Expand role to install dependencies for all .spec files used
 - name: Install additional DPDK dependencies
   yum:
@@ -23,25 +16,21 @@
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/third_party/"
 
-- name: Get the kernel-devel version
-  command: rpm -q --qf "%{VERSION}-%{RELEASE}.%{ARCH}" kernel-devel
-  register: kver
-  tags:
-    - skip_ansible_lint  # ANSIBLE0006
-
-- name: Build binary & source packages for contrail-vnc
-  command: |
-    rpmbuild \
-      --define '_sbtop {{ ansible_env.HOME }}/{{ packaging.target_dir }}' \
-      --define "_opt production" \
-      --define "_kVers {{ kver.stdout }}" \
-      --define "_buildTag {{ packaging.version.distrib }}" \
-      --define "_srcVer {{ packaging.version.upstream }}" \
-      -ba tools/packages/rpm/contrail/contrail.spec
+- name: Install dependencies for {{ item }}
+  command: make -f tools/packages/Makefile dep-{{ item }}
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
-  environment:
-    SCONSFLAGS: "-j {{ ansible_processor_vcpus }} --opt=production"
+  with_items:
+    - contrail
+  become: true
+  become_user: root
+
+- name: Build binary packages for {{ item }}
+  command: make -f tools/packages/Makefile rpm-{{item}}
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+  with_items:
+    - contrail
 
 - name: Build binary & source packages for contrail-nodemgr
   command: |
