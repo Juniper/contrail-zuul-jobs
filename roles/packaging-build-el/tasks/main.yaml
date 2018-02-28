@@ -1,5 +1,5 @@
 - name: Install build requirements with yum.
-  shell: yum-builddep -y tools/packages/rpm/contrail/contrail.spec
+  command: yum-builddep -y tools/packages/rpm/contrail/contrail.spec
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
   become: True
@@ -19,16 +19,18 @@
   become: true
 
 - name: Fetch third-party packages
-  shell: python fetch_packages.py
+  command: python fetch_packages.py
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/third_party/"
 
 - name: Get the kernel-devel version
   command: rpm -q --qf "%{VERSION}-%{RELEASE}.%{ARCH}" kernel-devel
   register: kver
+  tags:
+    - skip_ansible_lint
 
 - name: Build binary & source packages for contrail-vnc
-  shell: |
+  command: |
     rpmbuild \
       --define '_sbtop {{ ansible_env.HOME }}/{{ packaging.target_dir }}' \
       --define "_opt production" \
@@ -42,7 +44,7 @@
     SCONSFLAGS: "-j {{ ansible_processor_vcpus }} --opt=production"
 
 - name: Build binary & source packages for contrail-nodemgr
-  shell: |
+  command: |
     rpmbuild \
       --define '_topdir {{ ansible_env.HOME }}/{{ packaging.target_dir }}' \
       --define '_builddir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/controller' \
@@ -53,7 +55,7 @@
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/controller"
 
 - name: "Build binary package for contrail-setup"
-  shell: |
+  command: |
     rpmbuild \
       --define "_topdir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/" \
       --define "_buildTag {{ packaging.version.distrib }}" \
@@ -87,7 +89,7 @@
   become_user: root
 
 - name: "Build binary package for ironic-notification-manager"
-  shell: |
+  command: |
     rpmbuild \
       --define "_topdir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/" \
       --define "_builddir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/controller" \
