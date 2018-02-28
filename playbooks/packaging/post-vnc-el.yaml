@@ -1,0 +1,16 @@
+- hosts: builder
+  roles:
+    - role: packaging-fetch-el
+
+- hosts: localhost
+  roles:
+    - role: add-fileserver
+      fileserver: "{{ site_pulp }}"
+
+- hosts: "{{ site_pulp.fqdn }}"
+  vars:
+    executor_package_dir: "{{ zuul.executor.work_root }}/packages"
+  roles:
+    - role: contrail-common-libs
+    - role: packaging-publish-el
+
