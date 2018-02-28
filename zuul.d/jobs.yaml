@@ -24,3 +24,13 @@
     parent: contrail-infra-base-integration
     nodeset: ubuntu-xenial
 
+- job:
+    name: contrail-vnc-build-package-centos74
+    parent: contrail-vnc-build-package-el-base
+    irrelevant-files:
+      - specs/.*
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-builder
+
