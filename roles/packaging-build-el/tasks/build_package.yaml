@@ -1,5 +1,5 @@
 - name: "Build binary package for {{ item.name }}"
-  shell: |
+  command: |
     rpmbuild \
       --define "_buildTag {{ build_tag | default(packaging.version.distrib) }}" \
       --define "_skuTag mitaka" \
