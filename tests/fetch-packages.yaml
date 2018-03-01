@@ -1,0 +1,104 @@
+# Verify that we can collect all packages from workspace, and
+# they are all put into single directory on the executor.
+- name: Test the fetch-packages role
+  hosts: all
+  vars:
+    debian_packages:
+        # debian packages are put into parent directory of the source
+        # contrail-vnc packaging puts its deb files in $HOME
+        - contrail-controller_master~10000.1_amd64.deb
+        # contrail-setup puts it in contrail-master/tools/packaging/common/debian
+        # XXX(kklimonda): verify that path
+        - contrail-master/tools/packaging/common/debian/contrail-setup_master~10000.1_amd64.deb
+    redhat_packages:
+        # packages built for contrail-vnc go to $HOME/rpmbuild/RPMS/
+        - rpmbuild/RPMS/contrail-controller-master~10000.1.el7.x86_64.rpm
+        # packages built for auxiliary packages go to $HOME/contrail-master/RPMS/
+        - contrail-master/RPMS/contrail-web-core-master~10000.1.el7.x86_64.rpm
+        # random check to see if we can collect from other place
+        - contrail-master/tools/packaging/contrail-setup-master~10000.1.el7.x86_64.rpm
+    fake_packages:
+        ## Put some fake packages outside of the workplace
+        - /tmp/contrail-fake-master.el7.x86_64.rpm
+        - /tmp/contrail-fake_master~10000.1_amd64.deb
+  # create a bunch of rpm/deb files all over the $HOME to see
+  # if we can find them all and put into correct location.
+  pre_tasks:
+    - name: Create directories for packages
+      file:
+        state: directory
+        recurse: true
+        path: "{{ item }}"
+      with_items:
+        - rpmbuild/RPMS/
+        - contrail-master/RPMS/
+        - contrail-master/tools/packaging/common/debian/
+    - name: Create dummy packages to search for
+      file:
+        state: touch
+        path: "{{ item }}"
+      with_items:
+        - "{{ debian_packages }}"
+        - "{{ redhat_packages }}"
+        - "{{ fake_packages }}"
+  roles:
+    - fetch-packages
+  post_tasks:
+    # Verify that, depending on the distribution, correct files have been
+    # fetched and they are all in a single directory.
+    - name: Verify that packages have been fetched from the builder
+      stat:
+        path: "{{ zuul.executor.work_root }}/packages/{{ item|basename }}"
+      with_items: "{{ vars[ansible_os_family|lower + '_packages'] }}"
+      register: our_packages
+      delegate_to: localhost
+
+    - fail:
+        msg: "Package {{ item.item|basename }} is missing from the executor"
+      with_items: "{{ our_packages.results }}"
+      when: item.stat.exists == False
+
+    - name: Verify that we don't touch packages for other distributions (deb)
+      stat:
+        path: "{{ zuul.executor.work_root }}/packages/{{ item|basename }}"
+      with_items: "{{ debian_packages }}"
+      # the node we're executing fetch-packages on is called 'centos-7' or 'ubuntu-xenial'
+      when: "{{ 'centos-7' in hostvars }}"
+      register: other_packages
+      delegate_to: localhost
+
+    - fail:
+        msg: "Package {{ item.item|basename }} should't be on the executor"
+      with_items: "{{ other_packages.results }}"
+      when:
+        - not item|skipped
+        - item.stat.exists == True
+
+    - name: Verify that we don't touch packages for other distributions (rpm)
+      stat:
+        path: "{{ zuul.executor.work_root }}/packages/{{ item|basename }}"
+      with_items: "{{ redhat_packages }}"
+      # the node we're executing fetch-packages on is called 'centos-7' or 'ubuntu-xenial'
+      when: "{{ 'ubuntu-xenial' in hostvars }}"
+      register: other_packages
+      delegate_to: localhost
+
+    - fail:
+        msg: "Package {{ item.item|basename }} should't be on the executor"
+      with_items: "{{ other_packages.results }}"
+      when:
+        - not item|skipped
+        - item.stat.exists == True
+
+    - name: Verify that we haven't downloaded anything random
+      stat:
+        path: "{{ zuul.executor.work_root }}/packages/{{ item|basename }}"
+      with_items: "{{ fake_packages }}"
+      register: fake_packages
+      delegate_to: localhost
+
+    - fail:
+        msg: "\"Fake\" package {{ item.item }} shouldn't be on the executor"
+      with_items: "{{ fake_packages.results }}"
+      when: item.stat.exists == True
+
