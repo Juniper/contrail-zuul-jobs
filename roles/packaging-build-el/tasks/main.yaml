@@ -19,7 +19,7 @@
   become: true
 
 - name: Fetch third-party packages
-  command: python fetch_packages.py
+  command: python fetch_packages.py --site-mirror http://{{ zuul_site_mirror_fqdn }}
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/third_party/"
 
