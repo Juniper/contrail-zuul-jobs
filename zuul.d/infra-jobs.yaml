@@ -25,6 +25,28 @@
     nodeset: ubuntu-xenial
 
 - job:
+    name: contrail-infra-packaging-integration
+    description: |
+      Run roles that are used for packaging jobs to prevent regressions.
+    parent: base-minimal
+    run: tests/packaging-integration.yaml
+    files:
+      - ^roles/fetch-packages/.*
+      - ^tests/.*
+
+- job:
+    name: contrail-infra-packaging-integration-centos-7
+    parent: contrail-infra-packaging-integration
+    nodeset: centos-7
+
+- job:
+    name: contrail-infra-packaging-integration-ubuntu-xenial
+    parent: contrail-infra-packaging-integration
+    nodeset: ubuntu-xenial
+
+
+
+- job:
     name: zuul-jobs-linters
     parent: tox
     nodeset: ubuntu-xenial
