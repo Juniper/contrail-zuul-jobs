@@ -1,6 +1,51 @@
 - job:
-    name: contrail-vnc-build-package-centos74
-    parent: contrail-vnc-build-package-el-base
+    name: contrail-vnc-base2
+    description: |
+      A base job that prepares Contrail VNC sandbox using Android repo,
+      as opposed to the contrail-src-base job that copies the sources directly.
+    required-projects:
+      - Juniper/contrail-analytics
+      - Juniper/contrail-api-client
+      - Juniper/contrail-build
+      - Juniper/contrail-common
+      - Juniper/contrail-controller
+      - Juniper/contrail-fabric-utils
+      - name: Juniper/contrail-dpdk
+        override-checkout: contrail_dpdk_17_02
+      - Juniper/contrail-generateDS
+      - Juniper/contrail-heat
+      - Juniper/contrail-neutron-plugin
+      - Juniper/contrail-nova-extensions
+      - Juniper/contrail-nova-vif-driver
+      - Juniper/contrail-packages
+      - Juniper/contrail-packaging
+      - Juniper/contrail-provisioning
+      - Juniper/contrail-sandesh
+      - Juniper/contrail-specs
+      - Juniper/contrail-test
+      - Juniper/contrail-test-ci
+      - Juniper/contrail-third-party
+      - Juniper/contrail-vnc
+      - Juniper/contrail-vrouter
+      - Juniper/contrail-web-controller
+
+- job:
+    name: contrail-vnc-build-package-el-base2
+    parent: contrail-vnc-base2
+    description: |
+      Job that tests Contrail VNC (controller, analytics, etc.) packaging
+
+      This is a base job for testing packaging of Contrail VNC for Enterprise
+      Linux based distributions (CentOS, RHEL). Release-based variants of this
+      job are then added to the Juniper/contrail-packages project.
+    run: playbooks/packaging/contrail-vnc-el
+    post-run: playbooks/packaging/post-vnc-el
+    irrelevant-files:
+      - specs/.*
+
+- job:
+    name: contrail-vnc-build-package-centos742
+    parent: contrail-vnc-build-package-el-base2
     run: playbooks/packaging/contrail-vnc-el
     irrelevant-files:
       - specs/.*
