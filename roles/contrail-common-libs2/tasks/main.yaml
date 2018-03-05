@@ -1,0 +1,6 @@
+- name: Load contrail packaging variables
+  contrail_packaging:
+    zuul: "{{ zuul }}"
+    release_type: "{{ release_type }}"
+  delegate_to: localhost
+
