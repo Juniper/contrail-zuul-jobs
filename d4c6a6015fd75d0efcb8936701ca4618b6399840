@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_2f3befd1",
+        "filename": "roles/load-docker-registry-info/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-03-05T17:43:52Z",
+      "side": 1,
+      "message": "Most likely won\u0027t work with untrusted playbook - instead try using `zuul-include-vars` role and exporting variable with `zuul_return`.",
+      "revId": "d4c6a6015fd75d0efcb8936701ca4618b6399840",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
