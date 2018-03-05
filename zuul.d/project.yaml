@@ -10,6 +10,8 @@
         #        - contrail-infra-packaging-integration-ubuntu-xenial
         - contrail-vnc-build-unittest-ubuntu-trusty2:
             voting: False
+        - contrail-vnc-build-unittest-centos7:
+            voting: False
         - zuul-jobs-linters
     gate:
       jobs:
