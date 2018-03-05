@@ -9,3 +9,16 @@
         - name: builder
           label: centos-7-4-builder
 
+- job:
+    name: contrail-sanity-centos7-kolla-ocata
+    parent: contrail-systest-base
+    run: playbooks/sanity/kolla
+    required-projects:
+      - Juniper/contrail-ansible-deployer
+      - name: Juniper/contrail-kolla-ansible
+        override-checkout: contrail/ocata
+      - Juniper/contrail-test
+    nodeset:
+      nodes:
+        - name: kolla-aio
+          label: centos-7-4-builder-xxlarge-c
