@@ -62,3 +62,15 @@
         - name: builder
           label: ubuntu-trusty-builder
 
+- job:
+    name: contrail-vnc-build-unittest-centos7
+    parent: contrail-vnc-base2
+    irrelevant-files:
+      - specs/.*
+    run: playbooks/contrail-vnc-build-unittest/main
+    post-run: playbooks/contrail-vnc-build-unittest/post
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-builder
+
