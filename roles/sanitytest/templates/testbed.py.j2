@@ -1,0 +1,62 @@
+{% set contrail_host_ip = hostvars[inventory_hostname]['ansible_host'] -%}
+{% set contrail_username = 'root' -%}
+
+from fabric.api import env
+import subprocess
+
+host1 = "{{ contrail_username }}@{{ contrail_host_ip }}"
+ext_routers = []
+
+env.roledefs = {
+    'all': [host1],
+    'openstack': [host1],
+    'cfgm': [host1],
+    'control': [host1],
+    'collector': [host1],
+    'webui': [host1],
+    'database': [host1],
+    'compute': [host1],
+    'build': [host1],
+    'storage-master': [host1],
+    'storage-compute': [host1]
+}
+
+env.ntp_server = '10.84.5.100'
+env.openstack_admin_password = 'c0ntrail123'
+
+env.hostnames = { 'all': ['{{ contrail_host_ip }}']}
+env.password = 'c0ntrail123'
+env.passwords = { host1: 'c0ntrail123' }
+env.ostypes = { host1: 'centos'}
+
+env.webui = 'firefox'
+env.devstack = False
+env.test_retry_factor = 1.0
+env.test_delay_factor = 1.0
+env.kernel_upgrade = False
+
+env.test_repo_dir='/contrail-test'
+env.test_verify_on_setup = True
+
+env.http_proxy = ""
+
+control_data = {
+    host1 : { 'ip': '{{ ansible_vhost0.ipv4.address }}/24', 'gw' : '192.168.1.254', 'device':'dummy' },
+}
+
+env.keystone = {
+    'keystone_ip': '{{ contrail_host_ip }}',
+    'version': 'v3'
+}
+
+env.test = {
+    'use_project_scoped_token': True,
+    'webserver_host': '{{ contrail_host_ip }}',
+    'webserver_user': 'zuul',
+    'webserver_log_path': '{{ ansible_env.HOME }}/logs',
+    'webserver_report_path': '{{ ansible_env.HOME }}/sanity',
+    'webroot': '{{ ansible_env.HOME }}/logs',
+    'mail_server': '{{ contrail_host_ip }}',
+    'mail_port': '25',
+    'mail_sender': 'contrailbuild@juniper.net',
+}
