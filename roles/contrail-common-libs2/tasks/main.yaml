@@ -4,3 +4,9 @@
     release_type: "{{ release_type }}"
   delegate_to: localhost
 
+- name: Return contrail_packaging variable back to zuul
+  zuul_return:
+    data:
+      contrail_packaging: "{{ packaging }}"
+  delegate_to: localhost
+
