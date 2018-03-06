@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_673b5bd1",
+        "filename": "roles/contrail-ansible-deployer-new/templates/instances.j2",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 495
+      },
+      "writtenOn": "2018-03-06T13:56:20Z",
+      "side": 1,
+      "message": "I\u0027ve noticed that the same docker registry is used in contrail and kolla config, so there is an assumption that images for kolla and contrail are in the same place. Maybe we should seperate these registries?",
+      "revId": "0550b62637f6561693676e812e6c527a177e139e",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
