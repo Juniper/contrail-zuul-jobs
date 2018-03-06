@@ -2,6 +2,172 @@
   "comments": [
     {
       "key": {
+        "uuid": "5f2577a7_64d0f9f8",
+        "filename": "roles/contrail-ansible-deployer-new/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 482
+      },
+      "writtenOn": "2018-03-06T11:01:48Z",
+      "side": 1,
+      "message": "Could you move this task to another role since in Windows pipeline we are using static ip address on this interface?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 14
+      },
+      "revId": "d4c6a6015fd75d0efcb8936701ca4618b6399840",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_8404057d",
+        "filename": "roles/contrail-ansible-deployer-new/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 482
+      },
+      "writtenOn": "2018-03-06T11:01:48Z",
+      "side": 1,
+      "message": "Maybe it should be Provision Contrail with configure_instances.yml playbook ?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 51
+      },
+      "revId": "d4c6a6015fd75d0efcb8936701ca4618b6399840",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_a4ff0166",
+        "filename": "roles/contrail-ansible-deployer-new/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 482
+      },
+      "writtenOn": "2018-03-06T11:01:48Z",
+      "side": 1,
+      "message": "Maybe it should be Provision Contrail with install_contrail.yml playbook ?",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 51
+      },
+      "revId": "d4c6a6015fd75d0efcb8936701ca4618b6399840",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_24f311a1",
+        "filename": "roles/contrail-ansible-deployer-new/templates/instances.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 482
+      },
+      "writtenOn": "2018-03-06T11:01:48Z",
+      "side": 1,
+      "message": "In Windows pipeline we need PHYSICAL_INTERFACE to be parameterized.",
+      "range": {
+        "startLine": 22,
+        "startChar": 22,
+        "endLine": 22,
+        "endChar": 26
+      },
+      "revId": "d4c6a6015fd75d0efcb8936701ca4618b6399840",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_04f01590",
+        "filename": "roles/contrail-ansible-deployer-new/templates/instances.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 482
+      },
+      "writtenOn": "2018-03-06T11:01:48Z",
+      "side": 1,
+      "message": "In Windows pipeline we need VROUTER_GATEWAY to be parameterized.",
+      "revId": "d4c6a6015fd75d0efcb8936701ca4618b6399840",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_e42aa9e5",
+        "filename": "roles/contrail-ansible-deployer-new/templates/instances.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 482
+      },
+      "writtenOn": "2018-03-06T11:01:48Z",
+      "side": 1,
+      "message": "In Windows pipeline we need \u0027eth0\u0027 to be parameterized.",
+      "revId": "d4c6a6015fd75d0efcb8936701ca4618b6399840",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_8439a542",
+        "filename": "roles/contrail-ansible-deployer-new/templates/instances.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 482
+      },
+      "writtenOn": "2018-03-06T11:01:48Z",
+      "side": 1,
+      "message": "Is it possible to make this more generic, without using zuul variables ?",
+      "range": {
+        "startLine": 41,
+        "startChar": 122,
+        "endLine": 41,
+        "endChar": 159
+      },
+      "revId": "d4c6a6015fd75d0efcb8936701ca4618b6399840",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_643eb92a",
+        "filename": "roles/contrail-ansible-deployer-new/templates/instances.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 482
+      },
+      "writtenOn": "2018-03-06T11:01:48Z",
+      "side": 1,
+      "message": "This commented part should be removed",
+      "revId": "d4c6a6015fd75d0efcb8936701ca4618b6399840",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f2577a7_2f3befd1",
         "filename": "roles/load-docker-registry-info/tasks/main.yaml",
         "patchSetId": 2
