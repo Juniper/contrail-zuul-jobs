@@ -76,6 +76,7 @@
     - { name: 'contrail-openstack-vrouter',   workdir: 'controller' }
     - { name: 'contrail-openstack-webui',   workdir: 'controller' }
     - { name: 'contrail-vrouter-init' }
+    - { name: 'contrail-heat' }
     - { name: 'contrail-vrouter-dpdk' }
     - { name: 'contrail-vrouter-dpdk-init' }
 #    - { name: 'contrail-test' }
