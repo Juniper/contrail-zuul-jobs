@@ -1,0 +1,7 @@
+- hosts: all
+  roles:
+    - load-docker-registry-info
+    - role: contrail-ansible-deployer-new
+      cloud_orchestrator: openstack
+      openstack_version: ocata
+    - sanitytest

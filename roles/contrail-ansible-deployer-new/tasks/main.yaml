@@ -1,0 +1,61 @@
+- name: Acquire IP address on the second interface
+  command: /usr/sbin/dhclient eth1
+  become: true
+
+- name: Install build dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  with_items:
+    - ansible
+
+- name: Copy hosts template
+  template:
+    src: instances.j2
+    dest: "{{ docker_provision_dir }}/config/instances.yaml"
+
+- name: ensure SSH key is generated
+  command: ssh-keygen -t rsa -f /root/.ssh/id_rsa -N ''
+  args:
+    creates: /root/.ssh/id_rsa
+  become: True
+
+- name: add key to authorized keys
+  shell: |
+    cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+    chmod 600 /root/.ssh/authorized_keys
+    chmod 600 /root/.ssh/id_rsa
+    chmod 600 /root/.ssh/id_rsa.pub
+    chmod 700 /root/.ssh
+  become: True
+
+- name: Provision Contrail with deploy.yml playbook
+  command: >
+    ansible-playbook -i inventory/ playbooks/configure_instances.yml -v
+  args:
+    chdir: "{{ docker_provision_dir }}"
+  environment:
+    ANSIBLE_HOST_KEY_CHECKING: 'False'
+    ANSIBLE_STDOUT_CALLBACK: debug
+  become: True
+
+- name: Provision Contrail with deploy.yml playbook
+  command: >
+    ansible-playbook -i inventory/ -e orchestrator=openstack playbooks/install_contrail.yml
+  args:
+    chdir: "{{ docker_provision_dir }}"
+  environment:
+    ANSIBLE_HOST_KEY_CHECKING: 'False'
+    ANSIBLE_STDOUT_CALLBACK: debug
+  become: True
+
+- name: Show the list of running containers
+  command: docker ps -a
+  become: True
+
+- name: Show processes
+  command: ps aux --sort rss
+
+- name: Show memory usage
+  command: free -m
