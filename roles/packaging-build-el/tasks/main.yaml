@@ -37,6 +37,7 @@
       --define "_kVers {{ kver.stdout }}" \
       --define "_buildTag {{ packaging.version.distrib }}" \
       --define "_srcVer {{ packaging.version.upstream }}" \
+      {{ (build_debuginfo == 'yes') | ternary('--with', '--without') }} debuginfo \
       -ba tools/packages/rpm/contrail/contrail.spec
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
