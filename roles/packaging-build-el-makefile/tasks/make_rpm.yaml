@@ -11,6 +11,9 @@
   command: make -f tools/packaging/Makefile rpm-{{ item }}
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+  environment:
+    BUILDTAG: "{{ build_tag | default(packaging.version.distrib) }}"
+    SRCVER: "{{ packaging.version.upstream }}"
+    SKUTAG: ocata
   tags:
     - skip_ansible_lint
-

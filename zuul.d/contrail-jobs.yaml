@@ -93,3 +93,7 @@
       build_debuginfo: 'FALSE'
     irrelevant-files:
       - specs/.*
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-builder
