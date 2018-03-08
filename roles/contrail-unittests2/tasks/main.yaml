@@ -17,13 +17,22 @@
   become: True
   become_user: root
 
+# XXX(kklimonda): Remove me before merge!
+- name: (DEBUG) Display result of `with_fileglob`
+  debug:
+    msg: "File '{{ item }}'"
+  with_fileglob:
+    - "*"
+
 - name: Copy over unittest scripts to the builder VM
   copy:
     src: "{{ item }}"
     dest: "."
     mode: 0755
-  with_fileglob:
-    - "*"
+  with_items:
+    - contrail-unittests-gather.rb
+    - contrail-unittests-job.sh
+    - repo
 
 - name: Install additional packages used by unittest scripts
   package:
