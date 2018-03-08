@@ -3,6 +3,7 @@
     rpmbuild \
       --define "_buildTag {{ build_tag | default(packaging.version.distrib) }}" \
       --define "_skuTag mitaka" \
+      --define "_kVers {{ kver.stdout }}" \
       --define "_srcVer {{ packaging.version.upstream }}" \
       --define "_topdir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/" \
       {{ item.extra|default('') }} \
