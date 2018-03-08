@@ -1,3 +1,6 @@
+provider_config:
+  bms:
+    ntpserver: 192.168.1.1
 instances:
   bms1:
     provider: bms
@@ -21,6 +24,7 @@ contrail_configuration:
   OPENSTACK_VERSION: "{{ openstack_version }}"
   PHYSICAL_INTERFACE: eth1
   VROUTER_GATEWAY: 172.16.8.1
+  REGISTRY_PRIVATE_INSECURE: true
 {% if cloud_orchestrator == 'openstack' %}
   AUTH_MODE: keystone
   KEYSTONE_AUTH_ADMIN_PASSWORD: c0ntrail123
@@ -40,6 +44,8 @@ kolla_config:
     docker_registry: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
     neutron_opencontrail_init_image_full: "{{ docker_registry.fqdn }}:{{ registry_port }}/contrail-openstack-neutron-init:{{ zuul.change }}-{{ zuul.patchset }}-centos7-ocata"
     nova_compute_opencontrail_init_image_full: "{{ docker_registry.fqdn }}:{{ registry_port }}/contrail-openstack-compute-init:{{ zuul.change }}-{{ zuul.patchset }}-centos7-ocata"
+  kolla_passwords:
+    keystone_admin_password: c0ntrail123
 
 
 #kolla_base_distro: "{{ kolla_docker_distro }}"
