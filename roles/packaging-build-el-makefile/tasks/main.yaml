@@ -1,0 +1,43 @@
+- name: Prepare packaging variables
+  contrail_packaging:
+    zuul: "{{ zuul }}"
+    release_type: "{{ release_type }}"
+    build_number: "{{ build_number | default('unset_build_number') }}"
+
+- name: Fetch third-party packages
+  command: python fetch_packages.py --site-mirror http://{{ zuul_site_mirror_fqdn }}
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/third_party/"
+  tags:
+    - skip_ansible_lint
+
+- name: Get list of makefile targets
+  command: make -f tools/packaging/Makefile list
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+  register: rpm_list
+  tags:
+    - skip_ansible_lint
+
+- name: Check variables used by makefile
+  command: make -f tools/packaging/Makefile list
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+  environment:
+    BUILDTAG: "{{ build_tag | default(packaging.version.distrib) }}"
+    SRCVER: "{{ packaging.version.upstream }}"
+    SKUTAG: ocata
+
+- name: Install dependencies and build RPMs
+  include: make_rpm.yaml
+  with_items: "{{ rpm_list.stdout.split(' ') }}"
+
+- name: Collect all packages from workspace
+  synchronize:
+    src: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/RPMS/"
+    dest: "{{ ansible_env.HOME }}/rpmbuild/RPMS"
+    rsync_opts:
+      - --no-motd
+      - --quiet
+  delegate_to: "{{ inventory_hostname }}"
+
