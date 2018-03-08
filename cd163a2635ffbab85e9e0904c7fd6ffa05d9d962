@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_7dc51e8e",
+        "filename": "roles/packaging-build-el-makefile/tasks/main.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-03-08T18:56:49Z",
+      "side": 1,
+      "message": "missing \"\"",
+      "revId": "cd163a2635ffbab85e9e0904c7fd6ffa05d9d962",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_dd3bf299",
+        "filename": "roles/packaging-build-el-makefile/tasks/make_rpm.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-03-08T18:56:49Z",
+      "side": 1,
+      "message": "here",
+      "revId": "cd163a2635ffbab85e9e0904c7fd6ffa05d9d962",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_1dbcda03",
+        "filename": "roles/packaging-build-el-makefile/tasks/make_rpm.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-03-08T18:56:49Z",
+      "side": 1,
+      "message": "same here",
+      "revId": "cd163a2635ffbab85e9e0904c7fd6ffa05d9d962",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_bd402609",
+        "filename": "roles/packaging-build-el-makefile/tasks/make_rpm.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-03-08T18:56:49Z",
+      "side": 1,
+      "message": "here",
+      "revId": "cd163a2635ffbab85e9e0904c7fd6ffa05d9d962",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_fd36aeb4",
+        "filename": "roles/packaging-build-el-makefile/tasks/make_rpm.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-03-08T18:56:49Z",
+      "side": 1,
+      "message": "here",
+      "revId": "cd163a2635ffbab85e9e0904c7fd6ffa05d9d962",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
