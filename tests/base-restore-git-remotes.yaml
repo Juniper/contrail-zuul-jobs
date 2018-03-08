@@ -1,0 +1,28 @@
+- name: Test the restore-git-remotes role
+  hosts: all
+  pre_tasks:
+    # We want to make sure that we don't fetch remotes that've been
+    # there before we call `restore-git-remotes`. This guards us
+    # against future zuul change, when it adds back origin remote.
+    - name: Add origin remote to Juniper/contrail-project-config
+      command: "git remote add origin https://{{ zuul._projects['github.com/Juniper/contrail-project-config'].canonical_name }}"
+      args:
+        chdir: "{{ zuul._projects['github.com/Juniper/contrail-project-config'].src_dir"
+  roles:
+    - restore-git-remotes
+  post_tasks:
+    - name: Check that we have an origin remote
+      command: git remote
+      args:
+        chdir: "{{ zuul.src_dir }}"
+      register: remote
+      failed_when: "'origin' not in remote.stdout"
+    - name: Verify that our remote branch exists
+      shell: "git branch -r | grep -q origin/{{ zuul.branch }}"
+      args:
+        chdir: "{{ zuul.src_dir }}"
+    - name: Verify that we've skipped remote with existing remote
+      fail:
+        msg: "Juniper/contrail-project-config remote should not be added"
+      when: remote_fetch | json_query("results[*].skipped") | count
+
