@@ -90,6 +90,7 @@
       Job that tests Contrail VNC using new Makefile from contrail-packages.
     run: playbooks/packaging/contrail-vnc-el-makefile
     vars:
+      # This is required for Makefile: 'TRUE"/'FALSE' instead of a boolean
       build_debuginfo: 'FALSE'
     irrelevant-files:
       - specs/.*

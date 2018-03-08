@@ -12,7 +12,7 @@
     - skip_ansible_lint
 
 - name: Get list of makefile targets
-  command: make -f tools/packaging/Makefile list
+  command: make -f tools/packages/Makefile list
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
   register: rpm_list
@@ -20,7 +20,7 @@
     - skip_ansible_lint
 
 - name: Check variables used by makefile
-  command: make -f tools/packaging/Makefile list
+  command: make -f tools/packages/Makefile info
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
   environment:
