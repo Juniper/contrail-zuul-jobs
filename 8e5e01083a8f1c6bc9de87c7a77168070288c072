@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_bd270665",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-03-08T19:15:08Z",
+      "side": 1,
+      "message": "please add a reason for using string instead of bool in the comment",
+      "range": {
+        "startLine": 93,
+        "startChar": 6,
+        "endLine": 93,
+        "endChar": 30
+      },
+      "revId": "8e5e01083a8f1c6bc9de87c7a77168070288c072",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
