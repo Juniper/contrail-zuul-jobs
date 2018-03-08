@@ -83,3 +83,13 @@
         - name: kolla-aio
           label: centos-7-4-builder-xxlarge-c
 
+- job:
+    name: contrail-vnc-build-package-el-makefile
+    parent: contrail-vnc-base
+    description: |
+      Job that tests Contrail VNC using new Makefile from contrail-packages.
+    run: playbooks/packaging/contrail-vnc-el-makefile
+    vars:
+      build_debuginfo: no
+    irrelevant-files:
+      - specs/.*
