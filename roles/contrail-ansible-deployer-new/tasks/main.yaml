@@ -32,7 +32,7 @@
 
 - name: Provision Contrail with deploy.yml playbook
   command: >
-    ansible-playbook -i inventory/ playbooks/configure_instances.yml -v
+    ansible-playbook -i inventory/ -e 'REGISTRY_PRIVATE_INSECURE=True' playbooks/configure_instances.yml -v
   args:
     chdir: "{{ docker_provision_dir }}"
   environment:
