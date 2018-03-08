@@ -1,0 +1,5 @@
+- include: base.yaml
+
+- include: contrail-base.yaml
+
+- include: unittest-restore-git-remotes.yaml
