@@ -1,0 +1,28 @@
+- name: Test the restore-git-remotes role
+  hosts: all
+  pre_tasks:
+    # We want to make sure that we don't fetch remotes that've been
+    # there before we call `restore-git-remotes`. This guards us
+    # against future zuul change, when it adds back origin remote.
+    - name: Add origin remote for the reviewed project
+      command: "git remote add origin https://{{ zuul.project.canonical_name }}"
+      args:
+        chdir: "{{ zuul.project.src_dir }}"
+  roles:
+    - restore-git-remotes
+  post_tasks:
+    - name: Check that we have an origin remote
+      command: git remote
+      args:
+        chdir: "{{ zuul.src_dir }}"
+      register: remote
+      failed_when: "'origin' not in remote.stdout"
+    - name: Verify that our remote branch exists
+      shell: "git branch -r | grep -q origin/{{ zuul.branch }}"
+      args:
+        chdir: "{{ zuul.src_dir }}"
+    - name: Verify that we've skipped remote with existing remote
+      fail:
+        msg: "{{ zuul.project.short_name }} remote should be skipped"
+      when: remote_fetch | json_query("results[*].skipped") | count
+
