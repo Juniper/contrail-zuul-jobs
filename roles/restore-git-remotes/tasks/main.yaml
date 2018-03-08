@@ -1,0 +1,21 @@
+- name: Add remotes pointing to checked-out sources
+  command: "git remote add origin https://{{ item.value.canonical_name }}"
+  with_dict: "{{ zuul._projects }}"
+  failed_when:
+    - remote.rc > 0
+    - 'not "fatal: remote origin already exists." in remote.stderr'
+    - 'not "fatal: remote origin already exists." in remote.stdout'
+  changed_when: remote.rc == 0
+  args:
+    chdir: "{{ item.value.src_dir }}"
+  register: remote
+
+- name: Fetch all remotes
+  command: "git fetch --all"
+  args:
+    chdir: "{{ item.item.value.src_dir }}"
+  with_items:
+    - "{{ remote.results }}"
+  when: item|changed
+  register: remote_fetch
+
