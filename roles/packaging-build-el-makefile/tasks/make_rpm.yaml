@@ -1,0 +1,16 @@
+- name: Install dependencies for {{ item }}
+  command: make -f tools/packaging/Makefile dep-{{ item }}
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+  become: yes
+  become_user: root
+  tags:
+    - skip_ansible_lint
+
+- name: Run rpmbuild for {{ item }}
+  command: make -f tools/packaging/Makefile rpm-{{ item }}
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+  tags:
+    - skip_ansible_lint
+
