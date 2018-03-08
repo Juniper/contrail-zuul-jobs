@@ -22,8 +22,10 @@
     src: "{{ item }}"
     dest: "."
     mode: 0755
-  with_fileglob:
-    - "*"
+  with_items:
+    - contrail-unittests-gather.rb
+    - contrail-unittests-job.sh
+    - repo
 
 - name: Install additional packages used by unittest scripts
   package:
