@@ -19,3 +19,8 @@
         - contrail-infra-packaging-integration-ubuntu-xenial
         - zuul-jobs-linters
 
+- project:
+    name: Juniper/contrail-packages
+    experimental:
+      jobs:
+        - contrail-vnc-build-package-el-makefile
