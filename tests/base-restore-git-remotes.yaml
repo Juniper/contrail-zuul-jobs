@@ -1,0 +1,16 @@
+- name: Test the restore-git-remotes role
+  hosts: all
+  roles:
+    - restore-git-remotes
+  post_tasks:
+    - name: Check that we have an origin remote
+      command: git remote
+      args:
+        chdir: "{{ zuul.src_dir }}"
+      register: remote
+      failed_when: "'origin' not in remote.stdout"
+    - name: Verify that our remote branch exists
+      shell: "git branch -r | grep -q origin/{{ zuul.branch }}"
+      args:
+        chdir: "{{ zuul.src_dir }}"
+
