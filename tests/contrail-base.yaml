@@ -1,3 +1,4 @@
 - include: base.yaml
 
 - include: base-zuul-include-vars.yaml
+- include: base-restore-git-remotes.yaml
