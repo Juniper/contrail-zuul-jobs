@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5f2577a7_0bcc9533",
+        "filename": "roles/contrail-tpc-repos/tasks/main.yaml",
+        "patchSetId": 76
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-03-08T12:10:11Z",
+      "side": 1,
+      "message": "Done, as discussed we\u0027ll use {{ zuul_site_mirror_fqdn }} here and for yum_repository.",
+      "parentUuid": "5f2577a7_eb0dc990",
+      "revId": "654898933fe4e3b3decc8dbe1edb0512cdd65315",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f2577a7_cb120db2",
         "filename": "roles/contrail-tpc-repos/tasks/main.yaml",
         "patchSetId": 76
@@ -30,6 +48,24 @@
       "writtenOn": "2018-03-08T11:48:08Z",
       "side": 1,
       "message": "Same for this IP",
+      "revId": "654898933fe4e3b3decc8dbe1edb0512cdd65315",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_ebd029cc",
+        "filename": "roles/contrail-tpc-repos/tasks/main.yaml",
+        "patchSetId": 76
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-03-08T12:10:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f2577a7_cb120db2",
       "revId": "654898933fe4e3b3decc8dbe1edb0512cdd65315",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "5f2577a7_4b73bd16",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 76
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-03-08T12:10:11Z",
+      "side": 1,
+      "message": "Done, however not for that job - it\u0027s not being changed as part of this review.",
+      "parentUuid": "5f2577a7_0b7ed5e3",
+      "revId": "654898933fe4e3b3decc8dbe1edb0512cdd65315",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f2577a7_0b301556",
         "filename": "zuul.d/nodesets.yaml",
         "patchSetId": 76
@@ -81,6 +135,24 @@
       "writtenOn": "2018-03-08T11:48:08Z",
       "side": 1,
       "message": "Maybe temporarily use centos-7-4-builder-c to spawn machines on the new cluster?",
+      "revId": "654898933fe4e3b3decc8dbe1edb0512cdd65315",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_2bc75115",
+        "filename": "zuul.d/nodesets.yaml",
+        "patchSetId": 76
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-03-08T12:10:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f2577a7_0b301556",
       "revId": "654898933fe4e3b3decc8dbe1edb0512cdd65315",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
