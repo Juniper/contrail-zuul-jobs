@@ -1,6 +1,5 @@
 - hosts: all
   roles:
     - zuul-include-vars
-    - restore-git-remotes
     - repo-sandbox-prepare2
 
