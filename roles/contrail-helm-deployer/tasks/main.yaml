@@ -8,17 +8,6 @@
   with_items: "{{ (hostvars[inventory_hostname]['ansible_all_ipv4_addresses'] | ipaddr(deploy_subnet))[0] }}"
   when: hostvars[inventory_hostname]['ansible_all_ipv4_addresses'] | ipaddr(deploy_subnet) | length > 0
 
-# TODO Change this to zuul-merger prepared checkouts
-- name: Clone test repositories
-  git:
-    repo: "https://github.com/{{ item.org }}/{{ item.name }}"
-    dest: "{{ repos_dir }}/{{ item.name }}"
-    version: "{{ item.version | default('master') }}"
-  with_items:
-    - { org: Juniper, name: contrail-helm-deployer }
-    - { org: madhukar32, name: openstack-helm, version: contrail_5_0 }
-    - { org: madhukar32, name: openstack-helm-infra, version: contrail_5_0 }
-
 - name: copy deployment script template to target machine
   template:
     src: templates/helm-deploy.sh.j2
