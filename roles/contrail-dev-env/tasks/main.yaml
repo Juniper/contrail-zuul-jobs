@@ -1,0 +1,29 @@
+- name: install docker py
+  package:
+    name: python-docker
+    state: present
+  become: true
+
+- name: install git
+  package:
+    name: git
+    state: present
+  become: true
+
+- name: checkout dev-env
+  git:
+    dest: ./contrail-dev-env
+    repo: https://github.com/Juniper/contrail-dev-env
+    version: master
+
+- name: startup
+  command: ./startup.sh
+  chdir: "{{ ansible_env.HOME }}/contrail-dev-env"
+  become: true
+
+- name: repo sync
+  command: docker exec contrail-developer-sandbox {{ item }}
+  with_items:
+    - bash -c "cd /root/contrail; repo sync"
+    - bash -c "cd /root/contrail-dev-env; make rpm"
+    - bash -c "cd /root/contrail-dev-env; make containers"
