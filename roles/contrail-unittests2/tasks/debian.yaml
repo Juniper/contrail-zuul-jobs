@@ -1,3 +1,8 @@
+- name: Fetch third-party dependencies
+  command: "python fetch_packages.py --site-mirror http://{{ zuul_site_mirror_fqdn }}"
+  args:
+    chdir: "{{ packaging.target_dir }}/third_party/"
+
 - name: Install package dependencies for the build (Debian)
   command: |
     mk-build-deps -r -i debian/control \
