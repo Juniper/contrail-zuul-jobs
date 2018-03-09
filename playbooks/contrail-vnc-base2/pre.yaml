@@ -2,5 +2,6 @@
   roles:
     - zuul-include-vars
     - restore-git-remotes
+    - install-repo-script
     - repo-sandbox-prepare2
 
