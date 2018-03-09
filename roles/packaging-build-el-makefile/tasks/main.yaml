@@ -32,12 +32,3 @@
   include: make_rpm.yaml
   with_items: "{{ rpm_list.stdout.split(' ') }}"
 
-- name: Collect all packages from workspace
-  synchronize:
-    src: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/RPMS/"
-    dest: "{{ ansible_env.HOME }}/rpmbuild/RPMS"
-    rsync_opts:
-      - --no-motd
-      - --quiet
-  delegate_to: "{{ inventory_hostname }}"
-
