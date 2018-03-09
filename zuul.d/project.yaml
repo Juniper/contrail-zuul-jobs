@@ -9,6 +9,7 @@
         - contrail-infra-packaging-integration-centos-7
         - contrail-infra-packaging-integration-ubuntu-xenial
         - zuul-jobs-linters
+        - contrail-dev-env
     gate:
       jobs:
         - contrail-infra-base-integration-centos-7
