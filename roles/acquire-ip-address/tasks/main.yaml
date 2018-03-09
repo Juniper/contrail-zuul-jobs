@@ -1,14 +1,12 @@
 - name: Acquire IP address for interfaces that miss it
   command: "dhclient {{ item }}"
-  environment:
-    PATH: /usr/sbin:/sbin:{{ ansible_env.PATH }}
   with_items:
     - "{{ hostvars[inventory_hostname]['ansible_interfaces'] }}"
-  when: >
-    hostvars[inventory_hostname]['ansible_' + item]['type'] == 'ether'
-    and not 'ipv4' in hostvars[inventory_hostname]['ansible_' + item]
+  when:
+    - hostvars[inventory_hostname]['ansible_' + item]['type'] == 'ether'
+    - not 'ipv4' in hostvars[inventory_hostname]['ansible_' + item]
   become: true
-  become_user: root
 
 - name: Reload ansible facts
   setup:
+
