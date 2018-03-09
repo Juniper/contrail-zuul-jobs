@@ -29,6 +29,8 @@
     parent: base-minimal
     roles:
       - zuul: Juniper/zuul-jobs
+    required-projects:
+      - Juniper/contrail-vnc
     run: tests/contrail-base.yaml
     files:
       - ^roles/zuul-include-vars/.*
