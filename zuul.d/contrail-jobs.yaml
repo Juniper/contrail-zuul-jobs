@@ -98,3 +98,11 @@
       nodes:
         - name: builder
           label: centos-7-4-builder
+
+- job:
+    name: contrail-dev-env
+    run: playbooks/contrail-dev-env/run-test
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-builder-c
