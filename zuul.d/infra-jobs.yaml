@@ -54,6 +54,9 @@
     required-projects:
       - Juniper/contrail-vnc
     parent: base-minimal
+    # Required to test repo-sandbox-prepare role
+    required-projects:
+      - Juniper/contrail-vnc
     run: tests/packaging-integration.yaml
     files:
       - ^roles/fetch-packages/.*
