@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_3fc5463d",
+        "filename": "roles/packaging-build-el/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-03-09T14:01:38Z",
+      "side": 0,
+      "message": "How do we pass those flags with Makefile?",
+      "revId": "fc62da4a8ba165c1e8c3d29f022568bdbd7ba919",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
