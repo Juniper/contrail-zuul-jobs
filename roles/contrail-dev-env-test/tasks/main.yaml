@@ -1,0 +1,57 @@
+- name: install docker py
+  package:
+    name: python-docker
+    state: present
+  become: true
+
+- name: install git
+  package:
+    name: git
+    state: present
+  become: true
+
+- name: disable selinux
+  command: setenforce 0
+  become: true
+
+- name: checkout dev-env
+  git:
+    dest: ./contrail-dev-env
+    repo: https://github.com/Juniper/contrail-dev-env
+    version: master
+
+- name: startup
+  command: ./startup.sh
+  args:
+    chdir: "{{ ansible_env.HOME }}/contrail-dev-env"
+  become: true
+
+- name: test if config is installed properly
+  command: grep 6666 /etc/docker/daemon.json
+  become: true
+
+- name: test if repository is started correctly
+  command: docker ps -a | grep 6666
+  become: true
+
+- name: Test contrail-dev-env
+  include: docker_exec.yaml
+  with_items:
+    - chdir: /root/contrail
+      command: repo sync -j $(nproc)
+    - chdir: /root/contrail-dev-env
+      command: make setup
+    - chdir: /root/contrail-dev-env
+      command: make dep
+    - chdir: /root/contrail-dev-env
+      command: make list
+    - chdir: /root/contrail-dev-env
+      command: make rpm
+    - chdir: /root/contrail-dev-env
+      command: make containers
+
+- name: cleanup
+  command: ./cleanup.sh -v
+  args:
+    chdir: "{{ ansible_env.HOME }}/contrail-dev-env"
+  become: true
