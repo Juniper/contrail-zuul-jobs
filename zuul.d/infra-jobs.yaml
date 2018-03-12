@@ -29,6 +29,8 @@
     parent: base-minimal
     roles:
       - zuul: Juniper/zuul-jobs
+    required-projects:
+      - Juniper/contrail-vnc
     run: tests/contrail-base.yaml
     files:
       - ^roles/zuul-include-vars/.*
@@ -49,6 +51,8 @@
     name: contrail-infra-packaging-integration
     description: |
       Run roles that are used for packaging jobs to prevent regressions.
+    required-projects:
+      - Juniper/contrail-vnc
     parent: base-minimal
     run: tests/packaging-integration.yaml
     files:
