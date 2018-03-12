@@ -78,10 +78,29 @@
       - name: Juniper/contrail-kolla-ansible
         override-checkout: contrail/ocata
       - Juniper/contrail-test
+      - Juniper/contrail-test-ci
     nodeset:
       nodes:
         - name: kolla-aio
           label: centos-7-4-builder-xxlarge-c
+
+- job:
+    name: contrail-sanity-ubuntu1604-helm-ocata
+    parent: contrail-systest-ubuntu1604-base
+    run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/run
+    required-projects:
+      - Juniper/contrail-helm-deployer
+      - Juniper/contrail-test
+      - Juniper/contrail-test-ci
+      - Juniper/openstack-helm
+      - Juniper/openstack-helm-infra
+    roles:
+      - zuul: Juniper/contrail-helm-deployer
+
+- job:
+    name: contrail-deploy-ubuntu1604-helm-ocata
+    parent: contrail-sanity-ubuntu1604-helm-ocata
+    run: playbooks/contrail-deploy-ubuntu1604-helm-ocata/run
 
 - job:
     name: contrail-vnc-build-package-el-makefile
