@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_79c2c535",
+        "filename": "roles/repo-sandbox-prepare2/library/generate_manifest.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-03-12T09:42:29Z",
+      "side": 1,
+      "message": "Add a comment about why it\u0027s needed and returned. (Origins need to be set and fetched to extract changes/commits/diffs between the tip of the branch and the workspace state).",
+      "revId": "0fc5060ca2b0126dbacce7ede7183876eaa513ea",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
