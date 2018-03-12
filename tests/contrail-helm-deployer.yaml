@@ -1,8 +1,0 @@
-# WIP: dummy unittest file for Helm deployer role
-
-- name: Test the contrail-helm-deployer role
-  hosts: all
-  tasks:
-    - name: check if deployment host is alive
-      ping:
-
