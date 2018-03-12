@@ -11,7 +11,6 @@
     run: tests/base.yaml
     files:
       - ^roles/acquire-ip-address/.*
-      - ^roles/contrail-helm-deployer/.*
       - ^tests/.*
 
 - job:
@@ -34,7 +33,6 @@
     run: tests/contrail-base.yaml
     files:
       - ^roles/zuul-include-vars/.*
-      - ^roles/contrail-helm-deployer/.*
       - ^tests/.*
 
 - job:
@@ -80,8 +78,9 @@
       - Juniper/contrail-project-config
       - Juniper/zuul-jobs
       - Juniper/contrail-zuul-jobs
+      - Juniper/contrail-helm-deployer
     vars:
       tox_envlist: linters
       tox_environment:
-        ANSIBLE_ROLES_PATH: ~/src/review.opencontrail.org/Juniper/zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-project-config/roles
+        ANSIBLE_ROLES_PATH: ~/src/review.opencontrail.org/Juniper/zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-project-config/roles:~/src/review.opencontrail.org/Juniper/contrail-helm-deployer/roles
 
