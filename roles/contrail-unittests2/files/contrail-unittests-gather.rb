@@ -28,8 +28,14 @@ Dir.chdir("#{contrail_sources}/#{project}")
 cmd = %{git ls-remote origin 2>/dev/null | \grep #{change_set} | \grep refs | awk '{print $1}' | xargs git show --pretty="format:" --name-only}
 
 @dirs = { }
+STDERR.puts "contrail-unittest-gather.rb: List of changes:\n"
 `#{cmd}`.split.each { |file|
-    next if "#{project}/#{file}" !~ /(.*?\/.*?\/.*?)\//
+    STDERR.puts "contrail-unittest-gather.rb:\t#{dir}.. "
+    if "#{project}/#{file}" !~ /(.*?\/.*?\/.*?)\// then
+        STDERR.puts "SKIP\n"
+    else
+        STDERR.puts "\n"
+    end
     @dirs[$1] = true
 }
 STDERR.puts "contrail-unittest-gather.rb: List of directories changed:\n"
