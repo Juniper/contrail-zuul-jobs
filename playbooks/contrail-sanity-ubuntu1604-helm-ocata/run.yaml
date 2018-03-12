@@ -1,0 +1,7 @@
+- hosts: all
+  roles:
+    - acquire-ip-address
+    - role: add-insecure-registry
+      docker_registry: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
+    - contrail-helm-deployer
+    - sanitytest
