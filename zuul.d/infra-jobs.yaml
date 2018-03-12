@@ -11,7 +11,6 @@
     run: tests/base.yaml
     files:
       - ^roles/acquire-ip-address/.*
-      - ^roles/contrail-helm-deployer/.*
       - ^tests/.*
 
 - job:
@@ -34,7 +33,6 @@
     run: tests/contrail-base.yaml
     files:
       - ^roles/zuul-include-vars/.*
-      - ^roles/contrail-helm-deployer/.*
       - ^tests/.*
 
 - job:
