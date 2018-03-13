@@ -1,0 +1,12 @@
+- name: Ensure that the given user has ssh key generated
+  user:
+    name: "{{ user }}"
+    generate_ssh_key: yes
+- name: Get user's home path along other info (saved in getent_passwd fact)
+  getent:
+    database: passwd
+    key: "{{ user }}"
+- name: Ensure the ssh key is present in authorized_keys
+  authorized_key:
+    user: "{{ user }}"
+    key: "{{ lookup('file', getent_passwd[user][4] + '/.ssh/id_rsa.pub') }}"
