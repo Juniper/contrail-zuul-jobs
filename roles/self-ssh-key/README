@@ -1,0 +1,8 @@
+A role that:
+1) ensures that user has a ~/.ssh/id_rsa key generated
+2) adds this key to user's authorized_keys
+
+This way the user is able to log in to the local machine via ssh
+without password. Username can be set via the `user` var, defaults to root.
+This role is used for same-node deployments requiring ssh access
+to localhost (e.g. contrail-ansible-deployer).
