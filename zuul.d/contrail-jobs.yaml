@@ -72,7 +72,7 @@
 - job:
     name: contrail-sanity-centos7-kolla-ocata
     parent: contrail-systest-base
-    run: playbooks/sanity/kolla
+    run: playbooks/contrail-sanity-centos7-kolla-ocata/run
     required-projects:
       - Juniper/contrail-ansible-deployer
       - name: Juniper/contrail-kolla-ansible
