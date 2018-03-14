@@ -27,6 +27,7 @@
     BUILDTAG: "{{ build_tag | default(packaging.version.distrib) }}"
     SRCVER: "{{ packaging.version.upstream }}"
     SKUTAG: ocata
+    MANIFESTFILE: "{{ ansible_env.HOME }}/manifest.xml"
 
 - name: Install dependencies and build RPMs
   include: make_rpm.yaml
