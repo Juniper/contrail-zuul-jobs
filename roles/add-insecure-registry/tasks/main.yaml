@@ -1,0 +1,48 @@
+---
+- name: Make sure that 
+  become: true
+  block:
+    - set_fact:
+        file_path: /etc/docker/daemon.json
+
+    - name: check for /etc/docker/daemon.json existence
+      stat:
+        path: "{{ file_path }}"
+      register: p
+
+    - name: create emtpy docker config if it doesn't exist
+      copy:
+        content: '{{ {} | to_json }}'
+        dest: "{{ file_path }}"
+      when: not p.stat.exists
+
+    - name: now we know that the file exists, read it
+      command: cat {{ file_path }}
+      register: docker_daemon_file
+
+    - name: load docker config to dictionary
+      set_fact:
+        docker_daemon: "{{ docker_daemon_file.stdout | from_json }}"
+
+    - name: append new registry to existing entries
+      set_fact:
+        insecure_registries: '{{ docker_daemon["insecure-registries"] | default([]) | union([docker_registry]) }}'
+
+    - name: update docker config dictionary with new registry list
+      set_fact:
+        docker_daemon: '{{ docker_daemon | combine({ "insecure-registries": insecure_registries }) }}'
+
+    - name: write new /etc/docker/daemon.json
+      copy:
+        content: '{{ docker_daemon | to_nice_json }}'
+        dest: "{{ file_path }}"
+    
+    - name: reload systemd
+      command: systemctl daemon-reload
+    
+    - name: restart docker daemon
+      service:
+        enabled: yes
+        name: docker
+        state: restarted
+
