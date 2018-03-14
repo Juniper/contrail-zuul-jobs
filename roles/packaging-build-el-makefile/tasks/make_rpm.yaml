@@ -15,5 +15,6 @@
     BUILDTAG: "{{ build_tag | default(packaging.version.distrib) }}"
     SRCVER: "{{ packaging.version.upstream }}"
     SKUTAG: ocata
+    MANIFESTFILE: "{{ ansible_env.HOME }}/manifest.xml"
   tags:
     - skip_ansible_lint
