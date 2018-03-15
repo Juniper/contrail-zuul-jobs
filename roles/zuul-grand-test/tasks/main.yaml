@@ -1,0 +1,7 @@
+- name: Ping - internet
+  net_ping:
+    dest: google.com
+
+- name: Ping - Jenkins
+  net_ping:
+    dest: 10.84.12.26
