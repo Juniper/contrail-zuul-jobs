@@ -102,3 +102,16 @@
       nodes:
         - name: builder
           label: centos-7-4-builder
+
+- job:
+    name: zuul-v3-test
+    run: playbooks/zuul-v3-test/main
+    required-projects:
+      - Juniper/contrail-common
+      - Juniper/contrail-test
+      - Juniper/contrail-controller
+      - Juniper/contrail-zuul-jobs
+    nodeset:
+      nodes:
+        - name: ubuntu-xenial
+          label: ubuntu-xenial-small
