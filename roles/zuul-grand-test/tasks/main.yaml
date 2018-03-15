@@ -1,0 +1,4 @@
+- name: Copy jenkins_connector.py script
+  copy:
+    src: jenkins_connector.py
+    mode: u+rwx
