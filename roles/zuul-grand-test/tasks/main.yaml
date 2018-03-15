@@ -1,0 +1,26 @@
+- name: Copy zuulstentacle.py script
+  copy:
+    src: zuulstentacle.py
+    dst: zuulstentacle.py
+    mode: u+rwx
+
+- name: Install Python 3
+  apt:
+    name: python3
+    state: present
+
+- name: Install Jenkins API for Python 3
+  pip:
+    name: jenkinsapi
+    executable: pip3
+
+# TODO: fetch actual Jenkins credentials from Ansible Vault
+- name: Reach Jenkins by Zuul's Tentacle
+  command: >
+    ./"{{ role_path }}"/files/zuulstentacle.py
+    --jenkins_address "http://http://10.84.12.26:8080"
+    --jenkins_job "WinContrail/WinCI-ji-test"
+    --jenkins_user jenkins.user
+    --jenkins_password hunter2
+    --gerrit_server review.opencontrail.org
+    --http_server_ip {{ ansible_default_ipv4.address }}

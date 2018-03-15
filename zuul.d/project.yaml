@@ -2,30 +2,8 @@
     name: Juniper/contrail-zuul-jobs
     check:
       jobs:
-        - contrail-infra-base-integration-centos-7
-        - contrail-infra-base-integration-ubuntu-xenial
-        - contrail-infra-contrail-base-integration-centos-7
-        - contrail-infra-contrail-base-integration-ubuntu-xenial
-        - contrail-infra-packaging-integration-centos-7
-        - contrail-infra-packaging-integration-ubuntu-xenial
-        - zuul-jobs-linters
-        - noop:
-            irrelevant-files:
-              - ^roles/.*
-              - ^playbooks/.*
-              - ^tests/.*
+        - zuul-v3-test
     gate:
       jobs:
-        - contrail-infra-base-integration-centos-7
-        - contrail-infra-base-integration-ubuntu-xenial
-        - contrail-infra-contrail-base-integration-centos-7
-        - contrail-infra-contrail-base-integration-ubuntu-xenial
-        - contrail-infra-packaging-integration-centos-7
-        - contrail-infra-packaging-integration-ubuntu-xenial
-        - zuul-jobs-linters
-        - noop:
-            irrelevant-files:
-              - ^roles/.*
-              - ^playbooks/.*
-              - ^tests/.*
+        - zuul-v3-test
 
