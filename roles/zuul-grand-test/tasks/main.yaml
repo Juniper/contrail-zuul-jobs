@@ -1,0 +1,5 @@
+- name: Ping - internet
+  shell: ping google.com -w 4
+
+- name: Ping - Jenkins
+  shell: ping 10.84.12.26 -w 4
