@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_876df505",
+        "filename": "roles/add-insecure-registry/tasks/main.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-03-15T17:33:21Z",
+      "side": 1,
+      "message": "this can be removed and instead add `daemon_reload: yes` to the next task",
+      "revId": "903abcd4ba2d024d6b8eff36b0d42584d517a836",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
