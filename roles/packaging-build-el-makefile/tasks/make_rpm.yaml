@@ -16,5 +16,6 @@
     SRCVER: "{{ packaging.version.upstream }}"
     SKUTAG: ocata
     MANIFESTFILE: "{{ ansible_env.HOME }}/manifest.xml"
+    DEBUGINFO: "{{ build_debuginfo | default(false) | ternary('TRUE', 'FALSE') }}"
   tags:
     - skip_ansible_lint
