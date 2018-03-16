@@ -81,7 +81,7 @@
     nodeset:
       nodes:
         - name: kolla-aio
-          label: centos-7-4-builder-xxlarge-c
+          label: c7-systest-c
 
 - job:
     name: contrail-vnc-build-package-el-makefile
