@@ -83,6 +83,9 @@
       - Juniper/contrail-project-config
       - Juniper/zuul-jobs
       - Juniper/contrail-zuul-jobs
+    files:
+      - ^roles/.*
+      - ^playbooks/.*
     vars:
       tox_envlist: linters
       tox_environment:
