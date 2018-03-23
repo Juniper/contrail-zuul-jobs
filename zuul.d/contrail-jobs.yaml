@@ -63,7 +63,7 @@
     post-run: playbooks/contrail-vnc-unittest/post
 
 - job:
-    name: contrail-vnc-unittest-ubuntu-trusty2
+    name: contrail-vnc-unittest-ubuntu-trusty
     parent: contrail-vnc-unittest-base
     nodeset: builder-ubuntu-trusty
 
