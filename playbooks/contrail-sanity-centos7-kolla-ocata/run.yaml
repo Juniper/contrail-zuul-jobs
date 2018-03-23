@@ -9,4 +9,8 @@
       kolla_docker_distro: "ubuntu"
       openstack_version: "ocata"
       kolla_version: "4.0.0"
+    - role: prepare-template-for-sanity
+      cloud_orchestrator: openstack
+      openstack_version: "ocata"
+      kolla_version: "4.0.0"
     - sanitytest
