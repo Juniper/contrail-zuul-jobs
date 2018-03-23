@@ -18,6 +18,7 @@ project = "tools/generateds" if ENV["ZUUL_PROJECT"] =~ /contrail-generateDS/
 project = "vrouter" if ENV["ZUUL_PROJECT"] =~ /contrail-vrouter/
 project = "src/contrail-common" if ENV["ZUUL_PROJECT"] =~ /contrail-common/
 project = "src/contrail-analytics" if ENV["ZUUL_PROJECT"] =~ /contrail-analytics/
+project = "src/contrail-api-client" if ENV["ZUUL_PROJECT"] =~ /contrail-api-client/
 
 STDERR.puts "contrail-unittest-gather.rb: Review for project #{ENV["ZUUL_PROJECT"]}\n"
 STDERR.puts "contrail-unittest-gather.rb: Check for commits for #{project}\n"
