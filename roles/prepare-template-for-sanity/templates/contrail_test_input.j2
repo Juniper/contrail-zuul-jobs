@@ -1,0 +1,49 @@
+CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ registry_port }}"
+REGISTRY_PRIVATE_INSECURE: True
+deployment:
+    orchestrator: {{ cloud_orchestrator }}
+
+provider_config:
+  bms:
+    ntpserver: 192.168.1.1
+    ssh_user: root
+    ssh_private_key: /root/.ssh/id_rsa
+    domainsuffix: local
+instances:
+  bms1:
+    provider: bms
+    ip: "{{ control_ip }}"
+    roles:
+      config_database:
+      config:
+      control:
+      analytics_database:
+      analytics:
+      webui:
+      vrouter:
+      openstack:
+contrail_configuration:
+  CLOUD_ORCHESTRATOR: "{{ cloud_orchestrator }}"
+  CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ registry_port }}"
+  CONTRAIL_VERSION: "{{ contrail_version }}"
+  CONTROLLER_NODES: "{{ control_ip }}"
+  LOG_LEVEL: SYS_DEBUG
+  PHYSICAL_INTERFACE: eth1
+  VROUTER_GATEWAY: 172.16.8.1
+{% if cloud_orchestrator == 'openstack' %}
+  AUTH_MODE: keystone
+  KEYSTONE_AUTH_ADMIN_PASSWORD: c0ntrail123
+  KEYSTONE_AUTH_HOST: "{{ control_ip }}"
+  KEYSTONE_AUTH_URL_VERSION: "/v3"
+  RABBITMQ_NODE_PORT: 5673
+{% endif %}
+orchestrator_configuration:
+  internal_vip: "{{ control_ip }}"
+{% if kolla_version is defined %}
+  keystone:
+    version: v3
+    password: c0ntrail123
+{% endif %}
+test_configuration:
+    image_web_server: 10.84.5.120
+    use_project_scoped_token: True

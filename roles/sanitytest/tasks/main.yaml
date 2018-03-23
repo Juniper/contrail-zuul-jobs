@@ -1,29 +1,21 @@
+- name: Start all containers that were stopped during kolla docker daemon restart (pass one - network containers)
+  shell: 'docker ps -a  --format "{% raw %}{{.Names}}{% endraw %}" | while read line; do docker start $line; done'
+  ignore_errors: true
+  become: true
+
+- name: Start all containers that were stopped during kolla docker daemon restart (pass two - all containers)
+  shell: 'docker ps -a  --format "{% raw %}{{.Names}}{% endraw %}" | while read line; do docker start $line; done'
+  ignore_errors: true
+  become: true
+
+- name: Wait for services startup
+  wait_for:
+    timeout: 120
+
 - name: Set variables
   set_fact:
-    testrunner_image: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}/contrail-test:static-centos7-ocata"
+    testrunner_image: "{{ docker_registry.fqdn }}:{{ registry_port }}/contrail-test-test:{{ contrail_version }}"
     repos_dir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper"
-
-- name: Reload facts after DHCP address setup
-  setup:
-    gather_timeout: 300
-
-- name: Template the testbed.py
-  template:
-    src: testbed.py.j2
-    dest: "{{ ansible_env.HOME}}/testbed.py"
-
-- name: create the directory for VM images
-  file:
-    path: "{{ repos_dir }}/contrail-test/images"
-    state: directory
-
-- name: download the cirros images
-  get_url:
-    url: "http://{{ docker_registry.fqdn }}/static/{{ item }}"
-    dest: "{{ repos_dir }}/contrail-test/images"
-  with_items:
-    - cirros-0.3.0-x86_64-disk.vmdk.gz
-    - cirros-in-net.vmdk.gz
 
 - name: Pull the testrunner image
   docker_image:
@@ -31,7 +23,11 @@
   become: yes
 
 - name: Run the sanity test
-  command: "{{ repos_dir }}/contrail-test/testrunner.sh run -t {{ ansible_env.HOME }}/testbed.py -m {{ repos_dir }} -k /root/.ssh/id_rsa -f {{ test_target }} '{{ testrunner_image }}'"
+  command: |
+    "{{ repos_dir }}/contrail-test-ci/testrunner.sh run \
+        -P {{ ansible_env.HOME }}/contrail_test_input.yaml \
+        -k /root/.ssh/id_rsa \
+        -f {{ test_target }} '{{ testrunner_image }}'"
   become: yes
   ignore_errors: yes
 
