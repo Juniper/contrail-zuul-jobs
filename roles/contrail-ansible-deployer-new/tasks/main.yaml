@@ -6,6 +6,20 @@
   with_items:
     - ansible
 
+- name: (Hack) Make sure git is installed
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  with_items:
+    - git
+
+- name: (Hack) Freeze ansible deployer code on known working commit
+  command: >
+    git checkout 6be5b84
+  args:
+    chdir: "{{ docker_provision_dir }}"
+
 - name: set control IP
   set_fact:
     control_ip: "{{ ansible_default_ipv4.address }}"
@@ -55,3 +69,23 @@
 
 - name: Show memory usage
   command: free -m
+
+- name: Wait for the vrouter initialization
+  wait_for:
+    timeout: 600
+
+- name: Check interfaces for addresses
+  command: ip addr
+  become: True
+
+- name: (Hack) get config_api container id
+  shell: >
+    docker ps | awk '/config_api/ { print $1 }'
+  register: config_api_container
+  become: True
+
+- name: (Hack) restart config_api container to fix issue with VNC API lib
+  shell: >
+    docker restart {{ config_api_container.stdout }}
+  become: True
+  when: config_api_container.stdout is defined
