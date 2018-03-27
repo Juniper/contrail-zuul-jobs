@@ -55,3 +55,16 @@
 
 - name: Show memory usage
   command: free -m
+
+- name: Wait for the vrouter initialization
+  wait_for:
+    timeout: 600
+
+- name: Check interfaces for addresses
+  command: ip addr
+  become: True
+
+- name: (Hack) restart config_api container to fix issue with VNC API lib
+  command: docker restart $(sudo docker ps | awk '/config_api/ { print $1 }')
+  become: True
+
