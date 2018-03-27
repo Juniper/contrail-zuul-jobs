@@ -1,3 +1,6 @@
+- name: Reload facts after vhost interface came up
+  setup:
+
 - name: Set variables
   set_fact:
     testrunner_image: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}/contrail-test:static-centos7-ocata"
