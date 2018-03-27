@@ -55,3 +55,23 @@
 
 - name: Show memory usage
   command: free -m
+
+- name: Wait for the vrouter initialization
+  wait_for:
+    timeout: 600
+
+- name: Check interfaces for addresses
+  command: ip addr
+  become: True
+
+- name: (Hack) get config_api container id
+  shell: >
+    docker ps | awk '/config_api/ { print $1 }'
+  register: config_api_container
+  become: True
+
+- name: (Hack) restart config_api container to fix issue with VNC API lib
+  shell: >
+    docker restart {{ config_api_container.stdout }}
+  become: True
+  when: config_api_container.stdout is defined
