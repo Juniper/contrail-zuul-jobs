@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_0c90dd42",
+        "filename": "roles/prepare-template-for-sanity/templates/contrail_test_input.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-03-27T09:06:43Z",
+      "side": 1,
+      "message": "not sure if this will work without quotes",
+      "range": {
+        "startLine": 4,
+        "startChar": 18,
+        "endLine": 4,
+        "endChar": 42
+      },
+      "revId": "e659fbce9d0bcf9c342f28cb56433bfa77802327",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_ec92314b",
+        "filename": "roles/prepare-template-for-sanity/templates/contrail_test_input.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-03-27T09:06:43Z",
+      "side": 1,
+      "message": "I think openstack_compute role is missing",
+      "range": {
+        "startLine": 24,
+        "startChar": 6,
+        "endLine": 24,
+        "endChar": 16
+      },
+      "revId": "e659fbce9d0bcf9c342f28cb56433bfa77802327",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_cc99b56e",
+        "filename": "roles/sanitytest/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-03-27T09:06:43Z",
+      "side": 1,
+      "message": "I would try using retry logic in here with `ignore_errors`. Something similar to:\nignore_errors: true\nregister: result\nretries: 1\ndelay: 10\nuntil: result.rc \u003d\u003d 0",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "e659fbce9d0bcf9c342f28cb56433bfa77802327",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_8ca3ad9e",
+        "filename": "roles/sanitytest/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-03-27T09:06:43Z",
+      "side": 1,
+      "message": "Add displaying container status",
+      "revId": "e659fbce9d0bcf9c342f28cb56433bfa77802327",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_6c9e4155",
+        "filename": "roles/sanitytest/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-03-27T09:06:43Z",
+      "side": 1,
+      "message": "remove quotes from multiline command invocation",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 30,
+        "endChar": 54
+      },
+      "revId": "e659fbce9d0bcf9c342f28cb56433bfa77802327",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
