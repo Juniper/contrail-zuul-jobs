@@ -10,10 +10,6 @@
   set_fact:
     control_ip: "{{ ansible_default_ipv4.address }}"
 
-- name: debug
-  debug:
-    var: hostvars[inventory_hostname]
-
 - name: Copy hosts template
   template:
     src: instances.j2
@@ -27,8 +23,7 @@
   become: true
 
 - name: Provision Contrail with deploy.yml playbook
-  command: >
-    ansible-playbook -i inventory/ playbooks/configure_instances.yml -v
+  command: ansible-playbook -i inventory/ playbooks/configure_instances.yml -v
   args:
     chdir: "{{ docker_provision_dir }}"
   environment:
@@ -37,8 +32,7 @@
   become: True
 
 - name: Provision Contrail with deploy.yml playbook
-  command: >
-    ansible-playbook -i inventory/ -e orchestrator=openstack playbooks/install_contrail.yml
+  command: ansible-playbook -i inventory/ -e orchestrator=openstack playbooks/install_contrail.yml
   args:
     chdir: "{{ docker_provision_dir }}"
   environment:
@@ -55,3 +49,21 @@
 
 - name: Show memory usage
   command: free -m
+
+- name: (Hack) Wait for the vrouter initialization
+  wait_for:
+    timeout: 600
+
+- name: Check interfaces for addresses
+  command: ip addr
+  become: True
+
+- name: (Hack) get config_api container id
+  shell: docker ps | awk '/config_api/ { print $1 }'
+  register: config_api_container
+  become: True
+
+- name: (Hack) restart config_api container to fix issue with VNC API lib
+  command: docker restart {{ config_api_container.stdout }}
+  become: True
+  when: config_api_container.stdout is defined
