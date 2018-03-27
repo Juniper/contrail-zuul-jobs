@@ -55,3 +55,15 @@
 
 - name: Show memory usage
   command: free -m
+
+- name: wait for the vrouter initialization
+  wait_for:
+    host: github.com
+    port: 443
+    timeout: 3000
+    delay: 60
+    state: started
+
+- name: Show routing table
+  command: ip route show
+
