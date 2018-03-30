@@ -73,7 +73,7 @@
 - job:
     name: zuul-jobs-linters
     parent: tox
-    nodeset: ubuntu-xenial-c
+    nodeset: ubuntu-xenial
     description: |
       This job runs against contrail-project-config and zuul-jobs, to lint
       ansible playbooks and roles.
