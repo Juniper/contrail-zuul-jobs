@@ -1,5 +1,11 @@
 - hosts: all
-  tasks:
-    - name: Dummy playbook for job contrail-sanity-centos7-kolla-ocata-dev skeleton
-      setup:
-
+  roles:
+    - acquire-ip-address
+    - self-ssh-key
+    - role: contrail-ansible-deployer-new-dev
+      cloud_orchestrator: openstack
+      openstack_version: ocata
+      kolla_docker_distro: ubuntu
+      kolla_version: ocata
+      contrail_container_tag: master-45
+    - sanitytest
