@@ -1,0 +1,75 @@
+- name: Install build dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  with_items:
+    - ansible
+
+- name: set control IP
+  set_fact:
+    control_ip: "{{ ansible_default_ipv4.address }}"
+
+- name: debug
+  debug:
+    var: hostvars[inventory_hostname]
+
+- name: Copy hosts template
+  template:
+    src: instances.j2
+    dest: "{{ docker_provision_dir }}/config/instances.yaml"
+
+- name: Send instances.yaml to executor
+  synchronize:
+    src: "{{ docker_provision_dir }}/config/instances.yaml"
+    dest: "{{ zuul.executor.log_root }}/zuul-info/"
+    mode: pull
+  become: true
+
+- name: Provision Contrail with deploy.yml playbook
+  command: >
+    ansible-playbook -i inventory/ playbooks/configure_instances.yml -v
+  args:
+    chdir: "{{ docker_provision_dir }}"
+  environment:
+    ANSIBLE_HOST_KEY_CHECKING: 'False'
+    ANSIBLE_STDOUT_CALLBACK: debug
+  become: True
+
+- name: Provision Contrail with deploy.yml playbook
+  command: >
+    ansible-playbook -i inventory/ -e orchestrator=openstack playbooks/install_contrail.yml
+  args:
+    chdir: "{{ docker_provision_dir }}"
+  environment:
+    ANSIBLE_HOST_KEY_CHECKING: 'False'
+    ANSIBLE_STDOUT_CALLBACK: debug
+  become: True
+
+- name: Show the list of running containers
+  command: docker ps -a
+  become: True
+
+- name: Show processes
+  command: ps aux --sort rss
+
+- name: Show memory usage
+  command: free -m
+
+- name: Wait for the vrouter initialization
+  wait_for:
+    timeout: 600
+
+- name: Check interfaces for addresses
+  command: ip addr
+  become: True
+
+- name: (Hack) get config_api container id
+  shell: "docker ps | awk '/config_api/ { print $1 }'"
+  register: config_api_container
+  become: True
+
+- name: (Hack) restart config_api container to fix issue with VNC API lib
+  command: "docker restart {{ config_api_container.stdout }}"
+  become: True
+  when: config_api_container.stdout is defined
