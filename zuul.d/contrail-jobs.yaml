@@ -74,9 +74,8 @@
     nodeset: builder-centos-7
 
 - job:
-    name: contrail-sanity-centos7-kolla-ocata
+    name: contrail-sanity-centos7-kolla-base
     parent: contrail-systest-base
-    run: playbooks/contrail-sanity-centos7-kolla-ocata/run
     required-projects:
       - Juniper/contrail-ansible-deployer
       - name: Juniper/contrail-kolla-ansible
@@ -87,6 +86,16 @@
       nodes:
         - name: kolla-aio
           label: c7-systest-c
+
+- job:
+    name: contrail-sanity-centos7-kolla-ocata
+    parent: contrail-sanity-centos7-kolla-base
+    run: playbooks/contrail-sanity-centos7-kolla-ocata/run
+
+- job:
+    name: contrail-sanity-centos7-kolla-ocata-dev
+    parent: contrail-sanity-centos7-kolla-base
+    run: playbooks/contrail-sanity-centos7-kolla-ocata-dev/run
 
 - job:
     name: contrail-sanity-ubuntu1604-helm-ocata
