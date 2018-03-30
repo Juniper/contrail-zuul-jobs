@@ -6,7 +6,6 @@
     - role: contrail-ansible-deployer-new
       cloud_orchestrator: openstack
       openstack_version: ocata
-      kolla_docker_distro: "ubuntu"
-      openstack_version: "ocata"
-      kolla_version: "4.0.0"
+      kolla_docker_distro: ubuntu
+      kolla_version: ocata
     - sanitytest

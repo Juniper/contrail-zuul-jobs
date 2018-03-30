@@ -1,11 +1,11 @@
+- name: Reload facts after vhost interface came up
+  setup:
+    gather_timeout: 300
+
 - name: Set variables
   set_fact:
     testrunner_image: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}/contrail-test:static-centos7-ocata"
     repos_dir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper"
-
-- name: Reload facts after DHCP address setup
-  setup:
-    gather_timeout: 300
 
 - name: Template the testbed.py
   template:
