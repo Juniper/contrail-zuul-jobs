@@ -1,0 +1,88 @@
+- name: Test the publish-container-images role
+  hosts: all
+  vars:
+    docker_name: stub
+    docker_tag: 10000-1
+  pre_tasks:
+    - name: Add localhost to insecure-registries
+      copy:
+        content: |
+          {"insecure-registries": ["localhost:5000"]}
+        dest: /etc/docker/daemon.json
+      become: true
+    - name: Restart docker to load new configuration
+      service:
+        name: docker
+        state: restarted
+      become: true
+    - name: Launch local docker registry
+      command: docker run -d -p 5000:5000 --restart=always --name registry registry:2
+      become: true
+    - name: Create a directory for Dockerfile
+      file:
+        path: "{{ docker_name }}"
+        state: directory
+    - name: Create a stub Dockerfile
+      copy:
+        content: |
+          FROM scratch
+
+          ENTRYPOINT ["/bin/sleep", "infinity"]
+        dest: "{{ docker_name }}/Dockerfile"
+      become: true
+    - name: Build a stub container
+      command: "docker build -t {{ docker_name }} ."
+      args:
+        chdir: "{{ docker_name }}"
+      become: true
+    - name: show available images
+      command: docker images
+      become: true
+  roles:
+    - role: zuul-include-vars
+    - role: publish-container-images
+      registry: localhost:5000
+      tag: "{{ docker_tag }}"
+      images:
+        - { name: "{{ docker_name }}", tag: latest }
+  post_tasks:
+    - name: Register container image id
+      command: docker images "{{ docker_name }}" -q
+      register: image_id
+      become: true
+
+    - name: Get a list of images in registry
+      uri:
+        url: http://localhost:5000/v2/_catalog
+        return_content: true
+      register: images
+
+    - name: Verify that the image exists
+      fail:
+        msg: "Image {{ docker_name }} is missing from the registry"
+      when: 'docker_name not in images.json["repositories"]'
+
+    - name: Fetch the list of tags for the {{ docker_name }} image
+      uri:
+        url: "http://localhost:5000/v2/{{ docker_name }}/tags/list"
+        return_content: true
+      register: tags
+
+    - name: Fail if tag is not present
+      fail:
+        msg: "Tag {{ docker_tag }} for repository {{ docker_name }} is missing"
+      when: 'docker_tag not in tags.json["tags"]'
+
+    - name: Get the uploaded image id
+      uri:
+        url: "http://localhost:5000/v2/{{ docker_name }}/manifests/{{ docker_tag }}"
+        headers:
+          Accept: "application/vnd.docker.distribution.manifest.v2+json"
+        return_content: true
+      register: image_details
+
+    - name: Fail when registry image id does not match what we expect
+      fail:
+        msg: "Image ID for repository {{ docker_name }} is invalid"
+      when: 'image_id.stdout|trim not in image_details.content'
+
