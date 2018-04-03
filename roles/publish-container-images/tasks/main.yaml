@@ -1,0 +1,12 @@
+- name: Ensure that docker-py is installed
+  package:
+    name: docker-py
+    state: present
+
+- name: Push container images to the repository
+  publish_images:
+    images: "{{ images }}"
+    tag: "{{ tag }}"
+    registry: "{{ registry }}"
+  become: true
+
