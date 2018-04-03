@@ -1,0 +1,5 @@
+- name: Register a list of containers to publish
+  zuul_return:
+    data:
+      contrail_container_images: "{{ images }}"
+
