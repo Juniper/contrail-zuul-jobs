@@ -1,0 +1,57 @@
+- name: Test the publish-container-images role
+  hosts: all
+  vars:
+    docker_name: stub
+    docker_tag: 10000-1
+  pre_tasks:
+    - name: Add localhost to insecure-registries
+      copy:
+        content: |
+          {"insecure-registries": ["localhost:5000"]}
+        dest: /etc/docker/daemon.json
+      become: true
+    - name: Restart docker to load new configuration
+      service:
+        name: docker
+        state: restarted
+      become: true
+    - name: Launch local docker registry
+      command: docker run -d -p 5000:5000 --restart=always --name registry registry:2
+      become: true
+    - name: Create a directory for Dockerfile
+      file:
+        path: "{{ docker_name }}"
+        state: directory
+    - name: Create a stub Dockerfile
+      copy:
+        content: |
+          FROM scratch
+
+          ENTRYPOINT ["/bin/sleep", "infinity"]
+        dest: "{{ docker_name }}/Dockerfile"
+      become: true
+    - name: Build a stub container
+      command: "docker build -t {{ docker_name }} ."
+      args:
+        chdir: "{{ docker_name }}"
+      become: true
+    - name: show available images
+      command: docker images
+      become: true
+  roles:
+    - role: zuul-include-vars
+    - role: publish-container-images
+      registry: localhost:5000
+      tag: "{{ docker_tag }}"
+      images:
+        - { name: "{{ docker_name }}", tag: latest }
+  post_tasks:
+    - name: Install jq package
+      package:
+        name: jq
+        state: present
+    - name: Verify that the image has been uploaded to the registry
+      shell: curl http://localhost:5000/v2/_catalog
+    - name: Verify that the image tag is present
+      shell: curl "http://localhost:5000/v2/{{ docker_name }}"
+
