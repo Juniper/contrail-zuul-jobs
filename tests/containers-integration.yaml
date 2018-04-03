@@ -1,0 +1,3 @@
+- include: contrail-base.yaml
+
+- include: containers-publish-container-images.yaml

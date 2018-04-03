@@ -1,0 +1,7 @@
+- name: Push container images to the repository
+  publish_images:
+    images: "{{ images }}"
+    tag: "{{ tag }}"
+    registry: "{{ registry }}"
+  become: true
+
