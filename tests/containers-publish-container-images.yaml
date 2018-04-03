@@ -1,0 +1,50 @@
+- name: Test the publish-container-images role
+  hosts: all
+  pre_tasks:
+    - name: Add localhost to insecure-registries
+      copy:
+        content: |
+          {"insecure-registries": ["localhost:5000"]}
+        dest: /etc/docker/daemon.json
+      become: true
+    - name: Restart docker to load new configuration
+      service:
+        name: docker
+        state: restarted
+      become: true
+    - name: Launch local docker registry
+      command: docker run -d -p 5000:5000 --restart=always --name registry registry:2
+      become: true
+    - name: Create a directory for Dockerfile
+      file:
+        path: stub
+        state: directory
+    - name: Create a stub Dockerfile
+      copy:
+        content: |
+          FROM scratch
+
+          ENTRYPOINT ["/bin/sleep", "infinity"]
+        dest: "stub/Dockerfile"
+      become: true
+    - name: Build a stub container
+      command: docker build -t stub .
+      args:
+        chdir: "stub/"
+      become: true
+    - name: show available images
+      command: docker images
+      become: true
+  roles:
+    - role: zuul-include-vars
+    - role: publish-container-images
+      registry: localhost:5000
+      tag: "10000-1"
+      images:
+        - { name: stub, tag: latest }
+  post_tasks:
+    - name: Ensure that the variable has been loaded
+      fail:
+        msg: Exported variable is missing
+      when: fake_var is undefined or fake_var != 'fake_value'
+
