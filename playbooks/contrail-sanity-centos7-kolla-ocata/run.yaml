@@ -8,4 +8,5 @@
       openstack_version: ocata
       kolla_docker_distro: ubuntu
       kolla_version: ocata
-    - sanitytest
+    - role: sanitytest
+      openstack_version: ocata
