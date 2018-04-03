@@ -33,6 +33,7 @@
       - Juniper/contrail-vnc
       - Juniper/contrail-vrouter
       - Juniper/contrail-vrouter-java-api
+      - Juniper/contrail-vro-plugin
       - Juniper/contrail-web-controller
       - Juniper/contrail-web-core
       - Juniper/contrail-web-server-manager
