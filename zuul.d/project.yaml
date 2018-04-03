@@ -8,6 +8,8 @@
         - contrail-infra-contrail-base-integration-ubuntu-xenial
         - contrail-infra-packaging-integration-centos-7
         - contrail-infra-packaging-integration-ubuntu-xenial
+        - contrail-infra-containers-integration-centos-7
+        - contrail-infra-containers-integration-ubuntu-xenial
         - zuul-jobs-linters
         - noop:
             irrelevant-files:
@@ -22,6 +24,8 @@
         - contrail-infra-contrail-base-integration-ubuntu-xenial
         - contrail-infra-packaging-integration-centos-7
         - contrail-infra-packaging-integration-ubuntu-xenial
+        - contrail-infra-containers-integration-centos-7
+        - contrail-infra-containers-integration-ubuntu-xenial
         - zuul-jobs-linters
         - noop:
             irrelevant-files:
