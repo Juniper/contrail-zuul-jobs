@@ -1,0 +1,41 @@
+- name: Test the publish-container-images role
+  hosts: all
+  pre_tasks:
+    # contrail-common-libs can only be executed in a trusted context
+    - name: Stub out contrail packaging variables
+      copy:
+        content: |
+          {"packaging": "docker_version": "10000-1"}
+        dest: "{{ zuul.executor.work_root }}/results.json"
+      delegate_to: localhost
+    - name: Add localhost to insecure-registries
+      content: |
+        {"insecure-registries": ["localhost:5000"]}
+      dest: /etc/docker/daemon.json
+    - name: Restart docker to load new configuration
+      service:
+        name: docker
+        state: restarted
+    - name: Launch local docker registry
+      command: docker run -d -p 5000:5000 --restart=always --name registry registry:2
+    - name: Create a stub Dockerfile
+      content: |
+        FROM scratch
+
+        ENTRYPOINT ["/bin/sleep", "infinity"]
+      dest: "{{ ansible_env.HOME }}/Dockefile }}"
+    - name: Build a stub container
+      command: docker build -t stub .
+  roles:
+    - role: zuul-include-vars
+    - role: publish-container-images
+      registry: localhost:5000
+      tag: "{{ packaging.docker_version }}"
+      images:
+        - { name: stub, tag: latest }
+  post_tasks:
+    - name: Ensure that the variable has been loaded
+      fail:
+        msg: Exported variable is missing
+      when: fake_var is undefined or fake_var != 'fake_value'
+
