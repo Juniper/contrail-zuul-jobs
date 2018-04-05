@@ -1,8 +1,7 @@
 - hosts: all
   roles:
     - acquire-ip-address
-    - contrail-helm-deployer
-    - role: add-insecure-registry
-      new_registry: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
     - role: self-ssh-key
       user: root
+    - contrail-helm-deployer
+    - sanitytest
