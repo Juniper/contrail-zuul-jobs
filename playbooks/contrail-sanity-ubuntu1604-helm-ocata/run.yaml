@@ -7,3 +7,4 @@
     - role: self-ssh-key
       user: root
     - sanitytest
+      openstack_version: ocata
