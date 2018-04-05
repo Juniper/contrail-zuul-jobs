@@ -110,19 +110,6 @@
     run: playbooks/contrail-sanity-centos7-kolla-ocata-dev/run
 
 - job:
-    name: contrail-sanity-ubuntu1604-helm-ocata
-    parent: contrail-systest-ubuntu1604-base
-    run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/run
-    required-projects:
-      - Juniper/contrail-helm-deployer
-      - Juniper/contrail-test
-      - Juniper/contrail-test-ci
-      - Juniper/openstack-helm
-      - Juniper/openstack-helm-infra
-    roles:
-      - zuul: Juniper/contrail-helm-deployer
-
-- job:
     name: contrail-sanity-centos7-k8s
     parent: contrail-systest-base
     description: |
@@ -141,9 +128,38 @@
           label: c7-systest-c
 
 - job:
+    name: contrail-helm-base
+    parent: contrail-systest-base
+    description: |
+      A job that deploys Contrail and OpenStack containers using contrail-helm-deployer
+    post-run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/post
+    required-projects:
+      - Juniper/openstack-helm
+      - Juniper/contrail-helm-deployer
+      - Juniper/openstack-helm-infra
+      - Juniper/contrail-test
+      - Juniper/contrail-test-ci
+    nodeset:
+      nodes:
+        - name: helm-aio
+          label: ubuntu-xenial-builder-xxlarge
+    roles:
+      - zuul: Juniper/contrail-helm-deployer
+
+- job:
+    name: contrail-sanity-ubuntu1604-helm-ocata
+    parent: contrail-helm-base
+    run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/run
+    vars:
+      openstack_version: ocata
+      test_target: k8s_sanity
+
+- job:
     name: contrail-deploy-ubuntu1604-helm-ocata
-    parent: contrail-sanity-ubuntu1604-helm-ocata
+    parent: contrail-helm-base
     run: playbooks/contrail-deploy-ubuntu1604-helm-ocata/run
+    vars:
+      openstack_version: ocata
 
 - job:
     name: contrail-vnc-build-package-el-makefile
