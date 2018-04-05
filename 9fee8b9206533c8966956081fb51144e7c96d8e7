@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_e8dc38e5",
+        "filename": "roles/publish-container-images/library/publish_images.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-04-05T12:22:56Z",
+      "side": 1,
+      "message": "Is there any use-case where we would not want to use a registry? e.g. use dockerhub? I think we should handle that situation eventually.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 62
+      },
+      "revId": "9fee8b9206533c8966956081fb51144e7c96d8e7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_c8d97cf3",
+        "filename": "roles/publish-container-images/library/publish_images.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-04-05T12:22:56Z",
+      "side": 1,
+      "message": "Using dockerhub woould mean that we have to use \u0027secure\u0027 regstries - with login. It can be added later.",
+      "revId": "9fee8b9206533c8966956081fb51144e7c96d8e7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_489c6c0e",
+        "filename": "roles/publish-container-images/library/publish_images.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-04-05T12:22:56Z",
+      "side": 1,
+      "message": "Module exists with default value of changed: false, which isn\u0027t actually true in my opinion.",
+      "revId": "9fee8b9206533c8966956081fb51144e7c96d8e7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_289da009",
+        "filename": "tests/containers-publish-container-images.yaml",
+        "patchSetId": 45
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-04-05T12:22:56Z",
+      "side": 1,
+      "message": "maybe change it to \u0027docker_image_name\u0027/\u0027docker_image_tag\u0027 for clarity?",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 23
+      },
+      "revId": "9fee8b9206533c8966956081fb51144e7c96d8e7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
