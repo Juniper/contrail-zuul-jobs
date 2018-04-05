@@ -1,9 +1,9 @@
 - hosts: all
   roles:
+    - load-docker-registry-info
     - acquire-ip-address
-    - contrail-helm-deployer
-    - role: add-insecure-registry
-      new_registry: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
     - role: self-ssh-key
       user: root
-    - sanitytest
+    - contrail-helm-deployer
+    - role: sanitytest
+      openstack_version: ocata
