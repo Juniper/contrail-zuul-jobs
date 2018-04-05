@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5f2577a7_48534c40",
+        "filename": "roles/publish-container-images/library/publish_images.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-04-05T12:38:29Z",
+      "side": 1,
+      "message": "Yes, when we add dockerhub we\u0027ll have to handle namespaces too, but it\u0027s for the v2 interface. :^)",
+      "parentUuid": "5f2577a7_e8dc38e5",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 62
+      },
+      "revId": "9fee8b9206533c8966956081fb51144e7c96d8e7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f2577a7_c8d97cf3",
         "filename": "roles/publish-container-images/library/publish_images.py",
         "patchSetId": 45
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "5f2577a7_28448073",
+        "filename": "roles/publish-container-images/library/publish_images.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-04-05T12:38:29Z",
+      "side": 1,
+      "message": "same as before, this version does only what\u0027s needed for the initial release so we can start publishing contrail-go",
+      "parentUuid": "5f2577a7_c8d97cf3",
+      "revId": "9fee8b9206533c8966956081fb51144e7c96d8e7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f2577a7_489c6c0e",
         "filename": "roles/publish-container-images/library/publish_images.py",
         "patchSetId": 45
@@ -53,6 +95,24 @@
       "writtenOn": "2018-04-05T12:22:56Z",
       "side": 1,
       "message": "Module exists with default value of changed: false, which isn\u0027t actually true in my opinion.",
+      "revId": "9fee8b9206533c8966956081fb51144e7c96d8e7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_0849c489",
+        "filename": "roles/publish-container-images/library/publish_images.py",
+        "patchSetId": 45
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-04-05T12:38:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f2577a7_489c6c0e",
       "revId": "9fee8b9206533c8966956081fb51144e7c96d8e7",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
