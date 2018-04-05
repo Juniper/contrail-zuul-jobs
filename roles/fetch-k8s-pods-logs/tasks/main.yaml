@@ -1,0 +1,112 @@
+- name: Create the log directory on executor
+  file:
+    path: "{{ zuul.executor.log_root }}/pod-logs"
+    state: directory
+  delegate_to: localhost
+
+- name: Create the k8s-objects description directory on executor
+  file:
+    path: "{{ zuul.executor.log_root }}/k8s-objects"
+    state: directory
+  delegate_to: localhost
+
+- name: Get logs from all containers
+  shell: |-
+    set -e
+    PARALLELISM_FACTOR=2
+    function get_namespaces () {
+      kubectl get namespaces -o name | awk -F '/' '{ print $NF }'
+    }
+    function get_pods () {
+      NAMESPACE=$1
+      kubectl get pods -n ${NAMESPACE} -o name --show-all | awk -F '/' '{ print $NF }' | xargs -L1 -P 1 -I {} echo ${NAMESPACE} {}
+    }
+    export -f get_pods
+    function get_pod_logs () {
+      NAMESPACE=${1% *}
+      POD=${1#* }
+      INIT_CONTAINERS=$(kubectl get pod $POD -n ${NAMESPACE} -o json | jq -r '.spec.initContainers[]?.name')
+      CONTAINERS=$(kubectl get pod $POD -n ${NAMESPACE} -o json | jq -r '.spec.containers[].name')
+      for CONTAINER in ${INIT_CONTAINERS} ${CONTAINERS}; do
+        echo "${NAMESPACE}/${POD}/${CONTAINER}"
+        mkdir -p "{{ ansible_env.HOME }}/pod-logs/${NAMESPACE}/${POD}"
+        kubectl logs ${POD} -n ${NAMESPACE} -c ${CONTAINER} > "{{ ansible_env.HOME }}/pod-logs/${NAMESPACE}/${POD}/${CONTAINER}.txt"
+      done
+    }
+    export -f get_pod_logs
+    get_namespaces | \
+    xargs -r -n 1 -P ${PARALLELISM_FACTOR} -I {} bash -c 'get_pods "$@"' _ {} | \
+    xargs -r -n 2 -P ${PARALLELISM_FACTOR} -I {} bash -c 'get_pod_logs "$@"' _ {}
+  args:
+    executable: /bin/bash
+  ignore_errors: true
+
+- name: Get descriptions for namespace scoped objects
+  shell: |-
+    set -e
+    export OBJECT_TYPE=pods
+    export PARALLELISM_FACTOR=2
+    function get_namespaces () {
+      kubectl get namespaces -o name | awk -F '/' '{ print $NF }'
+    }
+    function list_namespaced_objects () {
+      export NAMESPACE=$1
+      printf ${OBJECT_TYPE} | xargs -d ',' -I {} -P1 -n1 bash -c 'echo "${NAMESPACE} $@"' _ {}
+    }
+    export -f list_namespaced_objects
+    function name_objects () {
+      input=($1)
+      export NAMESPACE=${input[0]}
+      export OBJECT=${input[1]}
+      kubectl get -n ${NAMESPACE} ${OBJECT} -o name | xargs -L1 -I {} -P1 -n1 bash -c 'echo "${NAMESPACE} ${OBJECT} $@"' _ {}
+    }
+    export -f name_objects
+    function get_objects () {
+      input=($1)
+      export NAMESPACE=${input[0]}
+      export OBJECT=${input[1]}
+      export NAME=${input[2]#*/}
+      echo "${NAMESPACE}/${OBJECT}/${NAME}"
+      DIR="{{ ansible_env.HOME }}/k8s-objects/namespaced/${NAMESPACE}/${OBJECT}"
+      mkdir -p ${DIR}
+      kubectl get -n ${NAMESPACE} ${OBJECT} ${NAME} -o yaml > "${DIR}/${NAME}.yaml"
+      kubectl describe -n ${NAMESPACE} ${OBJECT} ${NAME} > "${DIR}/${NAME}.txt"
+    }
+    export -f get_objects
+    get_namespaces | \
+    xargs -r -n 1 -P ${PARALLELISM_FACTOR} -I {} bash -c 'list_namespaced_objects "$@"' _ {} | \
+    xargs -r -n 1 -P ${PARALLELISM_FACTOR} -I {} bash -c 'name_objects "$@"' _ {} | \
+    xargs -r -n 1 -P ${PARALLELISM_FACTOR} -I {} bash -c 'get_objects "$@"' _ {}
+  args:
+    executable: /bin/bash
+  ignore_errors: True
+
+- name: Test for pod-logs dir
+  stat:
+    path: "{{ ansible_env.HOME }}/pod-logs"
+  register: pod_logdir
+  become: true
+
+- name: Fetch k8s pods containers logs to executor
+  synchronize:
+    src: "{{ ansible_env.HOME }}/pod-logs/"
+    dest: "{{ zuul.executor.log_root }}/pod-logs"
+    mode: pull
+    recursive: yes
+  when: pod_logdir.stat.isdir is defined and pod_logdir.stat.isdir
+  become: true
+
+- name: Test for k8s-objects descriptions dir
+  stat:
+    path: "{{ ansible_env.HOME }}/k8s-objects"
+  register: objects_dir
+  become: true
+
+- name: Fetch descriptions to executor
+  synchronize:
+    src: "{{ ansible_env.HOME }}/k8s-objects/"
+    dest: "{{ zuul.executor.log_root }}/k8s-objects"
+    mode: pull
+    recursive: yes
+  when: objects_dir.stat.isdir is defined and objects_dir.stat.isdir
+  become: true
