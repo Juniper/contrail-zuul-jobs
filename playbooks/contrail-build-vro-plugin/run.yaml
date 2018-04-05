@@ -1,0 +1,20 @@
+- hosts: builder
+  name: Build and test Juniper/contrail-vro-plugin
+  roles:
+    - build-vro-plugin
+  vars:
+    workdir: "{{ ansible_env.HOME }}/{{ vro-plugin }}"
+  tasks:
+    - name: install the latest version of maven
+      yum:
+        name: maven
+        state: latest
+
+    - name: install the latest version of maven
+      yum:
+        name: java-1.8.0-openjdk-devel
+        state: latest
+
+    - name: build vro plugin
+      command: make REPO_HOST=sdnpoc-vrodev.englab.juniper.net build
+      chdir: "{{ workdir }}"
