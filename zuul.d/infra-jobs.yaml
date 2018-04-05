@@ -49,8 +49,6 @@
     name: contrail-infra-packaging-integration
     description: |
       Run roles that are used for packaging jobs to prevent regressions.
-    required-projects:
-      - Juniper/contrail-vnc
     parent: base-minimal
     # Required to test repo-sandbox-prepare role
     required-projects:
