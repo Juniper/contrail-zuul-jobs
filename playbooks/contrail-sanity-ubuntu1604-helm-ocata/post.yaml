@@ -1,0 +1,4 @@
+- name: Send sanitytest logs to the executor
+  hosts: all
+  roles:
+    - contrail-upload-logs-sanitytests

@@ -101,6 +101,7 @@
     name: contrail-sanity-ubuntu1604-helm-ocata
     parent: contrail-systest-ubuntu1604-base
     run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/run
+    post-run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/post
     required-projects:
       - Juniper/contrail-helm-deployer
       - Juniper/contrail-test
