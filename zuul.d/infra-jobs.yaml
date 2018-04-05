@@ -69,6 +69,32 @@
     nodeset: builder-ubuntu-xenial
 
 - job:
+    name: contrail-infra-containers-integration
+    description: |
+      Run roles that are used to manage containers in jobs
+      to prevent regressions.
+    required-projects:
+      - Juniper/contrail-vnc
+    parent: base-minimal
+    # Required to test repo-sandbox-prepare role
+    required-projects:
+      - Juniper/contrail-vnc
+    run: tests/containers-integration.yaml
+    files:
+      - ^roles/publish-container-images/.*
+      - ^tests/.*
+
+- job:
+    name: contrail-infra-containers-integration-centos-7
+    parent: contrail-infra-containers-integration
+    nodeset: builder-centos-7
+
+- job:
+    name: contrail-infra-containers-integration-ubuntu-xenial
+    parent: contrail-infra-containers-integration
+    nodeset: builder-ubuntu-xenial
+
+- job:
     name: zuul-jobs-linters
     parent: tox
     nodeset: ubuntu-xenial
