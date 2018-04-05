@@ -70,7 +70,7 @@ def main():
     if len(params['images']) > 0:
         result['changed'] = True
 
-    module.exit_json(**result)
+    module.exit_json(msg="Uploaded the following images: %s with a tag %s" % (", ".join(images), tag),**result)
 
 
 if __name__ == "__main__":
