@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_cd0cee42",
+        "filename": "playbooks/contrail-build-vro-plugin/run.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-04-05T09:37:35Z",
+      "side": 1,
+      "message": "This task name seems to be copy-pasted from above. Please edit it to be more descriptive.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 47
+      },
+      "revId": "bce44b790005a8feecc8ac8ed570ca00edb681f4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
