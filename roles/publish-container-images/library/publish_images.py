@@ -57,20 +57,22 @@ def main():
             )
         images += [repository]
 
+    image_verbose = {}
     for image_repository in images:
         try:
-            client.push(image_repository, tag=params['tag'],
-                        insecure_registry=True)
+            response = [line for line in client.push(image_repository, tag=params['tag'], insecure_registry=True, stream=True)]
         except Exception as e:
             msg = "Unknown error while pushing %s: %s" % (
                 ":".join((image_repository, params['tag'])), str(e),
             )
             module.fail_json(msg=msg, **result)
+    image_verbose[image_repository] = response
 
+    result['verbose'] = image_verbose
     if len(params['images']) > 0:
         result['changed'] = True
 
-    module.exit_json(**result)
+    module.exit_json(msg="Uploaded the following images: %s with a tag %s" % (", ".join(images), params['tag']),**result)
 
 
 if __name__ == "__main__":
