@@ -1,7 +1,3 @@
-- name: Reload facts after vhost interface came up
-  setup:
-    gather_timeout: 300
-
 - name: Set variables
   set_fact:
     testrunner_image: "{{ docker_registry.fqdn }}:{{ registry_port }}/contrail-test-test:{{ contrail_version }}"
