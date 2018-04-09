@@ -2,4 +2,3 @@
 - include: acquire-ip-address.yaml
 - include: configure-mirrors.yaml
 - include: base-prepare-workspace.yaml
-
