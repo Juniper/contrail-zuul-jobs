@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_4de470e0",
+        "filename": "roles/fetch-artifacts/tasks/main.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-04-09T14:09:48Z",
+      "side": 1,
+      "message": "why does this need `become`?",
+      "revId": "cf8430662dd917d52b4584dcdca2f3b28d564465",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_cdd740ee",
+        "filename": "tests/base.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-04-09T14:09:48Z",
+      "side": 1,
+      "message": "what about negative test?",
+      "revId": "cf8430662dd917d52b4584dcdca2f3b28d564465",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
