@@ -1,0 +1,6 @@
+contrail_package_repository: http://{{ zuul_site_mirror_fqdn }}/pulp/repos/{{ zuul.change }}-{{ zuul.patchset }}
+contrail_version: "{{ packaging.repo_name }}"
+openstack_version: ocata
+openstack_subversion: 3
+rpm_repo_config_dir: /etc/yum.repos.d/
+docker_build_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-container-builder"
