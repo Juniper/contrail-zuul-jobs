@@ -48,8 +48,6 @@ kolla_config:
     enable_ironic_notifications: 'no'
     openstack_service_workers: 1
     openstack_release: "{{ kolla_version }}"
-    docker_registry: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
-    contrail_docker_registry: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
     neutron_opencontrail_init_image_full: "{{ docker_registry.fqdn }}:{{ registry_port }}/contrail-openstack-neutron-init:ocata-{{ zuul.change }}-{{ zuul.patchset }}"
     nova_compute_opencontrail_init_image_full: "{{ docker_registry.fqdn }}:{{ registry_port }}/contrail-openstack-compute-init:ocata-{{ zuul.change }}-{{ zuul.patchset }}"
   kolla_passwords:
