@@ -1,0 +1,3 @@
+ontrail_package_repository: http://{{ site_pulp.fqdn }}/pulp/repos/{{ zuul.change }}-{{ zuul.patchset }}
+contrail_docker_registry: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
+contrail_version: "{{ zuul.change }}-{{ zuul.patchset }}"
