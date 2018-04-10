@@ -1,0 +1,4 @@
+- hosts: all
+  roles:
+    - load-docker-registry-info
+    - contrail-container-builder
