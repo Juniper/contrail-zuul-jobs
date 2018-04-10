@@ -131,3 +131,27 @@
       nodes:
         - name: builder
           label: centos-7-4-builder
+
+- job:
+    name: contrail-vnc-build-containers-base
+    parent: contrail-base2
+    pre-run: playbooks/docker/docker-pre
+    run: playbooks/contrail-container-builder/run
+    vars:
+      setup_docker_registry: True
+
+- job:
+    name: contrail-vnc-build-containers-centos7-ocata
+    parent: contrail-vnc-build-containers-base
+    nodeset: centos-7-4-builder
+    vars:
+      openstack_version: ocata
+      openstack_subversion: 3
+
+- job:
+    name: contrail-vnc-build-containers-rhel7-ocata
+    parent: contrail-vnc-build-containers-base
+    nodeset: rhel-7-4-builder
+    vars:
+      openstack_version: ocata
+      openstack_subversion: 3
