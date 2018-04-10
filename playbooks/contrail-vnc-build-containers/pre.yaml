@@ -1,0 +1,6 @@
+- hosts: all
+  roles:
+    - install-docker-daemon
+    - role: add-insecure-registry
+      new_registry: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
+
