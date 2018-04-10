@@ -33,4 +33,3 @@
               - ^roles/.*
               - ^playbooks/.*
               - ^tests/.*
-
