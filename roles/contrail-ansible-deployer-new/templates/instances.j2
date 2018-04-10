@@ -30,6 +30,7 @@ contrail_configuration:
   VROUTER_GATEWAY: 172.16.8.1
 {% if cloud_orchestrator == 'openstack' %}
   AUTH_MODE: keystone
+  AAA_MODE: rbac
   KEYSTONE_AUTH_ADMIN_PASSWORD: c0ntrail123
   KEYSTONE_AUTH_HOST: "{{ control_ip }}"
   KEYSTONE_AUTH_URL_VERSION: "/v3"
