@@ -34,3 +34,8 @@
       - name: builder
         label: ubuntu-xenial-builder
 
+- nodeset:
+    name: builder-rhel-7
+    nodes:
+      - name: builder
+        label: rhel-7-builder
