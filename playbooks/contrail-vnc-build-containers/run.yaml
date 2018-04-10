@@ -1,0 +1,7 @@
+- hosts: all
+  roles:
+    - install-docker-daemon
+    - load-docker-registry-info
+    - role: add-insecure-registry
+      new_registry: "{{ docker_registry.fqdn }}:{{ registry_port }}"
+    - contrail-container-builder
