@@ -1,0 +1,5 @@
+contrail_package_repository: http://{{ zuul_site_mirror_fqdn }}/pulp/repos/{{ zuul.change }}-{{ zuul.patchset }}
+contrail_docker_registry: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
+contrail_version: "{{ zuul.change }}-{{ zuul.patchset }}"
+openstack_version: ocata
+openstack_subversion: 3

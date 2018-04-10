@@ -1,0 +1,47 @@
+- name: Set paths
+  set_fact:
+    docker_build_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-container-builder"
+    rpm_repo_config_dir: /etc/yum.repos.d
+
+- name: Prepare build configuration - common.env
+  template:
+    src: common.env.j2
+    dest: "{{ docker_build_dir }}/common.env"
+
+- name: Send common.env to the executor
+  synchronize:
+    src: "{{ docker_build_dir }}/common.env"
+    dest: "{{ zuul.executor.log_root }}/zuul-info/"
+    mode: pull
+  become: true
+
+- name: Get list of repo files
+  command: "ls {{ rpm_repo_config_dir }}/"
+  register: repo_file_list
+
+- name: copy the repo files to containers build context
+  copy:
+    src: "{{ rpm_repo_config_dir }}/{{ item }}"
+    dest: "{{ docker_build_dir }}/{{ item }}.template"
+    remote_src: true
+  with_items:
+    - "{{ repo_file_list.stdout_lines }}"
+
+- name: Prepare container list
+  shell: ./build.sh list | grep -v INFO
+  become: true
+  register: docker_list
+  args:
+    chdir: "{{ docker_build_dir }}/containers"
+
+- name: "HACK: disable IPv6"
+  shell: |
+    sysctl -w net.ipv6.conf.all.disable_ipv6=1
+    sysctl -w net.ipv6.conf.default.disable_ipv6=1
+  ignore_errors: true
+  become: true
+
+- name: Build microservices
+  include: build_container.yaml
+  with_items: "{{ docker_list.stdout_lines }}"
+
