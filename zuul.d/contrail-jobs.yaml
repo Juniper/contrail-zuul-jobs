@@ -92,6 +92,12 @@
     name: contrail-sanity-centos7-kolla-ocata
     parent: contrail-sanity-centos7-kolla-base
     run: playbooks/contrail-sanity-centos7-kolla-ocata/run
+    vars:
+      cloud_orchestrator: openstack
+      openstack_version: ocata
+      kolla_docker_distro: centos
+      kolla_version: ocata
+
 
 - job:
     name: contrail-sanity-centos7-kolla-ocata-dev
