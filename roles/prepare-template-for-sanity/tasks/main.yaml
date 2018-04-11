@@ -1,8 +1,20 @@
-- name: Set variables
+- name: set control IP
   set_fact:
     control_ip: "{{ ansible_default_ipv4.address }}"
 
-- name: Copy hosts template
+- name: Copy template for testrunner
   template:
-    src: contrail_test_input.j2
+    src: instances.j2
     dest: "{{ ansible_env.HOME }}/contrail_test_input.yaml"
+
+- name: Copy config to contrail-ansible-deployer config dir
+  src:
+    src: "{{ ansible_env.HOME }}/contrail_test_input.yaml"
+    dest: "{{ docker_provision_dir }}/config/instances.yaml"
+    remote_src: yes
+
+- name: Fetch instances.yaml to executor
+  synchronize:
+    src: "{{ docker_provision_dir }}/config/instances.yaml"
+    dest: "{{ zuul.executor.log_root }}/"
+    mode: pull
