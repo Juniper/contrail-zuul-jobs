@@ -51,8 +51,11 @@
   command: free -m
 
 - name: (Hack) Wait for the vrouter initialization
-  wait_for:
-    timeout: 600
+  action: shell ip route | grep vhost0
+  register: vhost_interface
+  until: vhost_interface.stdout != ""
+  retries: 30
+  delay: 20
 
 - name: Check interfaces for addresses
   command: ip addr
