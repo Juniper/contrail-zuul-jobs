@@ -3,13 +3,13 @@
     - load-docker-registry-info
     - acquire-ip-address
     - self-ssh-key
+    - role: prepare-template-for-ansible-deployer
+      cloud_orchestrator: openstack
+      openstack_version: ocata
+      kolla_version: ocata
     - role: contrail-ansible-deployer-new
       cloud_orchestrator: openstack
       openstack_version: ocata
-      kolla_docker_distro: ubuntu
-      kolla_version: ocata
-    - role: prepare-template-for-sanity
-      cloud_orchestrator: openstack
-      openstack_version: ocata
+      kolla_docker_distro: centos
       kolla_version: ocata
     - sanitytest
