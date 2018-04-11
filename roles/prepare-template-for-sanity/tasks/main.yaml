@@ -2,10 +2,6 @@
   set_fact:
     control_ip: "{{ ansible_default_ipv4.address }}"
 
-- name: Reload facts after DHCP address setup
-  setup:
-    gather_timeout: 300
-
 - name: Copy hosts template
   template:
     src: contrail_test_input.j2
