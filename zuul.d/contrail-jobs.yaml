@@ -131,3 +131,9 @@
       nodes:
         - name: builder
           label: centos-7-4-builder
+
+- job:
+    name: fetch-artifacts-test
+    parent: contrail-base2
+    run: playbooks/fetch-artifacts-test.yaml
+    nodeset: centos-7

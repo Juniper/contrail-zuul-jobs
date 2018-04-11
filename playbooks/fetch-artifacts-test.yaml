@@ -1,0 +1,10 @@
+- hosts: all
+  tasks:
+    - name: jjj
+      file:
+        path: "{{ ansible_env.HOME }}/artifacts"
+        state: directory
+    - name: jjjs
+      copy:
+        dest: "{{ ansible_env.HOME }}/artifacts/test.txt"
+        content: test
