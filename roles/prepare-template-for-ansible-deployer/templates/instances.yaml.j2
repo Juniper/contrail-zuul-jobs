@@ -1,4 +1,4 @@
-CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ registry_port }}"
+# TODO: remove next line after contrail-ansible-deployer changes
 REGISTRY_PRIVATE_INSECURE: True
 
 provider_config:
@@ -22,11 +22,15 @@ instances:
       vrouter:
       openstack:
       openstack_compute:
-
+global_configuration:
+  CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ registry_port }}"
+  REGISTRY_PRIVATE_INSECURE: True
 contrail_configuration:
-  CLOUD_ORCHESTRATOR: "{{ cloud_orchestrator }}"
+  # TODO: remove next line after contrail-ansible-deployer changes
   CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ registry_port }}"
   CONTRAIL_VERSION: "{{ contrail_version }}"
+  CLOUD_ORCHESTRATOR: "{{ cloud_orchestrator }}"
+  CONTRAIL_VERSION: "ocata-{{ contrail_version }}"
   CONTROLLER_NODES: "{{ control_ip }}"
   LOG_LEVEL: SYS_DEBUG
   PHYSICAL_INTERFACE: eth1
