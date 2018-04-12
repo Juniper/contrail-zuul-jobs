@@ -2,6 +2,7 @@
   contrail_packaging:
     zuul: "{{ zuul }}"
     release_type: "{{ release_type }}"
+    build_number: "{{ build_number|default(omit) }}"
   delegate_to: localhost
 
 - name: Return contrail_packaging variable back to zuul
