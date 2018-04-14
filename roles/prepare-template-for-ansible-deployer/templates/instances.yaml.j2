@@ -1,6 +1,3 @@
-# TODO: remove next line after contrail-ansible-deployer changes
-REGISTRY_PRIVATE_INSECURE: True
-
 provider_config:
   bms:
     ntpserver: 192.168.1.1
@@ -26,8 +23,6 @@ global_configuration:
   CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ registry_port }}"
   REGISTRY_PRIVATE_INSECURE: True
 contrail_configuration:
-  # TODO: remove next line after contrail-ansible-deployer changes
-  CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ registry_port }}"
   CONTRAIL_VERSION: "{{ contrail_version }}"
   CLOUD_ORCHESTRATOR: "{{ cloud_orchestrator }}"
   CONTRAIL_VERSION: "ocata-{{ contrail_version }}"
