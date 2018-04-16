@@ -15,21 +15,10 @@
   command: sed -e '/\[epel-source\]/,+6 s/^/#/' -i /etc/yum.repos.d/epel.repo
   become: True
 
-- name: Install package dependencies for the build (RedHat)
-  command: yum-builddep -y "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packages/rpm/contrail/contrail.spec"
-  become: True
-
-# DPDK is built from the same sources, but the dependencies were split
-# to another source package, so make sure we also install them.
-- name: Install DPDK build dependencies (RedHat)
-  command: yum-builddep -y "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/common/rpm/contrail-vrouter-dpdk.spec"
-  become: True
-
-# XXX(kklimonda) contrail-vrouter-dpdk.spec does not provide correct BuildDepends
-- name: Install liburcu-devel package (RedHat)
-  yum:
-    name: liburcu-devel
-    state: present
+- name: Install system build dependencies
+  command: make dep
+  args:
+    chdir: "{{ packaging.target_dir }}/tools/packages"
   become: True
 
 - name: Fetch third-party dependencies
