@@ -13,7 +13,7 @@
     "{{ repos_dir }}"/contrail-test/testrunner.sh run \
         -P "{{ ansible_env.HOME }}"/contrail_test_input.yaml \
         -k /root/.ssh/id_rsa \
-        -f "{{ test_target }}" "{{ testrunner_image }}"
+        -T "{{ test_target }}" "{{ testrunner_image }}"
   become: true
   ignore_errors: yes
 

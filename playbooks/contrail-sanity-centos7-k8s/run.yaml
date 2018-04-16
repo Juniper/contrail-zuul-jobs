@@ -1,4 +1,6 @@
 - hosts: all
-  tasks:
-    - name: Dummy playbook for job contrail-sanity-centos7-k8s skeleton
-      ping:
+  roles:
+    - acquire-ip-address
+    - self-ssh-key
+    - prepare-template-for-ansible-deployer
+    - contrail-ansible-deployer
