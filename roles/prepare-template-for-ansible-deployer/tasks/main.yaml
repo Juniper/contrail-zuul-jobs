@@ -4,7 +4,7 @@
 
 - name: Copy template for testrunner
   template:
-    src: instances.yaml.j2
+    src: "{{ cloud_orchestrator }}_instances.yaml.j2"
     dest: "{{ ansible_env.HOME }}/contrail_test_input.yaml"
 
 - name: Copy config to contrail-ansible-deployer config dir
