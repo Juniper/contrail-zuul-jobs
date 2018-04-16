@@ -16,13 +16,17 @@
   become: True
 
 - name: Install package dependencies for the build (RedHat)
-  command: yum-builddep -y "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packages/rpm/contrail/contrail.spec"
+  command: make dep-contrail
+  args:
+    chdir: "{{ packaging.target_dir }}/tools/packages"
   become: True
 
 # DPDK is built from the same sources, but the dependencies were split
 # to another source package, so make sure we also install them.
 - name: Install DPDK build dependencies (RedHat)
-  command: yum-builddep -y "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/common/rpm/contrail-vrouter-dpdk.spec"
+  command: make dep-contrail-vrouter-dpdk
+  args:
+    chdir: "{{ packaging.target_dir }}/tools/packages"
   become: True
 
 # XXX(kklimonda) contrail-vrouter-dpdk.spec does not provide correct BuildDepends
