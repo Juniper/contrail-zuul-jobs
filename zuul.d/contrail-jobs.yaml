@@ -103,6 +103,26 @@
     run: playbooks/contrail-sanity-centos7-kolla-ocata-dev/run
 
 - job:
+    name: contrail-sanity-centos7-k8s
+    parent: contrail-systest-base
+    description: |
+      A job that deploys Contrail containers and a Kubernetes cluster
+      using contrail-ansible-deployer.
+    run: playbooks/contrail-sanity-centos7-k8s/run
+    vars:
+      cloud_orchestrator: kubernetes
+    required-projects:
+      - Juniper/contrail-ansible-deployer
+      - name: Juniper/contrail-kolla-ansible
+        override-checkout: contrail/ocata
+      - Juniper/contrail-test
+      - Juniper/contrail-test-ci
+    nodeset:
+      nodes:
+        - name: kolla-aio
+          label: c7-systest-c
+
+- job:
     name: contrail-sanity-ubuntu1604-helm-ocata
     parent: contrail-systest-ubuntu1604-base
     run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/run
