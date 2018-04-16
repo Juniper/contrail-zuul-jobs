@@ -17,8 +17,14 @@ instances:
       analytics:
       webui:
       vrouter:
+{% if cloud_orchestrator == 'openstack '%}
       openstack:
       openstack_compute:
+{% else %}
+      k8s_master:
+      kubemanager:
+      k8s_node:
+{% endif %}
 
 global_configuration:
   CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ registry_port }}"
@@ -29,16 +35,15 @@ contrail_configuration:
   CLOUD_ORCHESTRATOR: "{{ cloud_orchestrator }}"
   CONTROLLER_NODES: "{{ control_ip }}"
   LOG_LEVEL: SYS_DEBUG
+{% if cloud_orchestrator == 'openstack' %}
   PHYSICAL_INTERFACE: eth1
   VROUTER_GATEWAY: 172.16.8.1
-{% if cloud_orchestrator == 'openstack' %}
   AUTH_MODE: keystone
   AAA_MODE: rbac
   KEYSTONE_AUTH_ADMIN_PASSWORD: c0ntrail123
   KEYSTONE_AUTH_HOST: "{{ control_ip }}"
   KEYSTONE_AUTH_URL_VERSION: "/v3"
   RABBITMQ_NODE_PORT: 5673
-{% endif %}
 
 kolla_config:
   kolla_globals:
@@ -61,7 +66,6 @@ kolla_config:
 
 orchestrator_configuration:
   internal_vip: "{{ control_ip }}"
-{% if kolla_version is defined %}
   keystone:
     version: v3
     password: c0ntrail123
