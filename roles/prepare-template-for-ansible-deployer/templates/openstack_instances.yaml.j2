@@ -1,29 +1,13 @@
-provider_config:
-  bms:
-    ntpserver: 192.168.1.1
-    ssh_user: root
-    ssh_private_key: /root/.ssh/id_rsa
-    domainsuffix: novalocal
+{% extends "base_instances.yaml.j2" %}
 
-instances:
-  bms1:
-    provider: bms
-    ip: "{{ control_ip }}"
-    roles:
-      config_database:
-      config:
-      control:
-      analytics_database:
-      analytics:
-      webui:
-      vrouter:
+{% block roles %}
+{{ super() }}
       openstack:
       openstack_compute:
+{% endblock %}
 
-global_configuration:
-  CONTAINER_REGISTRY: "{{ contrail_docker_registry }}"
-  REGISTRY_PRIVATE_INSECURE: True
-
+{% block contrail_configuration %}
+{{ super() }}
 contrail_configuration:
   CONTRAIL_VERSION: "{{ contrail_version }}"
   CLOUD_ORCHESTRATOR: "{{ cloud_orchestrator }}"
@@ -31,14 +15,12 @@ contrail_configuration:
   LOG_LEVEL: SYS_DEBUG
   PHYSICAL_INTERFACE: eth1
   VROUTER_GATEWAY: 172.16.8.1
-{% if cloud_orchestrator == 'openstack' %}
   AUTH_MODE: keystone
   AAA_MODE: rbac
   KEYSTONE_AUTH_ADMIN_PASSWORD: c0ntrail123
   KEYSTONE_AUTH_HOST: "{{ control_ip }}"
   KEYSTONE_AUTH_URL_VERSION: "/v3"
   RABBITMQ_NODE_PORT: 5673
-{% endif %}
 
 kolla_config:
   kolla_globals:
@@ -62,12 +44,7 @@ kolla_config:
 
 orchestrator_configuration:
   internal_vip: "{{ control_ip }}"
-{% if kolla_version is defined %}
   keystone:
     version: v3
     password: c0ntrail123
-{% endif %}
-
-test_configuration:
-    image_web_server: 10.84.5.120
-    use_project_scoped_token: True
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base_instances.yaml.j2" %}
+
+{% block roles %}
+{{ super() }}
+      k8s_master:
+      kubemanager:
+      k8s_node:
+{% endblock %}
+
+{% block contrail_configuration %}
+{{ super() }}
+
+contrail_configuration:
+  CONTRAIL_VERSION: "{{ contrail_version }}"
+  CLOUD_ORCHESTRATOR: "{{ cloud_orchestrator }}"
+  CONTROLLER_NODES: "{{ control_ip }}"
+  LOG_LEVEL: SYS_DEBUG
+
+deployment:
+   orchestrator: {{ cloud_orchestrator }}
+{% endblock %}

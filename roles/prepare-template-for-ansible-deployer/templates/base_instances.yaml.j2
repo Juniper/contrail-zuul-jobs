@@ -1,0 +1,31 @@
+provider_config:
+  bms:
+    ntpserver: 192.168.1.1
+    ssh_user: root
+    ssh_private_key: /root/.ssh/id_rsa
+    domainsuffix: novalocal
+
+{% block roles %}
+instances:
+  bms1:
+    provider: bms
+    ip: "{{ control_ip }}"
+    roles:
+      config_database:
+      config:
+      control:
+      analytics_database:
+      analytics:
+      webui:
+      vrouter:
+{% endblock %}
+
+{% block contrail_configuration %}
+global_configuration:
+  CONTAINER_REGISTRY: "{{ contrail_docker_registry }}"
+  REGISTRY_PRIVATE_INSECURE: True
+{% endblock %}
+
+test_configuration:
+    image_web_server: 10.84.5.120
+    use_project_scoped_token: True
