@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_d7a686c1",
+        "filename": "playbooks/contrail-vnc-build-containers/pre.yaml",
+        "patchSetId": 29
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-04-17T15:24:25Z",
+      "side": 1,
+      "message": "Use `zuul-include-vars` to retrieve `contrail_docker_registry` exported from `setup-docker-registry2` - we are deprecating using our main ci-repo registry so the port will always be set to something other than 5000.",
+      "revId": "d6a755d28e75cb19af875ab6172fc3ae9bbd8ebf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_b7a9ba90",
+        "filename": "playbooks/contrail-vnc-build-containers/pre.yaml",
+        "patchSetId": 29
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-04-17T15:24:25Z",
+      "side": 1,
+      "message": "use `contrail_docker_registry` instead",
+      "revId": "d6a755d28e75cb19af875ab6172fc3ae9bbd8ebf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_57cdf682",
+        "filename": "roles/contrail-container-builder/defaults/main.yaml",
+        "patchSetId": 29
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-04-17T15:24:25Z",
+      "side": 1,
+      "message": "This variable should be coming from `setup-docker-registry2`",
+      "revId": "d6a755d28e75cb19af875ab6172fc3ae9bbd8ebf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_37c82a72",
+        "filename": "roles/contrail-container-builder/defaults/main.yaml",
+        "patchSetId": 29
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-04-17T15:24:25Z",
+      "side": 1,
+      "message": "`packaging.repo_name` or something similar?",
+      "revId": "d6a755d28e75cb19af875ab6172fc3ae9bbd8ebf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_97b7def5",
+        "filename": "roles/contrail-container-builder/tasks/main.yaml",
+        "patchSetId": 29
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-04-17T15:24:25Z",
+      "side": 1,
+      "message": "Move to defaults/main.yaml or vars/main.yaml",
+      "revId": "d6a755d28e75cb19af875ab6172fc3ae9bbd8ebf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_77d2322a",
+        "filename": "roles/contrail-container-builder/tasks/main.yaml",
+        "patchSetId": 29
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-04-17T15:24:25Z",
+      "side": 1,
+      "message": "Move it outside of zuul-info, to the root of the review logs, as we\u0027ve done with instances.yaml",
+      "revId": "d6a755d28e75cb19af875ab6172fc3ae9bbd8ebf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_17152ee5",
+        "filename": "roles/contrail-container-builder/tasks/main.yaml",
+        "patchSetId": 29
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-04-17T15:24:25Z",
+      "side": 1,
+      "message": "use `with_fileglob` instead of listing files with `ls` in the previous task",
+      "revId": "d6a755d28e75cb19af875ab6172fc3ae9bbd8ebf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_f7d5021d",
+        "filename": "zuul.d/project.yaml",
+        "patchSetId": 29
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-04-17T15:24:25Z",
+      "side": 1,
+      "message": "move this job above build-container jobs",
+      "revId": "d6a755d28e75cb19af875ab6172fc3ae9bbd8ebf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
