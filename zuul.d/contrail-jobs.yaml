@@ -130,3 +130,15 @@
       nodes:
         - name: builder
           label: centos-7-4-builder
+
+- job:
+    name: test-parent
+    pre-run: playbooks/test-parent
+
+- job:
+    name: test-child
+    parent: test-parent
+    run: playbooks/test-child
+    vars:
+      myvar: child
+    nodeset: centos-7
