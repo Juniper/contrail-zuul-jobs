@@ -1,0 +1,4 @@
+- hosts: all
+  tasks:
+    - debug:
+        msg: Child run playbook {{ hostvars['centos-7'].ansible_distribution }}
