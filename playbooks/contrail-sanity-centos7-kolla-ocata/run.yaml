@@ -1,6 +1,5 @@
 - hosts: all
   roles:
-    - load-docker-registry-info
     - acquire-ip-address
     - self-ssh-key
     - role: prepare-template-for-ansible-deployer
