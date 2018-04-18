@@ -47,7 +47,6 @@
 - job:
     name: contrail-vnc-build-package-centos74
     parent: contrail-vnc-build-package-el-base
-    run: playbooks/packaging/contrail-vnc-el
     irrelevant-files:
       - specs/.*
     nodeset:
