@@ -116,6 +116,24 @@
       - zuul: Juniper/contrail-helm-deployer
 
 - job:
+    name: contrail-sanity-centos7-k8s
+    parent: contrail-systest-base
+    description: |
+      A job that deploys Contrail containers and a Kubernetes cluster
+      using contrail-ansible-deployer.
+    run: playbooks/contrail-sanity-centos7-k8s/run
+    vars:
+      cloud_orchestrator: kubernetes
+    required-projects:
+      - Juniper/contrail-ansible-deployer
+      - Juniper/contrail-test
+      - Juniper/contrail-test-ci
+    nodeset:
+      nodes:
+        - name: kolla-aio
+          label: c7-systest-c
+
+- job:
     name: contrail-deploy-ubuntu1604-helm-ocata
     parent: contrail-sanity-ubuntu1604-helm-ocata
     run: playbooks/contrail-deploy-ubuntu1604-helm-ocata/run
