@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_acd83252",
+        "filename": "zuul.d/project.yaml",
+        "patchSetId": 47
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-04-20T10:41:22Z",
+      "side": 0,
+      "message": "(nitpick) get rid of that to make delta smaller",
+      "revId": "a2c7c4b0b9e014177610f991ec5d708b57ed7dd1",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}

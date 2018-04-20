@@ -19,6 +19,40 @@
     },
     {
       "key": {
+        "uuid": "5f2577a7_2ccd6284",
+        "filename": "roles/contrail-container-builder/tasks/main.yaml",
+        "patchSetId": 47
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-04-20T10:41:22Z",
+      "side": 1,
+      "message": "where is `epel.repo` coming from?",
+      "revId": "7da97465242848f9daa36ea442ef1fd68bf79285",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_2ce4420c",
+        "filename": "roles/install-docker-daemon/vars/redhat.yaml",
+        "patchSetId": 47
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-04-20T10:41:22Z",
+      "side": 1,
+      "message": "(nitpick) prefer present over latest",
+      "revId": "7da97465242848f9daa36ea442ef1fd68bf79285",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f2577a7_8cdb364d",
         "filename": "zuul.d/contrail-jobs.yaml",
         "patchSetId": 47
