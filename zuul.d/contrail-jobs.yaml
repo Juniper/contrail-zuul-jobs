@@ -172,11 +172,25 @@
       setup_docker_registry: True
 
 - job:
+    name: contrail-vnc-build-containers-centos7-newton
+    parent: contrail-vnc-build-containers-base
+    nodeset: builder-centos-7
+    vars:
+      openstack_version: newton
+
+- job:
     name: contrail-vnc-build-containers-centos7-ocata
     parent: contrail-vnc-build-containers-base
     nodeset: builder-centos-7
     vars:
       openstack_version: ocata
+
+- job:
+    name: contrail-vnc-build-containers-rhel7-newton
+    parent: contrail-vnc-build-containers-base
+    nodeset: builder-rhel-7
+    vars:
+      openstack_version: newton
 
 - job:
     name: contrail-vnc-build-containers-rhel7-ocata
