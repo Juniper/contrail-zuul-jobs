@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_8cb456f3",
+        "filename": "roles/contrail-container-builder/defaults/main.yaml",
+        "patchSetId": 47
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-04-20T10:40:09Z",
+      "side": 1,
+      "message": "Won\u0027t this blow up in nightly?",
+      "revId": "7da97465242848f9daa36ea442ef1fd68bf79285",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_8cdb364d",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 47
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-04-20T10:40:09Z",
+      "side": 1,
+      "message": "This is automatically set in c-c-b",
+      "revId": "7da97465242848f9daa36ea442ef1fd68bf79285",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_4ce9cee3",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 47
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-04-20T10:40:09Z",
+      "side": 1,
+      "message": "This is automatically set in c-c-b",
+      "revId": "7da97465242848f9daa36ea442ef1fd68bf79285",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
