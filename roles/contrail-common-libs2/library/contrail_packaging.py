@@ -92,6 +92,7 @@ def main():
         'version': version,
         'target_dir': target_dir,
         'repo_name': repo_name,
+        'repo_names': repo_names,
         'docker_version': docker_version,
     }
 
