@@ -1,0 +1,4 @@
+- hosts: all
+  tasks:
+    - name: Dummy playbook for job contrail-sanity-centos7-k8s skeleton
+      ping:
