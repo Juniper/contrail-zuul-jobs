@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_4743e942",
+        "filename": "roles/contrail-container-builder/defaults/main.yaml",
+        "patchSetId": 53
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-04-20T11:37:06Z",
+      "side": 1,
+      "message": "This won\u0027t work due to change https://review.opencontrail.org/#/c/42204/1/roles/contrail-common-libs/library/contrail_packaging.py if the repo is published to distr-based variant.",
+      "range": {
+        "startLine": 1,
+        "startChar": 75,
+        "endLine": 1,
+        "endChar": 100
+      },
+      "revId": "a87be3222d458b66389d11f572d615eed7a0707f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
