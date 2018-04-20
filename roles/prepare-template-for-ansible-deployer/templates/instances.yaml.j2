@@ -21,7 +21,7 @@ instances:
       openstack_compute:
 
 global_configuration:
-  CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ registry_port }}"
+  CONTAINER_REGISTRY: "{{ contrail_docker_registry }}"
   REGISTRY_PRIVATE_INSECURE: True
 
 contrail_configuration:
@@ -54,8 +54,8 @@ kolla_config:
     openstack_service_workers: 1
     openstack_release: "{{ kolla_version }}"
     docker_registry: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
-    neutron_opencontrail_init_image_full: "{{ docker_registry.fqdn }}:{{ registry_port }}/contrail-openstack-neutron-init:ocata-{{ zuul.change }}-{{ zuul.patchset }}"
-    nova_compute_opencontrail_init_image_full: "{{ docker_registry.fqdn }}:{{ registry_port }}/contrail-openstack-compute-init:ocata-{{ zuul.change }}-{{ zuul.patchset }}"
+    neutron_opencontrail_init_image_full: "{{ contrail_docker_registry }}/contrail-openstack-neutron-init:ocata-{{ zuul.change }}-{{ zuul.patchset }}"
+    nova_compute_opencontrail_init_image_full: "{{ contrail_docker_registry }}/contrail-openstack-compute-init:ocata-{{ zuul.change }}-{{ zuul.patchset }}"
   kolla_passwords:
     keystone_admin_password: c0ntrail123
 
