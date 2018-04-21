@@ -13,7 +13,7 @@
       - Juniper/contrail-common
       - Juniper/contrail-controller
       - name: Juniper/contrail-dpdk
-        override-checkout: contrail_dpdk_17_11
+        override-checkout: contrail_dpdk_17_02
       - Juniper/contrail-fabric-utils
       - Juniper/contrail-generateDS
       - Juniper/contrail-java-api
