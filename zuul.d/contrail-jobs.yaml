@@ -162,6 +162,28 @@
           label: centos-7-4-builder
 
 - job:
+    name: contrail-vnc-build-test-container2
+    parent: contrail-src-base
+    description: Builds contrail-test-base and contrail-test-test containers.
+    irrelevant-files:
+      - specs/.*
+    required-projects:
+      - Juniper/contrail-test
+    run: playbooks/docker/contrail-test
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-builder
+    vars:
+      linux_distribution: centos
+      linux_release: centos7
+      site_pulp:
+        fqdn: 10.84.5.81
+        port: 5000
+        registry_port: 5000
+      contrail_docker_registry: "10.84.5.81:35278"
+
+- job:
     name: contrail-vnc-build-containers-base
     parent: contrail-base2
     pre-run: playbooks/contrail-vnc-build-containers/pre
