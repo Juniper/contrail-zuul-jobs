@@ -1,0 +1,14 @@
+- name: Build container contrail-test-test {{ item }}
+  command: |
+    ./build-container.sh test \
+    --base-tag {{ contrail_container_tag2 }} \
+    --tag {{ item }}-5.0-32 \
+    --registry-server {{ contrail_docker_registry }} \
+    --sku {{ item }} \
+    --contrail-repo {{ contrail_package_repository2 }} \
+    --post
+  become: true
+  args:
+    chdir: "{{ test_container_build_dir }}"
+  tags:
+    - skip_ansible_lint # ANSIBLE0013
