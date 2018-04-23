@@ -198,3 +198,13 @@
     nodeset: builder-rhel-7
     vars:
       openstack_version: ocata
+
+- job:
+    name: post-nightly-registry-port
+    voting: False
+    parent: contrail-base2
+    run: playbooks/post-nightly-registry-port
+    nodeset: ubuntu-xenial
+    vars:
+      release_type: nightly
+      setup_docker_registry: true
