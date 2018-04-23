@@ -2,6 +2,7 @@
     name: Juniper/contrail-zuul-jobs
     check:
       jobs:
+        - contrail-vnc-build-test-container2
         - contrail-infra-base-integration-centos-7
         - contrail-infra-base-integration-ubuntu-xenial
         - contrail-infra-contrail-base-integration-centos-7

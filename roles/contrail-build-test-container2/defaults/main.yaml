@@ -1,0 +1,5 @@
+contrail_package_repository: http://{{ site_pulp.fqdn }}/pulp/repos/{{ zuul.change }}-{{ zuul.patchset }}
+contrail_docker_registry: "{{ docker_registry.fqdn }}:{{ registry_port }}"
+contrail_container_tag: "{{ zuul.change }}-{{ zuul.patchset }}"
+linux_distribution: centos
+release_type: continuous-integration
