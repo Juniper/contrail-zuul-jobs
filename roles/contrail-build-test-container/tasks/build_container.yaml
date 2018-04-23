@@ -1,0 +1,16 @@
+- name: Build container contrail-test-test {{ item }}
+  command: |
+    ./build-container.sh test \
+    {% if zuul.project.short_name == "contrail-test" or release_type == "nightly" %}
+    --base-tag {{ contrail_container_tag }} \
+    {% endif %}
+    --tag {{ item }}-{{ contrail_container_tag }} \
+    --registry-server {{ contrail_docker_registry }} \
+    --sku {{ item }} \
+    --contrail-repo {{ contrail_package_repository }} \
+    --post
+  become: true
+  args:
+    chdir: "{{ test_container_build_dir }}"
+  tags:
+    - skip_ansible_lint # ANSIBLE0013

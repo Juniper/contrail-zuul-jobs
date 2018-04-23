@@ -1,0 +1,6 @@
+- hosts: all
+  roles:
+    - docker-dependencies
+    - role: add-insecure-registry
+      new_registry: "10.84.5.81:35278"
+    - contrail-build-test-container
