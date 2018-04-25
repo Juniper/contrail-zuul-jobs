@@ -1,0 +1,4 @@
+- hosts: all
+  roles:
+    - zuul-include-vars
+    - contrail-test-container
