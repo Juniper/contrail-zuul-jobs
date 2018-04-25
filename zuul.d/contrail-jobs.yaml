@@ -200,6 +200,17 @@
       openstack_version: ocata
 
 - job:
+    name: contrail-vnc-build-test-containers
+    parent: contrail-base2
+    pre-run: playbooks/contrail-vnc-build-test-containers/pre
+    run: playbooks/contrail-vnc-build-test-containers/run
+    required-projects:
+      - Juniper/contrail-test
+    vars:
+      setup_docker_registry: true
+    nodeset: builder-centos-7
+
+- job:
     name: post-nightly-registry-port
     voting: False
     parent: contrail-base2
