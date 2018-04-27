@@ -17,6 +17,7 @@
               - ^playbooks/.*
               - ^tests/.*
     gate:
+      queue: contrail-ci
       jobs:
         - contrail-infra-base-integration-centos-7
         - contrail-infra-base-integration-ubuntu-xenial
