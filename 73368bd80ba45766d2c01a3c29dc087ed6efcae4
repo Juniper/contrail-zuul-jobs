@@ -16,6 +16,24 @@
       "revId": "73368bd80ba45766d2c01a3c29dc087ed6efcae4",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_6fa33702",
+        "filename": "roles/prepare-template-for-ansible-deployer/templates/kubernetes_config.yaml.j2",
+        "patchSetId": 27
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 457
+      },
+      "writtenOn": "2018-04-27T09:00:48Z",
+      "side": 1,
+      "message": "This section is not necessary for k8s based deployment. AFAIK :)",
+      "parentUuid": "5f2577a7_64ed9e8a",
+      "revId": "73368bd80ba45766d2c01a3c29dc087ed6efcae4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
     }
   ]
 }
