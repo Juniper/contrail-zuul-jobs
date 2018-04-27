@@ -109,5 +109,5 @@
     vars:
       tox_envlist: linters
       tox_environment:
-        ANSIBLE_ROLES_PATH: ~/src/review.opencontrail.org/Juniper/zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-project-config/roles:~/src/review.opencontrail.org/Juniper/contrail-helm-deployer/roles
+        ANSIBLE_ROLES_PATH: ~/src/github.com/Juniper/zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-project-config/roles:~/src/review.opencontrail.org/Juniper/contrail-helm-deployer/roles
 
