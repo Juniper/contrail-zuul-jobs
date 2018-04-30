@@ -9,7 +9,7 @@
     name: contrail-tpc
     description: Contrail third-party dependencies
     file: contrail-tpc
-    baseurl: "http://{{ zuul_site_mirror_fqdn }}/oc-centos-tpc/"
+    baseurl: "http://{{ zuul_site_mirror_fqdn }}/oc-centos-tpc-{{ zuul.branch }}/"
     enabled: yes
     gpgcheck: no
   become: True
