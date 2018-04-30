@@ -6,7 +6,7 @@
   with_items:
     - ansible
 
-- name: Provision Contrail with deploy.yml playbook
+- name: Configure AIO VM with configure_instances.yml playbook
   command: ansible-playbook -i inventory/ playbooks/configure_instances.yml -v
   args:
     chdir: "{{ docker_provision_dir }}"
