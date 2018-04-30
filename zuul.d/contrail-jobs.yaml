@@ -147,22 +147,6 @@
           label: c7-systest-c
 
 - job:
-    name: contrail-vnc-build-package-el-makefile
-    parent: contrail-vnc-base
-    description: |
-      Job that tests Contrail VNC using new Makefile from contrail-packages.
-    run: playbooks/packaging/contrail-vnc-el-makefile
-    vars:
-      # This is required for Makefile: 'TRUE"/'FALSE' instead of a boolean
-      build_debuginfo: 'FALSE'
-    irrelevant-files:
-      - specs/.*
-    nodeset:
-      nodes:
-        - name: builder
-          label: centos-7-4-builder
-
-- job:
     name: contrail-vnc-build-containers-base
     parent: contrail-base2
     pre-run: playbooks/contrail-vnc-build-containers/pre
