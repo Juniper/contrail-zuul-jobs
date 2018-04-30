@@ -16,7 +16,7 @@
   become: True
 
 - name: Provision Contrail with deploy.yml playbook
-  command: ansible-playbook -i inventory/ -e orchestrator=openstack playbooks/install_contrail.yml
+  command: ansible-playbook -i inventory/ -e orchestrator={{ cloud_orchestrator }} playbooks/install_contrail.yml
   args:
     chdir: "{{ docker_provision_dir }}"
   environment:
