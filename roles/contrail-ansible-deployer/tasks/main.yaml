@@ -6,6 +6,10 @@
   with_items:
     - ansible
 
+- name: 'Just fail'
+  fail:
+    msg: 'fail for debugging post-failure failures in post.yaml'
+
 - name: Configure AIO VM with configure_instances.yml playbook
   command: ansible-playbook -i inventory/ playbooks/configure_instances.yml -v
   args:
