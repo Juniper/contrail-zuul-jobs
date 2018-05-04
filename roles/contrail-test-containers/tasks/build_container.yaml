@@ -1,0 +1,12 @@
+- name: Build container contrail-test-test OpenStack-{{ item }}
+  command: |
+    ./build-container.sh test \
+    --base-tag {{ contrail_container_tag }} \
+    --tag {{ item }}-{{ contrail_container_tag }} \
+    --registry-server {{ contrail_docker_registry }} \
+    --sku {{ item }} \
+    --contrail-repo {{ contrail_package_repository }} \
+    --post
+  args:
+    chdir: "{{ test_container_build_dir }}"
+  become: true
