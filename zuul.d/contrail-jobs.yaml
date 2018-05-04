@@ -225,3 +225,13 @@
     vars:
       release_type: nightly
       setup_docker_registry: true
+
+- job:
+    name: contrail-vnc-base-mk
+    parent: contrail-base
+    description: |
+      A base job that prepares Contrail VNC sandbox using Android repo,
+      as opposed to the contrail-src-base job that copies the sources directly.
+    irrelevant-files:
+      - specs/.*
+    pre-run: playbooks/contrail/prepare
