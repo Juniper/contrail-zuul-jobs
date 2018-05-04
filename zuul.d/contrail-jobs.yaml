@@ -225,3 +225,19 @@
     vars:
       release_type: nightly
       setup_docker_registry: true
+
+- job:
+    name: contrail-mk
+    parent: contrail-base
+    description: |
+      A base job that prepares Contrail VNC sandbox using Android repo,
+      as opposed to the contrail-src-base job that copies the sources directly.
+    required-projects:
+      - Juniper/contrail-test
+    irrelevant-files:
+      - specs/.*
+    run: playbooks/contrail/prepare
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-builder
