@@ -28,8 +28,11 @@
     parent: base-minimal
     roles:
       - zuul: Juniper/zuul-jobs
+    # Required to test repo-sandbox-prepare role
     required-projects:
       - Juniper/contrail-vnc
+      - name: Juniper/contrail-dpdk
+        override-checkout: contrail_dpdk_17_11
     run: tests/contrail-base.yaml
     files:
       - ^roles/zuul-include-vars/.*
@@ -53,6 +56,8 @@
     # Required to test repo-sandbox-prepare role
     required-projects:
       - Juniper/contrail-vnc
+      - name: Juniper/contrail-dpdk
+        override-checkout: contrail_dpdk_17_11
     run: tests/packaging-integration.yaml
     files:
       - ^roles/fetch-packages/.*
@@ -79,6 +84,8 @@
     # Required to test repo-sandbox-prepare role
     required-projects:
       - Juniper/contrail-vnc
+      - name: Juniper/contrail-dpdk
+        override-checkout: contrail_dpdk_17_11
     run: tests/containers-integration.yaml
     files:
       - ^roles/publish-container-images/.*
