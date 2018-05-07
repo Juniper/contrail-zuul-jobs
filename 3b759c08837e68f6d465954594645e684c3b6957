@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_1f984968",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-05-07T14:28:49Z",
+      "side": 1,
+      "message": "Please make this line a little shorter and use extended message for specifics.",
+      "revId": "3b759c08837e68f6d465954594645e684c3b6957",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
