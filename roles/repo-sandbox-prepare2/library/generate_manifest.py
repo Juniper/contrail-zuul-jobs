@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 from __future__ import print_function
 
-ANSIBLE_METADATA = {
-        'metadata_version': '1.1',
-        'status': ['preview'],
-        'supported_by': 'community'
-}
-
-import argparse
 import os
 import subprocess
 
 from lxml import etree
 
 from ansible.module_utils.basic import AnsibleModule
+
+
+ANSIBLE_METADATA = {
+    'metadata_version': '1.1',
+    'status': ['preview'],
+    'supported_by': 'community'
+}
 
 
 def get_head_commit_sha(path):
@@ -28,12 +28,34 @@ def get_head_branch(path):
     return head[:-1]
 
 
+def verify_head_sha(path, project_name, manifest_revision):
+    """Verify whether the revision specified in manifest.xml file matches
+    the one checked out by Zuul"""
+    head_sha = get_head_commit_sha(path)
+    manifest_sha = subprocess.check_output(
+        ['git', 'rev-parse', 'refs/heads/{}'.format(manifest_revision)],
+        cwd=path).strip()
+    if not manifest_sha == head_sha:
+        msg = "Revision mismatch for project: {}!\n".format(project_name)
+        msg += "Manifest revision: \t{}\n".format(manifest_sha)
+        msg += "Zuul revision: \t{}\n".format(head_sha)
+        msg += "The revision checked-out by Zuul should be the same as the\
+                revision coming from the Android Repo's manifest.xml file.\
+                To change the Zuul revision, you can use the 'override-checkout'\
+                config option under specific entry in the 'required-projects'\
+                section of the project configuration. See\
+                https://docs.openstack.org/infra/zuul/user/config.html#attr-job.override-checkout\
+               for details."
+        raise RuntimeError(msg)
+
+
 def dump_xml(node):
     return etree.tostring(node, pretty_print=True).decode()
 
 
 def del_node(node):
     node.getparent().remove(node)
+
 
 def get_project(projects, short_name):
     for project, data in projects.items():
@@ -102,11 +124,14 @@ def snapshot(projects, manifest_path):
 
     for project in manifest.xpath('//project'):
         name = project.attrib['name']
+        manifest_revision = project.attrib['revision'] if 'revision' in project.attrib else 'master'
+
         zuul_project = get_project(projects, name)
-        sha = get_head_commit_sha(
-            os.path.join(
-                os.environ['HOME'],
-                zuul_project['src_dir']))
+        project_path = os.path.join(os.environ['HOME'], zuul_project['src_dir'])
+
+        verify_head_sha(project_path, name, manifest_revision)
+        sha = get_head_commit_sha(project_path)
+
         project.attrib['revision'] = sha
     return dump_xml(manifest)
 
@@ -147,8 +172,10 @@ def run_module():
 
     module.exit_json(ansible_facts={'origins': origins}, **result)
 
+
 def main():
     run_module()
+
 
 if __name__ == '__main__':
     main()
