@@ -28,8 +28,10 @@
     parent: base-minimal
     roles:
       - zuul: Juniper/zuul-jobs
+    # Required to test repo-sandbox-prepare role
     required-projects:
       - Juniper/contrail-vnc
+      - Juniper/contrail-dpdk
     run: tests/contrail-base.yaml
     files:
       - ^roles/zuul-include-vars/.*
@@ -53,6 +55,7 @@
     # Required to test repo-sandbox-prepare role
     required-projects:
       - Juniper/contrail-vnc
+      - Juniper/contrail-dpdk
     run: tests/packaging-integration.yaml
     files:
       - ^roles/fetch-packages/.*
@@ -79,6 +82,7 @@
     # Required to test repo-sandbox-prepare role
     required-projects:
       - Juniper/contrail-vnc
+      - Juniper/contrail-dpdk
     run: tests/containers-integration.yaml
     files:
       - ^roles/publish-container-images/.*

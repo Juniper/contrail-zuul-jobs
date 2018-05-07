@@ -1,5 +1,3 @@
-- include: base.yaml
-
 - include: contrail-base.yaml
 
 # Roles executed as part of the packaging pipeline
