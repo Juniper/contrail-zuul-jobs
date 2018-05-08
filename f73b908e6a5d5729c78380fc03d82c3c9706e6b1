@@ -16,6 +16,23 @@
       "revId": "f73b908e6a5d5729c78380fc03d82c3c9706e6b1",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_48661554",
+        "filename": "tests/packaging-integration.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-05-08T07:50:22Z",
+      "side": 0,
+      "message": "already included in contrail-base.yaml",
+      "revId": "f73b908e6a5d5729c78380fc03d82c3c9706e6b1",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
     }
   ]
 }
