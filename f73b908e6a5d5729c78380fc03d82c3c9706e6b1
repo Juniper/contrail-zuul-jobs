@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_8872bd10",
+        "filename": "tests/fixtures/manifest-stub.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-05-08T07:48:45Z",
+      "side": 0,
+      "message": "c-z-j cannot be here with this functionality due to how Zuul works - it will merge this change with master so there will always be a discrepancy in zuul/manifest revisions for this repo",
+      "revId": "f73b908e6a5d5729c78380fc03d82c3c9706e6b1",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
