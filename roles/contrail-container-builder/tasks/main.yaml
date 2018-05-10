@@ -1,3 +1,12 @@
+- name: d
+  set_fact:
+    openstack_version: newton
+    contrail_version: 5.0-55
+    contrail_packaging:
+      repo_name: 5.0-55
+      repo_names:
+        CentOS: 5.0-55-centos
+
 - name: Prepare build configuration - common.env
   template:
     src: common.env.j2
@@ -21,6 +30,12 @@
     remote_src: true
   with_items:
     - "{{ repo_list.stdout_lines | reject('equalto', 'epel.repo') | list }}"
+
+- name: Template openstack repo file
+  template:
+    src: "openstack.repo.j2"
+    dest: "{{ docker_build_dir }}/openstack.repo.template"
+  when: "ansible_distribution == 'CentOS'"
 
 - name: Prepare container list
   shell: ./build.sh list | grep -v INFO

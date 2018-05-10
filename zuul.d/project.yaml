@@ -2,6 +2,15 @@
     name: Juniper/contrail-zuul-jobs
     check:
       jobs:
+        - contrail-vnc-build-containers-centos7-newton:
+            vars:
+              setup_docker_registry: true
+              openstack_version: newton
+              contrail_version: 5.0-55
+              contrail_packaging:
+                repo_name: 5.0-55
+                repo_names:
+                  CentOS: 5.0-55-centos
         - contrail-infra-base-integration-centos-7
         - contrail-infra-base-integration-ubuntu-xenial
         - contrail-infra-contrail-base-integration-centos-7
