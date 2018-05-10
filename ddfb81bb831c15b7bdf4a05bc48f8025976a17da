@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_7c750efa",
+        "filename": "roles/contrail-unittests2/files/contrail-unittests-gather.rb",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-05-10T10:14:25Z",
+      "side": 1,
+      "message": "Isn\u0027t this changing the script logic by not using \"next\"? Line 39 is not invoked in the original version when this regex matches.",
+      "revId": "ddfb81bb831c15b7bdf4a05bc48f8025976a17da",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
