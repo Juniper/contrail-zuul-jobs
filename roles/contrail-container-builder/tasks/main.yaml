@@ -22,6 +22,11 @@
   with_items:
     - "{{ repo_list.stdout_lines | reject('equalto', 'epel.repo') | list }}"
 
+- name: Template openstack repo file
+  template:
+    src: "openstack.repo.j2"
+    dest: "{{ docker_build_dir }}/openstack.repo.template"
+
 - name: Prepare container list
   shell: ./build.sh list | grep -v INFO
   become: true
