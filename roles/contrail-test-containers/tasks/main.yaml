@@ -3,6 +3,15 @@
     paths: "{{ rpm_repo_config_dir }}"
   register: repo_file_list
 
+- name: Template openstack repo files
+  template:
+    src: "openstack.repo.j2"
+    dest: "{{ test_container_build_dir }}/{{ item }}/openstack.repo.template"
+  with_items:
+    - "docker/test"
+    - "docker/base"
+  when: "ansible_distribution == 'CentOS'"
+
 - name: Copy repo files to the container build context - contrail-test-test
   copy:
     src: "{{ item.path }}"
