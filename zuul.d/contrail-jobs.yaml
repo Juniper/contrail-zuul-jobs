@@ -105,11 +105,6 @@
       kolla_version: ocata
 
 - job:
-    name: contrail-sanity-centos7-kolla-ocata-dev
-    parent: contrail-sanity-centos7-kolla-base
-    run: playbooks/contrail-sanity-centos7-kolla-ocata-dev/run
-
-- job:
     name: contrail-sanity-centos7-k8s
     parent: contrail-systest-base
     description: |

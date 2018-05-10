@@ -1,5 +1,0 @@
-- hosts: all
-  tasks:
-    - name: Dummy playbook for job contrail-sanity-centos7-kolla-ocata-dev skeleton
-      setup:
-
