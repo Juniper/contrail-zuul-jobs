@@ -1,3 +1,12 @@
+- name: d
+  set_fact:
+    openstack_version: newton
+    contrail_version: 5.0-55
+    contrail_packaging:
+      repo_name: 5.0-55
+      repo_names:
+        CentOS: 5.0-55-centos
+
 - name: Prepare build configuration - common.env
   template:
     src: common.env.j2
