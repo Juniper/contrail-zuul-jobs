@@ -2,6 +2,16 @@
     name: Juniper/contrail-zuul-jobs
     check:
       jobs:
+        - contrail-vnc-build-containers-rhel7-ocata:
+            vars:
+              setup_docker_registry: true
+              openstack_version: ocata
+              contrail_version: master-100
+              contrail_packaging:
+                repo_name: master-100
+                repo_names:
+                  CentOS: master-100-rhel
+                  RedHat: master-100-rhel
         - contrail-infra-base-integration-centos-7
         - contrail-infra-base-integration-ubuntu-xenial
         - contrail-infra-contrail-base-integration-centos-7
