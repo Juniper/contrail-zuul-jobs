@@ -1,3 +1,13 @@
+- name: d
+  set_fact:
+    openstack_version: ocata
+    contrail_version: master-100
+    contrail_packaging:
+      repo_name: master-100
+      repo_names:
+        CentOS: master-100-rhel
+        RedHat: master-100-rhel
+
 - name: Prepare build configuration - common.env
   template:
     src: common.env.j2
