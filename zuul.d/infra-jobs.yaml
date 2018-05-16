@@ -73,8 +73,6 @@
     description: |
       Run roles that are used to manage containers in jobs
       to prevent regressions.
-    required-projects:
-      - Juniper/contrail-vnc
     parent: base-minimal
     # Required to test repo-sandbox-prepare role
     required-projects:
