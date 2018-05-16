@@ -15,8 +15,27 @@
     ANSIBLE_STDOUT_CALLBACK: debug
   become: True
 
-- name: Provision Contrail with deploy.yml playbook
+- name: Provision OpenStack with install_openstack.yml playbook
+  command: ansible-playbook -i inventory/ -e orchestrator=openstack playbooks/install_openstack.yml
+  args:
+    chdir: "{{ docker_provision_dir }}"
+  environment:
+    ANSIBLE_HOST_KEY_CHECKING: 'False'
+    ANSIBLE_STDOUT_CALLBACK: debug
+  become: True
+  when: cloud_orchestrator == 'openstack'
+
+- name: Provision Contrail with install_contrail.yml playbook
   command: ansible-playbook -i inventory/ -e orchestrator={{ cloud_orchestrator }} playbooks/install_contrail.yml
+  args:
+    chdir: "{{ docker_provision_dir }}"
+  environment:
+    ANSIBLE_HOST_KEY_CHECKING: 'False'
+    ANSIBLE_STDOUT_CALLBACK: debug
+  become: True
+
+- name: Provision k8s with install_k8s.yml playbook
+  command: ansible-playbook -i inventory/ -e orchestrator={{ cloud_orchestrator }} playbooks/install_k8s.yml
   args:
     chdir: "{{ docker_provision_dir }}"
   environment:
