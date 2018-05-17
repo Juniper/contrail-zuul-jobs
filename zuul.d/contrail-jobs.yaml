@@ -220,3 +220,18 @@
     vars:
       release_type: nightly
       setup_docker_registry: true
+
+- job:
+    name: build-third-party-rpms-base
+    description: |
+      This job builds packages from third-party-packages repo 
+      on Red Hat-based operating systems. This is a base job,
+      nodeset has to be assigned to build for a specific target.
+    voting: True
+    parent: contrail-src-base
+    run: playbooks/build-third-party-packages-base/run
+
+- job:
+    name: build-third-party-rpms-centos7
+    parent: build-third-party-rpms-base
+    nodeset: builder-centos-7
