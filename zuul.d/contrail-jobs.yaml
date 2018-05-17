@@ -220,3 +220,15 @@
     vars:
       release_type: nightly
       setup_docker_registry: true
+
+- job:
+    name: build-third-party-packages-base
+    voting: True
+    parent: contrail-src-base
+    run: playbooks/build-third-party-packages-base/run
+
+
+- job:
+    name: build-third-party-packages-centos7
+    parent: build-third-party-packages-base
+    nodeset: builder-centos-7
