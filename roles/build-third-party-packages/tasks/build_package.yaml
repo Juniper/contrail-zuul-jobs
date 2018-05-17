@@ -1,0 +1,7 @@
+---
+
+- name: Build package {{ item.path | basename }}
+  command: 'make {{ item.path | basename }}'
+  args:
+    chdir: '{{ ansible_env.HOME }}/{{ zuul.project.src_dir }}/upstream/rpm'
+  become: true
