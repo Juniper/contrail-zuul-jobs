@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_f3cfda54",
+        "filename": "roles/build-third-party-packages/tasks/main.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-05-17T13:31:19Z",
+      "side": 1,
+      "message": "builds and builds \u003d just builds xD",
+      "revId": "c490cf15eb951c9bccc98cedf66c198ab700f20a",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
