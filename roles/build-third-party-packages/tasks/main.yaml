@@ -1,0 +1,25 @@
+# This role builds all available packages and builds them
+
+---
+
+- name: List all available packages
+  find:
+    file_type: 'directory'
+    path: '{{ ansible_env.HOME }}/{{ zuul.project.src_dir }}/upstream/rpm/specs'
+    recurse: false
+  register: third_party_packages
+
+- name: Run preparation tasks
+  command: 'make prep'
+  args:
+    chdir: '{{ zuul.project.src_dir }}/upstream/rpm'
+
+- name: Build packages
+  include: build_package.yaml
+  with_items: '{{ third_party_packages.files }}'
+
+- name: List created packages
+  find:
+    path: '{{ ansible_env.HOME }}/{{ zuul.project.src_dir }}/../BUILD'
+    patterns: '*.rpm'
+
