@@ -4,7 +4,7 @@ contrail_configuration:
   CONTROLLER_NODES: "{{ control_ip }}"
   LOG_LEVEL: SYS_DEBUG
   PHYSICAL_INTERFACE: eth1
-  VROUTER_GATEWAY: 172.16.8.1
+  VROUTER_GATEWAY: 192.168.1.1
   AUTH_MODE: keystone
   AAA_MODE: rbac
   KEYSTONE_AUTH_ADMIN_PASSWORD: c0ntrail123
@@ -31,6 +31,11 @@ kolla_config:
     nova_compute_opencontrail_init_image_full: "{{ contrail_docker_registry }}/contrail-openstack-compute-init:ocata-{{ zuul.change }}-{{ zuul.patchset }}"
   kolla_passwords:
     keystone_admin_password: c0ntrail123
+  customize:
+    nova.conf: |
+      [libvirt]
+      virt_type=qemu
+      cpu_mode=none
 
 orchestrator_configuration:
   internal_vip: "{{ control_ip }}"
