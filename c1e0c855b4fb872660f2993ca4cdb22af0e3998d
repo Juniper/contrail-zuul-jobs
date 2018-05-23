@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_ccd0abfa",
+        "filename": "roles/build-third-party-packages/tasks/main.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-05-23T09:58:42Z",
+      "side": 1,
+      "message": "\u0027builds\u0027 is used twice",
+      "revId": "c1e0c855b4fb872660f2993ca4cdb22af0e3998d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
