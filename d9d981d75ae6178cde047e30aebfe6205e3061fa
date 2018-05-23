@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_a971d1e0",
+        "filename": "roles/contrail-ansible-deployer/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-05-23T07:25:20Z",
+      "side": 1,
+      "message": "Will the \"orchestrator\" env var still be needed for the orchestrator-specific playbooks?",
+      "revId": "d9d981d75ae6178cde047e30aebfe6205e3061fa",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_c9765dd9",
+        "filename": "roles/contrail-ansible-deployer/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-05-23T07:25:20Z",
+      "side": 1,
+      "message": "Let\u0027s make it conditional on the \"cloud_orchestrator\" var, like in the openstack task.",
+      "revId": "d9d981d75ae6178cde047e30aebfe6205e3061fa",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
