@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5f2577a7_ec37e74c",
+        "filename": "roles/contrail-ansible-deployer/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2018-05-23T11:00:43Z",
+      "side": 1,
+      "message": "I hope that it wouldn\u0027t be needed but I want to leave this until end of refactoring",
+      "parentUuid": "5f2577a7_a971d1e0",
+      "revId": "d9d981d75ae6178cde047e30aebfe6205e3061fa",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f2577a7_c9765dd9",
         "filename": "roles/contrail-ansible-deployer/tasks/main.yaml",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-05-23T07:25:20Z",
       "side": 1,
       "message": "Let\u0027s make it conditional on the \"cloud_orchestrator\" var, like in the openstack task.",
+      "revId": "d9d981d75ae6178cde047e30aebfe6205e3061fa",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_ac39df3f",
+        "filename": "roles/contrail-ansible-deployer/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2018-05-23T11:00:43Z",
+      "side": 1,
+      "message": "k8s can be deployed with Contrail+OpenStack with orchestrator\u003dopenstack.\nif there is no plans to deploy such configuration - I can add condition.",
+      "parentUuid": "5f2577a7_c9765dd9",
       "revId": "d9d981d75ae6178cde047e30aebfe6205e3061fa",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
