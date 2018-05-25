@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_5edd7d12",
+        "filename": "roles/build-third-party-packages/tasks/main.yaml",
+        "patchSetId": 18
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-05-25T09:37:53Z",
+      "side": 1,
+      "message": "Kinda repetitive.",
+      "revId": "cdd71999ee66908e5daa52cf96de1b435176016d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_bec6a148",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 18
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-05-25T09:37:53Z",
+      "side": 1,
+      "message": "You can think about some less generic name. A description would also be nice.",
+      "revId": "cdd71999ee66908e5daa52cf96de1b435176016d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_decbad50",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 18
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-05-25T09:37:53Z",
+      "side": 1,
+      "message": "remove newline",
+      "revId": "cdd71999ee66908e5daa52cf96de1b435176016d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
