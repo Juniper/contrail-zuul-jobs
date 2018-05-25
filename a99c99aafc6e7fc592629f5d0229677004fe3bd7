@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_1e5c957c",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-05-25T10:24:01Z",
+      "side": 1,
+      "message": "Trailing whitespace :(",
+      "revId": "a99c99aafc6e7fc592629f5d0229677004fe3bd7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_fe5e6974",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-05-25T10:24:01Z",
+      "side": 1,
+      "message": "playbook dir should have the same name as job",
+      "revId": "a99c99aafc6e7fc592629f5d0229677004fe3bd7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
