@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  roles:
+    - acquire-ip-address
+    - self-ssh-key
+
+- hosts: control-plane
+  roles:
+    - prepare-template-for-ansible-deployer
+    - contrail-ansible-deployer
+    - sanitytest
