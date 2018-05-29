@@ -44,35 +44,3 @@
     ANSIBLE_HOST_KEY_CHECKING: 'False'
     ANSIBLE_STDOUT_CALLBACK: debug
   become: True
-
-- name: Show the list of running containers
-  command: docker ps -a
-  become: True
-
-- name: Show processes
-  command: ps aux --sort rss
-
-- name: Show memory usage
-  command: free -m
-
-- name: (Hack) Wait for the vrouter initialization
-  action: shell ip route | grep vhost0
-  register: vhost_interface
-  until: vhost_interface.stdout != ""
-  retries: 30
-  delay: 20
-  become: True
-
-- name: Check interfaces for addresses
-  command: ip addr
-  become: True
-
-- name: (Hack) get config_api container id
-  shell: docker ps | awk '/config_api/ { print $1 }'
-  register: config_api_container
-  become: True
-
-- name: (Hack) restart config_api container to fix issue with VNC API lib
-  command: docker restart {{ config_api_container.stdout }}
-  become: True
-  when: config_api_container.stdout is defined
