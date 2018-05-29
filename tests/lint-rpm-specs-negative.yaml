@@ -1,0 +1,32 @@
+- name: Test the lint-rpm-specs role for fails
+  hosts: all
+  pre_tasks:
+    - name: 'Cleanup rpm spec directory'
+      file:
+        dest: 'rpms'
+        state: 'absent'
+    - name: 'Create directory for rpm spec'
+      file:
+        dest: 'rpms'
+        state: 'directory'
+    - name: 'Copy bad rpm spec to working directory'
+      copy:
+        src: 'fixtues/bad.spec'
+        dest: 'rpms/bad.spec'
+  tasks:
+    - name: 'Handle role output'
+      block:
+        - name: 'include lint-rpm-specs'
+          include_role: 'lint-rpm-specs'
+          vars:
+            specs_dir: 'rpms'
+      rescue:
+        - name: 'Pass the test if role failed'
+          set_fact:
+            test_failed: True
+      always:
+        - name: 'Check if the test failed'
+          fail:
+            msg: 'Test failed'
+          when: test_failed
+
