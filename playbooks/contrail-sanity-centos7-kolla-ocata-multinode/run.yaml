@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  roles:
+    - acquire-ip-address
+
+- hosts: deployment
+  roles:
+    - prepare-template-for-ansible-deployer
+    - contrail-ansible-deployer
+    - sanitytest
