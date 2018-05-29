@@ -1,0 +1,13 @@
+---
+
+- debug:
+    msg: '{{ multinode }} is True'
+  when: multinode
+
+- debug:
+    msg: '{{ multinode }} is False'
+  when: not multinode
+
+- name: 'Ping data plane node'
+  shell: "ping -c 5 {{ hostvars['data-plane'].ansible_default_ipv4.address }}"
+  when: multinode

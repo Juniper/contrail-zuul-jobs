@@ -1,0 +1,5 @@
+---
+
+- hosts: control-plane
+  roles:
+    - ping-multinode
