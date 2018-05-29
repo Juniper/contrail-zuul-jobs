@@ -2,10 +2,10 @@ contrail_configuration:
   CONTRAIL_VERSION: "{{ contrail_version }}"
   CLOUD_ORCHESTRATOR: "{{ cloud_orchestrator }}"
   CONTROLLER_NODES: "{{ control_ip }}"
-  CONTROL_NODES: "{{ ansible_eth1.ipv4.address }}"
+  CONTROL_NODES: "{{ hostvars['control-plane'].ansible_eth1.ipv4.address if multinode else ansible_eth1.ipv4.address }}"
   LOG_LEVEL: SYS_DEBUG
   PHYSICAL_INTERFACE: eth1
-  VROUTER_GATEWAY: {{ ansible_default_ipv4.gateway }}
+  VROUTER_GATEWAY: "{{ hostvars['data-plane'].ansible_default_ipv4.gateway if multinode else ansible_default_ipv4.gateway }}"
   AUTH_MODE: keystone
   AAA_MODE: rbac
   KEYSTONE_AUTH_ADMIN_PASSWORD: c0ntrail123

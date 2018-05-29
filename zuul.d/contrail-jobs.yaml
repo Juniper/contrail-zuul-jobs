@@ -148,6 +148,23 @@
       kolla_version: queens
 
 - job:
+    name: contrail-sanity-centos7-kolla-ocata-multinode
+    parent: contrail-sanity-centos7-kolla-base
+    run: playbooks/contrail-sanity-centos7-kolla-ocata-multinode/run
+    vars:
+      openstack_version: ocata
+      kolla_version: ocata
+      multinode: true
+    nodeset:
+      nodes:
+        - name: deployment
+          label: ubuntu-xenial-small
+        - name: control-plane
+          label: c7-systest-c
+        - name: data-plane
+          label: c7-systest-c
+
+- job:
     name: contrail-sanity-centos7-k8s
     parent: contrail-sanity-base
     run: playbooks/contrail-sanity-centos7-k8s/run
