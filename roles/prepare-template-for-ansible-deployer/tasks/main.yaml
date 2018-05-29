@@ -1,10 +1,10 @@
 - name: set control IP
   set_fact:
-    control_ip: "{{ ansible_default_ipv4.address }}"
+    control_ip: "{{ hostvars['control-plane'].ansible_default_ipv4.address if multinode else ansible_default_ipv4.address }}"
 
 - name: Copy template for testrunner
   template:
-    src: "instances.yaml.j2"
+    src: "instances{% if multinode %}-multinode{% endif %}.yaml.j2"
     dest: "{{ ansible_env.HOME }}/contrail_test_input.yaml"
 
 - name: Copy config to contrail-ansible-deployer config dir
