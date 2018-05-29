@@ -164,6 +164,28 @@
     nodeset: sanity-rhel-7
 
 - job:
+    name: contrail-sanity-centos7-kolla-ocata-multinode
+    parent: contrail-sanity-kolla-base
+    run: playbooks/contrail-sanity-centos7-kolla-ocata-multinode/run
+    vars:
+      openstack_version: ocata
+      kolla_version: ocata
+      multinode: true
+      zuul_host_matchers:
+        - zuul_prefix: openstack-control
+          ansible_host_group: openstack-control
+        - zuul_prefix: openstack-compute
+          ansible_host_group: openstack-compute
+    nodeset:
+      nodes:
+        - name: deployment
+          label: ubuntu-xenial-small
+        - name: openstack-control-1
+          label: c7-systest-c
+        - name: openstack-compute-1
+          label: c7-systest-c
+
+- job:
     name: contrail-sanity-centos7-k8s
     parent: contrail-sanity-base
     run: playbooks/contrail-sanity-centos7-k8s/run

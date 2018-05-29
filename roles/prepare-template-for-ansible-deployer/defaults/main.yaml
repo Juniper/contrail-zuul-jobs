@@ -7,3 +7,4 @@ contrail_version: >-
     {{ contrail_container_tag }}
   {%- endif -%}
 openstack_version: 'ocata'
+multinode: false
