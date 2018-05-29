@@ -230,3 +230,13 @@
     name: build-third-party-rpms-centos7
     parent: build-third-party-rpms-base
     nodeset: builder-centos-7
+
+- job:
+    name: lint-rpm-specs
+    description: |
+      This job runs rpmlint on all RPM spec files found in a repository.
+    voting: False
+    run: playbooks/lint-rpm-specs/run
+    parent: contrail-src-base
+    nodeset: builder-centos7
+
