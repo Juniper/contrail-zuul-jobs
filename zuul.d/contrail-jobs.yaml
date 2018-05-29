@@ -281,3 +281,14 @@
     parent: contrail-src-base
     nodeset: builder-centos-7
 
+    name: test-contrail-multi-node
+    description: |
+      Test a multi node Zuul job setup.
+    parent: base
+    run: playbooks/test-contrail-multi-node/run
+    nodeset:
+      nodes:
+        - name: control-plane
+          label: centos-7-4-builder-c
+        - name: data-plane
+          label: centos-7-4-builder-c
