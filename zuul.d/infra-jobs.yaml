@@ -93,6 +93,22 @@
     nodeset: builder-ubuntu-xenial
 
 - job:
+    name: contrail-infra-lint-rpm-integration
+    description: |
+      Run roles that are used for lint rpm jobs to prevent regressions.
+    parent: base-minimal
+    # Required to test repo-sandbox-prepare role
+    run: tests/lint-rpm-specs.yaml
+    files:
+      - ^roles/lint-rpm-specs/.*
+      - ^tests/.*
+
+- job:
+    name: contrail-infra-lint-rpm-integration-centos-7
+    parent: contrail-infra-lint-rpm-integration
+    nodeset: builder-centos-7
+
+- job:
     name: zuul-jobs-linters
     parent: tox
     nodeset: ubuntu-xenial-c
