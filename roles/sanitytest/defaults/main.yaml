@@ -7,3 +7,5 @@ contrail_version: >-
   {%- else -%}
     {{ contrail_container_tag }}
   {%- endif -%}
+contrail_version: '5.0-214'
+contrail_docker_registry: '10.84.5.81:5010'
