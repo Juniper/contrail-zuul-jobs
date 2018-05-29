@@ -185,6 +185,24 @@
       openstack_version: ocata
 
 - job:
+    name: contrail-sanity-centos7-kolla-ocata-multinode
+    description: |
+      Test a multi node Zuul job setup.
+    parent: contrail-sanity-centos7-kolla-base
+    run: playbooks/contrail-sanity-centos7-kolla-ocata-multinode/run
+    vars:
+      cloud_orchestrator: openstack
+      openstack_version: ocata
+      kolla_docker_distro: centos
+      kolla_version: ocata
+    nodeset:
+      nodes:
+        - name: control-plane
+          label: c7-systest-c
+        - name: data-plane
+          label: c7-systest-c
+
+- job:
     name: contrail-vnc-build-containers-base
     parent: contrail-base2
     pre-run: playbooks/contrail-vnc-build-containers/pre
@@ -280,4 +298,3 @@
     run: playbooks/lint-rpm-specs/run
     parent: contrail-src-base
     nodeset: builder-centos-7
-
