@@ -21,9 +21,9 @@
     - name: ensure the deployment user's ssh key is present in authorized_keys on all nodes
       become: true
       authorized_key:
-        user: "{{ hostvars['deployment'].user.name }}"
-        key: "{{ hostvars['deployment'].pubkey.stdout }}"
-      when: "hostvars['deployment'] is defined"
+        user: "{{ hostvars[groups['deployment'][0]].user.name }}"
+        key: "{{ hostvars[groups['deployment'][0]].pubkey.stdout }}"
+      when: 'deployment' in groups
 
 - hosts: all
   vars:
