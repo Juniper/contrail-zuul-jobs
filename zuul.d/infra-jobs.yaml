@@ -93,6 +93,17 @@
     nodeset: builder-ubuntu-xenial
 
 - job:
+    name: contrail-infra-lint-rpm-integration-centos-7
+    description: |
+      Run roles that are used for lint rpm jobs to prevent regressions.
+    parent: base-minimal
+    run: tests/lint-rpm-specs.yaml
+    nodeset: builder-centos-7
+    files:
+      - ^roles/lint-rpm-specs/.*
+      - ^tests/.*
+
+- job:
     name: zuul-jobs-linters
     parent: tox
     nodeset: ubuntu-xenial-c
