@@ -1,0 +1,37 @@
+---
+
+- name: show the list of running containers
+  command: 'docker ps -a'
+  become: true
+
+- name: show processes
+  command: 'ps aux --sort rss'
+
+- name: show memory usage
+  command: 'free -m'
+
+- name: (hack) Wait for the vrouter initialization
+  action: 'shell ip route | grep vhost0'
+  become: true
+  delay: 20
+  register: vhost_interface
+  retries: 30
+  until: vhost_interface.stdout != ""
+  when: inventory_hostname in groups['openstack-compute']
+
+- name: check interfaces for addresses
+  command: 'ip addr'
+  become: true
+
+- name: (hack) restart config_api container
+  when: inventory_hostname in groups['openstack-control']
+  block:
+  - name: (hack) get config_api container id
+    shell: "docker ps | awk '/config_api/ { print $1 }'"
+    become: true
+    register: config_api_container
+
+  - name: (hack) restart config_api container to fix issue with VNC API lib
+    command: 'docker restart {{ config_api_container.stdout }}'
+    become: true
+    when: config_api_container.stdout is defined
