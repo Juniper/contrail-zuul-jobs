@@ -39,3 +39,11 @@
     nodes:
       - name: builder
         label: rhel-7-builder
+
+- nodeset:
+    name: centos-7-multi
+    nodes:
+      - name: control-plane
+        label: centos-7-4-builder-c
+      - name: data-plane
+        label: centos-7-4-builder-c

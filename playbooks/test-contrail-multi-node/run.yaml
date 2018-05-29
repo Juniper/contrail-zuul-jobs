@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  gather_facts: true
+  tasks:
+    - debug:
+        var: hostvars
+
+- hosts: control-plane
+  tasks:
+    - name: 'Ping data plane node'
+      shell: "ping -c 5 {{ hostvars[groups['data-plane'][0]].ansible_default_ipv4.address }}"

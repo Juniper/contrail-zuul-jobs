@@ -231,3 +231,11 @@
     name: build-third-party-rpms-centos7
     parent: build-third-party-rpms-base
     nodeset: builder-centos-7
+
+- job:
+    name: test-contrail-multi-node
+    description: |
+      Test a multi node Zuul job setup.
+    parent: base
+    run: playbooks/test-contrail-multi-node/run
+    nodeset: centos-7-multi
