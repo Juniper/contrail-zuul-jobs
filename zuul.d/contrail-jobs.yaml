@@ -81,8 +81,15 @@
     nodeset: builder-centos-7
 
 - job:
+    name: contrail-sanity-base
+    parent: contrail-base2
+    post-run: playbooks/contrail-sanity-base/post
+    vars:
+      setup_docker_registry: True
+
+- job:
     name: contrail-sanity-centos7-kolla-base
-    parent: contrail-systest-base
+    parent: contrail-sanity-base
     required-projects:
       - Juniper/contrail-ansible-deployer
       - name: Juniper/contrail-kolla-ansible
@@ -106,7 +113,7 @@
 
 - job:
     name: contrail-sanity-centos7-k8s
-    parent: contrail-systest-base
+    parent: contrail-sanity-base
     description: |
       A job that deploys Contrail containers and a Kubernetes cluster
       using contrail-ansible-deployer.
@@ -125,7 +132,7 @@
 
 - job:
     name: contrail-helm-base
-    parent: contrail-systest-base
+    parent: contrail-sanity-base
     description: |
       A job that deploys Contrail and OpenStack containers using contrail-helm-deployer
     post-run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/post
