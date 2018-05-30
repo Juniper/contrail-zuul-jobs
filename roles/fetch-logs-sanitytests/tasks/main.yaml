@@ -1,0 +1,73 @@
+- name: Create the sanity log directory on executor
+  file:
+    path: "{{ zuul.executor.log_root }}/sanity-logs"
+    state: directory
+  delegate_to: localhost
+
+- name: 'Check whether test runner log dir exists'
+  stat:
+    path: /root/contrail-test-runs
+  register: testrunner_logdir
+  become: true
+
+- name: Fetch testrunner logs
+  synchronize:
+    src: /root/contrail-test-runs
+    dest: "{{ zuul.executor.log_root }}/sanity-logs"
+    mode: pull
+    recursive: yes
+  when: testrunner_logdir.stat.isdir is defined and testrunner_logdir.stat.isdir
+  become: true
+
+- name: 'Check whether contrail log dir exists'
+  stat:
+    path: /var/log/contrail
+  register: contrail_logdir
+  become: true
+
+- name: Fetch contrail logs
+  synchronize:
+    src: /var/log/contrail
+    dest: "{{ zuul.executor.log_root }}/sanity-logs"
+    mode: pull
+    recursive: yes
+  when: contrail_logdir.stat.isdir is defined and contrail_logdir.stat.isdir
+  become: true
+
+- name: 'Check whether kolla log dir exists'
+  stat:
+    path: /var/lib/docker/volumes/kolla_logs/_data
+  register: kolla_logdir
+  become: true
+
+- name: Fetch kolla logs
+  synchronize:
+    src: /var/lib/docker/volumes/kolla_logs/_data
+    dest: "{{ zuul.executor.log_root }}/sanity-logs"
+    mode: pull
+    recursive: yes
+  when: kolla_logdir.stat.isdir is defined and kolla_logdir.stat.isdir
+  become: true
+
+- name: List running containers
+  command: 'docker ps -a --format "{% raw %}{{.Names}}{% endraw %}"'
+  become: true
+  register: container_list
+
+- name: Create container logdir
+  file:
+    path: /tmp/container_logs
+    state: directory
+
+- name: Dump container logs
+  shell: "docker logs {{ item }} &> /tmp/container_logs/{{ item }}.log"
+  become: true
+  with_items: "{{ container_list.stdout_lines }}"
+
+- name: Fetch container logs
+  synchronize:
+    src: /tmp/container_logs
+    dest: "{{ zuul.executor.log_root }}/sanity-logs"
+    mode: pull
+    recursive: yes
+  become: true
