@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_d70dca90",
+        "filename": "roles/lint-rpm-specs/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-05-30T06:56:02Z",
+      "side": 1,
+      "message": "Use the universal \"package\" module here?",
+      "revId": "76f5eb8776e600354b446250c5e903510d356314",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_37ee4eb4",
+        "filename": "roles/lint-rpm-specs/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-05-30T06:56:02Z",
+      "side": 1,
+      "message": "I think we should save the whole output to a log file for inspection. (Assuming that it\u0027s not just ASCII art of funny cats).",
+      "revId": "76f5eb8776e600354b446250c5e903510d356314",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
