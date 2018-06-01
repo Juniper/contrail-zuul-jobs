@@ -1,0 +1,16 @@
+---
+
+- name: Check whether kolla log dir exists
+  stat:
+    path: '{{ kolla_log_dir }}'
+  register: kolla_logdir
+  become: true
+
+- name: Fetch kolla logs
+  synchronize:
+    src: '{{ kolla_log_dir }}/'
+    dest: '{{ zuul.executor.log_root }}/kolla-logs'
+    mode: 'pull'
+    recursive: yes
+  when: kolla_logdir.stat.isdir is defined and kolla_logdir.stat.isdir
+  become: true
