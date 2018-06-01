@@ -1,0 +1,16 @@
+---
+
+- name: Check whether contrail log dir exists
+  stat:
+    path: '{{ contrail_log_dir }}'
+  register: contrail_logdir
+  become: true
+
+- name: Fetch contrail logs
+  synchronize:
+    src: '{{ contrail_log_dir }}/'
+    dest: '{{ zuul.executor.log_root }}/contrail-logs'
+    mode: 'pull'
+    recursive: yes
+  when: contrail_logdir.stat.isdir is defined and contrail_logdir.stat.isdir
+  become: true

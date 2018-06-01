@@ -1,0 +1,6 @@
+---
+
+sanity_log_dir: '/root/contrail-test-runs'
+kolla_log_dir: '/var/lib/docker/volumes/kolla_logs/_data'
+contrail_log_dir: '/var/log/contrail'
+container_log_dir: '/tmp/container_logs'
