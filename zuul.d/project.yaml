@@ -11,6 +11,11 @@
         - contrail-infra-containers-integration-centos-7
         - contrail-infra-containers-integration-ubuntu-xenial
         - zuul-jobs-linters
+        - contrail-sanity-centos7-kolla-ocata:
+            vars:
+              docker_registry:
+                fqdn: 10.84.5.81
+                port: 5000
         - noop:
             irrelevant-files:
               - ^roles/.*
