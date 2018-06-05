@@ -1,0 +1,55 @@
+- name: Include OS-specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution | lower }}.yaml"
+    - "{{ ansible_os_family | lower }}.yaml"
+    - "default.yaml"
+
+- name: Disable subscription-manager on RHEL
+  command: subscription-manager config --rhsm.manage_repos=0
+  become: yes
+  become_user: root
+  when: 'ansible_distribution == "RedHat"'
+
+- name: Remove the upstream yum repos
+  yum_repository:
+    name: "{{ item.name }}"
+    file: "{{ item.file }}"
+    state: absent
+  with_items: "{{ repos_remove }}"
+  become: yes
+  become_user: root
+
+- name: Prepare local base yum mirror repo file
+  yum_repository:
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    file: "{{ repos_file }}"
+    baseurl: "{{ repos_baseurl }}/{{ item.repo }}/"
+    enabled: yes
+    gpgcheck: no
+  with_items: "{{ repos_add }}"
+  become: yes
+  become_user: root
+
+- name: Prepare epel mirror repo file
+  yum_repository:
+    name: epel-mirror
+    description: CentOS epel mirror
+    file: epel
+    baseurl: "http://{{ docker_registry.fqdn }}/pulp/repos/centos74-epel/"
+    enabled: "{{ use_epel }}"
+    gpgcheck: no
+  become: yes
+  become_user: root
+
+- name: Prepare third party cache yum repo file
+  yum_repository:
+    name: contrail-tpc
+    description: Contrail third-party dependencies
+    file: contrail-tpc
+    baseurl: "http://{{ docker_registry.fqdn }}/pulp/repos/opencontrail-tpc-test/"
+    enabled: yes
+    gpgcheck: no
+  become: yes
+  become_user: root

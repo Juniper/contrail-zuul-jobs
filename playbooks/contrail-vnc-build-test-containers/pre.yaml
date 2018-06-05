@@ -1,6 +1,6 @@
 - hosts: all
   roles:
-    - yum-repos-prepare
+    - yum-repos-prepare2
     - install-docker-daemon
     - zuul-include-vars
     - role: add-insecure-registry
