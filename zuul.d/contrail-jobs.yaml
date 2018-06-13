@@ -46,6 +46,14 @@
     pre-run: playbooks/contrail-vnc-base2/pre
 
 - job:
+    name: contrail-vnc-base2
+    branches:
+      - R5.0
+    required-projects:
+      - name: Juniper/contrail-dpdk
+        override-checkout: contrail_dpdk_17_02
+
+- job:
     name: contrail-vnc-build-package-centos74
     parent: contrail-vnc-build-package-el-base
     irrelevant-files:
