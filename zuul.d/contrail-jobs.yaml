@@ -64,11 +64,23 @@
           label: centos-7-4-builder
 
 - job:
-    name: contrail-vnc-build-package-rhel7
+    name: contrail-vnc-build-package-rhel7-base
     parent: contrail-vnc-build-package-el-base
     irrelevant-files:
       - specs/.*
     nodeset: builder-rhel-7
+
+- job:
+    name: contrail-vnc-build-package-rhel7-ocata
+    parent: contrail-vnc-build-package-rhel7-base
+    vars:
+      openstack_version: ocata
+
+- job:
+    name: contrail-vnc-build-package-rhel7-queens
+    parent: contrail-vnc-build-package-rhel7-base
+    vars:
+      openstack_version: queens
 
 - job:
     name: contrail-vnc-unittest-base
