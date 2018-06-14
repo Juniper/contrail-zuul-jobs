@@ -16,5 +16,6 @@
     SRCVER: "{{ packaging.version.upstream }}"
     SKUTAG: ocata
     MANIFESTFILE: "{{ ansible_env.HOME }}/manifest.xml"
+    ENABLEMLX: 'TRUE'
   tags:
     - skip_ansible_lint
