@@ -238,3 +238,53 @@
     name: build-third-party-rpms-centos7
     parent: build-third-party-rpms-base
     nodeset: builder-centos-7
+
+- job:
+    name: contrail-vnc-test-mk
+    parent: contrail-base
+    description: |
+      A base job that prepares Contrail VNC sandbox using Android repo,
+      as opposed to the contrail-src-base job that copies the sources directly.
+    required-projects:
+      - Juniper/contrail-analytics
+      - Juniper/contrail-api-client
+      - Juniper/contrail-build
+      - Juniper/contrail-common
+      - Juniper/contrail-controller
+      - Juniper/contrail-fabric-utils
+      - name: Juniper/contrail-dpdk
+        override-checkout: contrail_dpdk_17_02
+      - Juniper/contrail-generateDS
+      - Juniper/contrail-heat
+      - Juniper/contrail-java-api
+      - Juniper/contrail-neutron-plugin
+      - Juniper/contrail-nova-extensions
+      - Juniper/contrail-nova-vif-driver
+      - Juniper/contrail-packages
+      - Juniper/contrail-packaging
+      - Juniper/contrail-provisioning
+      - Juniper/contrail-sandesh
+      - Juniper/contrail-specs
+      - Juniper/contrail-test
+      - Juniper/contrail-test-ci
+      - Juniper/contrail-third-party
+      - Juniper/contrail-vcenter-plugin
+      - Juniper/contrail-vcenter-manager
+      - Juniper/contrail-vnc
+      - Juniper/contrail-vrouter
+      - Juniper/contrail-vrouter-java-api
+      - Juniper/contrail-vro-plugin
+      - Juniper/contrail-web-controller
+      - Juniper/contrail-web-core
+      - Juniper/contrail-web-server-manager
+      - Juniper/contrail-web-storage
+      - Juniper/contrail-webui-third-party
+      - Juniper/vijava
+      - tungstenfabric/contrail-ci-test
+    irrelevant-files:
+      - specs/.*
+    run: playbooks/just-fail/run
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-builder
