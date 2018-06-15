@@ -31,12 +31,14 @@ def main():
             zuul=dict(type='dict', required=True),
             release_type=dict(type='str', required=False, default=ReleaseType.CONTINUOUS_INTEGRATION),
             build_number=dict(type='str', required=False, default='')
+            openstack_version=dict(type='str', required=False, default='')
         )
     )
 
     zuul = module.params['zuul']
     release_type = module.params['release_type']
     build_number = module.params['build_number']
+    openstack_version = module.params['openstack_version']
 
     branch = zuul['branch']
     if not version_branch_regex.match(branch):
@@ -80,9 +82,10 @@ def main():
 
     full_version = "{upstream}~{distrib}".format(**version)
 
+    openstack_suffix = ('-' + openstack_version) if openstack_version else ''
     repo_names = {
         "CentOS": repo_name + '-centos',
-        "RedHat": repo_name + '-rhel',
+        "RedHat": repo_name + '-rhel' + openstack_suffix,
     }
 
     packaging = {
