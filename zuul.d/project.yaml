@@ -11,6 +11,7 @@
         - contrail-infra-containers-integration-centos-7
         - contrail-infra-containers-integration-ubuntu-xenial
         - zuul-jobs-linters
+        - contrail-test-mk
         - noop:
             irrelevant-files:
               - ^roles/.*
