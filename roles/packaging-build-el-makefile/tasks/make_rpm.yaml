@@ -2,6 +2,8 @@
   command: make -f tools/packages/Makefile dep-{{ item }}
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+  environment:
+    ENABLEMLX: 'TRUE'
   become: yes
   become_user: root
   tags:
