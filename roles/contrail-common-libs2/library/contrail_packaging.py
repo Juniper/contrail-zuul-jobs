@@ -30,7 +30,7 @@ def main():
         argument_spec=dict(
             zuul=dict(type='dict', required=True),
             release_type=dict(type='str', required=False, default=ReleaseType.CONTINUOUS_INTEGRATION),
-            build_number=dict(type='str', required=False, default='')
+            build_number=dict(type='str', required=False, default=''),
             openstack_version=dict(type='str', required=False, default='')
         )
     )
