@@ -1,0 +1,7 @@
+- name: Send sanitytest logs to the executor
+  hosts: all
+  tasks:
+    - name: just fail
+      fail:
+        msg: 'failed miserably'
+
