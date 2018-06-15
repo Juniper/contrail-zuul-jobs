@@ -238,3 +238,12 @@
     name: build-third-party-rpms-centos7
     parent: build-third-party-rpms-base
     nodeset: builder-centos-7
+
+- job:
+    name: contrail-vnc-test-mk
+    parent: contrail-vnc-base
+    run: playbooks/just-fail/run
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-builder
