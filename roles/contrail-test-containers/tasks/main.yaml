@@ -1,3 +1,4 @@
+---
 - name: Get list of repo files
   find:
     paths: "{{ rpm_repo_config_dir }}"

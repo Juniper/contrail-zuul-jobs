@@ -1,3 +1,4 @@
+---
 - name: Include OS-specific variables
   include_vars: "{{ item }}"
   with_first_found:
@@ -55,4 +56,3 @@
   when: item|changed
   tags:
     - skip_ansible_lint  # ANSIBLE0006,ANSIBLE0016
-

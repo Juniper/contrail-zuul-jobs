@@ -1,3 +1,4 @@
+---
 - name: Define path variables
   set_fact:
     src_path: "{{ ansible_env.HOME }}/artifacts"

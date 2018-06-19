@@ -1,3 +1,4 @@
+---
 - name: Gather dmesg output
   command: dmesg
   register: dmesg
@@ -8,3 +9,4 @@
   copy:
     content: "{{ dmesg.stdout }}"
     dest: "{{ zuul.executor.log_root }}/zuul-info/dmesg.{{ inventory_hostname }}.txt"
+
