@@ -1,3 +1,4 @@
+---
 test_target: 'ci_sanity'
 contrail_version: >-
   {%- if zuul.change is defined -%}

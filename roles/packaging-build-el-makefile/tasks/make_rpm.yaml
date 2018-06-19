@@ -1,3 +1,4 @@
+---
 - name: Install dependencies for {{ item }}
   command: make -f tools/packages/Makefile dep-{{ item }}
   args:

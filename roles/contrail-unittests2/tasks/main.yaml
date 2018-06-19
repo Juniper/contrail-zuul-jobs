@@ -1,3 +1,4 @@
+---
 # Execute OS-specific tasks
 - include: "{{ ansible_os_family|lower }}.yaml"
 
@@ -67,4 +68,3 @@
         {% set _ =  git_refs.append(git_ref) -%}
       {% endfor -%}
       {{- git_refs|join(",") -}}
-
