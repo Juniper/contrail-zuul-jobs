@@ -1,3 +1,4 @@
+---
 - name: Add remotes pointing to checked-out sources
   command: "git remote add origin https://{{ item.value.canonical_name }}"
   with_dict: "{{ zuul._projects }}"
@@ -22,4 +23,3 @@
   register: remote_fetch
   tags:
     - skip_ansible_lint  # ANSIBLE0006,ANSIBLE0016
-

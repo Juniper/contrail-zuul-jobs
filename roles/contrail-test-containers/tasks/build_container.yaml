@@ -1,3 +1,4 @@
+---
 - name: Build container contrail-test-test OpenStack-{{ item }}
   command: |
     ./build-container.sh test \
