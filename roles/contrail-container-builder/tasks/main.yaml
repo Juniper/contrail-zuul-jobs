@@ -1,3 +1,4 @@
+---
 - name: Prepare build configuration - common.env
   template:
     src: common.env.j2
@@ -45,4 +46,3 @@
 - name: Build microservices
   include: build_container.yaml
   with_items: "{{ docker_list.stdout_lines }}"
-

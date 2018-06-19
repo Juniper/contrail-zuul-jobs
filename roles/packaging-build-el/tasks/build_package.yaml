@@ -1,3 +1,4 @@
+---
 - name: "Build binary package for {{ item.name }}"
   command: |
     rpmbuild \
