@@ -1,3 +1,4 @@
+---
 - name: symlink debian packaging to enable ubuntu package building
   file:
     state: link
@@ -19,4 +20,3 @@
     chdir: "{{ packaging.target_dir }}"
   environment:
     DEB_BUILD_OPTIONS: "parallel={{ ansible_processor_vcpus }} site-mirror={{ zuul_site_mirror_fqdn }}"
-

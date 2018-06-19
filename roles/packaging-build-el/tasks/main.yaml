@@ -1,3 +1,4 @@
+---
 - name: Install build requirements with yum.
   command: yum-builddep -y tools/packages/rpm/contrail/contrail.spec
   args:
@@ -122,4 +123,3 @@
       - --no-motd
       - --quiet
   delegate_to: "{{ inventory_hostname }}"
-

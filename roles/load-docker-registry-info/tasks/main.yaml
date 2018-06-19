@@ -1,3 +1,4 @@
+---
 - name: Check if Zuul overrode the registry port
   stat:
     path: "{{ zuul.executor.work_root }}/saved_vars.yaml"
