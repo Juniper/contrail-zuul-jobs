@@ -1,2 +1,3 @@
+---
 # we default to CI builds, overridable on per-job basis
 release_type: continuous-integration

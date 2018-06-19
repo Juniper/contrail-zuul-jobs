@@ -1,3 +1,4 @@
+---
 - name: Prepare packaging variables
   contrail_packaging:
     zuul: "{{ zuul }}"
@@ -32,4 +33,3 @@
 - name: Install dependencies and build RPMs
   include: make_rpm.yaml
   with_items: "{{ rpm_list.stdout.split(' ') }}"
-

@@ -1,3 +1,4 @@
+---
 - name: Include OS-specific variables
   include_vars: "{{ ansible_os_family | lower }}.yaml"
 
@@ -20,4 +21,3 @@
     dest: "{{ zuul.executor.work_root }}/packages/{{ item.path|basename }}"
     mode: pull
   with_items: "{{ packages.files }}"
-
