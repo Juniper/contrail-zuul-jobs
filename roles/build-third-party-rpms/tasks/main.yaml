@@ -1,6 +1,5 @@
-# This role gathers all available package targets and builds them
-
 ---
+# This role gathers all available package targets and builds them
 
 - name: List all available packages
   command: 'make -f {{ zuul.project.src_dir }}/upstream/rpm/Makefile list'
@@ -19,4 +18,3 @@
   find:
     path: '{{ ansible_env.HOME }}/{{ zuul.project.src_dir }}/../BUILD'
     patterns: '*.rpm'
-

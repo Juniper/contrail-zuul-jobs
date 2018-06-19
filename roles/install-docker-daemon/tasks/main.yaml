@@ -1,3 +1,4 @@
+---
 - name: Load variables needed for docker deamon installation based on the OS type
   include_vars: "{{ item }}"
   with_first_found:
@@ -18,4 +19,3 @@
     enabled: yes
   become: true
   become_user: root
-

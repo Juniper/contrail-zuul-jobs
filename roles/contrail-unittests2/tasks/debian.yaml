@@ -1,3 +1,4 @@
+---
 - name: Install package dependencies for the build (Debian)
   command: |
     mk-build-deps -r -i debian/control \
