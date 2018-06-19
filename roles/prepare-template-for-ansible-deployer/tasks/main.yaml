@@ -1,3 +1,4 @@
+---
 - name: set control IP
   set_fact:
     control_ip: "{{ ansible_default_ipv4.address }}"
