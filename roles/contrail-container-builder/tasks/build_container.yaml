@@ -1,3 +1,4 @@
+---
 - name: "Build container {{ item|replace('/','-') }}"
   command: "./build.sh {{ item }}"
   args:

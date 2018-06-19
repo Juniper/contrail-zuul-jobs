@@ -1,7 +1,6 @@
+---
 # This role installs dependencies for building third party packages
 # The process is based on mock toolchain
-
----
 
 - name: Install dependencies for contrail-third-party-packages
   yum:
@@ -14,4 +13,3 @@
     - 'spectool'
     - 'redhat-lsb-core'
     - 'rpmdevtools'
-
