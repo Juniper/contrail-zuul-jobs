@@ -175,6 +175,8 @@
     run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/run
     vars:
       openstack_version: ocata
+      cloud_orchestrator: openstack
+      contrail_deployer: helm
       test_target: k8s_sanity
 
 - job:
