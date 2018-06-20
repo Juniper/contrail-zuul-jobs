@@ -5,4 +5,5 @@
     - role: self-ssh-key
       user: root
     - contrail-helm-deployer
+    - prepare-template-for-helm-sanity
     - sanitytest
