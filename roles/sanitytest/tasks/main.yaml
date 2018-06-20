@@ -1,22 +1,29 @@
 ---
-- name: Set variables
+- name: set variables
   set_fact:
     testrunner_image: "{{ contrail_docker_registry }}/contrail-test-test:{{ openstack_version }}-{{ contrail_version }}"
     repos_dir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper"
 
-- name: Pull the testrunner image
+- name: pull the testrunner image
   docker_image:
-    name: "{{ testrunner_image }}"
+    name: '{{ testrunner_image }}'
   become: true
 
-- name: Run the sanity test
+- name: (hack) change networking mode for containers run directly on docker engine
+  replace:
+    path: '{{ repos_dir }}/contrail-test/testrunner.sh'
+    regexp: '--privileged'
+    replace: '--privileged --network host'
+  when: (contrail_deployer is defined) and contrail_deployer == 'helm'
+
+- name: run the sanity test
   command: |
-    "{{ repos_dir }}"/contrail-test/testrunner.sh run \
-        -P "{{ ansible_env.HOME }}"/contrail_test_input.yaml \
+    '{{ repos_dir }}'/contrail-test/testrunner.sh run \
+        -P '{{ ansible_env.HOME }}'/contrail_test_input.yaml \
         -k /root/.ssh/id_rsa \
-        -f "{{ test_target }}" "{{ testrunner_image }}"
-  become: true
+        -f '{{ test_target }}' '{{ testrunner_image }}'
   ignore_errors: yes
+  become: true
 
 - name: test the xml report for failures
   shell: "[ x\"$(grep testsuite /root/contrail-test-runs/*/reports/TESTS-TestSuites.xml  | grep -o  'failures=\\S\\+' | uniq)\" = x'failures=\"0\"' ]"

@@ -2,6 +2,5 @@
 - hosts: all
   roles:
     - acquire-ip-address
-    - role: self-ssh-key
-      user: root
+    - self-ssh-key
     - contrail-helm-deployer
