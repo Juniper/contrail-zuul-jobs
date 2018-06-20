@@ -1,0 +1,19 @@
+- name: Test the lint-rpm-specs role for passes
+  hosts: all
+  pre_tasks:
+    - name: 'Cleanup rpm spec directory'
+      file:
+        dest: 'rpms'
+        state: 'absent'
+    - name: 'Create directory for rpm spec'
+      file:
+        dest: 'rpms'
+        state: 'directory'
+    - name: 'Copy good rpm spec to working directory'
+      copy:
+        src: 'fixtures/good.spec'
+        dest: 'rpms/good.spec'
+  roles:
+    - role: 'lint-rpm-specs'
+      specs_dir: 'rpms'
+
