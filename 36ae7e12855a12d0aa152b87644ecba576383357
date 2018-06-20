@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_186a1a80",
+        "filename": "roles/lint-rpm-specs/tasks/main.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-06-20T10:55:37Z",
+      "side": 1,
+      "message": "Our style guide states the YAML marker \u0027---\u0027 should begin a .yaml document. Do we want to update the guide to allow comments before the marker?",
+      "revId": "36ae7e12855a12d0aa152b87644ecba576383357",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_785b5ef5",
+        "filename": "roles/lint-rpm-specs/tasks/main.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-06-20T10:55:37Z",
+      "side": 1,
+      "message": "missing quotes",
+      "revId": "36ae7e12855a12d0aa152b87644ecba576383357",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_58742268",
+        "filename": "roles/lint-rpm-specs/tasks/main.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-06-20T10:55:37Z",
+      "side": 1,
+      "message": "missing quotes",
+      "revId": "36ae7e12855a12d0aa152b87644ecba576383357",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_18733a18",
+        "filename": "tests/lint-rpm-specs-positive.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-06-20T10:55:37Z",
+      "side": 1,
+      "message": "quotes",
+      "revId": "36ae7e12855a12d0aa152b87644ecba576383357",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_f8662ebb",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-06-20T10:55:37Z",
+      "side": 1,
+      "message": "Why?",
+      "revId": "36ae7e12855a12d0aa152b87644ecba576383357",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
