@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_9ba724bd",
+        "filename": "tests/lint-rpm-specs-negative.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-06-20T14:12:51Z",
+      "side": 1,
+      "message": "can we add newlines for pre_tasks and tasks or this is incompatible with Our New Way Of Writing Things?",
+      "revId": "60a90bf8f652cc5d2095c79c667d602cb06a8c9a",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
