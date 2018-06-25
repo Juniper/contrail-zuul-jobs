@@ -1,0 +1,116 @@
+---
+# Execute OS-specific tasks
+- include: '{{ ansible_os_family|lower }}.yaml'
+
+- name: read variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - '{{ ansible_os_family|lower }}.yaml'
+    - default.yaml
+
+- name: set variables
+  set_fact:
+    testrunner_dir: '{{ ansible_env.HOME }}/src/review.opencontrail.org/tungstenfabric/tungsten-test-runner'
+    venv_dir: '{{ ansible_env.HOME }}/testrunner_venv'
+    unittest_target_file: 'unittest_list.txt'
+
+# XXX(kklimonda) move to configure-hosts-entries.
+- name: ensure that hostname is in /etc/hosts
+  lineinfile:
+    dest: '/etc/hosts'
+    line: '{{ ansible_default_ipv4.address }} {{ ansible_hostname }}'
+  become: true
+
+# Some tests (like test.test_flow.FlowQuerierTest.test_1_noarg_query) expect
+# PST timezone, and fail otherwise.
+- name: change the timezone to America/Los_Angeles
+  timezone:
+    name: 'America/Los_Angeles'
+  become: true
+
+- name: copy over unittest scripts to the builder VM
+  copy:
+    src: '{{ item }}'
+    dest: '.'
+    mode: '0755'
+  with_items:
+    - contrail-unittests-gather.rb
+    - repo
+
+- name: install additional packages used by unittest scripts
+  package:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - ruby
+    - '{{ python_version }}'
+  become: true
+
+- name: run a full Contrail VNC build
+  command: 'scons -j {{ ansible_processor_vcpus }}'
+  args:
+    chdir: '{{ packaging.target_dir }}'
+  environment:
+    BUILD_ONLY: 1
+    CONTRAIL_COMPILE_WITHOUT_SYMBOLS: yes
+    LC_ALL: 'C'
+    ZUUL_CHANGES: '{{ zuul.ref }}'
+  become: true
+
+- name: gather unittest targets to run
+  command: '{{ ansible_env.HOME }}/contrail-unittests-gather.rb'
+  environment:
+    GIT_REFS: >-
+      {% set git_refs = [] -%}
+      {% for item in zuul['items'] -%}
+        {% set ref = "refs/changes/" + item.change[-2:] + "/" + item.change + "/" + item.patchset -%}
+        {% set git_ref = item.project.short_name + "^" + ref -%}
+        {% set _ =  git_refs.append(git_ref) -%}
+      {% endfor -%}
+      {{- git_refs|join(",") -}}
+    LC_ALL: 'C'
+    UPSTREAM_VERSION: '{{ packaging.version.upstream }}'
+    WORKSPACE: '{{ ansible_env.HOME }}'
+    ZUUL_CHANGES: '{{ zuul.ref }}'
+    ZUUL_PROJECT: '{{ zuul.project.short_name }}'
+  register: unittest_target
+  failed_when: unittest_target.rc != 0
+  become: true
+
+- name: install tntestr requirements
+  pip:
+    requirements: '{{ testrunner_dir}}/requirements.txt'
+    virtualenv: '{{ venv_dir }}'
+    virtualenv_python: '{{ python_version }}'
+
+- name: install tntestr
+  pip:
+    name: '{{ testrunner_dir }}'
+    virtualenv: '{{ venv_dir }}'
+    virtualenv_python: '{{ python_version }}'
+
+- name: prepare and run list of unittests
+  when: unittest_target.stdout_lines[-1] != ''
+  block:
+  - name: gather list of unit test to be run for changeset
+    command: 'scons -Q --describe-tests {{ item }}'
+    args:
+      chdir: '{{ packaging.target_dir }}'
+#    with_items: '{{ unittest_target.stdout_lines[-1].split(" ") }}'
+    with_items:
+      - 'controller/src/xmpp:test'
+    register: scons_describe
+    become: true
+
+  - name: populate unit test list to be run into file
+    copy:
+      content: '{{ scons_describe.results[0].stdout }}'
+      dest: '{{ ansible_env.HOME }}/{{ unittest_target_file }}'
+
+  # XXX (remove-me): pjrusak / temporary use fixed subset of unittests
+  - name: run unittest's targets
+    #  shell: '{{ venv_dir}}/bin/tntestr --debug --less-strict {{ unittest_target.stdout_lines[-1] }}'
+    command: '{{ venv_dir}}/bin/tntestr --debug --less-strict controller/src/xmpp:test'
+    args:
+      chdir: '{{ packaging.target_dir }}'
+    become: true
