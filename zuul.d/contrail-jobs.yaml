@@ -102,6 +102,33 @@
     nodeset: builder-centos-7
 
 - job:
+    name: contrail-vnc-unittest-tntestr-base
+    parent: contrail-vnc-base2
+    required-projects:
+      - tungstenfabric/tungsten-test-runner
+    irrelevant-files:
+      - specs/.*
+    run: playbooks/contrail-vnc-unittest-tntestr/main
+    #post-run: playbooks/contrail-vnc-unittest-tntestr/post
+
+- job:
+    name: contrail-vnc-unittest-centos7-tntestr
+    parent: contrail-vnc-unittest-tntestr-base
+    voting: False
+    nodeset: builder-centos-7
+    #nodeset:
+    #  nodes:
+    #    - name: kolla-aio
+    #      label: c7-systest-c
+
+- job:
+    name: contrail-vnc-unittest-ubuntu-tntestr
+    parent: contrail-vnc-unittest-tntestr-base
+    voting: False
+    nodeset: builder-ubuntu-trusty
+    #nodeset: builder-ubuntu-xenial
+
+- job:
     name: contrail-sanity-base
     parent: contrail-base2
     pre-run: playbooks/contrail-sanity-base/pre
