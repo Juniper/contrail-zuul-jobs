@@ -1,0 +1,2 @@
+prebuild_tests: false
+testrunner_dir: '{{ ansible_env.HOME}}/src/github.com/tungstenfabric/tungsten-test-runner'
