@@ -1,0 +1,40 @@
+Index: python2.7/dist-packages/distlib/_backport/tarfile.py
+===================================================================
+--- python2.7.orig/dist-packages/distlib/_backport/tarfile.py	2013-02-23 04:38:24.000000000 -0800
++++ python2.7/dist-packages/distlib/_backport/tarfile.py	2018-03-07 07:21:30.538394000 -0800
+@@ -272,13 +272,13 @@
+     for b in range(blocks):
+         buf = src.read(BUFSIZE)
+         if len(buf) < BUFSIZE:
+-            raise IOError("end of file reached")
++            raise IOError("end of file reached: %s -> %s" % (src, dst))
+         dst.write(buf)
+ 
+     if remainder != 0:
+         buf = src.read(remainder)
+         if len(buf) < remainder:
+-            raise IOError("end of file reached")
++            raise IOError("end of file reached: %s -> %s" % (src, dst))
+         dst.write(buf)
+     return
+ 
+Index: python2.7/tarfile.py
+===================================================================
+--- python2.7.orig/tarfile.py	2017-11-23 08:53:32.000000000 -0800
++++ python2.7/tarfile.py	2018-03-07 07:21:40.050394000 -0800
+@@ -270,13 +270,13 @@
+     for b in xrange(blocks):
+         buf = src.read(BUFSIZE)
+         if len(buf) < BUFSIZE:
+-            raise IOError("end of file reached")
++            raise IOError("end of file reached: %s -> %s" % (src, dst))
+         dst.write(buf)
+ 
+     if remainder != 0:
+         buf = src.read(remainder)
+         if len(buf) < remainder:
+-            raise IOError("end of file reached")
++            raise IOError("end of file reached: %s -> %s" % (src, dst))
+         dst.write(buf)
+     return
+ 
