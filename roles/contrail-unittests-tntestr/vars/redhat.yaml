@@ -1,0 +1,4 @@
+prebuild_tests: false
+testrunner_dir: '{{ ansible_env.HOME }}/src/review.opencontrail.org/tungstenfabric/tungsten-test-runner'
+venv_dir: '{{ ansible_env.HOME }}/testrunner_venv'
+python_version: 'python36'
