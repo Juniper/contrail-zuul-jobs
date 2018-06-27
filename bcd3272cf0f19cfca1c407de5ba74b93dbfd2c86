@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f2577a7_a3f18197",
+        "filename": "roles/contrail-unittests-tntestr/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 255
+      },
+      "writtenOn": "2018-06-27T14:29:16Z",
+      "side": 1,
+      "message": "We want to run all test targets as a single task, so you can get rid of the `with_items` and pass all targets to tntestr directly.",
+      "revId": "bcd3272cf0f19cfca1c407de5ba74b93dbfd2c86",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
