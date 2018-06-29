@@ -16,6 +16,24 @@
       "revId": "bcd3272cf0f19cfca1c407de5ba74b93dbfd2c86",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_f8772f9f",
+        "filename": "roles/contrail-unittests-tntestr/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 457
+      },
+      "writtenOn": "2018-06-29T10:40:43Z",
+      "side": 1,
+      "message": "Changed",
+      "parentUuid": "5f2577a7_a3f18197",
+      "revId": "bcd3272cf0f19cfca1c407de5ba74b93dbfd2c86",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
     }
   ]
 }
