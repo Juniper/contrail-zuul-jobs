@@ -35,4 +35,7 @@
               - ^roles/.*
               - ^playbooks/.*
               - ^tests/.*
-
+    experimental:
+      jobs:
+        - contrail-vnc-unittest-centos7-tntestr
+            voting: false
