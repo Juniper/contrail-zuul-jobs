@@ -120,3 +120,10 @@
       tox_environment:
         ANSIBLE_ROLES_PATH: ~/src/github.com/Juniper/zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-project-config/roles:~/src/review.opencontrail.org/Juniper/contrail-helm-deployer/roles
 
+- job:
+    name: build-infra-doc
+    description: |
+      This jobs builds infra-doc using sphinx.
+    parent: contrail-src-base
+    run: playbooks/build-infra-doc/run
+    nodeset: builder-ubuntu-xenial
