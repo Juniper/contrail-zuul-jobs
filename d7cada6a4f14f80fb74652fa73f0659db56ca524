@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5f2577a7_5923df56",
+        "filename": "ansible-lint-rules/YAMLFileFormat.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-07-03T12:58:00Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "5f2577a7_fb5ce819",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 31
+      },
+      "revId": "d7cada6a4f14f80fb74652fa73f0659db56ca524",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f2577a7_9ba164fa",
         "filename": "ansible-lint-rules/YAMLFileFormat.py",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2018-06-20T13:21:21Z",
       "side": 1,
       "message": "are empty files fine? If they won\u0027t contain anything more, you can just return from here instead of pass, then you won\u0027t have to account for empty files in later checks, since you\u0027ve already got them out.",
+      "range": {
+        "startLine": 26,
+        "startChar": 12,
+        "endLine": 26,
+        "endChar": 16
+      },
+      "revId": "d7cada6a4f14f80fb74652fa73f0659db56ca524",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2577a7_1919d720",
+        "filename": "ansible-lint-rules/YAMLFileFormat.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-07-03T12:58:00Z",
+      "side": 1,
+      "message": "I\u0027ve somewhat changed the logic now. Let me know what you think.",
+      "parentUuid": "5f2577a7_9ba164fa",
       "range": {
         "startLine": 26,
         "startChar": 12,
