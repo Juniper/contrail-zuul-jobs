@@ -1,0 +1,22 @@
+---
+
+- name: test the ansible-lint ANSIBLE-J0003 rule for fails
+  hosts: localhost
+  tasks:
+    - name: 'lint ill-formated YAML files'
+      command: 'ansible-lint -r {{ zuul.project.src_dir }}/ansible-lint-rules -t ANSIBLE-J0003 {{ item }}'
+      with_fileglob: 'fixtures/ansible-lint/ANSIBLE-J0003/negative*'
+      changed_when: false
+      failed_when: false
+      register: linted_files
+
+    - name: 'filter failed files'
+      vars:
+        query: "results[?rc!=`2`]"
+      set_fact:
+        failed_files: "{{ linted_files | json_query(query) }}"
+
+    - name: 'fail when all files did not fail'
+      fail:
+        msg: "Linter did not fail for the following files: {{ failed_files | json_query('[*].item') | join(',') }}"
+      when: failed_files | length > 0
