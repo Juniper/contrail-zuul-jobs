@@ -1,0 +1,7 @@
+---
+# hosts not in first line
+- vars:
+    somevar: value
+  hosts: all
+  roles:
+    - somerole
