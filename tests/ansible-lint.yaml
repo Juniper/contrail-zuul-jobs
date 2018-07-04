@@ -1,0 +1,15 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+    - name: 'install test requirements'
+      pip:
+        name: '{{ item }}'
+      with_items:
+        - 'ansible-lint'
+        - 'oyaml'
+
+- include: ansible-lint-positive.yaml
+- include: ansible-lint-negative.yaml
+
