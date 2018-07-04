@@ -1,0 +1,10 @@
+---
+
+# post_tasks and tasks in wrong order
+- hosts: all
+  post_tasks:
+    - name: sometask
+      command: echo something
+  tasks:
+    - name: sometask
+      command: echo something

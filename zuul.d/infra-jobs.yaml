@@ -104,6 +104,18 @@
       - ^tests/.*
 
 - job:
+    name: contrail-infra-ansible-lint-integration-centos-7
+    description: |
+      Run custom ansible linter rules tests to prevent regressions.
+    parent: base-minimal
+    run: tests/ansible-lint.yaml
+    nodeset: builder-centos-7
+    files:
+      - ^ansible-lint-rules/.*
+      - ^tests/fixtures/ansible-lint/.*
+      - ^tests/ansible-lint.*
+
+- job:
     name: zuul-jobs-linters
     parent: tox
     nodeset: ubuntu-xenial-c
