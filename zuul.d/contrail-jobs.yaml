@@ -110,12 +110,16 @@
 - job:
     name: contrail-sanity-centos7-kolla-base
     parent: contrail-sanity-base
+    run: playbooks/contrail-sanity-centos7-kolla-base/run
     required-projects:
       - Juniper/contrail-ansible-deployer
       - name: Juniper/contrail-kolla-ansible
         override-checkout: contrail/ocata
       - Juniper/contrail-test
       - Juniper/contrail-test-ci
+    vars:
+      cloud_orchestrator: openstack
+      kolla_docker_distro: centos
     nodeset:
       nodes:
         - name: kolla-aio
@@ -124,12 +128,22 @@
 - job:
     name: contrail-sanity-centos7-kolla-ocata
     parent: contrail-sanity-centos7-kolla-base
-    run: playbooks/contrail-sanity-centos7-kolla-ocata/run
+    required-projects:
+      - name: Juniper/contrail-kolla-ansible
+        override-checkout: contrail/ocata
     vars:
-      cloud_orchestrator: openstack
       openstack_version: ocata
-      kolla_docker_distro: centos
       kolla_version: ocata
+
+- job:
+    name: contrail-sanity-centos7-kolla-queens
+    parent: contrail-sanity-centos7-kolla-base
+    required-projects:
+      - name: Juniper/contrail-kolla-ansible
+        override-checkout: contrail/queens
+    vars:
+      openstack_version: queens
+      kolla_version: queens
 
 - job:
     name: contrail-sanity-centos7-k8s
@@ -245,6 +259,14 @@
       - Juniper/contrail-test
     vars:
       setup_docker_registry: true
+    nodeset: builder-centos-7
+
+- job:
+    name: contrail-vnc-build-test-containers-queens
+    parent: contrail-vnc-build-test-containers
+    vars:
+      openstack_version:
+        - queens
     nodeset: builder-centos-7
 
 - job:
