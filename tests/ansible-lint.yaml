@@ -1,0 +1,22 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+    - name: 'install test requirements'
+      pip:
+        name: '{{ item }}'
+      with_items:
+        - 'ansible-lint'
+        - 'ruamel.yaml'
+
+- hosts: all
+  tasks:
+    - name: copy ansible-lint-rules
+      copy:
+        src: '{{ ansible_env.HOME }}/{{ zuul.project.src_dir }}/ansible-lint-rules'
+        dest: '{{ ansible_env.HOME }}/'
+
+- import_playbook: ansible-lint-positive.yaml
+- import_playbook: ansible-lint-negative.yaml
+

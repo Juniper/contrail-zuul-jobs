@@ -1,0 +1,9 @@
+---
+
+# tasks and roles in wrong order
+- hosts: all
+  tasks:
+    - name: sometask
+      command: echo something
+  roles:
+    - somerole
