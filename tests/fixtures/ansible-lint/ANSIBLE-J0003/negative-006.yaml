@@ -1,0 +1,7 @@
+---
+
+# play options should not be declared last
+- hosts: all
+  roles:
+    - thisrole
+  become: true
