@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  pre_tasks:
+    - name: 'install test requirements'
+      pip:
+        requirements: 'test-requirements.txt'
+
+- include: ansible-lint-positive.yaml
+- include: ansible-lint-negative.yaml
+
