@@ -1,0 +1,41 @@
+---
+
+- name: test the ansible-lint ANSIBLE-J0003 rule for fails
+  hosts: all
+  pre_tasks:
+    - name: 'Cleanup playbook directory'
+      file:
+        dest: '{{ ansible_env.HOME }}/playbooks'
+        state: 'absent'
+    - name: 'Create directory for playbooks'
+      file:
+        dest: '{{ ansible_env.HOME }}/playbooks'
+        state: 'directory'
+    - name: 'Copy invalid playbooks to working directory'
+      copy:
+        src: '{{ item }}'
+        dest: '{{ ansible_env.HOME }}/playbooks/'
+      with_fileglob: 'fixtures/ansible-lint/ANSIBLE-J0003/negative*'
+  tasks:
+    - name: find files to lint
+      find:
+        path: '{{ ansible_env.HOME }}/playbooks/'
+      register: files_to_lint
+
+    - name: 'lint ill-formated YAML files'
+      command: 'ansible-lint -r {{ ansible_env.HOME }}/ansible-lint-rules -t ANSIBLE-J0003 {{ item.path }}'
+      changed_when: false
+      failed_when: false
+      with_items: '{{ files_to_lint.files }}'
+      register: linted_files
+
+    - name: 'filter failed files'
+      vars:
+        query: "results[?rc!=`2`]"
+      set_fact:
+        failed_files: "{{ linted_files | json_query(query) }}"
+
+    - name: 'fail when all files did not fail'
+      fail:
+        msg: "Linter did not fail for the following files: {{ failed_files | json_query('[*].item.path') | join(',') }}"
+      when: failed_files | length > 0
