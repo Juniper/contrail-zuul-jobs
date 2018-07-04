@@ -1,0 +1,10 @@
+---
+
+# pre_tasks and roles in wrong order
+- hosts: all
+  roles:
+    - somerole
+  pre_tasks:
+    - name: 'pretask'
+      command: 'echo something'
+
