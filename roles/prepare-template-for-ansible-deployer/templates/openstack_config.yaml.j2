@@ -12,6 +12,7 @@ contrail_configuration:
   KEYSTONE_AUTH_HOST: "{{ control_ip }}"
   KEYSTONE_AUTH_URL_VERSION: "/v3"
   RABBITMQ_NODE_PORT: 5673
+  OPENSTACK_VERSION: "{{ openstack_version }}"
 
 kolla_config:
   kolla_globals:
