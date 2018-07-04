@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+    - name: 'install test requirements'
+      pip:
+        requirements: 'test-requirements.txt'
+
+- hosts: all
+  tasks:
+    - name: copy ansible-lint-rules
+      copy:
+        src: '{{ zuul.executor.work_root }}/{{ zuul.project.src_dir }}/ansible-lint-rules'
+        dest: '{{ ansible_env.HOME }}/'
+
+- include: ansible-lint-positive.yaml
+- include: ansible-lint-negative.yaml
+
