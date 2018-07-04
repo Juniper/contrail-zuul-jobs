@@ -11,6 +11,7 @@
         - contrail-infra-containers-integration-centos-7
         - contrail-infra-containers-integration-ubuntu-xenial
         - contrail-infra-lint-rpm-integration-centos-7
+        - contrail-infra-ansible-lint-integration-centos-7
         - zuul-jobs-linters
         - noop:
             irrelevant-files:
@@ -29,6 +30,7 @@
         - contrail-infra-containers-integration-centos-7
         - contrail-infra-containers-integration-ubuntu-xenial
         - contrail-infra-lint-rpm-integration-centos-7
+        - contrail-infra-ansible-lint-integration-centos-7
         - zuul-jobs-linters
         - noop:
             irrelevant-files:
