@@ -1,0 +1,5 @@
+---
+
+- include: ansible-lint-positive.yaml
+- include: ansible-lint-negative.yaml
+
