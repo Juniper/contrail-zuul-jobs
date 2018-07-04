@@ -146,15 +146,11 @@
       kolla_version: queens
 
 - job:
-    name: contrail-sanity-centos7-k8s
+    name: contrail-sanity-centos7-k8s-base
     parent: contrail-sanity-base
     description: |
       A job that deploys Contrail containers and a Kubernetes cluster
       using contrail-ansible-deployer.
-    run: playbooks/contrail-sanity-centos7-k8s/run
-    vars:
-      cloud_orchestrator: kubernetes
-      test_target: k8s_sanity
     required-projects:
       - Juniper/contrail-ansible-deployer
       - Juniper/contrail-test
@@ -163,6 +159,15 @@
       nodes:
         - name: kolla-aio
           label: c7-systest-c
+
+- job:
+    name: contrail-sanity-centos7-k8s
+    parent: contrail-sanity-centos7-k8s-base
+    run: playbooks/contrail-sanity-centos7-k8s/run
+    vars:
+      cloud_orchestrator: kubernetes
+      openstack_version: ocata
+      test_target: k8s_sanity
 
 - job:
     name: contrail-helm-base
