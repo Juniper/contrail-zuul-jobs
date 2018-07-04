@@ -1,0 +1,9 @@
+---
+
+- name: test the ansible-lint ANSIBLE-J0003 rule for fails
+  hosts: all
+  tasks:
+    - name: 'lint well-formated YAML files'
+      command: 'ansible-lint -r {{ zuul.project.src_dir }}/ansible-lint-rules -t ANSIBLE-J0003 {{ item }}'
+      with_fileglob: 'fixtures/ansible-lint/ANSIBLE-J0003/positive*'
+      changed_when: false
