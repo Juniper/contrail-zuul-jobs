@@ -29,8 +29,8 @@ kolla_config:
     openstack_release: "{{ kolla_version }}"
     kolla_base_distro: "{{ kolla_docker_distro }}"
     docker_registry: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
-    neutron_opencontrail_init_image_full: "{{ contrail_docker_registry }}/contrail-openstack-neutron-init:ocata-{{ zuul.change }}-{{ zuul.patchset }}"
-    nova_compute_opencontrail_init_image_full: "{{ contrail_docker_registry }}/contrail-openstack-compute-init:ocata-{{ zuul.change }}-{{ zuul.patchset }}"
+    neutron_opencontrail_init_image_full: "{{ contrail_docker_registry }}/contrail-openstack-neutron-init:{{ openstack_version }}-{{ zuul.change }}-{{ zuul.patchset }}"
+    nova_compute_opencontrail_init_image_full: "{{ contrail_docker_registry }}/contrail-openstack-compute-init:{{ openstack_version }}-{{ zuul.change }}-{{ zuul.patchset }}"
   kolla_passwords:
     keystone_admin_password: c0ntrail123
   customize:
