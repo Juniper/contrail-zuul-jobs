@@ -25,15 +25,6 @@
   become: True
   when: cloud_orchestrator == 'openstack'
 
-- name: Provision Contrail with install_contrail.yml playbook
-  command: ansible-playbook -i inventory/ -e orchestrator={{ cloud_orchestrator }} playbooks/install_contrail.yml
-  args:
-    chdir: "{{ docker_provision_dir }}"
-  environment:
-    ANSIBLE_HOST_KEY_CHECKING: 'False'
-    ANSIBLE_STDOUT_CALLBACK: debug
-  become: True
-
 - name: Provision k8s with install_k8s.yml playbook
   command: ansible-playbook -i inventory/ -e orchestrator={{ cloud_orchestrator }} playbooks/install_k8s.yml
   args:
@@ -43,6 +34,15 @@
     ANSIBLE_STDOUT_CALLBACK: debug
   become: True
   when: cloud_orchestrator == 'kubernetes'
+
+- name: Provision Contrail with install_contrail.yml playbook
+  command: ansible-playbook -i inventory/ -e orchestrator={{ cloud_orchestrator }} playbooks/install_contrail.yml
+  args:
+    chdir: "{{ docker_provision_dir }}"
+  environment:
+    ANSIBLE_HOST_KEY_CHECKING: 'False'
+    ANSIBLE_STDOUT_CALLBACK: debug
+  become: True
 
 - name: Show the list of running containers
   command: docker ps -a
