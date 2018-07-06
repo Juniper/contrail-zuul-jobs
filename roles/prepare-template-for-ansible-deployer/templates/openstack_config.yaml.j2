@@ -7,7 +7,7 @@ contrail_configuration:
   PHYSICAL_INTERFACE: eth1
   VROUTER_GATEWAY: {{ ansible_default_ipv4.gateway }}
   AUTH_MODE: keystone
-  AAA_MODE: rbac
+  AAA_MODE: {% if openstack_version == "queens" %} no-auth {% else %} rbac {% endif %}
   KEYSTONE_AUTH_ADMIN_PASSWORD: c0ntrail123
   KEYSTONE_AUTH_HOST: "{{ control_ip }}"
   KEYSTONE_AUTH_URL_VERSION: "/v3"
