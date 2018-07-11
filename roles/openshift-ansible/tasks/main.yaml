@@ -1,0 +1,49 @@
+---
+
+# SELINUX is already enforced on nodepool nodes
+
+- name: install OpenShift Container Platform utilities
+  package:
+    name: '{{ item }}'
+    state: 'present'
+  with_items:
+    - 'atomic-openshift-excluder'
+    - 'atomic-openshift-utils'
+    - 'python-netaddr'
+  become: true
+  become_user: 'root'
+  register: 'packages_installed'
+
+- name: remove atomic-openshift packages from the list for the duration of the installation
+  command: 'atomic-openshift-excluder exclude -y'
+  become: true
+  become_user: 'root'
+  vars:
+    query: "results[?item=='atomic-openshift-excluder'].changed"
+  when: packages_installed | json_query(query) | first | bool
+
+- name: download the correct prerequisites.yml playbook
+  get_url:
+    dest: '{{ zuul_project_dir }}/inventory/byo/ose-prerequisites.yml'
+    url: 'https://raw.githubusercontent.com/savithruml/openshift-contrail/master/openshift/install-files/all-in-one/ose-prerequisites.yml'
+    checksum: 'md5:14e81a47d0b55e6d9a42b480edf9e399'
+    force: true
+
+- name: template ose-install inventory file
+  template:
+    src: 'ose-install.j2'
+    dest: '{{ zuul_project_dir }}/inventory/byo/ose-install'
+    force: true
+
+- name: install ansible
+  become: true
+  become_user: 'root'
+  pip:
+    name: 'ansible'
+    version: '2.6.1'
+    state: 'present'
+
+- name: run ose-prerequisites.yml
+  command: 'ansible-playbook -i inventory/byo/ose-install inventory/byo/ose-prerequisites.yml'
+  args:
+    chdir: '{{ zuul_project_dir }}'
