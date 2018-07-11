@@ -1,0 +1,14 @@
+---
+
+- name: install NetworkManager
+  become: true
+  package:
+    name: 'NetworkManager'
+    state: 'present'
+
+- name: start and enable NetworkManager
+  become: true
+  service:
+    name: 'NetworkManager'
+    state: 'started'
+    enabled: true
