@@ -1,0 +1,10 @@
+---
+
+- name: 'cat /etc/selinux/config'
+  become: true
+  command: 'cat /etc/selinux/config'
+
+- name: 'fail'
+  become: true
+  fail:
+    msg: 'just fail'

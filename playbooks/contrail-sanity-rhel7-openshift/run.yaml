@@ -1,0 +1,6 @@
+- hosts: all
+  roles:
+    - acquire-ip-address
+    - self-ssh-key
+    - yum-repos-prepare
+    - openshift-ansible
