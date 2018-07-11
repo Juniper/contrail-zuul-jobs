@@ -1,5 +1,5 @@
 - name: Send sanitytest logs to the executor
-  hosts: all
+  hosts: all:!deployment
   roles:
     - fetch-logs-sanitytests
     - fetch-dmesg
