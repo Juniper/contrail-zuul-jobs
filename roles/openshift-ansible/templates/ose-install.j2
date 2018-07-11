@@ -1,0 +1,49 @@
+# file templated following the guide: https://github.com/Juniper/contrail-docker/wiki/Install-contrail-5.0-with-openshift-ansible
+[OSEv3:children]
+masters
+nodes
+etcd
+openshift_ca
+
+[OSEv3:vars]
+ansible_ssh_user=root
+ansible_become=yes
+debug_level=2
+deployment_type={{ openshift_deployment_type }}
+openshift_release=v{{ openshift_version }}
+openshift_pkg_version={{ openshift_pkg_version }}
+openshift_repos_enable_testing=true
+containerized=false
+openshift_install_examples=true
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+osm_cluster_network_cidr=10.32.0.0/12
+openshift_portal_net=10.96.0.0/12
+openshift_use_dnsmasq=true
+openshift_clock_enabled=true
+openshift_hosted_manage_registry=false
+openshift_hosted_manage_router=false
+openshift_enable_service_catalog=false
+openshift_use_openshift_sdn=false
+os_sdn_network_plugin_name='cni'
+openshift_disable_check=disk_availability,package_version,docker_storage
+openshift_docker_insecure_registries=ci-repo.englab.juniper.net:5000
+
+openshift_use_contrail=true
+contrail_container_tag={{ contrail_container_tag }}
+contrail_version={{ contrail_version }}
+contrail_registry={{ contrail_docker_registry }}
+contrail_nodes={{ ansible_default_ipv4.address }}
+vrouter_physical_interface={{ ansible_default_ipv4.interface }}
+contrail_vip={{ ansible_default_ipv4.address }}
+
+[masters]
+{{ ansible_default_ipv4.address }} openshift_hostname={{ ansible_fqdn }}
+
+[etcd]
+{{ ansible_default_ipv4.address }} openshift_hostname={{ ansible_fqdn }}
+
+[nodes]
+{{ ansible_default_ipv4.address }} openshift_hostname={{ ansible_fqdn }}
+
+[openshift_ca]
+{{ ansible_default_ipv4.address }} openshift_hostname={{ ansible_fqdn }}
