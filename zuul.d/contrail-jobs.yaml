@@ -165,6 +165,23 @@
           label: c7-systest-c
 
 - job:
+    name: contrail-sanity-rhel7-openshift
+    parent: contrail-sanity-base
+    description: |
+      A job that deploys OpenShift with Contrail as CNI using openstack-deployer
+    run: playbooks/contrail-sanity-rhel7-openshift/run
+    required-projects:
+      - Juniper/openshift-ansible
+      - Juniper/contrail-test
+      - Juniper/contrail-test-ci
+    nodeset:
+      nodes:
+        - name: openshift-rhel7-aio
+          label: rhel-7-builder
+    roles:
+      - zuul: Juniper/openshift-ansible
+
+- job:
     name: contrail-helm-base
     parent: contrail-sanity-base
     description: |
