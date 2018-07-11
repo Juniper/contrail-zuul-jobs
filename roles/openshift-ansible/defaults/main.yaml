@@ -1,0 +1,14 @@
+---
+zuul_project_dir: '{{ zuul.projects | selectattr("short_name", "equalto", "openshift-ansible") | map(attribute="src_dir") | list | first }}'
+openstack_version: 'ocata'
+openshift_deployment_type: 'origin'
+openshift_version: '3.9'
+contrail_major_version: '5.0'
+contrail_version: >-
+  {%- if zuul.change is defined -%}
+    {{ zuul.change }}-{{ zuul.patchset }}
+  {%- else -%}
+    {{ contrail_container_tag }}
+  {%- endif -%}
+contrail_docker_registry: 'ci-repo.englab.juniper.net:5000'
+contrail_image_os: ''
