@@ -4,12 +4,17 @@
 # * If deployment node exists:
 #   - generates an ssh key for the deployment user on the deployment node
 #   - distributes the public part of the key to allow access on all nodeset nodes
+#   - install docker on it
+#   - add the insecure docker registry to it
 # * Inserts dns entries about all nodeset nodes in /etc/hosts on all nodeset nodes
 
 - hosts: deployment
   roles:
     - self-ssh-key
     - install-ansible
+    - install-docker-daemon
+    - role: add-insecure-registry
+      new_registry: "{{ contrail_docker_registry }}"
 
 - hosts: all
   tasks:
