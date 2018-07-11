@@ -1,0 +1,37 @@
+---
+
+- name: template ose-install inventory file
+  template:
+    src: 'ose-install.j2'
+    dest: '{{ zuul_project_dir }}/inventory/ose-install'
+    force: true
+
+- name: run inventory/ose-prerequisites.yml playbook
+  args:
+    chdir: '{{ zuul_project_dir }}'
+  become: true
+  command: 'ansible-playbook -i inventory/ose-install inventory/ose-prerequisites.yml'
+  when: openshift_deployment_type == 'origin'
+
+- name: run playbooks/prerequisites.yml playbook
+  args:
+    chdir: '{{ zuul_project_dir }}'
+  become: true
+  command: 'ansible-playbook -i inventory/ose-install playbooks/prerequisites.yml'
+
+- name: run playbooks/deploy_cluster.yml playbook
+  args:
+    chdir: '{{ zuul_project_dir }}'
+  become: true
+  command: 'ansible-playbook -i inventory/ose-install playbooks/deploy_cluster.yml'
+
+- name: prepare template for testrunner
+  template:
+    src: 'openshift_config.yaml.j2'
+    dest: '{{ ansible_env.HOME }}/contrail_test_input.yaml'
+
+- name: fetch contrail_test_input.yaml to executor
+  synchronize:
+    src: '{{ ansible_env.HOME }}/contrail_test_input.yaml'
+    dest: '{{ zuul.executor.log_root }}/'
+    mode: pull

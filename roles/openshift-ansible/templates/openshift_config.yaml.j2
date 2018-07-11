@@ -1,0 +1,46 @@
+deployment:
+ type:
+   openshift:
+     branch: release-{{ openshift_version }}-contrail
+     registry: {{ contrail_docker_registry }}
+ sku: {{ openstack_version }}
+ os: centos
+ version: {{ openstack_version }}-{{ contrail_version }}
+ orchestrator: kubernetes
+ deployer: openshift
+provider_config:
+ bms:
+   ssh_pwd: c0ntrail123
+   ssh_user: root
+   ntpserver: 10.84.5.100
+   domainsuffix: local
+instances:
+ openshift-master:
+   provider: bms
+   ip: {{ hostvars['openshift-master'].ansible_default_ipv4.address }}
+   roles:
+     openstack:
+     config_database:
+     config:
+     control:
+     analytics_database:
+     analytics:
+     webui:
+     k8s_master:
+     kubemanager:
+ openshift-node:
+   provider: bms
+   ip: {{ hostvars['openshift-node'].ansible_default_ipv4.address }}
+   roles:
+     vrouter:
+     k8s_nodes:
+contrail_configuration:
+ PHYSICAL_INTERFACE: {{ hostvars['openshift-master'].ansible_default_ipv4.interface }}
+ CONTROLLER_NODES: {{ hostvars['openshift-master'].ansible_default_ipv4.address }}
+orchestrator_configuration:
+ keystone:
+   version: v3
+   password: c0ntrail123
+test_configuration:
+ image_web_server: 10.84.5.120
+ use_project_scoped_token: True

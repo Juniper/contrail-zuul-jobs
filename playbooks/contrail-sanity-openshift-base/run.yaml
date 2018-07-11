@@ -1,0 +1,16 @@
+---
+
+# playbook and openshift-ansible role prepared based on the guide available under link
+# https://github.com/Juniper/openshift-ansible/wiki/Install-OpenShift-Enterprise-with-Contrail-SDN-(OpenShift-Ansible)
+
+- hosts: all:!deployment
+  roles:
+    - acquire-ip-address
+    - yum-repos-prepare
+#    - install-network-manager # maybe not needed anymore...
+    - install-openshift-prerequisites
+
+- hosts: deployment
+  roles:
+    - openshift-ansible
+    - sanitytest
