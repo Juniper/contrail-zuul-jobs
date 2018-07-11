@@ -1,0 +1,54 @@
+# file changed from openshift-ansible:inventory/byo/ose-prerequisites.yml
+---
+- hosts: OSEv3
+  tasks:
+  - name: Install base packages
+    yum: name="{{ item }}" state=present
+    with_items:
+    - wget
+    - net-tools
+    - bind-utils
+    - iptables-services
+    - bridge-utils
+    - bash-completion
+    - python-pip
+    - kexec-tools
+    - sos
+    - psacct
+    - ntp
+    - NetworkManager
+
+  - name: Install docker-py
+    command: pip install docker-py
+    when:
+    - deployment_type == "openshift-enterprise"
+
+  - fail:
+      msg: "Need a higher version of docker"
+    when:
+        - docker_version is defined
+        - "{{ docker_version is version('1.13.1', '<') }}"
+
+  - name: install docker
+    yum:
+      name: "docker-{{ docker_version | default('1.13.1')}}"
+      state: installed
+
+  - name: Install openshift-enterprise package
+    yum: name="{{ item }}" state=present
+    with_items:
+    - atomic-openshift-docker-excluder
+    when:
+    - deployment_type == "openshift-enterprise"
+
+  - name: Enable & start docker service
+    service:
+      name: docker
+      state: started
+      enabled: yes
+
+#  - name: Enble & start network-manager service
+#    service:
+#      name: NetworkManager
+#      state: started
+#      enabled: yes
