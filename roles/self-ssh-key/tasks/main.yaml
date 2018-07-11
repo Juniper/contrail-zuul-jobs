@@ -1,21 +1,22 @@
 - name: Ensure that the given user has ssh key generated
+  become: true
   user:
     name: "{{ user }}"
     generate_ssh_key: yes
-  become: true
+  register: user
 
 - name: Get user's home path along other info (saved in getent_passwd fact)
   getent:
     database: passwd
-    key: "{{ user }}"
+    key: "{{ user.name }}"
 
 - name: Read the pubkey
-  command: "cat {{ getent_passwd[user][4] + '/.ssh/id_rsa.pub' }}"
-  register: pubkey
   become: true
+  command: "cat {{ getent_passwd[user.name][4] + '/.ssh/id_rsa.pub' }}"
+  register: pubkey
 
 - name: Ensure the ssh key is present in authorized_keys
-  authorized_key:
-    user: "{{ user }}"
-    key: "{{ pubkey.stdout }}"
   become: true
+  authorized_key:
+    user: "{{ user.name }}"
+    key: "{{ pubkey.stdout }}"
