@@ -1,0 +1,8 @@
+---
+zuul_project_dir: '{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/openshift-ansible'
+openshift_deployment_type: 'origin'
+openshift_version: '3.7'
+openshift_pkg_version: '-3.7.1-2.el7'
+contrail_version: '5.0'
+contrail_container_tag: 'master-centos7-newton-bld-17'
+contrail_registry: 'docker.io/opencontrailnightly'
