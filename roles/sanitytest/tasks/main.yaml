@@ -4,6 +4,12 @@
     testrunner_image: "{{ contrail_docker_registry }}/contrail-test-test:{{ openstack_version }}-{{ contrail_version }}"
     repos_dir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper"
 
+- name: make sure python docker bindings are installed
+  become: true
+  pip:
+    name: 'docker-py'
+    state: 'present'
+
 - name: Pull the testrunner image
   docker_image:
     name: "{{ testrunner_image }}"
