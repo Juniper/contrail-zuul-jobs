@@ -1,0 +1,49 @@
+---
+
+- name: template ose-install inventory file
+  template:
+    src: 'ose-install.j2'
+    dest: '{{ zuul_project_dir }}/inventory/byo/ose-install'
+    force: true
+
+- name: install ansible
+  become: true
+  pip:
+    name: 'ansible'
+    version: '2.5.2'
+    state: 'present'
+
+- name: install python-netaddr
+  become: true
+  pip:
+    name: 'netaddr'
+    state: 'present'
+
+- name: run inventory/byo/ose-prerequisites.yml playbook
+  args:
+    chdir: '{{ zuul_project_dir }}'
+  become: true
+  command: 'ansible-playbook -i inventory/byo/ose-install inventory/byo/ose-prerequisites.yml'
+
+- name: run playbooks/byo/openshift-facts.yml playbook
+  args:
+    chdir: '{{ zuul_project_dir }}'
+  become: true
+  command: 'ansible-playbook -i inventory/byo/ose-install playbooks/byo/openshift_facts.yml'
+
+- name: run playbooks/byo/config.yml playbook
+  args:
+    chdir: '{{ zuul_project_dir }}'
+  become: true
+  command: 'ansible-playbook -i inventory/byo/ose-install playbooks/byo/config.yml'
+
+- name: prepare template for testrunner
+  template:
+    src: 'instances.yaml.j2'
+    dest: '{{ ansible_env.HOME }}/contrail_test_input.yaml'
+
+- name: fetch contrail_test_input.yaml to executor
+  synchronize:
+    src: '{{ ansible_env.HOME }}/contrail_test_input.yaml'
+    dest: '{{ zuul.executor.log_root }}/'
+    mode: pull
