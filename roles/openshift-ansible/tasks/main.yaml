@@ -1,0 +1,33 @@
+---
+
+- name: template ose-install inventory file
+  template:
+    src: 'ose-install.j2'
+    dest: '{{ zuul_project_dir }}/inventory/byo/ose-install'
+    force: true
+
+- name: install ansible
+  become: true
+  become_user: 'root'
+  pip:
+    name: 'ansible'
+    version: '2.5.2'
+    state: 'present'
+
+- name: run inventory/byo/ose-prerequisites.yml playbook
+  args:
+    chdir: '{{ zuul_project_dir }}'
+  become: true
+  command: 'ansible-playbook -i inventory/byo/ose-install inventory/byo/ose-prerequisites.yml'
+
+- name: run playbooks/byo/openshift-facts.yml playbook
+  args:
+    chdir: '{{ zuul_project_dir }}'
+  become: true
+  command: 'ansible-playbook -i inventory/byo/ose-install playbooks/byo/openshift_facts.yml'
+
+- name: run playbooks/byo/config.yml playbook
+  args:
+    chdir: '{{ zuul_project_dir }}'
+  become: true
+  command: 'ansible-playbook -i inventory/byo/ose-install playbooks/byo/config.yml'
