@@ -5,6 +5,13 @@
     repos_dir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper"
 
 - name: pull the testrunner image
+- name: make sure python docker bindings are installed
+  become: true
+  pip:
+    name: 'docker-py'
+    state: 'present'
+
+- name: Pull the testrunner image
   docker_image:
     name: '{{ testrunner_image }}'
   become: true
