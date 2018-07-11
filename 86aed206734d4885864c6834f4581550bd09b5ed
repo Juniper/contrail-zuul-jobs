@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f2f7f8d_df75349a",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-07-11T12:43:44Z",
+      "side": 1,
+      "message": "Change description to reflect that we run sanity, not only deployment.",
+      "revId": "86aed206734d4885864c6834f4581550bd09b5ed",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f2f7f8d_1f63bcde",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-07-11T12:43:44Z",
+      "side": 1,
+      "message": "Merge this with the base job, as we don\u0027t know the future requirements for variants.",
+      "revId": "86aed206734d4885864c6834f4581550bd09b5ed",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f2f7f8d_ff46b04f",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-07-11T12:43:44Z",
+      "side": 1,
+      "message": "Move this to the base job",
+      "revId": "86aed206734d4885864c6834f4581550bd09b5ed",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
