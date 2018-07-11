@@ -1,0 +1,8 @@
+---
+zuul_project_dir: '{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/openshift-ansible'
+openstack_version: 'ocata'
+openshift_deployment_type: 'origin'
+openshift_version: '3.9'
+contrail_major_version: '5.0'
+contrail_version: '{{ contrail_major_version }}-latest'
+contrail_docker_registry: 'ci-repo.englab.juniper.net:5000'

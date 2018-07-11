@@ -1,0 +1,24 @@
+---
+
+# source: https://github.com/Juniper/contrail-kubernetes-docs/blob/master/install/openshift/3.9/redhat/configurations.md
+
+- name: install OpenShift Container Platform utilities
+  package:
+    name: '{{ item }}'
+    state: 'present'
+  with_items:
+    - 'atomic-openshift-excluder'
+    - 'atomic-openshift-utils'
+    - 'python-netaddr'
+  become: true
+  become_user: 'root'
+  register: 'packages_installed'
+
+- name: remove atomic-openshift packages from the list for the duration of the installation
+  command: 'atomic-openshift-excluder unexclude -y'
+  become: true
+  vars:
+    query: "results[?item=='atomic-openshift-excluder'].changed"
+  when: packages_installed | json_query(query) | first | bool
+
+# SELINUX is already enforced on nodepool nodes
