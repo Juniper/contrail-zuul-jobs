@@ -1,0 +1,22 @@
+---
+
+# playbook and openshift-ansible role prepared based on the guide available under link
+# https://github.com/Juniper/openshift-ansible/wiki/Install-OpenShift-Enterprise-with-Contrail-SDN-(OpenShift-Ansible)
+
+- hosts: all:!deployment
+  roles:
+    - acquire-ip-address
+    - yum-repos-prepare
+    - role: configure-hosts-entries # openshift installation reconfigures /etc/resolv.conf
+      hosts_entries:
+        - fqdn: 'ci-repo.englab.juniper.net'
+          address: '10.84.5.81'
+    - install-network-manager
+
+- hosts: deployment
+  roles:
+    - install-docker-daemon
+    - openshift-ansible
+    - role: add-insecure-registry
+      new_registry: "{{ contrail_docker_registry }}"
+    - sanitytest
