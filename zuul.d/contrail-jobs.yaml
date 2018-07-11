@@ -165,6 +165,33 @@
           label: c7-systest-c
 
 - job:
+    name: contrail-sanity-rhel7-openshift-base
+    parent: contrail-sanity-base
+    description: |
+      Base job for setting up OpenShift with Contrail as CNI and
+      running sanity CI tests.
+    run: playbooks/contrail-sanity-rhel7-openshift-base/run
+    vars:
+      cloud_orchestrator: openshift
+    required-projects:
+      - name: Juniper/openshift-ansible
+        override-checkout: release-3.7-contrail
+      - Juniper/contrail-test
+      - Juniper/contrail-test-ci
+    roles:
+      - zuul: Juniper/openshift-ansible
+
+- job:
+    name: contrail-sanity-rhel7-openshift-3.7
+    parent: contrail-sanity-rhel7-openshift-base
+    vars:
+      openshift_version: 3.7
+      openshift_deployment_type: openshift-enterprise
+    required-projects:
+      - name: Juniper/openshift-ansible
+        override-checkout: release-3.7-contrail
+
+- job:
     name: contrail-helm-base
     parent: contrail-sanity-base
     description: |
