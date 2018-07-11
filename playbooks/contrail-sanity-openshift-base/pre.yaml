@@ -1,0 +1,16 @@
+---
+
+# this playbook generates an ssh key for the deployment user on the deployment node
+# and distributes the public part to permit access on all nodeset nodes
+
+- hosts: deployment
+  roles:
+    - self-ssh-key
+
+- hosts: all
+  tasks:
+    - name: Ensure the ssh key is present in authorized_keys
+      become: true
+      authorized_key:
+        user: "{{ hostvars['deployment'].user.name }}"
+        key: "{{ hostvars['deployment'].pubkey.stdout }}"
