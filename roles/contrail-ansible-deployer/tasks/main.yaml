@@ -1,3 +1,7 @@
+- name: Debug contrail_version - start ansible-deployer
+  debug:
+    msg: "contrail_version is {{ contrail_version }}"
+
 - name: Install build dependencies
   package:
     name: "{{ item }}"
@@ -75,3 +79,7 @@
   command: docker restart {{ config_api_container.stdout }}
   become: True
   when: config_api_container.stdout is defined
+
+- name: Debug contrail_version - end ansible-deployer
+  debug:
+    msg: "contrail_version is {{ contrail_version }}"
