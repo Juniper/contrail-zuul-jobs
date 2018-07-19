@@ -1,3 +1,7 @@
+- name: Debug contrail_version - start template
+  debug:
+    msg: "contrail_version is {{ contrail_version }}"
+
 - name: set control IP
   set_fact:
     control_ip: "{{ ansible_default_ipv4.address }}"
@@ -18,3 +22,7 @@
     src: "{{ docker_provision_dir }}/config/instances.yaml"
     dest: "{{ zuul.executor.log_root }}/"
     mode: pull
+
+- name: Debug contrail_version - end template
+  debug:
+    msg: "contrail_version is {{ contrail_version }}"
