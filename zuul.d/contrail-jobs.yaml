@@ -108,9 +108,9 @@
       setup_docker_registry: True
 
 - job:
-    name: contrail-sanity-centos7-kolla-base
+    name: contrail-sanity-kolla-base
     parent: contrail-sanity-base
-    run: playbooks/contrail-sanity-centos7-kolla-base/run
+    run: playbooks/contrail-sanity-kolla-base/run
     required-projects:
       - Juniper/contrail-ansible-deployer
       - name: Juniper/contrail-kolla-ansible
@@ -120,30 +120,52 @@
     vars:
       cloud_orchestrator: openstack
       kolla_docker_distro: centos
-    nodeset:
-      nodes:
-        - name: kolla-aio
-          label: c7-systest-c
 
 - job:
     name: contrail-sanity-centos7-kolla-ocata
-    parent: contrail-sanity-centos7-kolla-base
+    parent: contrail-sanity-kolla-base
     required-projects:
       - name: Juniper/contrail-kolla-ansible
         override-checkout: contrail/ocata
     vars:
       openstack_version: ocata
       kolla_version: ocata
+    nodeset:
+      nodes:
+        - name: kolla-aio
+          label: c7-systest-c
 
 - job:
     name: contrail-sanity-centos7-kolla-queens
-    parent: contrail-sanity-centos7-kolla-base
+    parent: contrail-sanity-kolla-base
     required-projects:
       - name: Juniper/contrail-kolla-ansible
         override-checkout: contrail/queens
     vars:
       openstack_version: queens
       kolla_version: queens
+    nodeset:
+      nodes:
+        - name: kolla-aio
+          label: c7-systest-c
+
+- job:
+    name: contrail-sanity-rhel7-kolla-queens
+    parent: contrail-sanity-kolla-base
+    required-projects:
+      - name: Juniper/contrail-kolla-ansible
+        override-checkout: contrail/queens
+    vars:
+      openstack_version: queens
+      kolla_version: queens
+    nodeset: builder-rhel-7
+
+- job:
+    name: contrail-sanity-rhel7-kolla-queens-test
+    parent: contrail-sanity-kolla-base
+      contrail_version: master-198
+      contrail_container_tag: rhel-queens-master-198
+    nodeset: builder-rhel-7
 
 - job:
     name: contrail-sanity-centos7-k8s
