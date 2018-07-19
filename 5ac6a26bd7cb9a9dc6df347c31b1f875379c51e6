@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f2f7f8d_aa856caf",
+        "filename": "ansible-lint-rules/YAMLFileExtension.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-07-19T12:48:06Z",
+      "side": 1,
+      "message": "Why are we skipping playbooks?",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 38
+      },
+      "revId": "5ac6a26bd7cb9a9dc6df347c31b1f875379c51e6",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
