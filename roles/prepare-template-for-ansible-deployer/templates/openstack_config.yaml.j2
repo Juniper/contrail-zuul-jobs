@@ -1,5 +1,9 @@
 contrail_configuration:
+{% if ansible_distribution == 'RedHat' %}
+  CONTRAIL_VERSION: "rhel-{{ contrail_version }}"
+{% else %}
   CONTRAIL_VERSION: "{{ contrail_version }}"
+{% endif %}
   CLOUD_ORCHESTRATOR: "{{ cloud_orchestrator }}"
   CONTROLLER_NODES: "{{ control_ip }}"
   CONTROL_NODES: "{{ ansible_eth1.ipv4.address }}"
@@ -31,8 +35,10 @@ kolla_config:
     openstack_release: "{{ kolla_version }}"
     kolla_base_distro: "{{ kolla_docker_distro }}"
     docker_registry: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
-    neutron_opencontrail_init_image_full: "{{ contrail_docker_registry }}/contrail-openstack-neutron-init:{{ openstack_version }}-{{ zuul.change }}-{{ zuul.patchset }}"
-    nova_compute_opencontrail_init_image_full: "{{ contrail_docker_registry }}/contrail-openstack-compute-init:{{ openstack_version }}-{{ zuul.change }}-{{ zuul.patchset }}"
+    neutron_opencontrail_init_image_full: "{{ contrail_docker_registry }}/contrail-openstack-neutron-init:{{ contrail_container_tag }}"
+    nova_compute_opencontrail_init_image_full: "{{ contrail_docker_registry }}/contrail-openstack-compute-init:{{ contrail_container_tag }}"
+    ironic_notification_manager_image_full: "{{ contrail_docker_registry }}/contrail-openstack-ironic-notification-manager:{{ contrail_container_tag }}"
+    heat_opencontrail_init_image_full: "{{ contrail_docker_registry }}/contrail-openstack-heat-init:{{ contrail_container_tag }}"
   kolla_passwords:
     keystone_admin_password: c0ntrail123
   customize:
