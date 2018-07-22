@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f2f7f8d_e34a7a53",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 35
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 457
+      },
+      "writtenOn": "2018-07-22T20:25:27Z",
+      "side": 1,
+      "message": "looks like there is separate target for openshift: \n\nhttps://github.com/Juniper/contrail-test/blob/c155d9382bfe4cf04f6b629f68caf9004805edd8/docker/base/entrypoint.sh#L85",
+      "revId": "e0b5cf76571be12cf8386f028c1a27a1a4b36eac",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
