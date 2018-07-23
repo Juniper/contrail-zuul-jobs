@@ -39,3 +39,9 @@
     nodes:
       - name: builder
         label: rhel-7-builder
+
+- nodeset:
+    name: sanity-rhel-7
+    nodes:
+      - name: rhel-aio
+        label: rhel-7-sanity
