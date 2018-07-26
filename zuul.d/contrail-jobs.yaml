@@ -159,6 +159,7 @@
       - Juniper/contrail-test
       - Juniper/contrail-test-ci
     vars:
+      openstack_version: ocata
       cloud_orchestrator: kubernetes
       test_target: ci_k8s_sanity
     nodeset:
