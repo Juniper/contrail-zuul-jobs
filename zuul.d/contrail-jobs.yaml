@@ -317,3 +317,13 @@
     required-projects:
       - tungsten-infra/ci-utils
     nodeset: builder-centos-7
+
+- job:
+    name: contrail-test-ssh-distribution
+    parent: contrail-sanity-base
+    nodeset:
+      nodes:
+        - name: deployment
+          label: ubuntu-xenial-small
+        - name: centos-node
+          label: c7-systest-c
