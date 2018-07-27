@@ -1,0 +1,10 @@
+---
+
+- hosts: ubuntu-node
+  tasks:
+    - command: 'ping -c 5 centos-node'
+
+- hosts: centos-node
+  tasks:
+    - command: 'ping -c 5 ubuntu-node'
+
