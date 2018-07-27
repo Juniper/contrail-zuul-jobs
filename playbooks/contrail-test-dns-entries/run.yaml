@@ -1,0 +1,10 @@
+---
+
+- hosts: deployment
+  tasks:
+    - command: "ping -c 5 {{ hostvars['centos-node'].ansible_fqdn }}"
+
+- hosts: centos-node
+  tasks:
+    - command: "ping -c 5 {{ hostvars['deployment'].ansible_fqdn }}"
+
