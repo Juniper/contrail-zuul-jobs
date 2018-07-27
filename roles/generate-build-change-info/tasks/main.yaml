@@ -1,0 +1,30 @@
+- name: save script location to a variable
+  set_fact:
+    script_path: '{{ ansible_env.HOME }}/src/github.com/tungsten-infra/ci-utils/tungsten_ci_utils/generate_build_change_info'
+
+- name: install epel
+  package:
+    name: epel-release
+    state: present
+
+- name: install change script dependencies
+  package:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - python-requests
+    - python-jinja2
+    - PyYAML
+    - git
+    - python-pygit2
+
+- name: run the change script
+  command: python generate_build_change_info.py {{ zuul.branch }} {{ build_number }}
+  args:
+    chdir: '{{ script_path }}'
+
+- name: fetch the HTML file with changes
+  synchronize:
+    src: '{{ script_path }}/changes.html'
+    dest: '{{ zuul.executor.log_root }}'
+    mode: 'pull'
