@@ -317,3 +317,14 @@
     required-projects:
       - tungsten-infra/ci-utils
     nodeset: builder-centos-7
+
+- job:
+    name: contrail-test-dns-entries
+    parent: contrail-sanity-base
+    run: playbooks/contrail-test-dns-entries/run
+    nodeset:
+      nodes:
+        - name: deployment
+          label: ubuntu-xenial-small
+        - name: centos-node
+          label: c7-systest-c
