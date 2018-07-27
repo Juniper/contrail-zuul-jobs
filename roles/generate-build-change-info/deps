@@ -1,0 +1,10 @@
+BASE:
+
+python-requests
+python-jinja2
+PyYAML
+git
+
+EPEL:
+
+python-pygit2
