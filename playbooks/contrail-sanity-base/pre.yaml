@@ -1,0 +1,27 @@
+---
+
+# support for multinode deployments
+# * If deployment node exists:
+#   - generates an ssh key for the deployment user on the deployment node
+#   - distributes the public part of the key to allow access on all nodeset nodes
+# * Inserts dns entries about all nodeset nodes in /etc/hosts on all nodeset nodes
+
+- hosts: deployment
+  roles:
+    - self-ssh-key
+
+- hosts: all
+  tasks:
+    - name: ensure the ssh key is present in authorized_keys
+      become: true
+      authorized_key:
+        user: "{{ hostvars['deployment'].user.name }}"
+        key: "{{ hostvars['deployment'].pubkey.stdout }}"
+      when: "hostvars['deployment'] is defined"
+
+- hosts: all
+  vars:
+    query: '*.{address: ansible_default_ipv4.address, fqdn: ansible_fqdn, hostname: ansible_hostname}'
+  roles:
+    - role: configure-hosts-entries
+      hosts_entries: '{{ hostvars | json_query(query) }}'
