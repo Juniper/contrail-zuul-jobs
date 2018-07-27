@@ -104,6 +104,7 @@
 - job:
     name: contrail-sanity-base
     parent: contrail-base2
+    pre-run: playbooks/contrail-sanity-base/pre
     post-run: playbooks/contrail-sanity-base/post
     vars:
       setup_docker_registry: True
@@ -305,3 +306,13 @@
     parent: contrail-src-base
     nodeset: builder-centos-7
 
+- job:
+    name: contrail-test-dns-entries
+    parent: contrail-sanity-base
+    run: playbooks/contrail-test-dns-entries/run
+    nodeset:
+      nodes:
+        - name: ubuntu-node
+          label: ubuntu-xenial-small
+        - name: centos-node
+          label: c7-systest-c
