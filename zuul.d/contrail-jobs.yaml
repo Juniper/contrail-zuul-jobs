@@ -104,6 +104,7 @@
 - job:
     name: contrail-sanity-base
     parent: contrail-base2
+    pre-run: playbooks/contrail-sanity-base/pre
     post-run: playbooks/contrail-sanity-base/post
     vars:
       setup_docker_registry: True
