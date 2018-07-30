@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f2f7f8d_90e516ab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-07-30T08:54:16Z",
+      "side": 1,
+      "message": "50 chars limit: http://logs.tungsten.io/static/infra-doc/rfc/ci-development-workflow.html#commit-message-style-guide\n\nYou don\u0027t need to re-run the full sanity.",
+      "revId": "a2743bafad7996f2dda0db4355b099ff144ad80c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
