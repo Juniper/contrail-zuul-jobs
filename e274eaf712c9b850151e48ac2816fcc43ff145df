@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f2f7f8d_5fca0d6d",
+        "filename": "roles/prepare-template-for-helm-sanity/defaults/main.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-08-02T10:06:39Z",
+      "side": 1,
+      "message": "openstack_version shouldn\u0027t be a part of contrail_version - it should remain the same between different SKUs in the same buildset.",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 65
+      },
+      "revId": "e274eaf712c9b850151e48ac2816fcc43ff145df",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f2f7f8d_3fc5015c",
+        "filename": "roles/prepare-template-for-helm-sanity/templates/instances.yaml.j2",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-08-02T10:06:39Z",
+      "side": 1,
+      "message": "don\u0027t we need to put here novalocal?",
+      "range": {
+        "startLine": 7,
+        "startChar": 18,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "e274eaf712c9b850151e48ac2816fcc43ff145df",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f2f7f8d_1300fe00",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-08-02T10:06:39Z",
+      "side": 1,
+      "message": "perhaps we should use contrail_deployer as a variable for controlling instances.yaml templating",
+      "range": {
+        "startLine": 195,
+        "startChar": 6,
+        "endLine": 195,
+        "endChar": 29
+      },
+      "revId": "e274eaf712c9b850151e48ac2816fcc43ff145df",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
