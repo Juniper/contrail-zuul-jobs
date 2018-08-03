@@ -1,3 +1,4 @@
+---
 - name: Ensure that the given user has ssh key generated
   become: true
   user:

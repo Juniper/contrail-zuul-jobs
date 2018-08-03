@@ -1,3 +1,4 @@
+---
 - name: send unittest logs to the executor
   hosts: all
   roles:

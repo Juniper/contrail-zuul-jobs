@@ -1,3 +1,4 @@
+---
 - name: Load contrail packaging variables
   contrail_packaging:
     zuul: "{{ zuul }}"
@@ -11,4 +12,3 @@
     data:
       contrail_packaging: "{{ packaging }}"
   delegate_to: localhost
-
