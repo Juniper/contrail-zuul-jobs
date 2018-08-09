@@ -29,6 +29,10 @@
 
 - name: fetch the HTML file with changes
   synchronize:
-    src: '{{ script_path }}/changes.html'
+    src: '{{ script_path }}/{{ item }}'
     dest: '{{ zuul.executor.log_root }}'
     mode: 'pull'
+  with_items:
+    - 'changes.html'
+    - 'changes.json'
+    - 'bugs.html'
