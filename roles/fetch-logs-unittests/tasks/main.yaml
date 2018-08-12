@@ -1,0 +1,82 @@
+---
+- name: set variables
+  set_fact:
+    unittest_target_file: 'unittest_list.txt'
+    unittest_targets: []
+
+- name: read targets from the unit test file
+  command: 'cat {{ ansible_env.HOME }}/{{ unittest_target_file }}'
+  register: file_content
+
+- name: parse targets to dictionary
+  set_fact:
+    unittest_targets: '{{ unittest_targets + [ item | from_json ] }}'
+  with_items: '{{ file_content.stdout_lines }}'
+
+- name: create the log directory on executor
+  file:
+    path: '{{ zuul.executor.log_root }}/unittest-results/{{ item }}'
+    state: 'directory'
+  delegate_to: localhost
+  with_items:
+    - 'log'
+    - 'xml'
+
+- name: fetch unit tests target file to executor
+  synchronize:
+    src: '{{ ansible_env.HOME }}/{{ unittest_target_file }}'
+    dest: '{{ zuul.executor.log_root }}/unittest-results'
+    mode: 'pull'
+  become: true
+
+- name: fetch unit test's results
+  when: unittest_targets | length > 0
+  block:
+  - name: find the tests log file
+    find:
+      paths: '{{ item.log_path | dirname }}'
+      pattern: '{{ item.log_path.split(".log")[0] | basename }}.*.log'
+      recurse: true
+      file_type: file
+    become: true
+    register: log_file
+    with_items: '{{ unittest_targets }}'
+
+  - debug:
+      var: log_file
+
+  - debug:
+      msg: '{{ log_file.results | map(attribute="files") | list }}'
+
+  - debug:
+      var: log_file.results.files
+
+  - debug:
+      var: log_file.files
+
+  - name: fetch log files
+    synchronize:
+      src: '{{ item.path }}'
+      dest: '{{ zuul.executor.log_root }}/unittest-results/log'
+      mode: 'pull'
+    become: true
+    with_items: '{{ log_file.files }}'
+    when: log_file.matched > 0
+
+  - name: find the tests report xml file
+    find:
+      paths: '{{ item.xml_path | dirname }}'
+      pattern: '{{ item.log_path.split(".xml")[0] }}.*.xml'
+      recurse: true
+      file_type: file
+    become: true
+    register: xml_report_file
+    with_items: '{{ unittest_targets }}'
+
+  - name: fetch xml reports
+    synchronize:
+      src: '{{ item.path }}'
+      dest: '{{ zuul.executor.log_root }}/unittest-results/xml'
+      mode: 'pull'
+    with_items: '{{ xml_report_file.files }}'
+    when: xml_report_file.matched > 0
