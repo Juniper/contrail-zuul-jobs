@@ -4,3 +4,5 @@
   args:
     chdir: "{{ docker_build_dir }}/containers"
   become: true
+  retries: 5
+  delay: 30
