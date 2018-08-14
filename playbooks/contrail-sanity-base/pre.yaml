@@ -9,6 +9,7 @@
 - hosts: deployment
   roles:
     - self-ssh-key
+    - install-ansible
 
 - hosts: all
   tasks:

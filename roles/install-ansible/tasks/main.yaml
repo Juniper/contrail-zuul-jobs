@@ -1,0 +1,14 @@
+---
+
+- name: install ansible
+  become: true
+  pip:
+    name: 'ansible'
+    version: '{{ ansible_ver }}'
+    state: 'present'
+
+- name: install python-netaddr
+  become: true
+  pip:
+    name: 'netaddr'
+    state: 'present'
