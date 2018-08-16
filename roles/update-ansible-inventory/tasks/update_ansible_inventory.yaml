@@ -1,0 +1,10 @@
+---
+
+- name: "add host to ansible host group"
+  add_host:
+    name: '{{ item[0] }}'
+    groups: '{{ item[1].ansible_host_group }}'
+  when: item[0] is match(item[1].zuul_prefix)
+  with_nested:
+    - "{{ groups['all' ] }}"
+    - '{{ zuul_host_matchers }}'
