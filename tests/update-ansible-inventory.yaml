@@ -1,0 +1,55 @@
+---
+
+- name: test update-ansible-inventory role
+  hosts: all
+  vars:
+    zuul_host_matchers:
+      - zuul_prefix: openshift-master
+        ansible_host_group: openshift-masters
+      - zuul_prefix: openshift-master
+        ansible_host_group: deployment
+      - zuul_prefix: openshift-infra
+        ansible_host_group: openshift-infra
+  roles:
+    - update-ansible-inventory
+  post_tasks:
+    - name: check if only expected host groups are in inventory
+      fail:
+        msg: "only 'openshift-masters', 'openshift-infra' and 'deployment' groups expected in inventory"
+      when:
+        - not groups.keys() | length == 5
+        - not 'openshift-masters' in groups.keys()
+        - not 'openshift-infra' in groups.keys()
+        - not 'deployment' in groups.keys()
+
+    - name: check if 'openshift-master' node is in 'openshift-masters' group
+      fail:
+        msg: "'openshift-master' node expected in 'openshift-masters' group"
+      when: not 'openshift-master' in groups['openshift-masters']
+
+    - name: check if 'openshift-master' node is in 'deployment' ansible group
+      fail:
+        msg: "'openshift-master' node expected in 'deployment' group"
+      when: not 'openshift-master' in groups['deployment']
+
+    - name: check if 'openshift-master' node is not in 'openshift-infra' ansible group
+      fail:
+        msg: "'openshift-master' node not expected in 'openshift-infra' group"
+      when: "'openshift-master' in groups['openshift-infra']"
+
+    - name: check if 'openshift-infra' node is in 'openshift-infra' group
+      fail:
+        msg: "'openshift-infra' node expected in 'openshift-infra' group"
+      when: not 'openshift-infra' in groups['openshift-infra']
+
+    - name: check if 'openshift-infra' node is not in 'openshift-masters' group
+      fail:
+        msg: "'openshift-infra' node not expected in 'openshift-masters' group"
+      when: "'openshift-infra' in groups['openshift-masters']"
+
+    - name: check if 'openshift-infra' node is not in 'deployment' group
+      fail:
+        msg: "'openshift-infra' node not expected in 'deployment' group"
+      when: "'openshift-infra' in groups['deployment']"
+
+
