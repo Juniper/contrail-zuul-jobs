@@ -1,0 +1,11 @@
+---
+
+# from doc: This module bypasses the play host loop and only runs once for all the hosts in the play, if you need it to
+# iterate use a with_ directive.
+
+- name: 'add host {{ node_hostname }} to group'
+  add_host:
+    name: '{{ node_hostname }}'
+    groups: '{{ item.ansible_host_group }}'
+  when: 'node_hostname is match(item.zuul_prefix)'
+  with_items: '{{ zuul_host_matchers }}'
