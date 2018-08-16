@@ -1,0 +1,7 @@
+---
+
+- name: add hosts to designated groups
+  include_tasks: add_host_to_group.yaml
+  with_items: "{{ groups['all' ] }}"
+  loop_control:
+    loop_var: 'node_hostname'

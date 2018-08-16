@@ -104,6 +104,22 @@
       - ^tests/.*
 
 - job:
+    name: contrail-infra-update-ansible-inventory
+    description: |
+      Run roles that are used for updating ansible inventory on the Zuul executor.
+    parent: base-minimal
+    run: tests/update-ansible-inventory.yaml
+    nodeset:
+      nodes:
+        - name: openshift-master
+          label: ubuntu-xenial-small
+        - name: openshift-infra
+          label: ubuntu-xenial-small
+    files:
+      - ^roles/update-ansible-inventory/.*
+      - ^tests/.*
+
+- job:
     name: zuul-jobs-linters
     parent: tox
     nodeset: ubuntu-xenial-c

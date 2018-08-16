@@ -1,0 +1,17 @@
+Use this role to add new hosts to Zuul executors ansible inventory based on the names they were given in Zuul's nodesets.
+For example the following configuration would add all Zuul hosts with names prefixed 'openshift-rhel7-master'
+to both the 'master' and 'compute' ansible host groups.
+
+zuul_host_matchers:
+  - zuul_prefix: openshift-master
+    ansible_host_group: openshift-masters
+  - zuul_prefix: openshift-master
+    ansible_host_group: openshift-compute
+
+
+Pomysł na multinode:
+* Jw + jest node wskazany jako deploymentowy na którym odpalają się playbooki wdrażające openshift / contrail
+* executor wrzuca klucz user z którego na nodzie deploymentowym będą się odpalać playbooki na wszystkie inne nodey na konkretnego usera
+* executor tworzy na podstawie powyższego dictionary inventory dla node'a deploymentowego
+* executor instaluje odpowiednią wersję ansible'a dla node'a deploymentowego
+* nodem deploymentowym może być dowolny node z nodesetu

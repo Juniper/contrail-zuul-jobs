@@ -1,0 +1,29 @@
+---
+
+- name: test update-ansible-inventory role
+  hosts: all
+  vars:
+    zuul_host_matchers:
+      - zuul_prefix: openshift-master
+        ansible_host_group: openshift-masters
+      - zuul_prefix: openshift-master
+        ansible_host_group: deployment
+      - zuul_prefix: openshift-infra
+        ansible_host_group: openshift-infra
+  roles:
+    - update-ansible-inventory
+  post_tasks:
+    - name: check if 'openshift-master' node is in 'openshift-masters' group
+      fail:
+        msg: "'openshift-master' node expected in 'openshift-masters' group"
+      when: not 'openshift-master' in groups['openshift-masters']
+
+    - name: check if 'openshift-master' node is in 'deployment' ansible group
+      fail:
+        msg: "'openshift-master' node expected in 'deployment' group"
+      when: not 'openshift-master' in groups['deployment']
+
+    - name: check if 'openshift-infra' node is in 'openshift-infra' group
+      fail:
+        msg: "'openshift-infra' node expected in 'openshift-infra' group"
+      when: not 'openshift-infra' in groups['openshift-infra']
