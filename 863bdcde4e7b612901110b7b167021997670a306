@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f2f7f8d_523e498b",
+        "filename": "roles/install-openshift-prerequisites/tasks/main.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-08-21T12:52:52Z",
+      "side": 1,
+      "message": "OpenStack? OpenShift? Operating System? :)",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 19
+      },
+      "revId": "863bdcde4e7b612901110b7b167021997670a306",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
