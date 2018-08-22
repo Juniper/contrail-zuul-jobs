@@ -1,0 +1,6 @@
+---
+
+- hosts: openstack-compute
+  tasks:
+    - name: ping control node
+      command: "ping -c 5 {{ hostvars[groups['openstack-control'][0]].ansible_default_ipv4.address }}"
