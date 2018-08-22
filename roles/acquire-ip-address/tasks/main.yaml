@@ -1,4 +1,4 @@
----
+#---
 - name: Acquire IP address for interfaces that miss it
   command: "dhclient {{ item }}"
   with_items:
