@@ -17,4 +17,10 @@
   command: 'atomic-openshift-excluder unexclude -y'
   become: true
 
+- name: make resolv.conf immutable
+  file:
+    path: '/etc/resolv.conf'
+    attr: 'ie'
+  become: true
+
 # SELINUX is already enforced on nodepool nodes
