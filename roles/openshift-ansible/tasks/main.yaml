@@ -6,12 +6,11 @@
     dest: '{{ zuul_project_dir }}/inventory/ose-install'
     force: true
 
-- name: run inventory/ose-prerequisites.yml playbook
-  command: 'ansible-playbook -i inventory/ose-install inventory/ose-prerequisites.yml'
-  args:
-    chdir: '{{ zuul_project_dir }}'
-  become: true
-  when: openshift_deployment_type == 'origin'
+- name: fetch ose-install to executor
+  synchronize:
+    src: '{{ zuul_project_dir }}/inventory/ose-install'
+    dest: '{{ zuul.executor.log_root }}/'
+    mode: 'pull'
 
 - name: run playbooks/prerequisites.yml playbook
   command: 'ansible-playbook -i inventory/ose-install playbooks/prerequisites.yml'
@@ -34,4 +33,4 @@
   synchronize:
     src: '{{ ansible_env.HOME }}/contrail_test_input.yaml'
     dest: '{{ zuul.executor.log_root }}/'
-    mode: pull
+    mode: 'pull'
