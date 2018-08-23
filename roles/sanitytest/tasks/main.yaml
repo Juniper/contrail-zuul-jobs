@@ -27,7 +27,7 @@
     '{{ repos_dir }}'/contrail-test/testrunner.sh run \
         -P '{{ ansible_env.HOME }}'/contrail_test_input.yaml \
         -k /root/.ssh/id_rsa \
-        -f '{{ test_target }}' '{{ testrunner_image }}'
+        -T openshift_ci '{{ testrunner_image }}'
   ignore_errors: yes
   become: true
 
