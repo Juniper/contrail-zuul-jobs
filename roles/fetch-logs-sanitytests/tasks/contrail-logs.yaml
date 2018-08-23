@@ -13,8 +13,5 @@
     mode: 'pull'
     recursive: yes
   become: true
-  delay: 5
-  register: fetch
-  retries: 5
-  until: fetch.rc == 0
+  ignore_errors: true
   when: contrail_logdir.stat.isdir is defined and contrail_logdir.stat.isdir
