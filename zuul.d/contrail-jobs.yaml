@@ -108,6 +108,7 @@
     post-run: playbooks/contrail-sanity-base/post
     vars:
       setup_docker_registry: True
+      contrail_version: master-latest
 
 - job:
     name: contrail-sanity-kolla-base
@@ -218,6 +219,7 @@
         - name: deployment
           nodes:
             - deployment-1
+
 - job:
     name: contrail-sanity-openshift-base
     parent: contrail-sanity-base
@@ -228,7 +230,7 @@
     vars:
       openstack_version: queens
       cloud_orchestrator: openshift # needed only for yum-repos-prepare, not used in templates
-      test_target: openshift_ci
+      test_target: ci_openshift
     required-projects:
       - name: Juniper/openshift-ansible
         override-checkout: release-3.9-contrail
@@ -244,6 +246,7 @@
       openshift_version: 3.9
       openshift_deployment_type: openshift-enterprise
       contrail_image_os: rhel
+      contrail_docker_registry: '10.84.5.81:5000'
     required-projects:
       - name: Juniper/openshift-ansible
         override-checkout: release-3.9-contrail
@@ -261,6 +264,7 @@
         - name: deployment
           nodes:
             - deployment-1
+
 - job:
     name: contrail-helm-base
     parent: contrail-sanity-base

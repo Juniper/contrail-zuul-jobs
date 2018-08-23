@@ -12,5 +12,6 @@
     dest: '{{ zuul.executor.log_root }}/contrail-logs'
     mode: 'pull'
     recursive: yes
+  ignore_errors: true
   when: contrail_logdir.stat.isdir is defined and contrail_logdir.stat.isdir
   become: true
