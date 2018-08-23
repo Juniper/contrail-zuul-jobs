@@ -47,6 +47,7 @@
       mode: 'pull'
     become: true
     with_items: '{{ xml_report_file.files }}'
+    ignore_errors: true
     when: xml_report_file.matched > 0
 
   - name: Fetch html report files
@@ -55,6 +56,7 @@
       dest: '{{ zuul.executor.log_root }}/sanity-logs'
       mode: 'pull'
     become: true
+    ignore_errors: true
     with_items: '{{ html_report_file.files }}'
     when: html_report_file.matched > 0
 
@@ -65,5 +67,6 @@
       mode: 'pull'
       recursive: true
     become: true
+    ignore_errors: true
     with_items: '{{ logs_dir.files }}'
     when: logs_dir.matched > 0

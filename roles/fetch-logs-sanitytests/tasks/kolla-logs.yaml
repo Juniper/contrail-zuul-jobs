@@ -12,5 +12,6 @@
     dest: '{{ zuul.executor.log_root }}/kolla-logs'
     mode: 'pull'
     recursive: yes
+  ignore_errors: true
   when: kolla_logdir.stat.isdir is defined and kolla_logdir.stat.isdir
   become: true
