@@ -4,11 +4,6 @@ openstack_version: 'ocata'
 openshift_deployment_type: 'origin'
 openshift_version: '3.9'
 contrail_major_version: '5.0'
-contrail_version: >-
-  {%- if zuul.change is defined -%}
-    {{ zuul.change }}-{{ zuul.patchset }}
-  {%- else -%}
-    {{ contrail_container_tag }}
-  {%- endif -%}
 contrail_docker_registry: 'localhost:5000'
+contrail_version: 'master-276'
 contrail_image_os: ''
