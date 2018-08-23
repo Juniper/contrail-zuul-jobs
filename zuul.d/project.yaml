@@ -35,3 +35,6 @@
               - ^roles/.*
               - ^playbooks/.*
               - ^tests/.*
+    experimental:
+      jobs:
+        - contrail-sanity-rhel7-openshift-3.9
