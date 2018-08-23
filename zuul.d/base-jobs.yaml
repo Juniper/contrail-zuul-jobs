@@ -96,7 +96,7 @@
     vars:
       openstack_version: queens
       cloud_orchestrator: openshift # needed only for yum-repos-prepare, not used in templates
-      test_target: openshift_ci
+      test_target: ci_openshift
     required-projects:
       - name: Juniper/openshift-ansible
         override-checkout: release-3.9-contrail
