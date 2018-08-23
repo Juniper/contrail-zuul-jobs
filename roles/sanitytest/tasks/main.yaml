@@ -22,6 +22,10 @@
     replace: '--privileged --network host'
   when: (contrail_deployer is defined) and contrail_deployer == 'helm'
 
+- name: fail miserably
+  fail:
+    msg: plunk
+
 - name: run the sanity test
   command: |
     '{{ repos_dir }}'/contrail-test/testrunner.sh run \
