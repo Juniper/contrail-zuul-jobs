@@ -12,6 +12,7 @@
     dest: '{{ zuul.executor.log_root }}/contrail-logs'
     mode: 'pull'
     recursive: yes
+  ignore_errors: true
   become: true
   delay: 5
   register: fetch
