@@ -31,4 +31,5 @@
       dest: '{{ zuul.executor.log_root }}/container-logs'
       mode: 'pull'
       recursive: true
+    ignore_errors: 'true'
     become: true
