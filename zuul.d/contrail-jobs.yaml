@@ -261,6 +261,7 @@
     run: playbooks/contrail-vnc-build-containers/run
     required-projects:
       - Juniper/contrail-container-builder
+      - Juniper/contrail-ansible-deployer
     vars:
       setup_docker_registry: True
 
