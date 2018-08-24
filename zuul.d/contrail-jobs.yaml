@@ -192,7 +192,7 @@
       running sanity CI tests.
     run: playbooks/contrail-sanity-openshift-base/run
     vars:
-      openstack_version: ocata
+      openstack_version: queens
       cloud_orchestrator: openshift # needed only for yum-repos-prepare, not used in templates
       test_target: openshift_ci
     required-projects:
