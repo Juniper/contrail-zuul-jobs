@@ -104,6 +104,15 @@
       - ^tests/.*
 
 - job:
+    name: get-centos-node
+    nodeset: builder-centos-7
+    run: playbooks/get-centos-node/run
+    required-projects:
+      - Juniper/contrail-project-config
+      - Juniper/zuul-jobs
+      - Juniper/contrail-zuul-jobs
+
+- job:
     name: zuul-jobs-linters
     parent: tox
     nodeset: ubuntu-xenial-c
