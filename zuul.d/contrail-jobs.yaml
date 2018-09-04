@@ -401,3 +401,47 @@
     required-projects:
       - tungsten-infra/ci-utils
     nodeset: builder-centos-7
+
+- job:
+    name: contrail-build-containers-base
+    parent: contrail-base2
+    description: This jobs starts Jenkins job in Windows CI to create Windows containers.
+    run: playbooks/contrail-windows-containers/run
+    required-projects:
+      - Juniper/contrail-common
+      - Juniper/contrail-test
+      - Juniper/contrail-controller
+      - Juniper/contrail-zuul-jobs
+      - Juniper/contrail-controller
+      - Juniper/contrail-vrouter
+      - Juniper/contrail-third-party
+      - Juniper/contrail-common
+      - Juniper/contrail-api-client
+      - Juniper/contrail-windows
+    nodeset:
+      nodes:
+        - name: ubuntu-xenial
+          label: ubuntu-xenial-small
+    vars:
+      jenkins_winci_credentials:
+        user: pma-testuser
+        password: securepassword
+      jenkins_job: winci-pma-test
+      setup_docker_registry: true
+
+
+- job:
+    name: contrail-build-containers-win
+    description: This jobs starts Jenkins job in Windows CI to create Windows containers.
+    run: playbooks/contrail-windows-containers/run
+    required-projects:
+      - Juniper/contrail-common
+      - Juniper/contrail-test
+      - Juniper/contrail-controller
+      - Juniper/contrail-zuul-jobs
+    nodeset:
+      nodes:
+        - name: ubuntu-xenial
+          label: ubuntu-xenial-small
+    secrets:
+      - jenkins_winci_credentials
