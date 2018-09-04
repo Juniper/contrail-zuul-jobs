@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5d4b2f_79c67319",
+        "filename": "roles/build-windows-containers/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-09-04T13:00:02Z",
+      "side": 1,
+      "message": "zuul users home is available in the environment\n\ndest: \u0027{{ ansible_env.HOME }}/zuulstentacle.py\u0027",
+      "revId": "053046fc20c2b6887ce67cedd02eb6c3927ed68c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_d951df64",
+        "filename": "roles/build-windows-containers/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-09-04T13:00:02Z",
+      "side": 1,
+      "message": "use package module\n\nbecome: true needed I think?",
+      "revId": "053046fc20c2b6887ce67cedd02eb6c3927ed68c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_59cbaf1d",
+        "filename": "roles/build-windows-containers/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-09-04T13:00:02Z",
+      "side": 1,
+      "message": "args:\n  chdir: \u0027{{ ansible_env.HOME }}\u0027\n\nneeded, I think",
+      "revId": "053046fc20c2b6887ce67cedd02eb6c3927ed68c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
