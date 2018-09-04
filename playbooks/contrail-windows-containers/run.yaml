@@ -1,0 +1,5 @@
+---
+- hosts: ubuntu-xenial
+  roles:
+    - repo-sandbox-prepare2
+    - build-windows-containers
