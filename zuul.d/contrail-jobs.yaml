@@ -402,7 +402,7 @@
       - tungsten-infra/ci-utils
     nodeset: builder-centos-7
 
-- job: 
+- job:
     name: dev-env-base
     description: |
       Base job used to work on dev-env.
@@ -429,3 +429,39 @@
     vars:
       setup_docker_registry: True
 
+- job:
+    name: contrail-build-containers-base
+    parent: contrail-vnc-base2
+    description: This jobs starts Jenkins job in Windows CI to create Windows containers.
+    run: playbooks/contrail-windows-containers/run
+    required-projects:
+      - Juniper/contrail-windows
+      - Juniper/contrail-windows-docker-driver
+    nodeset:
+      nodes:
+        - name: ubuntu-xenial
+          label: ubuntu-xenial-small
+    vars:
+      jenkins_winci_credentials:
+        user: pma-testuser
+        password: securepassword
+      jenkins_job: ci-contrail-windows-nighly-zuultest-mc
+      setup_docker_registry: true
+      manifest_file: windows.xml
+
+
+- job:
+    name: contrail-build-containers-win
+    description: This jobs starts Jenkins job in Windows CI to create Windows containers.
+    run: playbooks/contrail-windows-containers/run
+    required-projects:
+      - Juniper/contrail-common
+      - Juniper/contrail-test
+      - Juniper/contrail-controller
+      - Juniper/contrail-zuul-jobs
+    nodeset:
+      nodes:
+        - name: ubuntu-xenial
+          label: ubuntu-xenial-small
+    secrets:
+      - jenkins_winci_credentials
