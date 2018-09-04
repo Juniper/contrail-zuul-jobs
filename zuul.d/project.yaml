@@ -35,4 +35,3 @@
               - ^roles/.*
               - ^playbooks/.*
               - ^tests/.*
-
