@@ -1,0 +1,6 @@
+---
+- hosts: ubuntu-xenial
+  roles:
+    - install-repo-script
+    - repo-sandbox-prepare2
+    - build-windows-containers
