@@ -402,7 +402,7 @@
       - tungsten-infra/ci-utils
     nodeset: builder-centos-7
 
-- job: 
+- job:
     name: dev-env-base
     description: |
       Base job used to work on dev-env.
@@ -428,4 +428,30 @@
     run: playbooks/publish-dev-env/run
     vars:
       setup_docker_registry: True
+
+- job:
+    name: trigger-win-base
+    parent: contrail-vnc-base2
+    description: This is base job for WindowsCI
+    run: playbooks/trigger-windows-ci/run
+    required-projects:
+      - Juniper/contrail-windows
+      - Juniper/contrail-windows-docker-driver
+    nodeset:
+      nodes:
+        - name: ubuntu-xenial
+          label: ubuntu-xenial-small
+    vars:
+      setup_docker_registry: true
+      manifest_file: windows.xml
+    secrets:
+      - jenkins_winci_credentials
+
+
+- job:
+    name: create-windows-containers
+    parent: trigger-win-base
+    description: This jobs starts Jenkins job in Windows CI to create Windows containers.
+    vars:
+      jenkins_job: ci-contrail-windows-nighly-zuultest-mc
 
