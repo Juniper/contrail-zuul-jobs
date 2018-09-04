@@ -36,3 +36,6 @@
               - ^playbooks/.*
               - ^tests/.*
 
+    experimental:
+      jobs:
+         - contrail-build-containers-win

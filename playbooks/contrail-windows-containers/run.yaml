@@ -1,0 +1,5 @@
+---
+- hosts: ubuntu-xenial
+  roles: 
+    - build-windows-containers
+    
