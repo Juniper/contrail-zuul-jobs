@@ -23,7 +23,7 @@
     - python-pygit2
 
 - name: run the change script
-  command: python generate_build_change_info.py {{ zuul.branch }} {{ build_number }}
+  command: python generate_build_change_info.py --branch {{ zuul.branch }} --end-build-number {{ build_number }}
   args:
     chdir: '{{ script_path }}'
 
