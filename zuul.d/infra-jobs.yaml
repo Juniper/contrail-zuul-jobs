@@ -127,3 +127,15 @@
     parent: contrail-src-base
     run: playbooks/build-infra-doc/run
     nodeset: builder-centos-7
+
+- job:
+    name: merge-check
+    description: |
+      This job is checking if build of infra-doc were completed succesfully.
+    required-projects:
+      - Juniper/build-infra-doc
+      - Juniper/contrail-zuul-jobs
+      - Juniper/contrail-project-config
+    parent: contrail-src-base
+    run: playbooks/publish-infra-doc/run
+    nodeset: builder-centos-7
