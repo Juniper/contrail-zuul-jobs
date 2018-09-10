@@ -83,6 +83,12 @@
       openstack_version: queens
 
 - job:
+    name: test-date
+    parent: base
+    run: playbooks/test-date/run.yaml
+    nodeset: c7-systest-c
+
+- job:
     name: contrail-vnc-unittest-base
     parent: contrail-vnc-base2
     irrelevant-files:
