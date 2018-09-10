@@ -1,0 +1,27 @@
+---
+- name: Define path variables
+  set_fact:
+    src_path: "{{ ansible_env.HOME }}/{{ root_files }}"
+    dst_path: "{{ zuul.executor.work_root }}/{{ root_files }}"
+
+- name: Check if the docs source dir is created on worker
+  stat:
+    path: "{{ src_path }}"
+  register: docs_dir
+  become: true
+
+- name: Perform the fetch to executor
+  when: docs_dir.stat.isdir is defined and docs_dir.stat.isdir
+  block:
+    - name: Create the target directory on executor
+      file:
+        path: "{{ dst_path }}"
+        state: directory
+      delegate_to: localhost
+    - name: Fetch docs
+      synchronize:
+        src: "{{ src_path }}"
+        dest: "{{ zuul.executor.work_root }}"
+        mode: pull
+        recursive: yes
+      become: true
