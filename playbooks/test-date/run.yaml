@@ -1,0 +1,15 @@
+---
+
+- hosts: all
+  tasks:
+    - debug:
+        msg: '{{ ansible_date_time }}'
+
+
+- hosts: localhost
+  gather_facts: true
+  tasks:
+    - debug:
+        msg: '{{ ansible_date_time }}'
+
+
