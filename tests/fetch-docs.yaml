@@ -1,0 +1,28 @@
+---
+- name: Test the fetch-docs role
+  hosts: all
+  vars:
+    src_path: 'build/html'
+    dst_path: 'fetch'
+  pre_tasks:
+    - name: Create src_dir
+      file:
+        path: '{{ src_path }}'
+        state: directory
+      delegate_to: builder
+    - name: create a file in the docs directory
+      copy:
+        dest: '{{ src_path }}/test.txt'
+        content: foo
+      delegate_to: builder
+  roles:
+    - role: fetch-docs
+      fetch_src_path: '{{ src_path }}'
+      fetch_dst_path: '{{ dst_path }}'
+  post_tasks:
+    - name: ensure that the file exists
+      stat:
+        path: '{{ dst_path }}/html/test.txt'
+      register: test_file
+      delegate_to: localhost
+      failed_when: not test_file.stat.exists
