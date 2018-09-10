@@ -1,0 +1,16 @@
+---
+- hosts: all
+  roles:
+    - fetch-docs
+
+- hosts: all
+  roles:
+    - role: add-fileserver
+      fileserver: "{{ site_logs }}"
+
+- hosts: "{{ site_logs.fqdn }}"
+  gather_facts: False
+  roles:
+    - role: upload-docs
+      zuul_doc_url: "http://logs.tungsten.io"
+      zuul_docserver_root: "/var/www/static"

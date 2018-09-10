@@ -127,3 +127,11 @@
     parent: contrail-src-base
     run: playbooks/build-infra-doc/run
     nodeset: builder-centos-7
+
+- job:
+    name: publish-infra-doc
+    description: |
+      This job is posting infra-doc html.
+    parent: build-infra-doc
+    post-run: playbooks/publish-infra-doc/post
+    nodeset: builder-centos-7
