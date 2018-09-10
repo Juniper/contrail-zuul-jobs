@@ -1,0 +1,14 @@
+---
+- name: Ensure docs are readable before uploading
+  delegate_to: localhost
+  file:
+    path: "{{ zuul.executor.work_root }}/{{ root_files }}"
+    mode: u=rwX,g=rX,o=rX
+    state: directory
+    recurse: yes
+
+- name: Upload doc to docs server
+  synchronize:
+    src: "{{ zuul.executor.work_root }}/{{ root_files }}"
+    dest: "{{ zuul_docserver_root }}/"
+  no_log: true
