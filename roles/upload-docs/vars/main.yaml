@@ -1,0 +1,3 @@
+---
+zuul_docserver_root: /srv/static/html
+root_files: /html/
