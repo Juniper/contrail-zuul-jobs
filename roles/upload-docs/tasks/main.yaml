@@ -1,0 +1,14 @@
+---
+- name: Check if the docs source dir is created on executor
+  stat:
+    path: "{{ root_files }}"
+  register: docs_dir
+  delegate_to: executor
+
+- name: Upload doc to docs server
+  when: docs_dir.stat.exists == True and docs_dir.stat.readable == True
+  synchronize:
+    src: "{{ root_files }}"
+    dest: "{{ zuul_doc_url }}/{{ zuul_docserver_root }}/"
+    mode: push
+  no_log: false
