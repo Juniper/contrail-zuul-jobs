@@ -1,0 +1,22 @@
+---
+- name: Check if the docs source dir is created on executor
+  stat:
+    path: "{{ zuul.executor.work_root }}/{{ root_files }}"
+  register: docs_dir
+  become: true
+
+- name: Ensure docs are readable before uploading
+  delegate_to: localhost
+  when: docs_dir.stat.isdir is defined and docs_dir.stat.isdir
+  file:
+    path: "{{ zuul.executor.work_root }}/{{ root_files }}"
+    mode: u=rwX,g=rX,o=rX
+    state: directory
+    recurse: yes
+
+- name: Upload doc to docs server
+  when: docs_dir.stat.isdir is defined and docs_dir.stat.isdir
+  synchronize:
+    src: "{{ zuul.executor.work_root }}/{{ root_files }}"
+    dest: "{{ zuul.executor.work_root }}/{{ zuul_docserver_root }}"
+  no_log: false
