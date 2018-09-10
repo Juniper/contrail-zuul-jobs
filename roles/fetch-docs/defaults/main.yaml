@@ -1,0 +1,3 @@
+---
+# srce_path: "{{ zuul.projects | selectattr("short_name", "equalto", "contrail-infra-doc") | map(attribute="src_dir") | list | first }}/build/html"
+dstn_path: "{{ zuul.executor.work_root }}/build/html"
