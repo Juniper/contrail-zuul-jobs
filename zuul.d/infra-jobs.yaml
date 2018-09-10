@@ -133,7 +133,7 @@
     description: |
       This job is checking if build of infra-doc were completed succesfully.
     required-projects:
-      - Juniper/build-infra-doc
+      - Juniper/contrail-infra-doc
       - Juniper/contrail-zuul-jobs
       - Juniper/contrail-project-config
     parent: contrail-src-base
