@@ -1,0 +1,33 @@
+---
+- name: Upload test
+  hosts: builder
+  pre_tasks:
+    - name: set variables
+      set_fact:
+        dst_path: "upload/html"
+
+    - name: create target dir
+      file:
+        state: directory
+        path: "{{ dst_path }}"
+
+- name: Sync executor
+  hosts: builder
+  roles:
+    - role: upload-docs
+      zuul_doc_url: "upload"
+      zuul_docserver_root: "html"
+      docs_dir: "fetch/html/"
+
+  tasks:
+    - name: Ensure that the file exists on temp dir
+      stat:
+        path: "{{ dst_path }}/test.txt"
+      register: test_file
+      failed_when: not test_file.stat.exists
+      delegate_to: builder
+
+    - name: Clean up data
+      file:
+        state: absent
+        path: "{{ dst_path }}"
