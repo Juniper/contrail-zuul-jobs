@@ -24,7 +24,7 @@
 
 - name: Create log directories
   file:
-    path: "{{zuul_docserver_root}}/{{ zuul_doc_path }}"
+    path: "{{ zuul_docserver_root }}/{{ zuul_doc_path }}"
     state: directory
     recurse: yes
     mode: 0775
