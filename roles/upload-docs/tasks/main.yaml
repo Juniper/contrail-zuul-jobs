@@ -1,0 +1,62 @@
+---
+# - name: Publishing fresh infra doc
+#   command: 
+#   args:
+#     chdir: '{{ zuul.project.src_dir }}'/build/html/
+
+# - hosts: localhost
+#   roles:
+#     - role: add-fileserver
+#       fileserver: "{{ site_logs }}"
+#     - emit-ara-html
+
+# - hosts: "{{ site_logs.fqdn }}"
+#   gather_facts: False
+#   roles:
+#     - role: upload-infra-doc
+#       zuul_log_url: "http://doc.opencontrail.org"
+#       zuul_logserver_root: "/var/www/logs"
+
+# - name: Create log directories
+#   file:
+#     path: "{{ zuul_docserver_root }}/{{ zuul_doc_path }}"
+#     state: directory
+#     recurse: yes
+#     mode: 0775
+
+- name: Ensure docs are readable before uploading
+  delegate_to: localhost
+  file:
+    path: "{{ zuul.executor.work_root }}/{{ root_files }}"
+    mode: u=rwX,g=rX,o=rX
+    state: directory
+    recurse: yes
+
+- name: Upload doc to docs server
+  synchronize:
+    src: "{{ zuul.executor.work_root }}/{{ root_files }}"
+    dest: "{{ zuul_docserver_root }}/{{ zuul_doc_path }}/"
+    # rsync_opts:
+    #   - "--exclude=job-output.txt"
+    #   - "--exclude=job-output.json"
+  no_log: true
+
+# After this point there are no more logs
+# - name: gzip console log and json output
+#   delegate_to: localhost
+#   archive:
+#     path: "{{ zuul.executor.work_root }}/*.*"
+
+# - name: Upload console log and json output
+#   synchronize:
+#     src: "{{ zuul.executor.work_root }}/*.*.gz"
+#     dest: "{{ zuul_docserver_root }}/{{ zuul_log_path }}/*.*.gz"
+#     verify_host: true
+
+# - name: Return log URL to Zuul
+#   delegate_to: localhost
+#   zuul_return:
+#     data:
+#       zuul:
+#         log_url: "{{ zuul_log_url }}/{{ zuul_log_path }}/"
+#   when: zuul_log_url is defined
