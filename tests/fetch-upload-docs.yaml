@@ -1,0 +1,65 @@
+---
+- name: Test the fetch-docs role - should work when the docs dir is not created
+  hosts: all
+  roles:
+    - fetch-docs
+  post_tasks:
+    - name: Ensure that the docs dir is not missing
+      stat:
+        path: "{{ ansible_env.HOME }}/build/html"
+      register: dest_dir
+      failed_when: dest_dir.stat.exists is defined and dest_dir.stat.exists
+
+- name: Test the fetch-docs role
+  hosts: all
+  pre_tasks:
+    - name: Create docs dir
+      file:
+        path: "{{ ansible_env.HOME }}/build/html"
+        state: directory
+    - name: Create a file in the docs directory
+      copy:
+        dest: "{{ ansible_env.HOME }}/build/html/test.txt"
+        content: foo
+  roles:
+    - fetch-docs
+  post_tasks:
+    - name: Ensure that the file exists
+      stat:
+        path: "{{ zuul.executor.work_root }}/html/test.txt"
+      register: test_file
+      delegate_to: localhost
+      failed_when: test_file.stat.exists == False
+
+- name: Upload test
+  hosts: all
+  become: true
+  roles:
+    - role: upload-docs
+      zuul_doc_url: "{{ zuul.executor.work_root }}"
+      zuul_docserver_root: "{{ zuul.executor.work_root }}"
+  tasks:
+        - name: set variables
+          set_fact:
+            dest_path: "{{ zuul.executor.work_root }}/srv/static/html"
+            
+        - name: create target dir
+          delegate_to: localhost
+          file:
+            state: directory
+            path: "{{ dest_path }}"
+          roles:
+            - upload-docs   
+
+        - name: synchronize files
+          delegate_to: localhost
+          synchronize:
+            src: "{{ zuul.executor.work_root }}/html/"
+            dest: "{{ zuul.executor.work_root }}"
+
+        - name: Ensure that the file exists on temp dir
+          delegate_to: localhost
+          stat:
+            path: "{{ zuul.executor.work_root }}/srv/static/html/test.txt"
+          register: test_file
+          failed_when: test_file.stat.exists == False
