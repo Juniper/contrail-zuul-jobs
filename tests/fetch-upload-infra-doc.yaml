@@ -1,0 +1,5 @@
+---
+- name: Builder for upload/fetch-infra-doc test.
+  roles:
+    - fetch-docs
+    - upload-docs
