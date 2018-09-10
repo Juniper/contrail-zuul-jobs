@@ -1,0 +1,20 @@
+---
+- name: Upload test
+  hosts: all
+  become: true
+  roles:
+    - role: upload-docs
+      zuul_doc_url: "{{ ansible_env.HOME }}"
+      zuul_docserver_root: "{{ ansible_env.HOME }}"
+  tasks:
+        - name: synchronize files    
+          synchronize:
+            src: "{{ ansible_env.HOME }}/docs/"
+            dest: "{{ ansible_env.HOME }}/docsTest/"
+            mode: pull
+
+        - name: Ensure that the file exists on temp dir
+          stat:
+            path: "{{ ansible_env.HOME }}/docsTest/test.txt"
+          register: test_file
+          failed_when: test_file.stat.isfile is defined and not test_file.stat.isfile
