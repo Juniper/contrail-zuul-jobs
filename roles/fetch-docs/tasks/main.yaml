@@ -1,0 +1,19 @@
+---
+- name: check if the docs source dir is created on worker
+  stat:
+    path: '{{ fetch_src_path }}'
+  register: docs_dir
+- name: perform the fetch to executor
+  when: docs_dir.stat.isdir is defined and docs_dir.stat.isdir
+  block:
+    - name: create the target directory on executor
+      file:
+        path: '{{ fetch_dst_path }}'
+        state: directory
+      delegate_to: localhost
+    - name: fetch docs
+      synchronize:
+        src: '{{ fetch_src_path }}'
+        dest: '{{ fetch_dst_path }}'
+        mode: pull
+        recursive: yes
