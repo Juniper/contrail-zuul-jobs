@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5d4b2f_18807c8b",
+        "filename": "playbooks/publish-infra-doc/post.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-09-11T09:55:51Z",
+      "side": 1,
+      "message": "This should be under the \"roles\" key.",
+      "revId": "8152b3e90e39d28205b0f3042c2e1d79e6491e13",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_d830a40a",
+        "filename": "playbooks/publish-infra-doc/post.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-09-11T09:55:51Z",
+      "side": 1,
+      "message": "Looks like this var is not used anywhere.",
+      "revId": "8152b3e90e39d28205b0f3042c2e1d79e6491e13",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_f87c88b6",
+        "filename": "playbooks/publish-infra-doc/run.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-09-11T09:55:51Z",
+      "side": 1,
+      "message": "This file is not needed?",
+      "revId": "8152b3e90e39d28205b0f3042c2e1d79e6491e13",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_f855a81e",
+        "filename": "roles/upload-docs/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-09-11T09:55:51Z",
+      "side": 1,
+      "message": "Make sure that the html files are really present on the executor. In case of artifacts, we have separate roles to fetch them (worker -\u003e executor) and to upload them to the target machine (executor -\u003e logserver). https://github.com/Juniper/contrail-project-config/blob/master/playbooks/contrail-base2/post.yaml",
+      "revId": "8152b3e90e39d28205b0f3042c2e1d79e6491e13",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_98458c73",
+        "filename": "roles/upload-docs/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-09-11T09:55:51Z",
+      "side": 1,
+      "message": "Looks like a slash is missing (compare with line #30).",
+      "revId": "8152b3e90e39d28205b0f3042c2e1d79e6491e13",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_d84b0485",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-09-11T09:55:51Z",
+      "side": 1,
+      "message": "Still wrong description.",
+      "revId": "8152b3e90e39d28205b0f3042c2e1d79e6491e13",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_b8505034",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-09-11T09:55:51Z",
+      "side": 1,
+      "message": "Wrong filename",
+      "revId": "8152b3e90e39d28205b0f3042c2e1d79e6491e13",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
