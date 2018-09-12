@@ -1,0 +1,8 @@
+- hosts: builder
+  roles:
+    - fetch-docs
+
+- hosts: builder
+  roles:
+    - role: upload-docs
+      zuul_docserver_root: "/var/www/static"
