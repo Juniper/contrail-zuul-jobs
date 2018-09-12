@@ -121,6 +121,14 @@
         ANSIBLE_ROLES_PATH: ~/src/github.com/Juniper/zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-project-config/roles:~/src/review.opencontrail.org/Juniper/contrail-helm-deployer/roles
 
 - job:
+    name: publish-infra-doc-integration
+    parent: build-infra-doc
+    description: |
+      Testing infra-doc upload
+    post-run: tests/publish-infra-doc-integration.yaml
+    nodeset: builder-centos-7
+
+- job:
     name: build-infra-doc
     description: |
       This jobs builds infra-doc using sphinx.
