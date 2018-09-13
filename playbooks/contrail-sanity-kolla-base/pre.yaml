@@ -1,5 +1,5 @@
 ---
 
-- hosts: openstack-control
+- hosts: control-plane
   roles:
     - install-ansible
