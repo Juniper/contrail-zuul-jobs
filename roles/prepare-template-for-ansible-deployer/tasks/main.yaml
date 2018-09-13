@@ -1,40 +1,7 @@
 ---
-- name: openstack | set control IP
-  set_fact:
-    control_ip: "{{ hostvars[groups['openstack-control'][0]].ansible_default_ipv4.address }}"
-  when:
-    - multinode
-    - "'openstack-control' in groups.keys()"
-
-- name: k8s | set control IP
-  set_fact:
-    control_ip: "{{ hostvars[groups['k8s-master'][0]].ansible_default_ipv4.address }}"
-  when:
-    - multinode
-    - "'k8s-master' in groups.keys()"
-
-- name: AIO | set control IP
-  set_fact:
-    control_ip: "{{ ansible_default_ipv4.address }}"
-  when: not multinode
-
-- name: openstack | set compute IP
-  set_fact:
-    compute_ip: "{{ hostvars[groups['openstack-compute'][0]].ansible_default_ipv4.address }}"
-  when:
-    - multinode
-    - "'openstack-compute' in groups.keys()"
-
-- name: k8s | set compute IP
-  set_fact:
-    compute_ip: "{{ hostvars[groups['k8s-node'][0]].ansible_default_ipv4.address }}"
-  when:
-    - multinode
-    - "'k8s-node' in groups.keys()"
-
 - name: Copy template for testrunner
   template:
-    src: "instances{% if multinode %}-multinode{% endif %}.yaml.j2"
+    src: "instances.yaml.j2"
     dest: "{{ ansible_env.HOME }}/contrail_test_input.yaml"
 
 - name: Copy config to contrail-ansible-deployer config dir
