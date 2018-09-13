@@ -1,5 +1,0 @@
----
-
-- hosts: openstack-control
-  roles:
-    - install-ansible
