@@ -7,4 +7,25 @@ contrail_version: >-
     {{ contrail_container_tag }}
   {%- endif -%}
 openstack_version: 'ocata'
-multinode: false
+
+common_control_plane_roles:
+  config_database:
+  config:
+  control:
+  analytics_database:
+  analytics:
+  webui:
+
+control_plane_specific_roles:
+  openstack:
+    openstack:
+  kubernetes:
+    k8s_master:
+    kubemanager:
+
+data_plane_specific_roles:
+  openstack:
+    openstack_compute:
+    vrouter:
+  kubernetes:
+    k8s_node:
