@@ -17,14 +17,18 @@
   register: vhost_interface
   retries: 30
   until: vhost_interface.stdout != ""
-  when: inventory_hostname in groups['openstack-compute']
+  when:
+    - inventory_hostname in groups['control-plane']
+    - cloud_orchestrator == 'openstack'
 
 - name: check interfaces for addresses
   command: 'ip addr'
   become: true
 
 - name: (hack) restart config_api container
-  when: inventory_hostname in groups['openstack-control']
+  when:
+    - inventory_hostname in groups['openstack-control']
+    - cloud_orchestrator == 'openstack'
   block:
   - name: (hack) get config_api container id
     shell: "docker ps | awk '/config_api/ { print $1 }'"
