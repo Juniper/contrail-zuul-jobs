@@ -35,4 +35,8 @@
               - ^roles/.*
               - ^playbooks/.*
               - ^tests/.*
+    experimental:
+      jobs:
+        - contrail-sanity-centos7-kolla-queens
+        - contrail-sanity-centos7-kolla-queens-multinode
 
