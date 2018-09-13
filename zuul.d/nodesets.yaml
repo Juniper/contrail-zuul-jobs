@@ -41,7 +41,53 @@
         label: rhel-7-builder
 
 - nodeset:
-    name: sanity-rhel-7
+    name: rhel-7-sanity-aio
     nodes:
       - name: rhel-aio
         label: rhel-7-sanity
+    groups:
+      - name: control-plane
+        nodes:
+          - rhel-aio
+      - name: data-plane
+        nodes:
+          - rhel-aio
+      - name: deployment
+        nodes:
+          - rhel-aio
+
+- nodeset:
+    name: c7-systest-c-aio
+    nodes:
+      - name: kolla-aio
+        label: c7-systest-c
+    groups:
+      - name: control-plane
+        nodes:
+          - kolla-aio
+      - name: data-plane
+        nodes:
+          - kolla-aio
+      - name: deployment
+        nodes:
+          - kolla-aio
+
+- nodeset:
+    name: c7-systest-c-multinode
+    nodes:
+      - name: deployment-1
+        label: ubuntu-xenial-small
+      - name: openstack-control-1
+        label: c7-systest-c
+      - name: openstack-compute-1
+        label: c7-systest-c
+    groups:
+      - name: deployment
+        nodes:
+          - deployment-1
+      - name: control-plane
+        nodes:
+          - openstack-control-1
+      - name: data-plane
+        nodes:
+          - openstack-compute-1

@@ -7,25 +7,23 @@ provider_config:
     domainsuffix: novalocal
 
 instances:
-  bms1:
+  {%- for host in groups['all'] -%}
+  {% set host_roles = {} -%}
+  {% if host in groups['control-plane'] -%}
+  {% set _dummy = host_roles.update(common_control_plane_roles) -%}
+  {% set control_plane_orchestrator_specific_roles = control_plane_specific_roles['%s' | format(cloud_orchestrator)] -%}
+  {% set _dummy = host_roles.update(control_plane_orchestrator_specific_roles) -%}
+  {% endif -%}
+  {% if host in groups['data-plane'] -%}
+  {% set data_plane_orchestrator_specific_roles = data_plane_specific_roles['%s' | format(cloud_orchestrator)] -%}
+  {% set _dummy = host_roles.update(data_plane_orchestrator_specific_roles) -%}
+  {% endif %}
+  {{ hostvars[host].inventory_hostname }}:
     provider: bms
-    ip: "{{ control_ip }}"
+    ip: '{{ hostvars[host].ansible_default_ipv4.address }}'
     roles:
-      config_database:
-      config:
-      control:
-      analytics_database:
-      analytics:
-      webui:
-      vrouter:
-{%- if cloud_orchestrator == 'kubernetes' %}
-      k8s_master:
-      kubemanager:
-      k8s_node:
-{%- elif cloud_orchestrator == 'openstack' %}
-      openstack:
-      openstack_compute:
-{%- endif %}
+      {{ host_roles | to_nice_yaml | indent(6) -}}
+  {%- endfor -%}
 
 global_configuration:
   CONTAINER_REGISTRY: "{{ contrail_docker_registry }}"
