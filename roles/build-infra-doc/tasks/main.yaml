@@ -2,10 +2,10 @@
 - name: install required packages
   pip:
     requirements: 'requirements.txt'
-    chdir: '{{ zuul.project.src_dir }}'
+    chdir: '{{ source_dir }}'
   become: True
 
 - name: build HTML documentation
   command: make html
   args:
-    chdir: '{{ zuul.project.src_dir }}'
+    chdir: '{{ source_dir }}'

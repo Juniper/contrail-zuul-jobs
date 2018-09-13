@@ -124,6 +124,15 @@
     name: build-infra-doc
     description: |
       This jobs builds infra-doc using sphinx.
+    required-projects:
+      - Juniper/contrail-infra-doc
     parent: contrail-src-base
     run: playbooks/build-infra-doc/run
     nodeset: builder-centos-7
+
+- job:
+    name: publish-infra-doc-integration
+    parent: build-infra-doc
+    description: |
+      This jobs tests the doc upload to a fileserver (fetch-docs and upload-docs roles).
+    post-run: tests/publish-infra-doc-integration.yaml

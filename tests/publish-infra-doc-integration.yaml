@@ -1,0 +1,7 @@
+- hosts: builder
+  roles:
+    - fetch-infra-doc
+
+- hosts: builder
+  roles:
+    - upload-infra-doc

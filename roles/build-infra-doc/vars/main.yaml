@@ -1,0 +1,2 @@
+---
+source_dir: '{{ (zuul._projects.values() | selectattr("short_name", "equalto", "contrail-infra-doc") | first).src_dir }}'
