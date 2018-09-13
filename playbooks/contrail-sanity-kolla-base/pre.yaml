@@ -1,7 +1,6 @@
 ---
 
-
-# do not install when AIO setup since ansible is installed in c-a-d
+# do not install when AIO setup
 - hosts: control-plane:!deployment
   roles:
     - install-ansible

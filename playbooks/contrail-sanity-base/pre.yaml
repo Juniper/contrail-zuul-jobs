@@ -9,12 +9,10 @@
 # * Inserts dns entries about all nodeset nodes in /etc/hosts on all nodeset nodes
 
 # Support for AIO deployments
-# contrail-ansible-deployer installs ansible and docker in different versions
-# or from different repos than in c-z-j
+# contrail-ansible-deployer docker in a different version / from a different repo than in c-z-j
 # TODO: work this out, so installation methods are in sync
 - hosts: deployment:!control-plane:!data-plane
   roles:
-    - install-ansible
     - install-docker-daemon
     - role: add-insecure-registry
       new_registry: "{{ contrail_docker_registry }}"
@@ -22,6 +20,7 @@
 - hosts: deployment
   roles:
     - self-ssh-key
+    - install-ansible
 
 - hosts: all
   tasks:

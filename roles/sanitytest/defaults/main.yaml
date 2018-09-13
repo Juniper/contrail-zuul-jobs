@@ -1,10 +1,6 @@
 ---
 test_target: 'ci_sanity'
 openstack_version: 'ocata'
-contrail_version: >-
-  {%- if zuul.change is defined -%}
-    {{ zuul.change }}-{{ zuul.patchset }}
-  {%- else -%}
-    {{ contrail_container_tag }}
-  {%- endif -%}
+contrail_version: 'master-latest'
+
 contrail_docker_registry: 'localhost:5000'
