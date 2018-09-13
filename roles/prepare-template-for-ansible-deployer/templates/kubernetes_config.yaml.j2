@@ -2,8 +2,8 @@ contrail_configuration:
   CONTRAIL_VERSION: "{{ contrail_version }}"
   OPENSTACK_VERSION: "{{ openstack_version }}"
   CLOUD_ORCHESTRATOR: "{{ cloud_orchestrator }}"
-  CONTROLLER_NODES: "{{ control_ip }}"
-  CONTROL_NODES: "{{ control_ip }}"
+  CONTROLLER_NODES: "{{ hostvars[groups['control-plane'][0]].ansible_default_ipv4.address }}"
+  CONTROL_NODES: "{{ hostvars[groups['control-plane'][0]].ansible_default_ipv4.address }}"
   LOG_LEVEL: SYS_DEBUG
   JVM_EXTRA_OPTS: -Xms1g -Xmx2g
   KUBERNETES_PUBLIC_FIP_POOL:
