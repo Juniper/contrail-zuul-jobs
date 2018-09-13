@@ -108,6 +108,7 @@
     post-run: playbooks/contrail-sanity-base/post
     vars:
       setup_docker_registry: True
+      contrail_docker_registry: 10.84.5.81:5000
 
 - job:
     name: contrail-sanity-kolla-base
