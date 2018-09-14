@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5d4b2f_d0cbcd1b",
+        "filename": "playbooks/contrail-windows-containers/run.yaml",
+        "patchSetId": 47
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-09-14T13:33:38Z",
+      "side": 1,
+      "message": "- zuul-include-vars\n\nas first role",
+      "revId": "99cae98667570122f52602f9750fd31f355ac211",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
