@@ -110,6 +110,14 @@
       setup_docker_registry: True
 
 - job:
+    name: contrail-test
+    parent: contrail-vnc-base2
+    run: playbooks/contrail-test/run
+    vars:
+      setup_docker_registry: True
+    nodeset: builder-centos-7
+
+- job:
     name: contrail-sanity-kolla-base
     parent: contrail-sanity-base
     run: playbooks/contrail-sanity-kolla-base/run

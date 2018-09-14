@@ -1,0 +1,8 @@
+---
+
+- hosts: all
+  roles:
+    - zuul-include-vars
+  post_tasks:
+    - debug:
+        msg: '{{ contrail_docker_registry }}'
