@@ -14,6 +14,8 @@ control_plane_common_roles:
   - control
   - analytics_database
   - analytics
+  - analytics_snmp
+  - analytics_alarm
   - webui
 
 control_plane_specific_roles:
