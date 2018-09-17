@@ -5,4 +5,8 @@
     - self-ssh-key
     - prepare-template-for-ansible-deployer
     - contrail-ansible-deployer
-    - sanitytest
+
+- hosts: all
+  tasks:
+    - fail:
+        msg: 'fail'

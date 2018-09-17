@@ -146,6 +146,7 @@
     vars:
       openstack_version: queens
       kolla_version: queens
+      contrail_docker_registry: 10.84.5.81:5000
     nodeset:
       nodes:
         - name: kolla-aio
