@@ -1,21 +1,22 @@
 ---
-- name: Load variables needed for docker deamon installation based on the OS type
-  include_vars: "{{ item }}"
+
+- name: load variables needed for docker daemon installation based on the OS type
+  include_vars: '{{ item }}'
   with_first_found:
-    - "{{ ansible_distribution | lower }}.yaml"
+    - '{{ ansible_os_family | lower }}.yaml'
     - default.yaml
 
-- name: Install docker daemon
-  package:
-    name: "{{ docker_pkgname }}"
-    state: "{{ docker_version }}"
-  become: true
-  become_user: root
+- include: '{{ ansible_os_family | lower }}.yaml'
 
-- name: Ensure that docker daemon is running
+- name: install docker daemon
+  package:
+    name: 'docker-ce{%if docker_version %}{{ docker_version }}{% endif %}'
+    state: 'present'
+  become: true
+
+- name: ensure that docker daemon is running
   systemd:
     name: docker
     state: started
     enabled: yes
   become: true
-  become_user: root

@@ -1,0 +1,13 @@
+---
+
+- name: add docker apt repo key
+  apt_key:
+    url: 'https://download.docker.com/linux/ubuntu/gpg'
+    state: 'present'
+  become: true
+
+- name: add docker repo
+  apt_repository:
+    repo: 'deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable'
+    state: 'present'
+  become: true
