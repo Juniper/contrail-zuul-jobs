@@ -1,3 +1,4 @@
 ---
-docker_pkgname: docker
-docker_version: latest
+
+docker_pkgname: 'docker'
+docker_version: ''
