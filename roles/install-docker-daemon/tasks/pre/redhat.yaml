@@ -1,0 +1,11 @@
+---
+
+- name: prepare local base yum mirror repo file
+  yum_repository:
+    name: 'docker-ce-stable'
+    description: 'docker-ce-stable'
+    file: 'docker-mirror'
+    baseurl: '{{ repos_baseurl }}/docker-ce-stable/'
+    enabled: yes
+    gpgcheck: no
+  become: yes
