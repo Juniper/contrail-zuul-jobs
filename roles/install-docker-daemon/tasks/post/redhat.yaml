@@ -1,0 +1,8 @@
+---
+
+- name: remove docker-ce-stable yum repo
+  yum_repository:
+    name: 'docker-ce-stable'
+    file: 'docker-mirror'
+    state: 'absent'
+  become: yes
