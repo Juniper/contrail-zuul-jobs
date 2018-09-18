@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5d4b2f_1741540c",
+        "filename": "playbooks/contrail-windows-containers/run.yaml",
+        "patchSetId": 49
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-09-18T07:42:46Z",
+      "side": 1,
+      "message": "I think we should use \u0027all\u0027 instead of \u0027ubuntu-xenial\u0027, unless xenial per se is required.",
+      "range": {
+        "startLine": 2,
+        "startChar": 9,
+        "endLine": 2,
+        "endChar": 22
+      },
+      "revId": "57fe99b4415145bc0eb2631ed8159a7ec25bd0be",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_d74a9c25",
+        "filename": "roles/repo-sandbox-prepare2/tasks/main.yaml",
+        "patchSetId": 49
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-09-18T07:42:46Z",
+      "side": 1,
+      "message": "Could you move variable manifest_file to defaults/main.yaml with value `default.xml`? We won\u0027t need the pipe here then and in the line below.",
+      "range": {
+        "startLine": 14,
+        "startChar": 25,
+        "endLine": 14,
+        "endChar": 66
+      },
+      "revId": "57fe99b4415145bc0eb2631ed8159a7ec25bd0be",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_b747281e",
+        "filename": "roles/repo-sandbox-prepare2/tasks/main.yaml",
+        "patchSetId": 49
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-09-18T07:42:46Z",
+      "side": 1,
+      "message": "Here.",
+      "range": {
+        "startLine": 27,
+        "startChar": 120,
+        "endLine": 27,
+        "endChar": 164
+      },
+      "revId": "57fe99b4415145bc0eb2631ed8159a7ec25bd0be",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_975424cc",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 49
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-09-18T07:42:46Z",
+      "side": 1,
+      "message": "Can we move the job to something like \"trigger-win\" and then create child jobs like \"trigger-win-containers\", so we have more or less generic way of triggering Jenkins jobs on Windows CI, but we can control the jenkins_job in job variables.",
+      "range": {
+        "startLine": 433,
+        "startChar": 0,
+        "endLine": 433,
+        "endChar": 40
+      },
+      "revId": "57fe99b4415145bc0eb2631ed8159a7ec25bd0be",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
