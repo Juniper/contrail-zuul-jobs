@@ -122,6 +122,7 @@
 
 - job:
     name: build-infra-doc
+    voting: False
     description: |
       This jobs builds infra-doc using sphinx.
     parent: contrail-src-base
