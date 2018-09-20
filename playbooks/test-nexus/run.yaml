@@ -1,0 +1,16 @@
+---
+
+- hosts: all
+  pre_tasks:
+    - apt:
+        name: maven
+        state: present
+        update_cache: true
+      become: true
+  roles:
+    - role: configure-maven-nexus-proxy
+      maven_repo_mirror_url: 'http://localhost/'
+
+- hosts: all
+  tasks:
+    - shell: 'mvn -DgroupId=commons-io -DartifactId=commons-io -Dversion=1.4 dependency:get'
