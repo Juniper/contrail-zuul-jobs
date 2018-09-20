@@ -216,6 +216,34 @@
           label: c7-systest-c
 
 - job:
+    name: contrail-deploy-rhel7-openshift-3.9
+    parent: contrail-sanity-base
+    description: |
+      Base job for setting up OpenShift with Contrail as CNI.
+    run: playbooks/contrail-deploy-openshift-base/run
+    vars:
+      openstack_version: queens
+      cloud_orchestrator: openshift # needed only for yum-repos-prepare, not used in templates
+      openshift_version: 3.9
+      openshift_deployment_type: openshift-enterprise
+      contrail_image_os: rhel
+    required-projects:
+      - name: Juniper/openshift-ansible
+        override-checkout: release-3.9-contrail
+    roles:
+      - zuul: Juniper/openshift-ansible
+    nodeset:
+      nodes:
+        - name: openshift-master
+          label: rhel-7-builder
+        - name: openshift-infra
+          label: rhel-7-builder
+        - name: openshift-compute
+          label: rhel-7-builder
+        - name: deployment
+          label: ubuntu-xenial-small
+
+- job:
     name: contrail-sanity-openshift-base
     parent: contrail-sanity-base
     description: |
