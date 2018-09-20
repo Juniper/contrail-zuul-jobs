@@ -1,0 +1,15 @@
+---
+
+- hosts: all
+  pre_tasks:
+    - apt:
+        name: maven
+        state: present
+        update_cache: true
+      become: true
+  roles:
+    - configure-maven-nexus-proxy
+
+- hosts: all
+  tasks:
+    - shell: 'mvn -DgroupId=commons-io -DartifactId=commons-io -Dversion=1.4 dependency:get'

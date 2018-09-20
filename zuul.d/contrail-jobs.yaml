@@ -444,6 +444,11 @@
     secrets:
       - jenkins_winci_credentials
 
+- job:
+    name: test-nexus
+    parent: base-minimal
+    run: playbooks/test-nexus/run
+    nodeset: ubuntu-xenial
 
 - job:
     name: create-windows-containers
