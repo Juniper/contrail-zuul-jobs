@@ -1,5 +1,6 @@
 - include: configure-hosts-entries.yaml
 - include: acquire-ip-address.yaml
 - include: configure-mirrors.yaml
+- include: configure-nexus-maven-proxy.yaml
 - include: base-prepare-workspace.yaml
 - include: fetch-artifacts.yaml
