@@ -1,0 +1,11 @@
+---
+
+- name: create local maven repository directory for user
+  file:
+    path: '{{ ansible_env.HOME }}/.m2'
+    state: 'directory'
+
+- name: configure user to use Nexus maven proxy
+  template:
+    src: 'settings.xml.j2'
+    dest: '{{ ansible_env.HOME }}/.m2/settings.xml'
