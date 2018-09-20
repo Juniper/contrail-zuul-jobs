@@ -472,7 +472,6 @@
     secrets:
       - jenkins_winci_credentials
 
-
 - job:
     name: create-windows-containers
     parent: trigger-win-base
@@ -480,3 +479,10 @@
     vars:
       jenkins_job: ci-contrail-windows-nighly-zuultest-mc
 
+- job:
+    name: pep8
+    description: This jobs runs Python style checks on sources.
+    required-projects:
+      - Juniper/contrail-controller
+    run: playbooks/pep8/run.yaml
+    nodeset: builder-centos-7

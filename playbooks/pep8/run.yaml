@@ -1,0 +1,15 @@
+- hosts: all
+  tasks:
+    - name: install epel
+      package:
+        name: epel-release
+        state: present
+    - name: install pip
+      package:
+        name: python-pip
+        state: present
+    - name: install pycodestyle
+      pip:
+        name: pycodestyle
+    - name: run checks
+      command: pycodestyle {{ ansible_env.HOME }}/src
