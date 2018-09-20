@@ -1,0 +1,33 @@
+---
+
+- name: test configure-maven-nexus-proxy role (positive case)
+  hosts: all
+  pre_tasks:
+    - name: install maven
+      package:
+        name: 'maven'
+        state: 'present'
+      become: true
+  roles:
+    - role: configure-nexus-maven-proxy
+      maven_repo_mirror_url: 'http://{{ nexus.fqdn }}/repository/maven-public/'
+  post_tasks:
+    - name: verify maven uses the expected mirror url
+      shell: 'mvn -X | grep {{ maven_repo_mirror_url }}'
+
+- name: test configure-maven-nexus-proxy role (negative case)
+  hosts: all
+  tasks:
+    - name: handle role output
+      block:
+        - name: 'include configure-maven-nexus-proxy role'
+          include_role:
+            name: 'configure-maven-nexus-proxy'
+      rescue:
+        - name: mark that the role failed
+          set_fact:
+            role_failed: true
+    - name: check if the test failed
+      fail:
+        msg: 'Role: passed, expected: failed'
+      when: not role_failed
