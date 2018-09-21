@@ -1,0 +1,38 @@
+---
+- name: Install deploy-for-k8s script dependencies
+  package:
+    name: '{{ item }}'
+    state: present
+  become: true
+  with_items:
+    - unzip
+    - wget
+
+# Go toolchain is used in deploy-for_k8s.sh script to build Contrail-go binary.
+# It will be removed when Contrail-go Docker image downloaded from local Docker registry is used.
+# TODO: stop using Go toolchain and use pre-build Contrail-go Docker image instead.
+- name: Download Go toolchain to /tmp/
+  get_url:
+    url: https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz
+    dest: /tmp/go.tar.gz
+
+- name: Extract Go toolchain to /usr/
+  unarchive:
+    src: /tmp/go.tar.gz
+    dest: /usr/
+    remote_src: yes
+  become: yes
+  become_user: root
+
+- name: Create directory for Contrail repository within GOPATH
+  file:
+    path: '{{ ansible_env.HOME }}/go/src/github.com/Juniper/contrail'
+    state: directory
+
+- name: Copy Contrail repository inside GOPATH
+  command: 'cp -r {{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail {{ ansible_env.HOME }}/go/src/github.com/Juniper/'
+
+- name: Run deploy-for-k8s script
+  command: '{{ ansible_env.HOME }}/go/src/github.com/Juniper/contrail/tools/deploy-for_k8s.sh'
+  environment:
+    PATH: '{{ ansible_env.PATH }}:/usr/go/bin'
