@@ -1,7 +1,19 @@
 ---
+- name: set test runner image version tag
+  set_fact:
+    testrunner_image_version_tag: "{{ contrail_version }}"
+
+- name: add openstack version tag if defined
+  set_fact:
+    testrunner_image_version_tag: "{{ openstack_version }}-{{ testrunner_image_version_tag }}"
+  when:
+    - openstack_version is defined
+    - contrail_version is defined
+    - contrail_version != 'latest'
+
 - name: set variables
   set_fact:
-    testrunner_image: "{{ contrail_docker_registry }}/contrail-test-test:{{ openstack_version }}-{{ contrail_version }}"
+    testrunner_image: "{{ contrail_docker_registry }}/contrail-test-test:{{ testrunner_image_version_tag }}"
     repos_dir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper"
 
 - name: make sure python docker bindings are installed
