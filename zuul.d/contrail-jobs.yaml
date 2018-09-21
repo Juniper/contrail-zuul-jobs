@@ -188,6 +188,30 @@
     nodeset: c7-systest-c-aio
 
 - job:
+    name: contrail-go-sanity-centos7-k8s
+    parent: contrail-sanity-base
+    run: playbooks/contrail-go-sanity-centos7-k8s/run
+    description: |
+      A job that first deploys Contrail containers and a Kubernetes cluster
+      using contrail-ansible-deployer and later run on the setup
+      CI sanity test suite.
+    required-projects:
+      - Juniper/contrail-ansible-deployer
+      - Juniper/contrail
+      - Juniper/contrail-test
+      - Juniper/contrail-test-ci
+    vars:
+      openstack_version: ocata
+      cloud_orchestrator: kubernetes
+      test_target: ci_k8s_sanity
+      workdir: /go/src/github.com/Juniper/contrail
+      sourcedir: '{{ ansible_env.HOME }}'
+      contrail_version: master-276
+      contrail_docker_registry: opencontrailnightly
+      setup_docker_registry: False
+    nodeset: c7-systest-c-aio
+
+- job:
     name: contrail-deploy-rhel7-openshift-3.9
     parent: contrail-sanity-base
     description: |
