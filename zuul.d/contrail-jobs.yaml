@@ -155,6 +155,8 @@
     vars:
       openstack_version: queens
       kolla_version: queens
+      contrail_version: master-294
+      contrail_docker_registry: 10.84.5.81:5000
     nodeset: c7-systest-c-multinode
 
 - job:
