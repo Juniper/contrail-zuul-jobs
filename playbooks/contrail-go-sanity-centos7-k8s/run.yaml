@@ -1,0 +1,9 @@
+---
+- hosts: all
+  roles:
+    - acquire-ip-address
+    - self-ssh-key
+    - prepare-template-for-ansible-deployer
+    - contrail-ansible-deployer
+    - contrail-go
+    - sanitytest
