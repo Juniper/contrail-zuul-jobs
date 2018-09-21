@@ -1,0 +1,12 @@
+---
+- name: install deploy-for-k8s script dependencies
+  package:
+    name: '{{ item }}'
+    state: present
+  become: true
+  with_items:
+    - unzip
+    - wget
+
+- name: run script
+  command: "{{ sourcedir }}/src/review.opencontrail.org/Juniper/contrail/tools/deploy-for_k8s.sh"
