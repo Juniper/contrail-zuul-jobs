@@ -1,0 +1,37 @@
+---
+- name: install deploy-for-k8s script dependencies
+  package:
+    name: '{{ item }}'
+    state: present
+  become: true
+  with_items:
+    - unzip
+    - wget
+
+- name: Download golang package
+  get_url:
+    url: "https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz"
+    dest: "/usr/go.tar.gz"
+
+- name: Extract the Go toolchain
+  unarchive:
+    src: "/usr/go.tar.gz"
+    dest: "/usr"
+    copy: no
+
+- name: Add Go to path
+  command: "export PATH=$PATH:/usr/go/bin"
+
+- name: Create directory for contrail repo
+  file:
+    path: "{{ sourcedir }}/go/src/github.com"
+    state: directory
+
+- name: Move contrail repo under GOPATH
+  copy:
+    src: "{{ sourcedir }}/src/review.opencontrail.org/Juniper"
+    dest: "{{ sourcedir }}/go/src/github.com/"
+    remote_src: yes
+
+- name: run script
+  command: "{{ sourcedir }}/go/src/github.com/Juniper/contrail/tools/deploy-for_k8s.sh"
