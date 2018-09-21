@@ -1,0 +1,53 @@
+---
+- name: Install deploy-for-k8s script dependencies
+  package:
+    name: '{{ item }}'
+    state: present
+  become: true
+  with_items:
+    - unzip
+    - wget
+
+- name: Download Go toolchain to /tmp/
+  get_url:
+    url: "https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz"
+    dest: "/tmp/go.tar.gz"
+
+- name: Extract Go toolchain to /usr/
+  unarchive:
+    src: "/tmp/go.tar.gz"
+    dest: "/usr/"
+    remote_src: yes
+  become: yes
+  become_user: root
+
+- name: Run ls -al /usr/go # TODO: remove
+  command: ls -al /usr/go
+  register: debug_ls_output
+
+- name: Run ls -al /usr/go/bin # TODO: remove
+  command: ls -al /usr/go/bin
+  register: debug_ls2_output
+
+- name: Display PATH # TODO: remove
+  command: echo $PATH
+  register: debug_path_output
+
+- debug: var=debug_ls_output.stdout_lines  # TODO: remove
+- debug: var=debug_ls2_output.stdout_lines  # TODO: remove
+- debug: var=debug_path_output.stdout_lines  # TODO: remove
+
+- name: Add /usr/go/bin to PATH
+  command: export PATH="$PATH:/usr/go/bin"
+  register: debug_path2_output
+
+- debug: var=debug_path2_output.stdout_lines  # TODO: remove
+
+- name: Move Contrail repository under GOPATH
+  copy:
+    src: "{{ sourcedir }}/src/review.opencontrail.org/Juniper"
+    dest: "{{ sourcedir }}/go/src/github.com/"
+    remote_src: yes
+
+- name: Run deploy-for-k8s script
+  command: "{{ sourcedir }}/go/src/github.com/Juniper/contrail/tools/deploy-for_k8s.sh"
