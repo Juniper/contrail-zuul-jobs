@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5d4b2f_ec1c9fc2",
+        "filename": "roles/prepare-template-for-ansible-deployer/templates/instances.yaml.j2",
+        "patchSetId": 12
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-09-24T09:20:05Z",
+      "side": 1,
+      "message": "Please refactor to remove _dummy vars.",
+      "revId": "c0e48930d47fc0b59255c6f7589395dfaba55186",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
