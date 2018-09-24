@@ -22,6 +22,7 @@
   - name: Dump container logs
     shell: 'docker logs {{ item }} 1> {{ container_log_dir }}/{{ item }}.log 2>&1'
     become: true
+    ignore_errors: true
     with_items: '{{ container_list.stdout_lines }}'
 
   - name: Fetch container logs
