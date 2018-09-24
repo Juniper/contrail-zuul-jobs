@@ -1,0 +1,41 @@
+---
+
+- name: check if dockerd conf file exists
+  stat:
+    path: '{{ daemon_json_path }}'
+  register: daemon_json_file
+  become: True
+
+- name: read dockerd conf file
+  slurp:
+    src: '{{ daemon_json_path }}'
+  register: daemon_json
+  when: daemon_json_file.stat.exists
+  no_log: True
+  become: True
+
+- name: add docker proxy statement
+  set_fact:
+    docker_proxy_config: "{ 'registry-mirrors': ['https://{{ nexus.fqdn }}:{{ nexus.registry.proxy_port }}'] }"
+
+- name: assemble dockerd config
+  set_fact:
+    dockerd_config: '{{ daemon_json.content|b64decode|from_json | default() | combine( docker_proxy_config ) }}'
+
+- name: print new dockerd configuration
+  debug:
+    var: dockerd_config
+
+- name: write new dockerd configuration to a file
+  copy:
+    content: '{{ dockerd_config | to_nice_json }}'
+    dest: '{{ daemon_json_path }}'
+  become: True
+
+- name: restart docker daemon
+  service:
+    enabled: yes
+    name: docker
+    state: restarted
+    daemon_reload: yes
+  become: True
