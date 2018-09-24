@@ -240,9 +240,12 @@
           label: rhel-7-builder
         - name: openshift-compute
           label: rhel-7-builder
-        - name: deployment
+        - name: deployment-1
           label: ubuntu-xenial-small
-
+      groups:
+        - name: deployment
+          nodes:
+            - deployment-1
 - job:
     name: contrail-sanity-openshift-base
     parent: contrail-sanity-base
@@ -280,9 +283,12 @@
           label: rhel-7-builder
         - name: openshift-compute
           label: rhel-7-builder
-        - name: deployment
+        - name: deployment-1
           label: ubuntu-xenial-small
-
+      groups:
+        - name: deployment
+          nodes:
+            - deployment-1
 - job:
     name: contrail-helm-base
     parent: contrail-sanity-base
