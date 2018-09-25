@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5d4b2f_d295f1e5",
+        "filename": "roles/build-windows-containers/files/zuulstentacle.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 362
+      },
+      "writtenOn": "2018-09-25T10:09:16Z",
+      "side": 1,
+      "message": "I think help text is wrong?",
+      "revId": "3998e0265b0c8607e8d6e4f3f65e797786cbd45f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
