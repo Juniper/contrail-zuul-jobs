@@ -475,8 +475,6 @@
     vars:
       setup_docker_registry: true
       manifest_file: windows.xml
-    secrets:
-      - jenkins_winci_credentials
 
 
 - job:
@@ -485,4 +483,7 @@
     description: This jobs starts Jenkins job in Windows CI to create Windows containers.
     vars:
       jenkins_job: ci-contrail-windows-nighly-zuultest-mc
+      jenkins_winci_credentials:
+        user: pma-testuser
+        password: securepassword
 
