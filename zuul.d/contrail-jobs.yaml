@@ -112,6 +112,7 @@
 - job:
     name: contrail-sanity-kolla-base
     parent: contrail-sanity-base
+    pre-run: playbooks/contrail-sanity-kolla-base/pre
     run: playbooks/contrail-sanity-kolla-base/run
     required-projects:
       - Juniper/contrail-ansible-deployer
@@ -132,10 +133,7 @@
     vars:
       openstack_version: ocata
       kolla_version: ocata
-    nodeset:
-      nodes:
-        - name: kolla-aio
-          label: c7-systest-c
+    nodeset: c7-systest-c-aio
 
 - job:
     name: contrail-sanity-centos7-kolla-queens
@@ -146,10 +144,18 @@
     vars:
       openstack_version: queens
       kolla_version: queens
-    nodeset:
-      nodes:
-        - name: kolla-aio
-          label: c7-systest-c
+    nodeset: c7-systest-c-aio
+
+- job:
+    name: contrail-sanity-centos7-kolla-queens-multinode
+    parent: contrail-sanity-kolla-base
+    required-projects:
+      - name: Juniper/contrail-kolla-ansible
+        override-checkout: contrail/queens
+    vars:
+      openstack_version: queens
+      kolla_version: queens
+    nodeset: c7-systest-c-multinode
 
 - job:
     name: contrail-sanity-rhel7-kolla-queens
@@ -161,38 +167,7 @@
     vars:
       openstack_version: queens
       kolla_version: queens
-    nodeset: sanity-rhel-7
-
-- job:
-    name: contrail-sanity-centos7-kolla-queens-multinode
-    parent: contrail-sanity-kolla-base
-    required-projects:
-      - name: Juniper/contrail-kolla-ansible
-        override-checkout: contrail/queens
-    pre-run: playbooks/contrail-sanity-centos7-kolla-queens-multinode/pre
-    run: playbooks/contrail-sanity-centos7-kolla-queens-multinode/run
-    vars:
-      openstack_version: queens
-      kolla_version: queens
-      multinode: true
-    nodeset:
-      nodes:
-        - name: deployment-1
-          label: ubuntu-xenial-small
-        - name: openstack-control-1
-          label: c7-systest-c
-        - name: openstack-compute-1
-          label: c7-systest-c
-      groups:
-        - name: deployment
-          nodes:
-            - deployment-1
-        - name: openstack-control
-          nodes:
-            - openstack-control-1
-        - name: openstack-compute
-          nodes:
-            - openstack-compute-1
+    nodeset: rhel-7-sanity-aio
 
 - job:
     name: contrail-sanity-centos7-k8s
@@ -210,10 +185,7 @@
       openstack_version: ocata
       cloud_orchestrator: kubernetes
       test_target: ci_k8s_sanity
-    nodeset:
-      nodes:
-        - name: kolla-aio
-          label: c7-systest-c
+    nodeset: c7-systest-c-aio
 
 - job:
     name: contrail-deploy-rhel7-openshift-3.9
