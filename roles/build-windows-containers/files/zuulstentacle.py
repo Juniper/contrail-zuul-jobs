@@ -27,7 +27,6 @@ class ZuulJenkinsConnector:
         self.docker_build_number = docker_build_number
 
     def handle_zuul_job(self):
-        self.set_repositories_root_dir_as_current_dir()
         self.repository_provider.start_server_with_repositories()
         self.repositories_archive_name =\
             self.repository_provider.prepare_archive_with_repositories()
@@ -35,9 +34,6 @@ class ZuulJenkinsConnector:
         job_was_successful = self.start_jenkins_job_and_wait_for_result()
         self.repository_provider.shutdown_server_with_repositories()
         return job_was_successful
-
-    def set_repositories_root_dir_as_current_dir(self):
-        os.chdir(self.directory)
 
     def setup_repositories_archive_url(self):
         self.repositories_archive_url = (
@@ -64,7 +60,7 @@ class ZuulJenkinsConnector:
         return job_was_successful
 
 class RepositoryProvider:
-    def __init__(self, archive_base_name, http_server_ip, http_server_port,floating_ip,directory):
+    def __init__(self, archive_base_name, http_server_ip, http_server_port,floating_ip,directory,home_dir):
         self.archive_base_name = archive_base_name
         self.http_server_ip = http_server_ip
         self.http_server_port = 32234
@@ -73,6 +69,7 @@ class RepositoryProvider:
         self.http_server = None
         self.http_server_thread = None
         self.directory = directory
+        self.home_dir = home_dir
 
     def start_server_with_repositories(self):
         server_address = (self.http_server_ip, self.http_server_port)
@@ -97,7 +94,9 @@ class RepositoryProvider:
                 self.archive_format))
         return shutil.make_archive(
             self.archive_base_name,
-            self.archive_format)
+            self.archive_format,
+            ,
+            self.directory)
 
     def get_provider_url(self):
         address = self.http_server.server_address
@@ -198,6 +197,11 @@ class ConfigurationManager:
             dest="docker_build_number",
             default=0,
             help="Build number")
+        self.argument_parser.add_argument(
+            "--home_dir",
+            dest="home_dir",
+            default=0,
+            help="Home directory")
 
 def CreateZuulJenkinsConnector(configuration):
     repository_provider = RepositoryProvider(
@@ -205,7 +209,8 @@ def CreateZuulJenkinsConnector(configuration):
         configuration.http_server_ip,
         configuration.http_server_port,
         configuration.floating_ip,
-        configuration.directory)
+        configuration.directory,
+        configuration.home_dir)
     jenkins_manager = JenkinsManager(
         configuration.jenkins_address,
         configuration.jenkins_user,
