@@ -42,7 +42,7 @@ class ZuulJenkinsConnector:
     def setup_repositories_archive_url(self):
         self.repositories_archive_url = (
             self.repository_provider.get_provider_url()
-            + "/"
+            + ""
             + self.repositories_archive_name)
 
     def start_jenkins_job_and_wait_for_result(self):

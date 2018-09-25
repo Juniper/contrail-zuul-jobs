@@ -31,6 +31,6 @@
     --http_server_ip {{ ansible_default_ipv4.address }}
     --floating {{ ansible_host }}
     --docker_registry {{ contrail_docker_registry }}
-    --directory {{ packaging.target_dir }}
+    --directory  {{ packaging.target_dir }}
     --docker_build_number {{ build_number }}
-
+    --home_dir {{ ansible_env.HOME }}
