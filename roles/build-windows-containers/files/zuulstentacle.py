@@ -27,7 +27,6 @@ class ZuulJenkinsConnector:
         self.docker_build_number = docker_build_number
 
     def handle_zuul_job(self):
-        self.set_repositories_root_dir_as_current_dir()
         self.repository_provider.start_server_with_repositories()
         self.repositories_archive_name =\
             self.repository_provider.prepare_archive_with_repositories()
@@ -36,8 +35,6 @@ class ZuulJenkinsConnector:
         self.repository_provider.shutdown_server_with_repositories()
         return job_was_successful
 
-    def set_repositories_root_dir_as_current_dir(self):
-        os.chdir(self.directory)
 
     def setup_repositories_archive_url(self):
         self.repositories_archive_url = (
@@ -95,9 +92,8 @@ class RepositoryProvider:
         if not self.archive_format in available_archive_format_names:
             raise Exception("Archive format {} is not supported.".format(
                 self.archive_format))
-        return shutil.make_archive(
-            self.archive_base_name,
-            self.archive_format)
+        shutil.make_archive(self.archive_base_name, self.archive_format, self.directory)
+        return "{}.{}".format(self.archive_base_name, self.archive_format)
 
     def get_provider_url(self):
         address = self.http_server.server_address

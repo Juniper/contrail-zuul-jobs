@@ -478,11 +478,9 @@
     secrets:
       - jenkins_winci_credentials
 
-
 - job:
     name: create-windows-containers
     parent: trigger-win-base
     description: This jobs starts Jenkins job in Windows CI to create Windows containers.
     vars:
       jenkins_job: ci-contrail-windows-nighly-zuultest-mc
-
