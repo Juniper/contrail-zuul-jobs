@@ -95,9 +95,12 @@ class RepositoryProvider:
         if not self.archive_format in available_archive_format_names:
             raise Exception("Archive format {} is not supported.".format(
                 self.archive_format))
-        return shutil.make_archive(
-            self.archive_base_name,
-            self.archive_format)
+        print("Base name {}" .format(self.archive_base_name))
+        print("Archive format {}" .format(self.archive_format))
+        print("Directory {}".format(self.directory))
+        shutil.make_archive(self.archive_base_name, self.archive_format, self.directory)
+        print("After make archive")
+        return "{}.{}".format(self.archive_base_name, self.archive_format)
 
     def get_provider_url(self):
         address = self.http_server.server_address
