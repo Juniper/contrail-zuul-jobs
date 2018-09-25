@@ -42,7 +42,7 @@ class ZuulJenkinsConnector:
     def setup_repositories_archive_url(self):
         self.repositories_archive_url = (
             self.repository_provider.get_provider_url()
-            + "/"
+            + ""
             + self.repositories_archive_name)
 
     def start_jenkins_job_and_wait_for_result(self):
@@ -95,9 +95,8 @@ class RepositoryProvider:
         if not self.archive_format in available_archive_format_names:
             raise Exception("Archive format {} is not supported.".format(
                 self.archive_format))
-        return shutil.make_archive(
-            self.archive_base_name,
-            self.archive_format)
+        shutil.make_archive(self.archive_base_name, self.archive_format, self.directory)
+        return self.archive_base_name + "." + self.archive_format
 
     def get_provider_url(self):
         address = self.http_server.server_address
