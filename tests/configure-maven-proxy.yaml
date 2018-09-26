@@ -1,0 +1,37 @@
+---
+
+- name: test configure-maven-proxy role (positive case)
+  hosts: all
+  pre_tasks:
+    - name: install maven
+      package:
+        name: 'maven'
+        state: 'present'
+      become: true
+  roles:
+    - role: configure-maven-proxy
+      maven_repo_mirror_url: 'http://fakedomain:1337/repository/maven-public/'
+  post_tasks:
+    - name: verify maven uses the expected mirror url
+      shell: 'mvn help:effective-pom | grep Downloading | grep "http://fakedomain:1337/repository/maven-public/"'
+    - name: cleanup configuration
+      file:
+        path: '{{ ansible_env.HOME }}/.m2'
+        state: absent
+
+- name: test configure-maven-proxy role (negative case)
+  hosts: all
+  tasks:
+    - name: handle role output
+      block:
+        - name: 'include configure-maven-proxy role'
+          include_role:
+            name: 'configure-maven-proxy'
+      rescue:
+        - name: mark that the role failed
+          set_fact:
+            role_failed: true
+    - name: check if the test failed
+      fail:
+        msg: 'Role: passed, expected: failed'
+      when: not role_failed
