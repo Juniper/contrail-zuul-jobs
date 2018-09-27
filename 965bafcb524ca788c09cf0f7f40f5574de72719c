@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5d4b2f_47493389",
+        "filename": "roles/build-windows-containers/tasks/main.yaml",
+        "patchSetId": 21
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-09-27T13:10:41Z",
+      "side": 1,
+      "message": "add no_log: true, because the password is used",
+      "revId": "965bafcb524ca788c09cf0f7f40f5574de72719c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
