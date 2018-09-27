@@ -19,6 +19,7 @@
 
 # TODO: fetch actual Jenkins credentials from Ansible Vault
 - name: Reach Jenkins by Zuul's Tentacle
+  no_log: true
   args:
     chdir: '{{ ansible_env.HOME }}'
   command: >
@@ -31,6 +32,5 @@
     --http_server_ip {{ ansible_default_ipv4.address }}
     --floating {{ ansible_host }}
     --docker_registry {{ contrail_docker_registry }}
-    --directory {{ packaging.target_dir }}
+    --directory  "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
     --docker_build_number {{ build_number }}
-
