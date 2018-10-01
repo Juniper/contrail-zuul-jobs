@@ -1,0 +1,43 @@
+- name: "Install docker-py"
+  yum:
+    name: python-docker-py
+    state: present
+  become: yes
+  become_user: root
+
+- name: Disable selinux for the build
+  selinux:
+    state: disabled
+  become: yes
+  become_user: root
+
+- name: Pretend we're using github
+  command: mv {{ sourcedir }}/src/review.opencontrail.org {{ sourcedir }}/src/github.com
+
+- name: "Start runner docker container in background"
+  docker_container:
+    name: "{{ docker.0.name|default('runner') }}"
+    image: "{{ docker.0.image }}"
+    state: started
+    env: "{{ docker.0.environment|default(omit) }}"
+    network_mode: host
+    command: sleep infinity
+    volumes:
+      - "{{ sourcedir }}:/go"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+  become: yes
+  become_user: root
+
+- name: "Run required additional docker containers in background"
+  docker_container:
+    name: "{{ item.name|default(item.image.split('/')[-1].split(':')[0]) }}"
+    image: "{{ item.image }}"
+    state: started
+    env: "{{ item.environment|default(omit) }}"
+    command: "{{ item.command|default(omit) }}"
+    network_mode: host
+    volumes:
+      - "{{ sourcedir }}:/go"
+  with_items: "{{ docker[1:] }}"
+  become: yes
+  become_user: root
