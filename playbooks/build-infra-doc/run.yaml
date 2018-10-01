@@ -2,3 +2,8 @@
 - hosts: all
   roles:
     - role: build-infra-doc
+  vars:
+    what: ever
+  pre_tasks:
+    - name: 'what'
+      shell: 'echo '
