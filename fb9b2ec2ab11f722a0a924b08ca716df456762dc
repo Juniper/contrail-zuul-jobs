@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5d4b2f_942f50a0",
+        "filename": "roles/fetch-docs/tasks/main.yaml",
+        "patchSetId": 124
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-01T13:58:45Z",
+      "side": 1,
+      "message": "remove if not needed",
+      "revId": "fb9b2ec2ab11f722a0a924b08ca716df456762dc",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_541b1880",
+        "filename": "roles/upload-docs/tasks/main.yaml",
+        "patchSetId": 124
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-01T13:58:45Z",
+      "side": 1,
+      "message": "are the \u0027\u003d\u003d True\u0027 needed here?",
+      "revId": "fb9b2ec2ab11f722a0a924b08ca716df456762dc",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_b76ff690",
+        "filename": "roles/upload-docs/tasks/main.yaml",
+        "patchSetId": 124
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-01T13:58:45Z",
+      "side": 1,
+      "message": "Dont think you need zuul_doc_url here. The zuul_docserver_root should suffice to specific a target path.",
+      "revId": "fb9b2ec2ab11f722a0a924b08ca716df456762dc",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_57779aa1",
+        "filename": "roles/upload-docs/vars/main.yaml",
+        "patchSetId": 124
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-01T13:58:45Z",
+      "side": 1,
+      "message": "1. A better name for this would be \u0027docs_dir\u0027\n2. It should have the same default value as dstn_path in fetch-docs role\n3. In any case see this: http://qdosmsq.dunbar-it.co.uk/blog/2013/02/rsync-to-slash-or-not-to-slash/. Depending on whether you have a trailing slash for the \u0027src\u0027 in synchronize, it depends differently. You should remember and consider it.",
+      "revId": "fb9b2ec2ab11f722a0a924b08ca716df456762dc",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_77317eec",
+        "filename": "tests/fetch-docs.yaml",
+        "patchSetId": 124
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-01T13:58:45Z",
+      "side": 1,
+      "message": "You\u0027re using both \u0027src_path\u0027 and \u0027srce_path\u0027 which kinda touches a nerve across this review. Can we have consistent naming?\n\nSame goes for dst_path and dstn_path.",
+      "revId": "fb9b2ec2ab11f722a0a924b08ca716df456762dc",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_3751c60f",
+        "filename": "tests/fetch-docs.yaml",
+        "patchSetId": 124
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-01T13:58:45Z",
+      "side": 1,
+      "message": "Unneeded I think?",
+      "revId": "fb9b2ec2ab11f722a0a924b08ca716df456762dc",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_17580230",
+        "filename": "tests/fetch-docs.yaml",
+        "patchSetId": 124
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-01T13:58:45Z",
+      "side": 1,
+      "message": "Ditto.",
+      "revId": "fb9b2ec2ab11f722a0a924b08ca716df456762dc",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_f70c4e3c",
+        "filename": "tests/fetch-docs.yaml",
+        "patchSetId": 124
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-01T13:58:45Z",
+      "side": 1,
+      "message": "not test_file.stat.exists - I think this would work and is more human readable",
+      "revId": "fb9b2ec2ab11f722a0a924b08ca716df456762dc",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_d76a6ab1",
+        "filename": "tests/upload-docs.yaml",
+        "patchSetId": 124
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-01T13:58:45Z",
+      "side": 1,
+      "message": "in fetch-docs.yaml you\u0027re just using a variable, can you set a variable here instead of a fact?",
+      "revId": "fb9b2ec2ab11f722a0a924b08ca716df456762dc",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_5729da87",
+        "filename": "tests/upload-docs.yaml",
+        "patchSetId": 124
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-01T13:58:45Z",
+      "side": 1,
+      "message": "not test_file.stat.exists",
+      "revId": "fb9b2ec2ab11f722a0a924b08ca716df456762dc",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_372c2698",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 124
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-01T13:58:45Z",
+      "side": 1,
+      "message": "remove if not needed.",
+      "revId": "fb9b2ec2ab11f722a0a924b08ca716df456762dc",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
