@@ -1,0 +1,9 @@
+---
+
+# play options not in alphabetical order
+- hosts: all
+  vars:
+    somevar: value
+  become: true
+  roles:
+    - thisrole

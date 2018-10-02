@@ -1,0 +1,18 @@
+---
+
+- hosts: all
+  become: true
+  vars:
+    ansible_connection: local
+  pre_tasks:
+    - name: 'some task'
+      command: 'echo something'
+  roles:
+    - somerole
+  tasks:
+    - name: 'some other task'
+      command: 'echo something other'
+  post_tasks:
+    - name: 'something else'
+      command: 'echo something else'
+
