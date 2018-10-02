@@ -49,6 +49,7 @@
 - job:
     name: contrail-vnc-build-package-centos74
     parent: contrail-vnc-build-package-el-base
+    pre-run: playbooks/maven/pre
     irrelevant-files:
       - specs/.*
     nodeset:
