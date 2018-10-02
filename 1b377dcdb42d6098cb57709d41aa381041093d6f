@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5d4b2f_63d41c21",
+        "filename": "playbooks/test-publish-infra-doc/post.yaml",
+        "patchSetId": 130
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-02T12:36:53Z",
+      "side": 1,
+      "message": "I think this var should end with a \u0027/\u0027. I think with the current values you\u0027ll end up with a {{ zuul.executor.work_root }}/build/html/html directory on the executor",
+      "revId": "1b377dcdb42d6098cb57709d41aa381041093d6f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_e3224c52",
+        "filename": "playbooks/test-publish-infra-doc/post.yaml",
+        "patchSetId": 130
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-02T12:36:53Z",
+      "side": 1,
+      "message": "We don\u0027t have an actual condition check here, I\u0027m thinking we should, e.g. whether var/www/static/infra-doc/index.html exists. Talk this over with Jarek maybe?",
+      "revId": "1b377dcdb42d6098cb57709d41aa381041093d6f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_c3f4e8d1",
+        "filename": "tests/upload-docs.yaml",
+        "patchSetId": 130
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-02T12:36:53Z",
+      "side": 1,
+      "message": "can this be a variable rather than a fact?",
+      "revId": "1b377dcdb42d6098cb57709d41aa381041093d6f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_83fef0ab",
+        "filename": "tests/upload-docs.yaml",
+        "patchSetId": 130
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-02T12:36:53Z",
+      "side": 1,
+      "message": "dont think you need a second play since both are targeted towards `builder` node.\n\nyou can remove the 14 and 15 lines and it will still be a valid play and should pass.",
+      "revId": "1b377dcdb42d6098cb57709d41aa381041093d6f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_a30334b8",
+        "filename": "tests/upload-docs.yaml",
+        "patchSetId": 130
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-02T12:36:53Z",
+      "side": 1,
+      "message": "zuul_docserver_root: \u0027{{ dst_path }}\u0027",
+      "revId": "1b377dcdb42d6098cb57709d41aa381041093d6f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_23298437",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 130
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-02T12:36:53Z",
+      "side": 1,
+      "message": "This description is incorrect.",
+      "revId": "1b377dcdb42d6098cb57709d41aa381041093d6f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_433238a9",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 130
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-02T12:36:53Z",
+      "side": 1,
+      "message": "Remove this line",
+      "revId": "1b377dcdb42d6098cb57709d41aa381041093d6f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
