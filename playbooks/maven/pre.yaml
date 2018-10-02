@@ -1,0 +1,6 @@
+---
+
+- hosts: all
+  roles:
+    - role: configure-maven-proxy
+      maven_repo_mirror_url: 'http://{{ nexus.fqdn }}/repository/vmware-releases/'
