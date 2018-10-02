@@ -22,6 +22,30 @@
       "revId": "352bae368af3a58c13ef3c4f9380d6ffbc746880",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_48bc97ba",
+        "filename": "roles/contrail-go/tasks/main.yaml",
+        "patchSetId": 34
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 558
+      },
+      "writtenOn": "2018-10-02T08:48:52Z",
+      "side": 1,
+      "message": "Thanks",
+      "parentUuid": "ff5d4b2f_8246ee4e",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 44
+      },
+      "revId": "352bae368af3a58c13ef3c4f9380d6ffbc746880",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
     }
   ]
 }
