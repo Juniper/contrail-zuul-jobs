@@ -5,4 +5,4 @@
     - install-docker-daemon
     - zuul-include-vars
     - role: add-insecure-registry
-      new_registry: "{{ contrail_docker_registry }}"
+      new_registry: "{{ contrail_docker_registry|default(omit) }}"
