@@ -1,7 +1,6 @@
 ---
 - name: Make sure that a registry is configured as insecure source in docker
   become: true
-  when: new_registry is defined
   block:
     - name: set path to docker config file
       set_fact:
