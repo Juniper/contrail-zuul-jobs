@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5d4b2f_0e66a452",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 48
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 482
+      },
+      "writtenOn": "2018-10-03T14:36:17Z",
+      "side": 1,
+      "message": "I\u0027m not sure if this is required",
+      "range": {
+        "startLine": 203,
+        "startChar": 6,
+        "endLine": 203,
+        "endChar": 30
+      },
+      "revId": "a46e16571261f08dc8f265d61c5735844ee7d467",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_ee5c707f",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 48
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 482
+      },
+      "writtenOn": "2018-10-03T14:36:17Z",
+      "side": 1,
+      "message": "We should use our own test_target. Maybe ci_contrail_go_k8s",
+      "range": {
+        "startLine": 205,
+        "startChar": 19,
+        "endLine": 205,
+        "endChar": 32
+      },
+      "revId": "a46e16571261f08dc8f265d61c5735844ee7d467",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
