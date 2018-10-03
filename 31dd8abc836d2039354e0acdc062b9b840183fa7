@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5d4b2f_cbb99ee9",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 45
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 482
+      },
+      "writtenOn": "2018-10-03T09:08:12Z",
+      "side": 1,
+      "message": "Please try to use contrail_version: latest\nLet\u0027s try to use an internal lab docker registry.",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 51
+      },
+      "revId": "31dd8abc836d2039354e0acdc062b9b840183fa7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
