@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5d4b2f_0bcb361e",
+        "filename": "playbooks/test-publish-infra-doc/post.yaml",
+        "patchSetId": 134
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-10-03T10:18:34Z",
+      "side": 1,
+      "message": "Remove commented code",
+      "revId": "07bb3f7a69842f5b1e3c14601b50c8990a44e234",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_cbd4febf",
+        "filename": "playbooks/test-publish-infra-doc/post.yaml",
+        "patchSetId": 134
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-10-03T10:18:34Z",
+      "side": 1,
+      "message": "Lowercase task names http://logs.tungsten.io/static/infra-doc/rfc/ansible-style-guide.html#ansible-j0004-task-declaration",
+      "revId": "07bb3f7a69842f5b1e3c14601b50c8990a44e234",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_2bf15a6c",
+        "filename": "playbooks/test-publish-infra-doc/post.yaml",
+        "patchSetId": 134
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-10-03T10:18:34Z",
+      "side": 1,
+      "message": "Remove empty lines",
+      "revId": "07bb3f7a69842f5b1e3c14601b50c8990a44e234",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_8bd606c3",
+        "filename": "playbooks/test-publish-infra-doc/post.yaml",
+        "patchSetId": 134
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-10-03T10:18:34Z",
+      "side": 1,
+      "message": "Quote strings http://logs.tungsten.io/static/infra-doc/rfc/ansible-style-guide.html#ansible-j0006-quotes",
+      "revId": "07bb3f7a69842f5b1e3c14601b50c8990a44e234",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_4be00e97",
+        "filename": "playbooks/test-publish-infra-doc/post.yaml",
+        "patchSetId": 134
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-10-03T10:18:34Z",
+      "side": 1,
+      "message": "Default to single quotes http://logs.tungsten.io/static/infra-doc/rfc/ansible-style-guide.html#ansible-j0006-quotes",
+      "revId": "07bb3f7a69842f5b1e3c14601b50c8990a44e234",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_ebd102cf",
+        "filename": "playbooks/test-publish-infra-doc/post.yaml",
+        "patchSetId": 134
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-10-03T10:18:34Z",
+      "side": 1,
+      "message": "Remove commented code",
+      "revId": "07bb3f7a69842f5b1e3c14601b50c8990a44e234",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_8bff2633",
+        "filename": "tests/fetch-docs.yaml",
+        "patchSetId": 134
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-10-03T10:18:34Z",
+      "side": 1,
+      "message": "Trailing whitespace",
+      "revId": "07bb3f7a69842f5b1e3c14601b50c8990a44e234",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_ab89caca",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 134
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-10-03T10:18:34Z",
+      "side": 1,
+      "message": "This should not be required for unittest",
+      "revId": "07bb3f7a69842f5b1e3c14601b50c8990a44e234",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_8b84c6b2",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 134
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-10-03T10:18:34Z",
+      "side": 1,
+      "message": "Add tests/*",
+      "revId": "07bb3f7a69842f5b1e3c14601b50c8990a44e234",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
