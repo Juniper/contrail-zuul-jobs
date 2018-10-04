@@ -1,0 +1,25 @@
+---
+
+- name: log in to the registry
+  command: docker login -u {{ credentials.user }} -p {{ credentials.password }} {{ registry }}
+  become: true
+  no_log: true
+  when: credentials.password and credentials.user
+
+- name: push docker images
+  block:
+    - name: get images to push
+      command: docker images '{{ registry }}/*' --format {% raw %}'{{ .Repository }}:{{ .Tag }}'{% endraw %}
+      register: docker_images
+      become: true
+
+    - name: push images
+      include: push_image.yaml
+      with_items: "{{ docker_images.stdout_lines|list }}"
+
+  always:
+    - name: log out of the registry
+      command: docker logout {{ registry }}
+      become: true
+      when: credentials.password and credentials.user
+
