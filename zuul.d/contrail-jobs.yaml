@@ -272,3 +272,10 @@
     vars:
       openstack_version: queens
 
+- job:
+    name: contrail-build-test-containers-ci
+    parent: contrail-build-containers-ci-base
+    run: playbooks/contrail-build-test-containers/run
+    required-projects:
+      - Juniper/contrail-test
+    nodeset: builder-centos-7
