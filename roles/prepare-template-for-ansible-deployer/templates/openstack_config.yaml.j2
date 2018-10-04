@@ -4,7 +4,7 @@ contrail_configuration:
 {%- endif %}
   CONTRAIL_VERSION: "{{ contrail_version }}"
   CLOUD_ORCHESTRATOR: "{{ cloud_orchestrator }}"
-  CONTROLLER_NODES: "{{ hostvars[groups['control-plane'][0]].ansible_default_ipv4.address }}"
+  CONTROLLER_NODES: "{{ groups['control-plane'] | map('extract', hostvars, ['ansible_default_ipv4', 'address']) | join(',') }}"
   CONTROL_NODES: "{{ hostvars[groups['control-plane'][0]].ansible_eth1.ipv4.address }}"
   LOG_LEVEL: SYS_DEBUG
   PHYSICAL_INTERFACE: eth1
