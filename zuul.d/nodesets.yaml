@@ -79,7 +79,13 @@
         label: ubuntu-xenial-small
       - name: openstack-control-1
         label: c7-systest-c
+      - name: openstack-control-2
+        label: c7-systest-c
+      - name: openstack-control-3
+        label: c7-systest-c
       - name: openstack-compute-1
+        label: c7-systest-c
+      - name: openstack-compute-2
         label: c7-systest-c
     groups:
       - name: deployment
@@ -88,6 +94,9 @@
       - name: control-plane
         nodes:
           - openstack-control-1
+          - openstack-control-2
+          - openstack-control-3
       - name: data-plane
         nodes:
           - openstack-compute-1
+          - openstack-compute-2
