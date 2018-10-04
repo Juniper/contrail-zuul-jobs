@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5d4b2f_bf60e402",
+        "filename": "playbooks/test-publish-infra-doc/post.yaml",
+        "patchSetId": 138
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-04T09:03:56Z",
+      "side": 1,
+      "message": "this is the target directory for the upload right? so rather dst_dir?",
+      "revId": "c5b794006c49ec3a3b470410775ba4434f4d4d76",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_9f5be052",
+        "filename": "playbooks/test-publish-infra-doc/post.yaml",
+        "patchSetId": 138
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-04T09:03:56Z",
+      "side": 1,
+      "message": "you\u0027re cleaning up the wrong dir I think?",
+      "revId": "c5b794006c49ec3a3b470410775ba4434f4d4d76",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_da25e6ac",
+        "filename": "roles/upload-docs/tasks/main.yaml",
+        "patchSetId": 138
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-04T09:03:56Z",
+      "side": 1,
+      "message": "no_log is false by default, did you want no_log: true? why?",
+      "revId": "c5b794006c49ec3a3b470410775ba4434f4d4d76",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
