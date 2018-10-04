@@ -144,6 +144,8 @@
     vars:
       openstack_version: queens
       kolla_version: queens
+      contrail_docker_registry: opencontrailnightly
+      contrail_version: latest
     nodeset: c7-systest-c-aio
 
 - job:
