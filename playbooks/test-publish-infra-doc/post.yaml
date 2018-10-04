@@ -1,0 +1,31 @@
+---
+- hosts: all
+  roles:
+    - role: fetch-docs
+      fetch_src_path: "{{ zuul.projects | selectattr('short_name', 'equalto', 'contrail-infra-doc') | map(attribute='src_dir') | list | first }}/build/html"
+      fetch_dst_path: '{{ zuul.executor.work_root }}/build/'
+- hosts: builder
+  gather_facts: False
+  pre_tasks:
+    - name: create dst_dir
+      file:
+        path: '/tmp/www/static/infra-doc/'
+        state: directory
+  roles:
+    - role: upload-docs
+      zuul_docserver_root: '/tmp/www/static/infra-doc'
+      docs_dir: '{{ zuul.executor.work_root }}/build/html/'
+  post_tasks:
+    - name: list files
+      command: ls
+      args:
+        chdir: '/tmp/www/static/infra-doc/'
+    - name: check if files were uploaded correctly
+      stat:
+        path: '/tmp/www/static/infra-doc/index.html'
+      register: docs_dir_stat
+      failed_when: not docs_dir_stat.stat.exists
+    - name: clean up data
+      file:
+        state: absent
+        path: '/tmp/www'

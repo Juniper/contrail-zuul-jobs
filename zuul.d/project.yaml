@@ -13,6 +13,8 @@
         - contrail-infra-lint-rpm-integration-centos-7
         - contrail-infra-ansible-lint-integration-centos-7
         - zuul-jobs-linters
+        - publish-infra-doc-test
+        - publish-infra-doc-unit-test
         - noop:
             irrelevant-files:
               - ^roles/.*
