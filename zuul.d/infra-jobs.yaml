@@ -158,7 +158,6 @@
     name: publish-infra-doc-unit-test
     description: |
       This job is running unit tests for fetch-docs and upload-docs roles
-    parent: build-infra-doc
     run: tests/publish-infra-doc-unit-test
     files:
       - ^roles/fetch-docs/.*

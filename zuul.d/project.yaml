@@ -33,6 +33,8 @@
         - contrail-infra-containers-integration-ubuntu-xenial
         - contrail-infra-lint-rpm-integration-centos-7
         - contrail-infra-ansible-lint-integration-centos-7
+        - publish-infra-doc-test
+        - publish-infra-doc-unit-test
         - zuul-jobs-linters
         - noop:
             irrelevant-files:
