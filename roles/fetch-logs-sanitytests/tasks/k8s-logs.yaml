@@ -1,0 +1,14 @@
+---
+- name: Fetch kubernetes configuration
+  synchronize:
+    src: '/etc/kubernetes/'
+    dest: '{{ zuul.executor.log_root }}/k8s-config/'
+    mode: 'pull'
+    recursive: yes
+
+- name: Fetch conf file from homedir
+  synchronize:
+    src: '.kube/config'
+    dest: '{{ zuul.executor.log_root }}/k8s-config/homedir_config.conf'
+    mode: 'pull'
+    recursive: yes
