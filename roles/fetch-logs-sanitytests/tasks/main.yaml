@@ -4,3 +4,5 @@
 - include: contrail-logs.yaml
 - include: kolla-logs.yaml
 - include: container-logs.yaml
+- include: k8s-logs.yaml
+  when: cloud_orchestrator == 'kubernetes'
