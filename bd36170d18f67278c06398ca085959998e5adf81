@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ff5d4b2f_c30f37df",
+        "filename": "roles/contrail-go/tasks/main.yaml",
+        "patchSetId": 61
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 558
+      },
+      "writtenOn": "2018-10-08T15:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff5d4b2f_03778fa2",
+      "revId": "bd36170d18f67278c06398ca085959998e5adf81",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff5d4b2f_a35a0327",
         "filename": "zuul.d/contrail-jobs.yaml",
         "patchSetId": 61
@@ -30,6 +48,24 @@
       "writtenOn": "2018-10-08T14:47:49Z",
       "side": 1,
       "message": "You can remove this repo, it\u0027s no longer needed in new jobs.",
+      "revId": "bd36170d18f67278c06398ca085959998e5adf81",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff5d4b2f_a3120308",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 61
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 558
+      },
+      "writtenOn": "2018-10-08T15:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff5d4b2f_a35a0327",
       "revId": "bd36170d18f67278c06398ca085959998e5adf81",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
