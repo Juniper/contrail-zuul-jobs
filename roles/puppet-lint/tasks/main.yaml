@@ -1,0 +1,99 @@
+---
+- hosts: all
+  tasks:
+    - name: 'update'
+      become: true
+      apt:
+        update_cache: yes
+
+    - name: looping installation of packages.
+      apt:
+        name: '{{ item }}'
+        state: present
+      with_items:
+        - autoconf
+        - bison
+        - build-essential
+        - libssl-dev
+        - libyaml-dev
+        - libreadline6-dev
+        - zlib1g-dev
+        - libncurses5-dev
+        - libffi-dev
+        - libgdbm3
+        - libgdbm-dev
+      become: true
+
+    - name: rbenv installation
+      git:
+          repo: https://github.com/rbenv/rbenv.git
+          dest: ~/.rbenv
+          clone: yes
+          version: HEAD
+      tag:
+        - skip_ansible_lint
+
+    - name: ruby install
+      git:
+          repo: https://github.com/rbenv/ruby-build.git
+          dest: ~/.rbenv/plugins/ruby-build
+          clone: yes
+          version: HEAD
+      tag:
+        - skip_ansible_lint
+
+    - name: look for file
+      command: cat /workdir/Gemfile
+      register: source
+
+    - name: regex fact
+      set_fact:
+        qry: (^ruby '(.*?)')
+
+    - name: check 1
+      set_fact:
+        ruby_version: "{{ source.stdout | regex_search(qry, '\\2') | first | default('2.1.10') }}"
+
+    - name: set ruby path
+      set_fact:
+        ruby_path: ~/.rbenv/versions/{{ ruby_version }}/bin
+
+    - name: ruby version
+      command: ~/.rbenv/bin/rbenv install {{ ruby_version }}
+      args:
+        creates: '{{ ruby_path }}/ruby'
+
+    - name: install bundler
+      command: '{{ ruby_path }}/gem install bundler'
+      args:
+        creates: '{{ ruby_path }}/bundler'
+
+    - name: running bundle install
+      command: '{{ ruby_path }}/bundle install --gemfile Gemfile'
+      args:
+        chdir: /workdir
+
+    - name: install Puppetfile
+      shell: PATH=~/.rbenv/versions/2.1.10/bin:$PATH r10k puppetfile install Puppetfile
+      args:
+        chdir: /workdir
+
+    - name: puppet-lint test
+      shell: PATH=~/.rbenv/versions/2.1.10/bin:$PATH rake lint
+      args:
+        chdir: /workdir
+      register: lint_check
+      ignore_errors: true
+
+    - name: puppet syntax test
+      shell: PATH=~/.rbenv/versions/2.1.10/bin:$PATH rake syntax
+      args:
+        chdir: /workdir
+      register: syntax_check
+      ignore_errors: true
+
+    - name: check if tests failed
+      fail:
+        msg: |
+          Lint: {{ (lint_check.rc != 0)| ternary("Fail","Pass") }}, Syntax: {{ (syntax_check.rc != 0)| ternary("Fail","Pass") }}.
+      when: lint_check.rc != 0 or syntax_check.rc != 0
