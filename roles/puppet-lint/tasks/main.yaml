@@ -1,0 +1,117 @@
+---
+- name: install required packages
+  apt:
+    update_cache: yes
+    cache_valid_time : 86400
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - autoconf
+    - bison
+    - build-essential
+    - libssl-dev
+    - libyaml-dev
+    - libreadline6-dev
+    - zlib1g-dev
+    - libncurses5-dev
+    - libffi-dev
+    - libgdbm3
+    - libgdbm-dev
+  become: true
+
+- name: clone rbenv
+  git:
+      repo: https://github.com/rbenv/rbenv.git
+      dest: ~/.rbenv
+      clone: yes
+      version: 6cd487d # master on 2018-10-15 v1.1.1
+
+- name: clone ruby for rbenv
+  git:
+      repo: https://github.com/rbenv/ruby-build.git
+      dest: ~/.rbenv/plugins/ruby-build
+      clone: yes
+      version: 0e58785 # master on 2018-10-15 v20180822
+
+- name: read Gemfile
+  command: 'cat {{ workdir }}/Gemfile'
+  register: source
+
+- name: checking used ruby version
+  set_fact:
+    ruby_version: "{{ source.stdout | regex_search(puppet_lint_ruby_version_regex, '\\2') | first | default('2.1.10') }}"
+  vars:
+    puppet_lint_ruby_version_regex: "(^ruby '(.*?)')"
+
+- name: set ruby path
+  set_fact:
+    ruby_path: ~/.rbenv/versions/{{ ruby_version }}/bin
+
+- name: install ruby
+  command: ~/.rbenv/bin/rbenv install {{ ruby_version }}
+  args:
+    creates: '{{ ruby_path }}/ruby'
+
+- name: install bundler
+  command: '{{ ruby_path }}/gem install bundler'
+  args:
+    creates: '{{ ruby_path }}/bundler'
+
+- name: running bundle install
+  command: '{{ ruby_path }}/bundle install --gemfile Gemfile'
+  args:
+    chdir: '{{ workdir }}'
+
+- name: install dependencies from Puppetfile
+  shell: r10k puppetfile install Puppetfile
+  args:
+    chdir: '{{ workdir }}'
+  environment:
+    RBENV_ROOT: '~/.rbenv'
+    PATH: '{{ ruby_path }}:$PATH'
+  #ANSIBLE0013 ignore since we can't use shell with rbenv
+  tags:
+  - skip_ansible_lint
+
+- name: puppet-lint test
+  shell: rake lint
+  args:
+    chdir: '{{ workdir }}'
+  register: lint_check
+  environment:
+    RBENV_ROOT: '~/.rbenv'
+    PATH: '{{ ruby_path }}:$PATH'
+  ignore_errors: true
+  tags:
+  - skip_ansible_lint #ANSIBLE0013
+
+- name: puppet syntax test
+  shell: rake syntax
+  args:
+    chdir: '{{ workdir }}'
+  register: syntax_check
+  environment:
+    RBENV_ROOT: '~/.rbenv'
+    PATH: '{{ ruby_path }}:$PATH'
+  ignore_errors: true
+  tags:
+  - skip_ansible_lint #ANSIBLE0013
+
+- name: save linter output to file
+  copy:
+    content: '{{ lint_check.stdout }}'
+    dest: '{{ zuul.executor.log_root }}/lint_check.txt'
+  delegate_to: localhost
+  ignore_errors: true
+
+- name: save syntax output to file
+  copy:
+    content: '{{ syntax_check.stdout }}'
+    dest: '{{ zuul.executor.log_root }}/syntax_check.txt'
+  delegate_to: localhost
+
+- name: check if tests failed
+  fail:
+    msg: |
+      Lint: {{ (lint_check.rc != 0)| ternary("Fail","Pass") }}, Syntax: {{ (syntax_check.rc != 0)| ternary("Fail","Pass") }}.
+  when: lint_check.rc != 0 or syntax_check.rc != 0
