@@ -1,0 +1,111 @@
+---
+- name: 'update'
+  become: true
+  apt:
+    update_cache: yes
+
+- name: looping installation of packages.
+  apt:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - autoconf
+    - bison
+    - build-essential
+    - libssl-dev
+    - libyaml-dev
+    - libreadline6-dev
+    - zlib1g-dev
+    - libncurses5-dev
+    - libffi-dev
+    - libgdbm3
+    - libgdbm-dev
+  become: true
+
+- name: clone rbenv
+  git:
+      repo: https://github.com/rbenv/rbenv.git
+      dest: ~/.rbenv
+      clone: yes
+      version: 6cd487d
+
+- name: clone ruby for rbenv
+  git:
+      repo: https://github.com/rbenv/ruby-build.git
+      dest: ~/.rbenv/plugins/ruby-build
+      clone: yes
+      version: 0e58785
+
+- name: read Gemfile
+  command: 'cat {{ workdir }}/Gemfile'
+  register: source
+
+- name: checking used ruby version
+  set_fact:
+    ruby_version: "{{ source.stdout | regex_search(query, '\\2') | first | default('2.1.10') }}"
+  vars:
+    query: (^ruby '(.*?)')
+
+- name: set ruby path
+  set_fact:
+    ruby_path: ~/.rbenv/versions/{{ ruby_version }}/bin
+
+- name: install ruby
+  command: ~/.rbenv/bin/rbenv install {{ ruby_version }}
+  args:
+    creates: '{{ ruby_path }}/ruby'
+
+- name: install bundler
+  command: '{{ ruby_path }}/gem install bundler'
+  args:
+    creates: '{{ ruby_path }}/bundler'
+
+- name: running bundle install
+  command: '{{ ruby_path }}/bundle install --gemfile Gemfile'
+  args:
+    chdir: '{{ workdir }}'
+
+- name: install Puppetfile
+  shell: PATH={{ ruby_path }}:$PATH r10k puppetfile install Puppetfile
+  args:
+    chdir: '{{ workdir }}'
+  #ANSIBLE0013 ignore since we can't use shell with rbenv
+  tags:
+  - skip_ansible_lint
+
+- name: puppet-lint test
+  shell: PATH={{ ruby_path }}:$PATH rake lint
+  args:
+    chdir: '{{ workdir }}'
+  register: lint_check
+  ignore_errors: true
+  tags:
+  - skip_ansible_lint #ANSIBLE0013
+
+- name: puppet syntax test
+  shell: PATH={{ ruby_path }}:$PATH rake syntax
+  args:
+    chdir: '{{ workdir }}'
+  register: syntax_check
+  ignore_errors: true  
+  tags:
+  - skip_ansible_lint #ANSIBLE0013
+
+- name: save linter output to file
+  copy:
+    content: '{{ lint_check.stdout }}'
+    dest: '{{ zuul.executor.log_root }}/lint_check.txt'
+  delegate_to: localhost
+  ignore_errors: true
+
+- name: save syntax output to file
+  copy:
+    content: '{{ syntax_check.stdout }}'
+    dest: '{{ zuul.executor.log_root }}/syntax_check.txt'
+  delegate_to: localhost
+
+- name: check if tests failed
+  fail:
+    msg: |
+      Lint: {{ (lint_check.rc != 0)| ternary("Fail","Pass") }}, Syntax: {{ (syntax_check.rc != 0)| ternary("Fail","Pass") }}.
+  when: lint_check.rc != 0 or syntax_check.rc != 0

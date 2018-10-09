@@ -170,3 +170,12 @@
       - ^roles/upload-docs/.*
       - ^tests/.*
     nodeset: builder-centos-7
+
+- job:
+    name: puppet-lint
+    description: |
+      This job is running syntax and lint check for puppet files for contrail-infra
+    run: playbooks/puppet-lint/run
+    required-projects:
+      - Juniper/contrail-infra
+    nodeset: builder-ubuntu-xenial
