@@ -6,3 +6,4 @@
     - zuul-include-vars
     - role: add-insecure-registry
       new_registry: "{{ contrail_docker_registry }}"
+    - add-registry-proxy
