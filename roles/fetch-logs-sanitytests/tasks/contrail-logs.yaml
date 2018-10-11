@@ -14,3 +14,4 @@
     recursive: yes
   when: contrail_logdir.stat.isdir is defined and contrail_logdir.stat.isdir
   become: true
+  ignore_errors: true
