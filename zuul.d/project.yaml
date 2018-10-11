@@ -41,3 +41,6 @@
               - ^roles/.*
               - ^playbooks/.*
               - ^tests/.*
+    experimental:
+      jobs:
+        - contrail-deploy-rhel7-openshift-3.9
