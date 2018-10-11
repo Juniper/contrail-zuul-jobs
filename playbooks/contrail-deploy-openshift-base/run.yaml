@@ -13,3 +13,7 @@
 - hosts: deployment
   roles:
     - openshift-ansible
+    
+- hosts: all
+  roles:
+    - fetch-logs-sanitytests
