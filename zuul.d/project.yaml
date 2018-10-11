@@ -41,3 +41,14 @@
               - ^roles/.*
               - ^playbooks/.*
               - ^tests/.*
+    experimental:
+      jobs:
+        - contrail-sanity-ubuntu1604-helm-ocata:
+            vars:
+              contrail_version: 'master-latest'
+              container_tag: 'ocata-master-latest'
+              contrail_registry:
+                fqdn: '{{ docker_registry.fqdn }}'
+                port: '{{ docker_registry.port }}'
+              contrail_docker_registry: '{{ docker_registry.fqdn }}:{{ docker_registry.port }}'
+              setup_docker_registry: false
