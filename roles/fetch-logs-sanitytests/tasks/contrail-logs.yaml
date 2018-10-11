@@ -12,5 +12,9 @@
     dest: '{{ zuul.executor.log_root }}/contrail-logs'
     mode: 'pull'
     recursive: yes
-  when: contrail_logdir.stat.isdir is defined and contrail_logdir.stat.isdir
   become: true
+  delay: 5
+  register: fetch
+  retries: 5
+  until: fetch.rc == 0
+  when: contrail_logdir.stat.isdir is defined and contrail_logdir.stat.isdir
