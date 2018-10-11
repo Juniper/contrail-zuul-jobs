@@ -41,3 +41,39 @@
               - ^roles/.*
               - ^playbooks/.*
               - ^tests/.*
+    experimental:
+      jobs:
+#        - contrail-sanity-centos7-kolla-ocata:
+#            vars:
+#              contrail_version: master-latest
+#              contrail_docker_registry: 10.84.5.81:5000
+#              setup_docker_registry: false
+#        - contrail-sanity-centos7-kolla-queens:
+#            vars:
+#              contrail_version: master-latest
+#              contrail_docker_registry: 10.84.5.81:5000
+#              setup_docker_registry: false
+#        - contrail-sanity-centos7-kolla-queens-multinode:
+#            vars:
+#              contrail_version: master-latest
+#              contrail_docker_registry: 10.84.5.81:5000
+#              setup_docker_registry: false
+#        - contrail-sanity-centos7-k8s:
+#            vars:
+#              contrail_version: master-latest
+#              contrail_docker_registry: 10.84.5.81:5000
+#              setup_docker_registry: false
+#        - contrail-sanity-rhel7-openshift-3.9:
+#            vars:
+#              contrail_version: master-320
+#              contrail_docker_registry: 10.84.5.81:5000
+#              setup_docker_registry: false
+        - contrail-sanity-ubuntu1604-helm-ocata:
+            vars:
+              contrail_version: master-latest
+              container_tag: ocata-master-latest
+              contrail_registry:
+                fqdn: 10.84.5.81
+                port: 5000
+              contrail_docker_registry: 10.84.5.81:5000
+              setup_docker_registry: false
