@@ -475,3 +475,55 @@
     description: This jobs starts Jenkins job in Windows CI to create Windows containers.
     vars:
       jenkins_job: ci-contrail-windows-nighly-zuultest-mc
+
+- job:
+    name: docker-base
+    parent: contrail-base2
+    pre-run: playbooks/docker/pre
+    vars:
+      setup_docker_registry: True
+
+- job:
+    name: contrail-test-containers
+    parent: docker-base
+    run: playbooks/docker/contrail-test-run
+    required-projects:
+      - Juniper/contrail-test
+    nodeset: builder-centos-7
+
+- job:
+    name: contrail-containers-base
+    parent: docker-base
+    run: playbooks/docker/contrail-run
+    required-projects:
+      - Juniper/contrail-container-builder
+      - Juniper/contrail-ansible-deployer
+
+- job:
+    name: contrail-containers-centos7-newton
+    parent: contrail-containers-base
+    nodeset: builder-centos-7
+    vars:
+      openstack_version: newton
+
+- job:
+    name: contrail-containers-centos7-ocata
+    parent: contrail-containers-base
+    nodeset: builder-centos-7
+    vars:
+      openstack_version: ocata
+
+- job:
+    name: contrail-containers-centos7-queens
+    parent: contrail-containers-base
+    nodeset: builder-centos-7
+    vars:
+      openstack_version: queens
+
+- job:
+    name: contrail-containers-rhel7-queens
+    parent: contrail-containers-base
+    nodeset: builder-rhel-7
+    vars:
+      openstack_version: queens
+
