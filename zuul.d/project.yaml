@@ -20,6 +20,33 @@
               - ^roles/.*
               - ^playbooks/.*
               - ^tests/.*
+    experimental:
+      jobs:
+        - contrail-vnc-build-package-centos74
+        - contrail-vnc-build-package-rhel7-queens
+        - contrail-test-containers:
+            dependencies:
+              - contrail-vnc-build-package-centos74
+        - contrail-containers-centos7-newton:
+            dependencies:
+              - contrail-vnc-build-package-centos74
+        - contrail-containers-centos7-ocata:
+            dependencies:
+              - contrail-vnc-build-package-centos74
+        - contrail-containers-centos7-queens:
+            dependencies:
+              - contrail-vnc-build-package-centos74
+        - contrail-containers-rhel7-queens:
+            dependencies:
+              - contrail-vnc-build-package-rhel7-queens
+        - contrail-sanity-centos7-kolla-queens:
+            dependencies:
+              - contrail-containers-centos7-queens
+              - contrail-test-containers
+        - contrail-sanity-centos7-kolla-ocata:
+            dependencies:
+              - contrail-containers-centos7-ocata
+              - contrail-test-containers
     gate:
       queue: contrail-ci
       jobs:
