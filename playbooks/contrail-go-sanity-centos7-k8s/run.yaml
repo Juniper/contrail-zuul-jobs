@@ -15,4 +15,4 @@
 - hosts: deployment
   roles:
     - contrail-go
-#TODO: Run sanity tests
+    - sanitytest
