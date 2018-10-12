@@ -199,12 +199,11 @@
       - Juniper/contrail-ansible-deployer
       - Juniper/contrail-test
     vars:
+      openstack_version: ocata
       cloud_orchestrator: kubernetes
-      contrail_version: latest
-      contrail_docker_registry: 10.84.5.81:5000
       test_target: ci_contrail_go_k8s_sanity
     nodeset: c7-systest-c-aio
-    timeout: 3600
+    timeout: 10800
 
 - job:
     name: contrail-deploy-rhel7-openshift-3.9
