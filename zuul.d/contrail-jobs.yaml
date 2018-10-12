@@ -71,12 +71,6 @@
     nodeset: builder-rhel-7
 
 - job:
-    name: contrail-vnc-build-package-rhel7-ocata
-    parent: contrail-vnc-build-package-rhel7-base
-    vars:
-      openstack_version: ocata
-
-- job:
     name: contrail-vnc-build-package-rhel7-queens
     parent: contrail-vnc-build-package-rhel7-base
     vars:
@@ -329,13 +323,6 @@
       openstack_version: newton
 
 - job:
-    name: contrail-vnc-build-containers-rhel7-newton
-    parent: contrail-vnc-build-containers-base
-    nodeset: builder-rhel-7
-    vars:
-      openstack_version: newton
-
-- job:
     name: contrail-vnc-build-containers-centos7-ocata
     parent: contrail-vnc-build-containers-base
     nodeset: builder-centos-7
@@ -348,13 +335,6 @@
     nodeset: builder-centos-7
     vars:
       openstack_version: queens
-
-- job:
-    name: contrail-vnc-build-containers-rhel7-ocata
-    parent: contrail-vnc-build-containers-base
-    nodeset: builder-rhel-7
-    vars:
-      openstack_version: ocata
 
 - job:
     name: contrail-vnc-build-containers-rhel7-queens

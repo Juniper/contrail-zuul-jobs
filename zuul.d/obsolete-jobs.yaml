@@ -1,0 +1,12 @@
+- job:
+    name: contrail-vnc-build-package-rhel7-ocata
+    parent: contrail-vnc-build-package-rhel7-base
+    vars:
+      openstack_version: ocata
+
+- job:
+    name: contrail-vnc-build-containers-rhel7-ocata
+    parent: contrail-vnc-build-containers-base
+    nodeset: builder-rhel-7
+    vars:
+      openstack_version: ocata
