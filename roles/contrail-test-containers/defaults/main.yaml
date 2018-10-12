@@ -4,5 +4,6 @@ contrail_version: "{{ packaging.repo_name }}"
 openstack_version:
   - ocata
   - newton
+  - queens
 rpm_repo_config_dir: /etc/yum.repos.d/
 test_container_build_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-test"
