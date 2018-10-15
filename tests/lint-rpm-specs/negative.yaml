@@ -11,7 +11,7 @@
         state: 'directory'
     - name: 'Copy bad rpm spec to working directory'
       copy:
-        src: 'fixtures/bad.spec'
+        src: 'fixtures/lint-rpm-specs/bad.spec'
         dest: 'rpms/bad.spec'
   tasks:
     - name: 'Handle role output'

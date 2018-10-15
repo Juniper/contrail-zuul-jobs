@@ -11,7 +11,7 @@
         state: 'directory'
     - name: 'Copy good rpm spec to working directory'
       copy:
-        src: 'fixtures/good.spec'
+        src: 'fixtures/lint-rpm-specs/good.spec'
         dest: 'rpms/good.spec'
   roles:
     - role: 'lint-rpm-specs'
