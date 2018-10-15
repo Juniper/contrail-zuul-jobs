@@ -1,0 +1,7 @@
+- include: core.yaml
+
+- include: contrail-core/zuul-include-vars.yaml
+- include: contrail-core/restore-git-remotes.yaml
+- include: contrail-core/install-repo-script.yaml
+- include: contrail-core/repo-sandbox-prepare.yaml
+
