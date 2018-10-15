@@ -1,0 +1,4 @@
+- include: contrail-core.yaml
+
+- include: containers-integration/install-docker-daemon.yaml
+- include: containers-integration/publish-container-images.yaml

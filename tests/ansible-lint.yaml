@@ -19,6 +19,6 @@
         src: '{{ zuul.executor.work_root }}/{{ zuul.project.src_dir }}/ansible-lint-rules'
         dest: '{{ ansible_env.HOME }}/'
 
-- include: ansible-lint-positive.yaml
-- include: ansible-lint-negative.yaml
+- include: ansible-lint/positive.yaml
+- include: ansible-lint/negative.yaml
 
