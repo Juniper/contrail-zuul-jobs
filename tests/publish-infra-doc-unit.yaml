@@ -1,0 +1,3 @@
+---
+- include: publish-infra-doc-unit/fetch-docs.yaml
+- include: publish-infra-doc-unit/upload-docs.yaml
