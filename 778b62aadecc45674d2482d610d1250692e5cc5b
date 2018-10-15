@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_7cf4185c",
+        "filename": "roles/fetch-logs-sanitytests/tasks/contrail-logs.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 457
+      },
+      "writtenOn": "2018-10-15T09:20:27Z",
+      "side": 1,
+      "message": "regarding style guide it should start with lowercase. haven\u0027t we agreed to correct those legacy code while proposing changes?",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 27
+      },
+      "revId": "778b62aadecc45674d2482d610d1250692e5cc5b",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
