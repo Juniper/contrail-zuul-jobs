@@ -1,0 +1,7 @@
+- include: core.yaml
+
+- include: contrail-core.yaml
+
+# Roles executed as part of the packaging pipeline
+- include: packaging/contrail-tpc-repos.yaml
+- include: packaging/fetch-packages.yaml
