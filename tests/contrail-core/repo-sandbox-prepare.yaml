@@ -3,7 +3,7 @@
   pre_tasks:
     - name: Stub the contrail-vnc manifest XML file
       copy:
-        src: fixtures/manifest-stub.xml
+        src: ../fixtures/manifest-stub.xml
         dest: "src/review.opencontrail.org/Juniper/contrail-vnc/default.xml"
     # contrail-common-libs can only be executed in a trusted context,
     # so we can't really test it fully right now.
