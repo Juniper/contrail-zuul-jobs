@@ -1,0 +1,6 @@
+- include: core/configure-hosts-entries.yaml
+- include: core/acquire-ip-address.yaml
+- include: core/configure-mirrors.yaml
+- include: core/configure-maven-proxy.yaml
+- include: core/prepare-workspace.yaml
+- include: core/fetch-artifacts.yaml

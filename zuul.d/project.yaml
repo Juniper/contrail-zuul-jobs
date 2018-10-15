@@ -2,19 +2,19 @@
     name: Juniper/contrail-zuul-jobs
     check:
       jobs:
-        - contrail-infra-base-integration-centos-7
-        - contrail-infra-base-integration-ubuntu-xenial
-        - contrail-infra-contrail-base-integration-centos-7
-        - contrail-infra-contrail-base-integration-ubuntu-xenial
-        - contrail-infra-packaging-integration-centos-7
-        - contrail-infra-packaging-integration-ubuntu-xenial
-        - contrail-infra-containers-integration-centos-7
-        - contrail-infra-containers-integration-ubuntu-xenial
-        - contrail-infra-lint-rpm-integration-centos-7
-        - contrail-infra-ansible-lint-integration-centos-7
+        - ci-test-core-centos-7
+        - ci-test-core-ubuntu-xenial
+        - ci-test-contrail-core-centos-7
+        - ci-test-contrail-core-ubuntu-xenial
+        - ci-test-packaging-centos-7
+        - ci-test-packaging-ubuntu-xenial
+        - ci-test-containers-centos-7
+        - ci-test-containers-ubuntu-xenial
+        - ci-test-lint-rpm-specs-centos-7
+        - ci-test-ansible-lint-centos-7
+        - ci-test-publish-infra-doc
+        - ci-test-publish-infra-doc-unit
         - zuul-jobs-linters
-        - publish-infra-doc-test
-        - publish-infra-doc-unit-test
         - noop:
             irrelevant-files:
               - ^roles/.*
@@ -23,18 +23,18 @@
     gate:
       queue: contrail-ci
       jobs:
-        - contrail-infra-base-integration-centos-7
-        - contrail-infra-base-integration-ubuntu-xenial
-        - contrail-infra-contrail-base-integration-centos-7
-        - contrail-infra-contrail-base-integration-ubuntu-xenial
-        - contrail-infra-packaging-integration-centos-7
-        - contrail-infra-packaging-integration-ubuntu-xenial
-        - contrail-infra-containers-integration-centos-7
-        - contrail-infra-containers-integration-ubuntu-xenial
-        - contrail-infra-lint-rpm-integration-centos-7
-        - contrail-infra-ansible-lint-integration-centos-7
-        - publish-infra-doc-test
-        - publish-infra-doc-unit-test
+        - ci-test-core-centos-7
+        - ci-test-core-ubuntu-xenial
+        - ci-test-contrail-core-centos-7
+        - ci-test-contrail-core-ubuntu-xenial
+        - ci-test-packaging-centos-7
+        - ci-test-packaging-ubuntu-xenial
+        - ci-test-containers-centos-7
+        - ci-test-containers-ubuntu-xenial
+        - ci-test-lint-rpm-specs-centos-7
+        - ci-test-ansible-lint-centos-7
+        - ci-test-publish-infra-doc
+        - ci-test-publish-infra-doc-unit
         - zuul-jobs-linters
         - noop:
             irrelevant-files:

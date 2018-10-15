@@ -1,102 +1,108 @@
 - job:
-    name: contrail-infra-base-integration
+    name: ci-test-base
+    description: |
+      This is a base job for ci-test-* jobs.
+    parent: base-minimal
+
+- job:
+    name: ci-test-core-base
     description: |
       Runs roles that are included by default in any of our "base"
       roles to prevent total CI meltdown.
-    parent: base-minimal
+    parent: ci-test-base
     required-projects:
       - Juniper/contrail-project-config
     roles:
       - zuul: Juniper/zuul-jobs
-    run: tests/base.yaml
+    run: tests/core.yaml
     files:
       - ^roles/acquire-ip-address/.*
       - ^tests/.*
 
 - job:
-    name: contrail-infra-base-integration-centos-7
-    parent: contrail-infra-base-integration
+    name: ci-test-core-centos-7
+    parent: ci-test-core-base
     nodeset: centos-7
 
 - job:
-    name: contrail-infra-base-integration-ubuntu-xenial
-    parent: contrail-infra-base-integration
+    name: ci-test-core-ubuntu-xenial
+    parent: ci-test-core-base
     nodeset: ubuntu-xenial
 
 - job:
-    name: contrail-infra-contrail-base-integration
-    parent: base-minimal
+    name: ci-test-contrail-core-base
+    parent: ci-test-base
     roles:
       - zuul: Juniper/zuul-jobs
     required-projects:
       - Juniper/contrail-vnc
-    run: tests/contrail-base.yaml
+    run: tests/contrail-core.yaml
     files:
       - ^roles/zuul-include-vars/.*
       - ^tests/.*
 
 - job:
-    name: contrail-infra-contrail-base-integration-centos-7
-    parent: contrail-infra-contrail-base-integration
+    name: ci-test-contrail-core-centos-7
+    parent: ci-test-contrail-core-base
     nodeset: centos-7
 
 - job:
-    name: contrail-infra-contrail-base-integration-ubuntu-xenial
-    parent: contrail-infra-contrail-base-integration
+    name: ci-test-contrail-core-ubuntu-xenial
+    parent: ci-test-contrail-core-base
     nodeset: ubuntu-xenial
 
 - job:
-    name: contrail-infra-packaging-integration
+    name: ci-test-packaging-base
     description: |
       Run roles that are used for packaging jobs to prevent regressions.
-    parent: base-minimal
+    parent: ci-test-base
     # Required to test repo-sandbox-prepare role
     required-projects:
       - Juniper/contrail-vnc
-    run: tests/packaging-integration.yaml
+    run: tests/packaging.yaml
     files:
       - ^roles/fetch-packages/.*
       - ^tests/.*
 
 - job:
-    name: contrail-infra-packaging-integration-centos-7
-    parent: contrail-infra-packaging-integration
+    name: ci-test-packaging-centos-7
+    parent: ci-test-packaging-base
     nodeset: builder-centos-7
 
 - job:
-    name: contrail-infra-packaging-integration-ubuntu-xenial
-    parent: contrail-infra-packaging-integration
+    name: ci-test-packaging-ubuntu-xenial
+    parent: ci-test-packaging-base
     nodeset: builder-ubuntu-xenial
 
 - job:
-    name: contrail-infra-containers-integration
+    name: ci-test-containers-base
     description: |
       Run roles that are used to manage containers in jobs
       to prevent regressions.
-    parent: base-minimal
+    parent: ci-test-base
     # Required to test repo-sandbox-prepare role
     required-projects:
       - Juniper/contrail-vnc
-    run: tests/containers-integration.yaml
+    run: tests/containers.yaml
     files:
       - ^roles/publish-container-images/.*
       - ^tests/.*
 
 - job:
-    name: contrail-infra-containers-integration-centos-7
-    parent: contrail-infra-containers-integration
+    name: ci-test-containers-centos-7
+    parent: ci-test-containers-base
     nodeset: builder-centos-7
 
 - job:
-    name: contrail-infra-containers-integration-ubuntu-xenial
-    parent: contrail-infra-containers-integration
+    name: ci-test-containers-ubuntu-xenial
+    parent: ci-test-containers-base
     nodeset: builder-ubuntu-xenial
 
 - job:
-    name: contrail-infra-lint-rpm-integration-centos-7
+    name: ci-test-lint-rpm-specs-centos-7
     description: |
       Run roles that are used for lint rpm jobs to prevent regressions.
-    parent: base-minimal
+    parent: ci-test-base
     run: tests/lint-rpm-specs.yaml
     nodeset: builder-centos-7
     files:
@@ -104,10 +110,10 @@
       - ^tests/.*
 
 - job:
-    name: contrail-infra-ansible-lint-integration-centos-7
+    name: ci-test-ansible-lint-centos-7
     description: |
       Run custom ansible linter rules tests to prevent regressions.
-    parent: base-minimal
+    parent: ci-test-base
     run: tests/ansible-lint.yaml
     nodeset: builder-centos-7
     files:
@@ -135,19 +141,19 @@
 - job:
     name: build-infra-doc
     description: |
-      This jobs builds infra-doc using sphinx.
+      This jobs builds ci-doc using sphinx.
     parent: contrail-src-base
     run: playbooks/build-infra-doc/run
     nodeset: builder-centos-7
 
 - job:
-    name: publish-infra-doc-test
+    name: ci-test-publish-infra-doc
     description: |
       This job is running roles tests for production environment for infra-doc.
     parent: build-infra-doc
     required-projects:
       - Juniper/contrail-infra-doc
-    post-run: playbooks/test-publish-infra-doc/post
+    post-run: tests/publish-infra-doc.yaml
     files:
       - ^roles/fetch-docs/.*
       - ^roles/upload-docs/.*
@@ -155,10 +161,10 @@
     nodeset: builder-centos-7
 
 - job:
-    name: publish-infra-doc-unit-test
+    name: ci-test-publish-infra-doc-unit
     description: |
       This job is running unit tests for fetch-docs and upload-docs roles
-    run: tests/publish-infra-doc-unit-test
+    run: tests/publish-infra-doc-unit.yaml
     files:
       - ^roles/fetch-docs/.*
       - ^roles/upload-docs/.*
