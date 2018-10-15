@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_dc066421",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-10-15T09:53:38Z",
+      "side": 1,
+      "message": "This should be changed IMHO, it\u0027s not intuitive at all",
+      "range": {
+        "startLine": 489,
+        "startChar": 9,
+        "endLine": 489,
+        "endChar": 43
+      },
+      "revId": "fbcac722964bdbab3b36739f9f90a28cebdceec9",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_bc03b00f",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-10-15T09:53:38Z",
+      "side": 1,
+      "message": "This should be changed IMHO, it\u0027s not intuitive at all",
+      "range": {
+        "startLine": 497,
+        "startChar": 9,
+        "endLine": 497,
+        "endChar": 38
+      },
+      "revId": "fbcac722964bdbab3b36739f9f90a28cebdceec9",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
