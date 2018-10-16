@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_cb469350",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-10-16T06:19:15Z",
+      "side": 1,
+      "message": "this doesn\u0027t need a fact, please include it in regex_search below",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 24
+      },
+      "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_ab759f9a",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-10-16T06:19:15Z",
+      "side": 1,
+      "message": "You can remove `/` at the end :) not an issue, but nicer looking imho",
+      "range": {
+        "startLine": 71,
+        "startChar": 12,
+        "endLine": 71,
+        "endChar": 26
+      },
+      "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_eb495760",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-10-16T06:19:15Z",
+      "side": 1,
+      "message": "Specify why this is skipped (if it applies to all skips, include it once)",
+      "range": {
+        "startLine": 78,
+        "startChar": 22,
+        "endLine": 78,
+        "endChar": 34
+      },
+      "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_0b3dcbba",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-10-16T06:19:15Z",
+      "side": 1,
+      "message": "remove commented code :)",
+      "range": {
+        "startLine": 116,
+        "startChar": 2,
+        "endLine": 116,
+        "endChar": 23
+      },
+      "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
