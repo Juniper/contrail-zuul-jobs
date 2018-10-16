@@ -1,0 +1,15 @@
+---
+container_name:
+    - contrail-windows-docker-driver
+    - contrail-windows-vrouter
+
+contrail_docker_registry: 10.84.5.81:35993
+contrail_container_tag: master-319
+for_test_contrail_container_tag: testpush4
+registries:
+    - host: 10.84.5.81:35993
+      protocol: http
+    #- host: index.docker.io/opencontrailnightly
+    #  protocol: https
+
+
