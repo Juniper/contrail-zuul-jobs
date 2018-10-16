@@ -1,52 +1,6 @@
 # Jobs for testing Contrail projects
 
 - job:
-    name: contrail-vnc-base2
-    parent: contrail-base2
-    description: |
-      A base job that prepares Contrail VNC sandbox using Android repo,
-      as opposed to the contrail-src-base job that copies the sources directly.
-    required-projects:
-      - Juniper/contrail-analytics
-      - Juniper/contrail-api-client
-      - Juniper/contrail-build
-      - Juniper/contrail-common
-      - Juniper/contrail-controller
-      - name: Juniper/contrail-dpdk
-        override-checkout: contrail_dpdk_17_11_3
-      - Juniper/contrail-fabric-utils
-      - Juniper/contrail-generateDS
-      - Juniper/contrail-java-api
-      - Juniper/contrail-heat
-      - Juniper/contrail-neutron-plugin
-      - Juniper/contrail-nova-extensions
-      - Juniper/contrail-nova-vif-driver
-      - Juniper/contrail-packages
-      - Juniper/contrail-packaging
-      - Juniper/contrail-provisioning
-      - Juniper/contrail-sandesh
-      - Juniper/contrail-specs
-      - Juniper/contrail-test
-      - Juniper/contrail-test-ci
-      - Juniper/contrail-third-party
-      - Juniper/contrail-tripleo-puppet
-      - Juniper/contrail-vcenter-manager
-      - Juniper/contrail-vcenter-plugin
-      - Juniper/contrail-vnc
-      - Juniper/contrail-vrouter
-      - Juniper/contrail-vrouter-java-api
-      - Juniper/contrail-vro-plugin
-      - Juniper/contrail-web-controller
-      - Juniper/contrail-web-core
-      - Juniper/contrail-web-server-manager
-      - Juniper/contrail-web-storage
-      - Juniper/contrail-webui-third-party
-      - Juniper/vijava
-    irrelevant-files:
-      - specs/.*
-    pre-run: playbooks/contrail-vnc-base2/pre
-
-- job:
     name: contrail-vnc-build-package-centos74
     parent: contrail-vnc-build-package-el-base
     irrelevant-files:
@@ -57,32 +11,13 @@
           label: centos-7-4-builder
 
 - job:
-    name: contrail-vnc-build-package-rhel7
-    parent: contrail-vnc-build-package-el-base
-    irrelevant-files:
-      - specs/.*
-    nodeset: builder-rhel-7
-
-- job:
-    name: contrail-vnc-build-package-rhel7-base
-    parent: contrail-vnc-build-package-el-base
-    irrelevant-files:
-      - specs/.*
-    nodeset: builder-rhel-7
-
-- job:
     name: contrail-vnc-build-package-rhel7-queens
-    parent: contrail-vnc-build-package-rhel7-base
+    parent: contrail-vnc-build-package-el-base
+    irrelevant-files:
+      - specs/.*
+    nodeset: builder-rhel-7
     vars:
       openstack_version: queens
-
-- job:
-    name: contrail-vnc-unittest-base
-    parent: contrail-vnc-base2
-    irrelevant-files:
-      - specs/.*
-    run: playbooks/contrail-vnc-unittest/main
-    post-run: playbooks/contrail-vnc-unittest/post
 
 - job:
     name: contrail-vnc-unittest-ubuntu-trusty
@@ -94,29 +29,6 @@
     parent: contrail-vnc-unittest-base
     voting: False
     nodeset: builder-centos-7
-
-- job:
-    name: contrail-sanity-base
-    parent: contrail-base2
-    pre-run: playbooks/contrail-sanity-base/pre
-    post-run: playbooks/contrail-sanity-base/post
-    vars:
-      setup_docker_registry: True
-
-- job:
-    name: contrail-sanity-kolla-base
-    parent: contrail-sanity-base
-    pre-run: playbooks/contrail-sanity-kolla-base/pre
-    run: playbooks/contrail-sanity-kolla-base/run
-    required-projects:
-      - Juniper/contrail-ansible-deployer
-      - name: Juniper/contrail-kolla-ansible
-        override-checkout: contrail/ocata
-      - Juniper/contrail-test
-      - Juniper/contrail-test-ci
-    vars:
-      cloud_orchestrator: openstack
-      kolla_docker_distro: centos
 
 - job:
     name: contrail-sanity-centos7-kolla-ocata
@@ -231,24 +143,6 @@
         - name: deployment
           nodes:
             - deployment-1
-- job:
-    name: contrail-sanity-openshift-base
-    parent: contrail-sanity-base
-    description: |
-      Base job for setting up OpenShift with Contrail as CNI and
-      running sanity CI tests.
-    run: playbooks/contrail-sanity-openshift-base/run
-    vars:
-      openstack_version: queens
-      cloud_orchestrator: openshift # needed only for yum-repos-prepare, not used in templates
-      test_target: openshift_ci
-    required-projects:
-      - name: Juniper/openshift-ansible
-        override-checkout: release-3.9-contrail
-      - Juniper/contrail-test
-      - Juniper/contrail-test-ci
-    roles:
-      - zuul: Juniper/openshift-ansible
 
 - job:
     name: contrail-sanity-rhel7-openshift-3.9
@@ -274,27 +168,6 @@
         - name: deployment
           nodes:
             - deployment-1
-- job:
-    name: contrail-helm-base
-    parent: contrail-sanity-base
-    description: |
-      A job that deploys Contrail and OpenStack containers using contrail-helm-deployer
-    post-run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/post
-    required-projects:
-      - Juniper/openstack-helm
-      - Juniper/contrail-helm-deployer
-      - Juniper/openstack-helm-infra
-      - Juniper/contrail-test
-      - Juniper/contrail-test-ci
-    vars:
-      cloud_orchestrator: openstack
-      contrail_deployer: helm
-    nodeset:
-      nodes:
-        - name: helm-aio
-          label: ubuntu-xenial-builder-xxlarge
-    roles:
-      - zuul: Juniper/contrail-helm-deployer
 
 - job:
     name: contrail-sanity-ubuntu1604-helm-ocata
@@ -313,16 +186,6 @@
     vars:
       release_type: nightly
       setup_docker_registry: true
-
-- job:
-    name: build-third-party-rpms-base
-    description: |
-      This job builds packages from third-party-packages repo
-      on Red Hat-based operating systems. This is a base job,
-      nodeset has to be assigned to build for a specific target.
-    voting: True
-    parent: contrail-src-base
-    run: playbooks/build-third-party-rpms-base/run
 
 - job:
     name: build-third-party-rpms-centos7
@@ -350,16 +213,6 @@
     nodeset: builder-centos-7
 
 - job:
-    name: dev-env-base
-    description: |
-      Base job used to work on dev-env.
-    parent: contrail-base2
-    required-projects:
-      - name: Juniper/contrail-dev-env
-        override-checkout: master
-    nodeset: builder-centos-7
-
-- job:
     name: test-dev-env
     description: |
       Test job for contrail-dev-env.
@@ -377,33 +230,11 @@
       setup_docker_registry: True
 
 - job:
-    name: trigger-win-base
-    parent: contrail-vnc-base2
-    description: This is base job for WindowsCI
-    run: playbooks/trigger-windows-ci/run
-    required-projects:
-      - Juniper/contrail-windows
-      - Juniper/contrail-windows-docker-driver
-    nodeset: ubuntu-xenial
-    vars:
-      setup_docker_registry: true
-      manifest_file: windows.xml
-    secrets:
-      - jenkins_winci_credentials
-
-- job:
     name: create-windows-containers
     parent: trigger-win-base
     description: This jobs starts Jenkins job in Windows CI to create Windows containers.
     vars:
       jenkins_job: ci-contrail-windows-nighly-zuultest-mc
-
-- job:
-    name: docker-base
-    parent: contrail-base2
-    pre-run: playbooks/docker-base/pre
-    vars:
-      setup_docker_registry: True
 
 - job:
     name: contrail-build-test-containers
@@ -412,14 +243,6 @@
     required-projects:
       - Juniper/contrail-test
     nodeset: builder-centos-7
-
-- job:
-    name: contrail-build-containers-base
-    parent: docker-base
-    run: playbooks/contrail-build-containers-base/run
-    required-projects:
-      - Juniper/contrail-container-builder
-      - Juniper/contrail-ansible-deployer
 
 - job:
     name: contrail-build-containers-centos7-newton
