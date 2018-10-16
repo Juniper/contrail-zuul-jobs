@@ -164,3 +164,10 @@
       - ^roles/upload-docs/.*
       - ^tests/.*
     nodeset: builder-centos-7
+
+- job:
+    name: test-publish-windows-containers
+    description: |
+      Test publishing windows containers
+    run: test-windows/publish-windows-containers
+    nodeset: builder-centos-7
