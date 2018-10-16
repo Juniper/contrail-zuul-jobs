@@ -1,0 +1,4 @@
+---
+- hosts: all
+  roles:
+    - publish-windows-containers

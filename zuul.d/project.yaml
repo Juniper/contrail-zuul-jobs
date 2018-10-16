@@ -15,6 +15,9 @@
         - ci-test-publish-infra-doc
         - ci-test-publish-infra-doc-unit
         - zuul-jobs-linters
+        - publish-infra-doc-test
+        - publish-infra-doc-unit-test
+        - test-publish-windows-containers
         - noop:
             irrelevant-files:
               - ^roles/.*

@@ -1,0 +1,6 @@
+---
+- name: Push containers to registry
+  command: "./pusher --config {{ ansible_env.HOME }}/{{ item.1 }}/config.json --protocol {{ reg.protocol }} --name {{ reg.host }}/{{ item.1 }}:{{ for_test_contrail_container_tag }} {{ layers.results[item.0].stdout }} {{ digest.results[item.0].stdout }}"
+  args:
+    chdir: "{{ ansible_env.HOME }}/bazel/bazel-bin"
+  with_indexed_items: "{{ container_name }}"
