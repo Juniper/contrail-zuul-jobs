@@ -2,6 +2,142 @@
   "comments": [
     {
       "key": {
+        "uuid": "df6247ed_4b9d0358",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-16T08:58:25Z",
+      "side": 1,
+      "message": "why separate task for updating cache?\n\nI\u0027d put\n\nupdate_cache: true\ncache_valid_time: 86400\n\nin the next task",
+      "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_2ba2cf9b",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-16T08:58:25Z",
+      "side": 1,
+      "message": "just \u0027install required packages\u0027",
+      "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_eb75d7fb",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-16T08:58:25Z",
+      "side": 1,
+      "message": "This actually clones the repository right? so \u0027clone rbenv\u0027. Also prefer naming to start with a verb.",
+      "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_6b8207cb",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-16T08:58:25Z",
+      "side": 1,
+      "message": "excessive indent",
+      "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_0b694b24",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-16T08:58:25Z",
+      "side": 1,
+      "message": "\u0027install ruby\u0027",
+      "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_2b6c0f35",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-16T08:58:25Z",
+      "side": 1,
+      "message": "excessive indent",
+      "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_6bd0c7ca",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-16T08:58:25Z",
+      "side": 1,
+      "message": "Why needed? You have this defined in a default variable.",
+      "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_2bdacfe8",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-16T08:58:25Z",
+      "side": 1,
+      "message": "read Gemfile",
+      "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_cb469350",
         "filename": "roles/puppet-lint/tasks/main.yaml",
         "patchSetId": 27
@@ -19,6 +155,23 @@
         "endLine": 48,
         "endChar": 24
       },
+      "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_0bd70bc2",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-16T08:58:25Z",
+      "side": 1,
+      "message": "install ruby",
       "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -65,6 +218,40 @@
         "endLine": 78,
         "endChar": 34
       },
+      "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_6b34474b",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-16T08:58:25Z",
+      "side": 1,
+      "message": "add a verb here like \u0027save linter output to file\u0027",
+      "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_4b39833f",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-16T08:58:25Z",
+      "side": 1,
+      "message": "as above.",
       "revId": "a04d8982719e9c879aeb5c364e7a7e16b4ffe0b5",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
