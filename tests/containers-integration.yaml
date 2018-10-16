@@ -1,4 +1,0 @@
-- include: contrail-base.yaml
-
-- include: containers-install-docker-daemon.yaml
-- include: containers-publish-container-images.yaml
