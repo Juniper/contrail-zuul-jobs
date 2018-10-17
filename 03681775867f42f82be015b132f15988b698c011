@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_c351d710",
+        "filename": "roles/publish-windows-containers/tasks/main.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-17T08:57:49Z",
+      "side": 1,
+      "message": "I\u0027d say this needs to be added to zuul and checked out by executor.",
+      "revId": "03681775867f42f82be015b132f15988b698c011",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
