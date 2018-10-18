@@ -41,3 +41,9 @@
               - ^roles/.*
               - ^playbooks/.*
               - ^tests/.*
+    experimental:
+      jobs:
+        - contrail-vnc-build-package-centos74
+        - contrail-build-containers-centos7-queens:
+            dependencies:
+              - contrail-vnc-build-package-centos74
