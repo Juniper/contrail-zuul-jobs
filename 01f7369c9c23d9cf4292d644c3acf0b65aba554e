@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_4b1cd569",
+        "filename": "roles/publish-windows-containers/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-19T07:55:57Z",
+      "side": 1,
+      "message": "dockerhub.user \u0026\u0026 dockerhub.password",
+      "revId": "01f7369c9c23d9cf4292d644c3acf0b65aba554e",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_ab26b1b6",
+        "filename": "roles/publish-windows-containers/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-19T07:55:57Z",
+      "side": 1,
+      "message": "dockerhub.user \u0026\u0026 dockerhub.password",
+      "revId": "01f7369c9c23d9cf4292d644c3acf0b65aba554e",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
