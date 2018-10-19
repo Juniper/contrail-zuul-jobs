@@ -120,6 +120,7 @@ class JenkinsManager:
         build = qi.get_build()
         job_status = build.get_status()
         print("Jenkins job finished with status: {}".format(job_status))
+        print("Jenking build number: {}" .format(build.get_last_buildnumber()))
         job_was_successful = (job_status == jenkinsapi.constants.STATUS_SUCCESS)
         return job_was_successful
 
