@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_cb832504",
+        "filename": "roles/fetch-logs-unittests/tasks/main.yaml",
+        "patchSetId": 32
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-19T08:55:55Z",
+      "side": 1,
+      "message": "why not just search for all *.log files since you pass the parent directory and recurse?",
+      "revId": "e69cb397d00653a164f6f39520f8cf9424c37891",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_6b7af924",
+        "filename": "roles/fetch-logs-unittests/tasks/main.yaml",
+        "patchSetId": 32
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-19T08:55:55Z",
+      "side": 1,
+      "message": "same question as for log files",
+      "revId": "e69cb397d00653a164f6f39520f8cf9424c37891",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
