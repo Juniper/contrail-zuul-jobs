@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_ce7d736f",
+        "filename": "roles/contrail-unittests-tntestr/tasks/main.yaml",
+        "patchSetId": 87
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-19T12:20:58Z",
+      "side": 1,
+      "message": "this is unneeded now imo.",
+      "revId": "317c633dad0b4ba3c4cb99b8f8a1cbc0c1a73499",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_ee883772",
+        "filename": "roles/contrail-unittests-tntestr/tasks/main.yaml",
+        "patchSetId": 87
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-19T12:20:58Z",
+      "side": 1,
+      "message": "you\u0027re including tasks here, not vars. Check the previous patchset.",
+      "revId": "317c633dad0b4ba3c4cb99b8f8a1cbc0c1a73499",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
