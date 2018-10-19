@@ -170,3 +170,10 @@
       - ^roles/upload-docs/.*
       - ^tests/.*
     nodeset: builder-centos-7
+
+- job:
+    name: test-tentacle
+    description: |
+      Test tentacle
+    run: playbooks/test_tentacle/run.yaml
+    nodeset: ubuntu-xenial

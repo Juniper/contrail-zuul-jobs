@@ -184,3 +184,10 @@
     required-projects:
       - Juniper/contrail-container-builder
       - Juniper/contrail-ansible-deployer
+
+- job:
+    name: test-tentacle
+    parent: trigger-win-base
+    description: |
+      Test tentacle
+    run: playbooks/test_tentacle/run.yaml
