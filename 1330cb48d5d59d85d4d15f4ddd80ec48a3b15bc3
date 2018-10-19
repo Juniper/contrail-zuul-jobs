@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_0b8ffd23",
+        "filename": "roles/contrail-unittests-tntestr/tasks/main.yaml",
+        "patchSetId": 86
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-19T11:28:23Z",
+      "side": 1,
+      "message": "make it a name for the include",
+      "revId": "1330cb48d5d59d85d4d15f4ddd80ec48a3b15bc3",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_ab4a317d",
+        "filename": "roles/contrail-unittests-tntestr/tasks/main.yaml",
+        "patchSetId": 86
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-19T11:28:23Z",
+      "side": 1,
+      "message": "can be removed, done in contrail-base2/pre",
+      "revId": "1330cb48d5d59d85d4d15f4ddd80ec48a3b15bc3",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
