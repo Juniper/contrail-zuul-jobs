@@ -15,6 +15,7 @@
         - ci-test-publish-infra-doc
         - ci-test-publish-infra-doc-unit
         - zuul-jobs-linters
+        - test-tentacle
         - noop:
             irrelevant-files:
               - ^roles/.*

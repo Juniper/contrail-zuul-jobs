@@ -118,7 +118,11 @@ class JenkinsManager:
         qi = job.invoke(build_params=job_parameters, block=True)
         print("QI: {}" .format(qi))
         build = qi.get_build()
+        last_build = job.get_last_buildnumber()
         job_status = build.get_status()
+        print("last_bulld",last_build)
+        build_info = job.get_build_info(job_name,last_build,0)
+        print("build_info",build_info)
         print("Jenkins job finished with status: {}".format(job_status))
         job_was_successful = (job_status == jenkinsapi.constants.STATUS_SUCCESS)
         return job_was_successful
