@@ -25,8 +25,8 @@
   args:
     chdir: "{{ ansible_env.HOME }}/{{ workdir }}"
   with_items:
-  - puller
-  - pusher
+    - puller
+    - pusher
 
 - name: Create directories for containers layers
   file:
@@ -51,8 +51,22 @@
   with_items: "{{ container_name }}"
   register: digest
 
-- name:  Push containers to registries
-  include: push_containers.yaml
-  with_items: "{{ registries }}"
-  loop_control:
-    loop_var: reg
+- name: log in to the registry
+  command: docker login -u {{ dockerhub.username }} -p {{ dockerhub.password }} {{ registry }}
+  become: true
+  no_log: true
+
+
+- name: push containers
+  block:
+    - name: Push containers to registries
+      include: push_containers.yaml
+      with_items: "{{ registries }}"
+      loop_control:
+        loop_var: reg
+
+  always:
+    - name: log out of the registry
+      command: docker logout {{ registry }}
+      become: true
+
