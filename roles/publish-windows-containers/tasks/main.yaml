@@ -51,8 +51,8 @@
   with_items: "{{ container_name }}"
   register: digest
 
-- name: log in to the registry
-  command: 'docker login -u {{ dockerhub.username }} -p {{ dockerhub.password }} {{ registry }}'
+- name: log in to dockerhub
+  command: 'docker login -u {{ dockerhub.username }} -p {{ dockerhub.password }}'
   become: true
   no_log: true
 
@@ -65,7 +65,7 @@
         loop_var: reg
 
   always:
-    - name: log out of the registry
-      command: 'docker logout {{ registry }}'
+    - name: log out of the dockerhub
+      command: 'docker logout'
       become: true
 
