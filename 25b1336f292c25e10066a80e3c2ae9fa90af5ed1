@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_ae9eba04",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 34
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-10-22T11:12:11Z",
+      "side": 1,
+      "message": "Why this specific commit? I think there should be a comment saying what it is (e.g. `master` on 2018-10-22 or a tag name if exists) or a reference to branch name if specific commit is not needed",
+      "range": {
+        "startLine": 27,
+        "startChar": 15,
+        "endLine": 27,
+        "endChar": 22
+      },
+      "revId": "25b1336f292c25e10066a80e3c2ae9fa90af5ed1",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_8ea3f64f",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 34
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-10-22T11:12:11Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 34,
+        "startChar": 15,
+        "endLine": 34,
+        "endChar": 22
+      },
+      "revId": "25b1336f292c25e10066a80e3c2ae9fa90af5ed1",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_4e85feac",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 34
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-10-22T11:12:11Z",
+      "side": 1,
+      "message": "dependencies from Puppetfile",
+      "range": {
+        "startLine": 65,
+        "startChar": 16,
+        "endLine": 65,
+        "endChar": 26
+      },
+      "revId": "25b1336f292c25e10066a80e3c2ae9fa90af5ed1",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
