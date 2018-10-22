@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_0efa6641",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 33
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 442
+      },
+      "writtenOn": "2018-10-22T11:54:19Z",
+      "side": 1,
+      "message": "Please use \"environment\" section and variable PATH to assemble it.\n\nhttps://docs.ansible.com/ansible/2.6/user_guide/playbooks_environment.html\n\nYou could also try moving from \u0027shell\u0027 to \u0027command\u0027 and avoid skipping linters.",
+      "range": {
+        "startLine": 69,
+        "startChar": 2,
+        "endLine": 69,
+        "endChar": 70
+      },
+      "revId": "8c256d7904e52f11a303256aebbce8d7b5bb2b3f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
