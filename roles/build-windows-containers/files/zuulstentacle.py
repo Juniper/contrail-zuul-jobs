@@ -11,6 +11,7 @@ import threading
 import urllib.error
 import urllib.request
 import urllib.response
+import re
 
 tool_description =\
         "Zuul's Tentacle - simple tool for integrating Zuul v3 with Jenkins"
@@ -120,6 +121,9 @@ class JenkinsManager:
         build = qi.get_build()
         job_status = build.get_status()
         print("Jenkins job finished with status: {}".format(job_status))
+        full_job_name = job.get_full_name()
+        names = re.split('/', full_job_name)
+        print("Job log {}/job/{}/job/{}/{}/".format(self.jenkins_address, names[0], names[1], last_build))
         job_was_successful = (job_status == jenkinsapi.constants.STATUS_SUCCESS)
         return job_was_successful
 
