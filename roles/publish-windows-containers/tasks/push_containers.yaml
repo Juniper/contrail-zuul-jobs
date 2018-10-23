@@ -4,3 +4,4 @@
   args:
     chdir: "{{ ansible_env.HOME }}/{{ workdir }}/bazel-bin"
   with_indexed_items: "{{ container_name }}"
+  become: true
