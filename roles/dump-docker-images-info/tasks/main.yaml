@@ -1,0 +1,11 @@
+---
+
+- name: run the dump script
+  script: dump_docker_images_info.py
+  become: true
+
+- name: fetch the dump file to logserver
+  synchronize:
+    mode: pull
+    src: ./docker_images.json
+    dest: '{{ zuul.executor.log_root }}/'
