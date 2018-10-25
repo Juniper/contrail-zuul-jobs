@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_ad47d31d",
+        "filename": "roles/dump-docker-images-info/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-25T13:17:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_0df37f0c",
+      "revId": "9759187886d185472ea9ca2a2076235e433fa84d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_edf70bf5",
         "filename": "roles/dump-docker-images-info/tasks/main.yaml",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2018-10-25T13:08:17Z",
       "side": 1,
       "message": "You\u0027d want to push it to logserver afterwards, correct?",
+      "revId": "9759187886d185472ea9ca2a2076235e433fa84d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_6d51dbd8",
+        "filename": "roles/dump-docker-images-info/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-25T13:17:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_edf70bf5",
       "revId": "9759187886d185472ea9ca2a2076235e433fa84d",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
