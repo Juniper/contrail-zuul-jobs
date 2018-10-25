@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "df6247ed_ad1eb309",
+        "filename": "playbooks/contrail-build-containers-base/run.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 478
+      },
+      "writtenOn": "2018-10-25T13:50:51Z",
+      "side": 1,
+      "message": "Can it be added to post-run instead?",
+      "range": {
+        "startLine": 6,
+        "startChar": 5,
+        "endLine": 6,
+        "endChar": 29
+      },
+      "revId": "9759187886d185472ea9ca2a2076235e433fa84d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_0df37f0c",
         "filename": "roles/dump-docker-images-info/tasks/main.yaml",
         "patchSetId": 3
