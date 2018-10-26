@@ -1,0 +1,22 @@
+---
+- name: Prepare packaging variables
+  contrail_packaging:
+    zuul: "{{ zuul }}"
+    release_type: "{{ release_type }}"
+    build_number: "{{ build_number | default('no_build_number') }}"
+    openstack_version: "{{ openstack_version | default('') }}"
+
+- name: get a list of package files
+  find:
+    paths: "{{ zuul.executor.work_root }}/packages/"
+    recurse: yes
+    patterns:
+      - '*.rpm'
+  register: package_list
+  delegate_to: localhost
+
+- name: check if directory contains packages to upload
+  meta: end_play
+  when: package_list.matched|int == 0
+
+- include: publish_to_nexus.yaml

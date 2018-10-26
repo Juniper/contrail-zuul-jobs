@@ -1,0 +1,34 @@
+---
+- name: upload rpms
+  block:
+    - name: create a credentials file
+      copy:
+        content: '--user {{ nexus_credentials.user }}:{{ nexus_credentials.password }}'
+        dest: '{{ zuul.executor.work_root }}/nexus-creds'
+      delegate_to: localhost
+      no_log: true
+
+    - name: upload rpm to nexus repo
+      command: |
+        curl -K {{ zuul.executor.work_root }}/nexus-creds \
+          --upload-file {{ item }} http://{{ nexus.fqdn }}/repository/{{ nexus.repos.yum }}/{{ repo_name }}/
+      with_items: "{{ package_list | json_query('files[*].path') }}"
+      delegate_to: localhost
+      tags:
+        # ANSIBLE0006 - can not use either get_url or uri modules for this task
+        # they do not support uploads (uri does since ansible 2.6)
+        - skip_ansible_lint
+
+    - name: return repository location back to zuul for children jobs
+      zuul_return:
+        data:
+          contrail_package_repository: 'http://{{ nexus.fqdn }}/repository/{{ nexus.repos.yum }}/{{ repo_name }}/'
+          contrail_container_tag: '{{ packaging.docker_version }}'
+      delegate_to: localhost
+
+  always:
+    - name: remove credentials file
+      file:
+        path: '{{ zuul.executor.work_root }}/nexus-creds'
+        state: 'absent'
+      no_log: true
