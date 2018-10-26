@@ -1,0 +1,13 @@
+---
+- hosts: builder
+  roles:
+    - fetch-packages
+
+- hosts: localhost
+  roles:
+    - role: contrail-common-libs
+    - role: packaging-rpm-nexus
+      vars:
+        nexus_credentials:
+          user: 'test'
+          password: 'test123'
