@@ -2,11 +2,13 @@
 # This role gathers all available package targets and builds them
 
 - name: List all available packages
-  command: 'make -f {{ zuul.project.src_dir }}/upstream/rpm/Makefile list'
+  # command: 'make -f {{ zuul.project.src_dir }}/upstream/rpm/Makefile list'
+  command: "make -f {{ zuul.projects | selectattr('short_name', 'equalto', 'contrail-infra-doc') | map(attribute='src_dir') | list | first }}/build/html"
   register: third_party_packages
 
 - name: Run preparation tasks
-  command: 'make -f {{ zuul.project.src_dir }}/upstream/rpm/Makefile prep'
+  # command: 'make -f {{ zuul.project.src_dir }}/upstream/rpm/Makefile prep'
+  command: command: "make -f {{ zuul.projects | selectattr('short_name', 'equalto', 'contrail-infra-doc') | map(attribute='src_dir') | list | first }}/build/html"
   args:
     creates: '{{ zuul.project.src_dir }}/../BUILD'
 
