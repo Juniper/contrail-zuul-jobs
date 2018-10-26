@@ -14,6 +14,7 @@
         - ci-test-ansible-lint-centos-7
         - ci-test-publish-infra-doc
         - ci-test-publish-infra-doc-unit
+        - ci-test-publish-rpm-nexus
         - zuul-jobs-linters
         - noop:
             irrelevant-files:
@@ -35,6 +36,7 @@
         - ci-test-ansible-lint-centos-7
         - ci-test-publish-infra-doc
         - ci-test-publish-infra-doc-unit
+        - ci-test-publish-rpm-nexus
         - zuul-jobs-linters
         - noop:
             irrelevant-files:
