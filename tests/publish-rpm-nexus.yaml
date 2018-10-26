@@ -1,0 +1,14 @@
+---
+- hosts: builder
+  roles:
+    - fetch-packages
+
+- hosts: builder
+  roles:
+    - role: contrail-common-libs2
+    - role: publish-rpm-nexus
+      vars:
+        packaging_nexus_rpm_repo: 'yum-tpc-test'
+        nexus_credentials:
+          user: 'test'
+          password: 'test123'
