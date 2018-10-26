@@ -2,13 +2,13 @@
 # This role gathers all available package targets and builds them
 
 - name: List all available packages
-  command: 'make -f {{ zuul.project.src_dir }}/upstream/rpm/Makefile list'
+  command: 'make -f {{ rpm_dir }}/upstream/rpm/Makefile list'
   register: third_party_packages
 
 - name: Run preparation tasks
-  command: 'make -f {{ zuul.project.src_dir }}/upstream/rpm/Makefile prep'
+  command: 'make -f {{ rpm_dir }}/upstream/rpm/Makefile prep'
   args:
-    creates: '{{ zuul.project.src_dir }}/../BUILD'
+    creates: '{{ rpm_dir }}/../BUILD'
 
 - name: Build packages
   include: build_package.yaml
@@ -16,5 +16,5 @@
 
 - name: List created packages
   find:
-    path: '{{ ansible_env.HOME }}/{{ zuul.project.src_dir }}/../BUILD'
+    path: '{{ ansible_env.HOME }}/{{ rpm_dir }}/../BUILD'
     patterns: '*.rpm'
