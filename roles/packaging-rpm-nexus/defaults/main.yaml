@@ -1,0 +1,3 @@
+---
+repo_name: "{{ packaging.repo_names[hostvars['builder'].ansible_distribution] }}"
+packaging-nexus-rpm-repo: 'yum-tungsten'

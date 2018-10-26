@@ -179,3 +179,16 @@
     required-projects:
       - Juniper/contrail-infra
     nodeset: builder-ubuntu-xenial
+
+- job:
+    name: ci-test-packaging-rpm-nexus
+    description: |
+      This jub is running roles tests for production environment for fetching/uploading rpms.
+    parent: build-third-party-rpms-base
+    post-run: tests/packaging-rpm-nexus.yaml
+    required-projects:
+      - Juniper/contrail-third-party-packages
+    nodeset: builder-centos-7
+    files:
+      - ^tests/.*
+      - ^roles/packaging-rpm-nexus/.*

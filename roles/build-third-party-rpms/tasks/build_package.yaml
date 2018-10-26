@@ -3,5 +3,5 @@
 - name: Build package {{ item }}
   command: 'make {{ item }}'
   args:
-    chdir: '{{ ansible_env.HOME }}/{{ zuul.project.src_dir }}/upstream/rpm'
+    chdir: '{{ ansible_env.HOME }}/{{ rpm_dir }}/upstream/rpm'
   become: true
