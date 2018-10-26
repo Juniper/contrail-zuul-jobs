@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_1fee0422",
+        "filename": "roles/packaging-rpm-nexus/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-10-26T13:52:00Z",
+      "side": 1,
+      "message": "Single quotes, everywhere.",
+      "revId": "7958d47fa8918d9881203f6405ca99301102a62d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_fff21006",
+        "filename": "roles/packaging-rpm-nexus/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-10-26T13:52:00Z",
+      "side": 1,
+      "message": "You have all the tasks delegated to localhost, why not target the play to localhost instead?",
+      "revId": "7958d47fa8918d9881203f6405ca99301102a62d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_3fe9c819",
+        "filename": "roles/packaging-rpm-nexus/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-10-26T13:52:00Z",
+      "side": 1,
+      "message": "Why not insert this block here instead of including?",
+      "revId": "7958d47fa8918d9881203f6405ca99301102a62d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_7f918099",
+        "filename": "roles/packaging-rpm-nexus/tasks/publish_to_nexus.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-10-26T13:52:00Z",
+      "side": 1,
+      "message": "This is specific only for the main build pipeline of contrail.",
+      "revId": "7958d47fa8918d9881203f6405ca99301102a62d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
