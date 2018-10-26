@@ -1,0 +1,9 @@
+---
+repo_name: >-
+  {%- if zuul.pipeline == 'post-merge' -%}
+    opencontrail-tpc-{{ zuul.branch }}
+  {%- else -%}
+    {{ zuul.change }}-{{ zuul.patchset }}-{{ zuul.buildset[0:10] }}
+  {%- endif -%}
+nexus_rpm_repo: '{{ nexus.repos.yum }}'
+contrail_built_rpms_src: "{{ ansible_env.HOME }}/{{ zuul.projects | selectattr('short_name', 'equalto', 'contrail-third-party-packages') | map(attribute='src_dir') | list | first }}/../RPMS"
