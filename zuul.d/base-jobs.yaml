@@ -56,6 +56,7 @@
       - specs/.*
     run: playbooks/contrail-vnc-unittest/main
     post-run: playbooks/contrail-vnc-unittest/post
+    timeout: 36000
 
 - job:
     name: contrail-sanity-base
