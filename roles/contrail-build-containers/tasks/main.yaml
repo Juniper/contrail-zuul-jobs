@@ -46,3 +46,7 @@
 - name: Build microservices
   include: build_container.yaml
   with_items: "{{ docker_list.stdout_lines }}"
+
+- name: print the list of images in local Docker engine
+  command: 'docker images'
+  become: true
