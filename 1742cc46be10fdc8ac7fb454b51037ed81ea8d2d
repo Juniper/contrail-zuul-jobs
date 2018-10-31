@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_c5289287",
+        "filename": "roles/publish-rpm-nexus/defaults/main.yaml",
+        "patchSetId": 26
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-31T14:09:00Z",
+      "side": 1,
+      "message": "use logic based on zuul.pipeline",
+      "revId": "1742cc46be10fdc8ac7fb454b51037ed81ea8d2d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_453ca2c7",
+        "filename": "roles/publish-rpm-nexus/defaults/main.yaml",
+        "patchSetId": 26
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-31T14:09:00Z",
+      "side": 1,
+      "message": "just \u0027nexus_rpm_repo\u0027",
+      "revId": "1742cc46be10fdc8ac7fb454b51037ed81ea8d2d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_a52b5e80",
+        "filename": "roles/publish-rpm-nexus/tasks/main.yaml",
+        "patchSetId": 26
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-31T14:09:00Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "1742cc46be10fdc8ac7fb454b51037ed81ea8d2d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_85229aa3",
+        "filename": "roles/publish-rpm-nexus/tasks/main.yaml",
+        "patchSetId": 26
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-31T14:09:00Z",
+      "side": 1,
+      "message": "extract to variable in defaults, will allow to be overridden",
+      "revId": "1742cc46be10fdc8ac7fb454b51037ed81ea8d2d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_652566ab",
+        "filename": "tests/publish-rpm-nexus.yaml",
+        "patchSetId": 26
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-10-31T14:09:00Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "1742cc46be10fdc8ac7fb454b51037ed81ea8d2d",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
