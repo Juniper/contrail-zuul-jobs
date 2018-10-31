@@ -88,6 +88,12 @@
       kolla_docker_distro: centos
 
 - job:
+    name: fail-fast
+    parent: contrail-base
+    run: playbooks/fail-fast/run
+    nodeset: builder-rhel-7
+
+- job:
     name: contrail-sanity-openshift-base
     parent: contrail-sanity-base
     description: |
