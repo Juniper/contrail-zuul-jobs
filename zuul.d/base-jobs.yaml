@@ -171,7 +171,8 @@
     description: |
       Prepares basic docker configuration - proxy and insecure registries.
       Requires nodeset and run playbook.
-    pre-run: playbooks/docker-base/pre
+    pre-run: playbooks/docker-base/pre.yaml
+    post-run: playbooks/docker-base/post.yaml
     vars:
       setup_docker_registry: True
 
