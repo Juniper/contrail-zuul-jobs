@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_7acf40b0",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-11-02T09:35:59Z",
+      "side": 1,
+      "message": "Typo in \u0027jub\u0027. And you should describe that this is an untrusted mock of the publish-third-party-packages job. The current description doesn\u0027t help the reader in understanding the real purpose.",
+      "revId": "56c012f59ad1f3c2a1a8e96cb4d726565d88f1a0",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_5ac6bc9c",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-11-02T09:35:59Z",
+      "side": 1,
+      "message": "Add the build-third-party-packages role also.",
+      "revId": "56c012f59ad1f3c2a1a8e96cb4d726565d88f1a0",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
