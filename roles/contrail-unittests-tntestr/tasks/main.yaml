@@ -87,16 +87,15 @@
   when: unittest_target.stdout_lines[-1] != ''
   block:
   - name: gather list of unit test to be run for changeset
-    command: 'scons -Q --warn=no-all --describe-tests {{ item }}'
+    command: 'scons -Q --warn=no-all --describe-tests {{ unittest_target.stdout_lines[-1] }}'
     args:
       chdir: '{{ packaging.target_dir }}'
-    with_items: '{{ unittest_target.stdout_lines[-1].split(" ") }}'
     register: scons_describe
     become: true
 
   - name: populate unit test list to be run into file
     copy:
-      content: '{{ scons_describe.results[0].stdout }}'
+      content: '{{ scons_describe.stdout }}'
       dest: '{{ ansible_env.HOME }}/{{ unittest_target_file }}'
 
   - name: run unittest's targets
