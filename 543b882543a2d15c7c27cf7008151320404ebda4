@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_7f8a891b",
+        "filename": "roles/fetch-logs-unittests/library/convert_target_list.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-11-06T13:47:18Z",
+      "side": 1,
+      "message": "target",
+      "revId": "543b882543a2d15c7c27cf7008151320404ebda4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_dfca956c",
+        "filename": "roles/fetch-logs-unittests/library/convert_target_list.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-11-06T13:47:18Z",
+      "side": 1,
+      "message": "it\u0027s unittest_targets.json in the main.yaml of the role, just a small discrepancy",
+      "revId": "543b882543a2d15c7c27cf7008151320404ebda4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_3f84110c",
+        "filename": "roles/fetch-logs-unittests/tasks/logs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-11-06T13:47:18Z",
+      "side": 1,
+      "message": "This creates a directory structure, correct? recurse: true is missing I think",
+      "revId": "543b882543a2d15c7c27cf7008151320404ebda4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_9f99bd7a",
+        "filename": "roles/fetch-logs-unittests/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-11-06T13:47:18Z",
+      "side": 1,
+      "message": "I know that I suggested \u0027unittest_output\u0027, but would stay with \u0027unittest-results\u0027 in the end :p",
+      "revId": "543b882543a2d15c7c27cf7008151320404ebda4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_bf9ec160",
+        "filename": "roles/fetch-logs-unittests/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-11-06T13:47:18Z",
+      "side": 1,
+      "message": "I\u0027d still fetch this file to executor and upload to logserver",
+      "revId": "543b882543a2d15c7c27cf7008151320404ebda4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_5fa465b9",
+        "filename": "roles/fetch-logs-unittests/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-11-06T13:47:18Z",
+      "side": 1,
+      "message": "typo",
+      "revId": "543b882543a2d15c7c27cf7008151320404ebda4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
