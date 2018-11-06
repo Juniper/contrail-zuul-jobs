@@ -1,94 +1,57 @@
 ---
+
 - name: set variables
   set_fact:
-    unittest_target_file: 'unittest_list.txt'
-    unittest_targets: []
-    results_dir: '{{ zuul.executor.log_root }}/unittest-results'
+    unittest_target_file: '{{ ansible_env.HOME }}/unittest_list.txt'
+    results_dir: '{{ ansible_env.HOME }}/unittest_output'
 
-- name: read targets from the unit test file
-  command: 'cat {{ ansible_env.HOME }}/{{ unittest_target_file }}'
-  register: file_content
-
-- name: parse targets to dictionary
-  set_fact:
-    unittest_targets: '{{ unittest_targets + [ item | from_json ] }}'
-  with_items:
-    - '{{ file_content.stdout_lines }}'
-
-- name: create the log directory on executor
-  file:
-    path: '{{ results_dir }}/{{ item }}'
-    state: 'directory'
-  delegate_to: localhost
-  with_items:
-    - 'log'
-    - 'xml'
-
-- name: fetch unit tests target file to executor
-  synchronize:
-    src: '{{ ansible_env.HOME }}/{{ unittest_target_file }}'
-    dest: '{{ results_dir }}'
-    mode: 'pull'
-  become: true
+- name: check that the Scons describe tests file exists
+  stat:
+    path: '{{ unittest_target_file }}'
+  register: unittest_stat
 
 - name: fetch unit test's results
-  when: unittest_targets | length > 0
+  when: unittest_stat.stat.exists
   block:
-  - name: find the tests log file
-    find:
-      paths: '{{ item.log_path | dirname }}'
-      pattern: '{{ item.log_path.split(".log")[0] | basename }}.*.log'
-      file_type: file
-    become: true
-    register: log_file
-    with_items: '{{ unittest_targets }}'
+  - name: create directory for unittest results
+    file:
+      path: '{{ results_dir }}'
+      state: 'directory'
+      owner: 'zuul'
+      mode: 0755
 
-  - name: gzip log files
-    archive:
-      path: '{{ item.1.path }}'
-      remove: false
-    become: true
-    with_subelements:
-      - '{{ log_file.results }}'
-      - 'files'
-    when: log_file.results | length > 0
+  - name: move Scons output to UT results dir
+    copy:
+      src: '{{ unittest_target_file }}'
+      dest: '{{ results_dir }}/scons_describe_tests.txt'
+      remote_src: true
+      owner: 'zuul'
+      mode: 0644
 
-  - name: fetch log files
-    synchronize:
-      src: '{{ item.1.path }}.gz'
-      dest: '{{ results_dir }}/log'
-      mode: 'pull'
-    become: true
-    with_subelements:
-      - '{{ log_file.results }}'
-      - 'files'
-    when: log_file.results | length > 0
+  - name: create unittest submodules list
+    convert_target_list:
+      description_file: '{{ unittest_target_file }}'
+      target_file: '{{ results_dir }}/unittest_targets.json'
+      strip_prefix: '{{ packaging.target_dir }}'
 
-  - name: find the tests report xml file
-    find:
-      paths: '{{ item.xml_path | dirname }}'
-      pattern: '{{ item.xml_path.split(".xml")[0] | basename }}.*.xml'
-      file_type: file
-    become: true
-    register: xml_report_file
-    with_items: '{{ unittest_targets }}'
+  - name: load content of UT target file
+    slurp:
+      src: '{{ results_dir }}/unittest_targets.json'
+    register: unittest_file
 
-  - name: gzip reports
-    archive:
-      path: '{{ item.1.path }}'
-      remove: false
-    become: true
-    with_subelements:
-      - '{{ xml_report_file.results }}'
-      - 'files'
-    when: xml_report_file.results | length > 0
+  - name: set targets in variable
+    set_fact:
+      unittest_targets: '{{ unittest_file.content | b64decode | from_json }}'
 
-  - name: fetch xml reports
-    synchronize:
-      src: '{{ item.1.path }}.gz'
-      dest: '{{ results_dir }}/xml'
-      mode: 'pull'
-    with_subelements:
-      - '{{ xml_report_file.results }}'
-      - 'files'
-    when: xml_report_file.results | length > 0
+  - name: execute tasks for fetching logs to log server
+    include: logs.yaml
+
+  - name: execute tasks for fetching reports to log server
+    include: xmls.yaml
+
+- name: fetch unittests output to executor
+  synchronize:
+    src: '{{ results_dir }}'
+    dest: '{{ zuul.executor.log_root }}/'
+    mode: 'pull'
+
