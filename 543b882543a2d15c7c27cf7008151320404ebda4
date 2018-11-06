@@ -53,6 +53,23 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_7fdde912",
+        "filename": "roles/fetch-logs-unittests/tasks/logs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-11-06T14:01:07Z",
+      "side": 1,
+      "message": "wondering if \u0027packaging\u0027 should be used here :F",
+      "revId": "543b882543a2d15c7c27cf7008151320404ebda4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_9f99bd7a",
         "filename": "roles/fetch-logs-unittests/tasks/main.yaml",
         "patchSetId": 1
