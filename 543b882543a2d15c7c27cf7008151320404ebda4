@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_a5a7d0a7",
+        "filename": "roles/fetch-logs-unittests/library/convert_target_list.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 457
+      },
+      "writtenOn": "2018-11-07T09:32:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_7f8a891b",
+      "revId": "543b882543a2d15c7c27cf7008151320404ebda4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_dfca956c",
         "filename": "roles/fetch-logs-unittests/library/convert_target_list.py",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_85b84cc8",
+        "filename": "roles/fetch-logs-unittests/library/convert_target_list.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 457
+      },
+      "writtenOn": "2018-11-07T09:32:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_dfca956c",
+      "revId": "543b882543a2d15c7c27cf7008151320404ebda4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_3f84110c",
         "filename": "roles/fetch-logs-unittests/tasks/logs.yaml",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2018-11-06T13:47:18Z",
       "side": 1,
       "message": "This creates a directory structure, correct? recurse: true is missing I think",
+      "revId": "543b882543a2d15c7c27cf7008151320404ebda4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_65bb18c4",
+        "filename": "roles/fetch-logs-unittests/tasks/logs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 457
+      },
+      "writtenOn": "2018-11-07T09:32:15Z",
+      "side": 1,
+      "message": "It\u0027s not needed here. Default behavior for \u0027directory\u0027 mode is to create all intermediate sub-dirs in case they don\u0027t exist",
+      "parentUuid": "df6247ed_3f84110c",
       "revId": "543b882543a2d15c7c27cf7008151320404ebda4",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -104,6 +158,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_25b520ce",
+        "filename": "roles/fetch-logs-unittests/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 457
+      },
+      "writtenOn": "2018-11-07T09:32:15Z",
+      "side": 1,
+      "message": "Agree, created another task to handle this.",
+      "parentUuid": "df6247ed_bf9ec160",
+      "revId": "543b882543a2d15c7c27cf7008151320404ebda4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_5fa465b9",
         "filename": "roles/fetch-logs-unittests/tasks/main.yaml",
         "patchSetId": 1
@@ -115,6 +187,24 @@
       "writtenOn": "2018-11-06T13:47:18Z",
       "side": 1,
       "message": "typo",
+      "revId": "543b882543a2d15c7c27cf7008151320404ebda4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_05cc5c68",
+        "filename": "roles/fetch-logs-unittests/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 457
+      },
+      "writtenOn": "2018-11-07T09:32:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_5fa465b9",
       "revId": "543b882543a2d15c7c27cf7008151320404ebda4",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
