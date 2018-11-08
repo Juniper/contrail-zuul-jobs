@@ -1,5 +1,14 @@
 ---
 
+- name: perform pre-provisioning
+  command: ansible-playbook -i inventory/ playbooks/preprovision.yml -v
+  args:
+    chdir: "{{ docker_provision_dir }}"
+  environment:
+    ANSIBLE_HOST_KEY_CHECKING: 'False'
+    ANSIBLE_STDOUT_CALLBACK: debug
+  become: True
+
 - name: Configure AIO VM with configure_instances.yml playbook
   command: ansible-playbook -i inventory/ playbooks/configure_instances.yml -v
   args:
