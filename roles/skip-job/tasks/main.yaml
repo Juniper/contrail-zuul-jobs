@@ -1,0 +1,27 @@
+---
+
+- name: change mode of private key
+  file:
+    path: '{{ ansible_env.HOME }}/review-creds'
+    mode: 0600
+
+- name: find the current patchset
+  shell: "ssh -i '{{ ansible_env.HOME }}/review-creds' -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 29418 gerrit@review.opencontrail.org gerrit query --comments {{ zuul.change }} --current-patch-set  | grep -A 1 'currentPatchSet:' | grep 'number' | cut -d ':' -f2 | xargs"
+  register: current_patch_set
+
+- name: find passed jobs
+  shell: "ssh -i '{{ ansible_env.HOME }}/review-creds' -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 29418 gerrit@review.opencontrail.org gerrit query --comments {{ zuul.change }} | grep 'contrail-vnc-unittest-centos7' | grep ': SUCCESS in' | grep '/{{ current_patch_set.stdout_lines[1] }}/' | tr -s ' ' | cut -d ' ' -f3"
+  register: passed_job
+
+- name: display already passed job
+  debug:
+    msg: "Skipping this job, since it has already been run previously..."
+  when: "( 'contrail-vnc-unittest-centos7' in passed_job.stdout )"
+
+- meta: end_play
+  when: "( 'contrail-vnc-unittest-centos7' in passed_job.stdout )"
+  become: true
+
+- name: display message that the job has not run before
+  debug:
+    msg: "The job {{ zuul.job }} has not run before and will run a full build..."
