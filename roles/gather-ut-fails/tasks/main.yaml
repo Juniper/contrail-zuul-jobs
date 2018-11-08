@@ -1,0 +1,15 @@
+---
+- name: set variables
+  set_fact:
+    tntestr_output: '{{ ansible_env.HOME }}/tntestr_output.txt'
+    fail_log: '{{ ansible_env.HOME }}/scons_test-FAIL.log'
+
+- name: gather list of failed UT
+  shell: "grep -Ew 'FAILED|SKIPPED' {{ tntestr_output }} > {{ fail_log }}"
+  ignore_errors: true
+
+- name: fetch unittests output to executor
+  synchronize:
+    src: '{{ fail_log }}'
+    dest: '{{ zuul.executor.log_root }}/'
+    mode: 'pull'
