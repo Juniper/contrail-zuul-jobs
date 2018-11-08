@@ -1,5 +1,8 @@
 ---
 - hosts: all
   roles:
-    - fetch-logs-unittests
+    - role: fetch-logs-unittests
+      tntestr_output: '{{ ansible_env.HOME }}/tntestr_output.txt'
+    - role: gather-ut-fails
+      tntestr_output: '{{ ansible_env.HOME }}/tntestr_output.txt'
     - contrail-upload-dmesg

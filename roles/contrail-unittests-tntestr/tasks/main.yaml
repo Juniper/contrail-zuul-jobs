@@ -99,7 +99,7 @@
       dest: '{{ ansible_env.HOME }}/{{ unittest_target_file }}'
 
   - name: run unittest's targets
-    command: '{{ venv_dir}}/bin/tntestr --debug --less-strict {{ unittest_target.stdout_lines[-1] }}'
+    shell: '{{ venv_dir}}/bin/tntestr --debug --less-strict {{ unittest_target.stdout_lines[-1] }} | tee {{ tntestr_output }}'
     args:
       chdir: '{{ packaging.target_dir }}'
     become: true
