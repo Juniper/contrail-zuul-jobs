@@ -1,0 +1,24 @@
+---
+
+- name: Change mode of private key
+  file:
+    path: '{{ zuul.executor.work_root }}/review-creds'
+    mode: 0600
+
+- name: Find failed jobs
+  shell: "ssh -i {{ zuul.executor.work_root }}/review-creds -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 29418 gerrit@review.opencontrail.org gerrit query --comments {{ zuul.change }} | grep 'contrail-vnc-build-unittest-ubuntu-trusty' | grep ': SUCCESS in' | tr -s ' ' | cut -d ' ' -f3 | sort -n | uniq"
+  register: passed_job
+
+- name: display passed job
+  debug:
+    msg: "The skipped job is {{ passed_job.stdout_lines }}"
+  when: passed_job.stdout != ""
+
+- name: display message
+  debug:
+    msg: "The job {{ zuul.job }} hasn't run before and will run a full build"
+  when: passed_job.stdout == ""
+
+- meta: end_play
+  when: passed_job.stdout != ""
+  become: true
