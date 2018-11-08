@@ -1,6 +1,7 @@
 ---
 - hosts: all
   roles:
+    - skip-job
     - zuul-include-vars
     - contrail-tpc-repos
     - packaging-prepare-contrail2
