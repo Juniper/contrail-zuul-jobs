@@ -90,9 +90,22 @@
     command: 'scons -Q --warn=no-all --describe-tests {{ item }}'
     args:
       chdir: '{{ packaging.target_dir }}'
-    with_items: '{{ unittest_target.stdout_lines[-1].split(" ") }}'
+    #with_items: '{{ unittest_target.stdout_lines[-1].split(" ") }}'
+    with_items:
+      #- 'controller/src/xmpp:test'
+      - 'controller/src/config/api-server:test'
+      - 'controller/src/config/device-manager:test'
+      - 'controller/src/config/fabric-ansible:test'
+      - 'controller/src/config/schema-transformer:test'
+      - 'controller/src/config/svc_monitor:test'
+      - 'controller/src/config/vnc_openstack:test'
+      - 'controller/src/container/kube-manager:test'
+      - 'src/contrail-api-client/api-lib:test'
     register: scons_describe
     become: true
+
+  - debug:
+      var: scons_describe
 
   - name: populate unit test list to be run into file
     copy:
@@ -100,7 +113,8 @@
       dest: '{{ ansible_env.HOME }}/{{ unittest_target_file }}'
 
   - name: run unittest's targets
-    command: '{{ venv_dir}}/bin/tntestr --debug --less-strict {{ unittest_target.stdout_lines[-1] }}'
+    #shell: '{{ venv_dir}}/bin/tntestr --debug --less-strict {{ unittest_target.stdout_lines[-1] }} | tee {{ ansible_env.HOME }}/tntestr_output.txt'
+    shell: '{{ venv_dir}}/bin/tntestr --debug --less-strict controller/src/xmpp:test | tee {{ ansible_env.HOME }}/tntestr_output.txt'
     args:
       chdir: '{{ packaging.target_dir }}'
     become: true
