@@ -1,0 +1,17 @@
+---
+- name: Find failed jobs
+  command: "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 29418 opencontrail-admin@review.opencontrail.org gerrit query --comments {{ zuul.change }} | grep 'contrail-vnc-build-unittest-ubuntu-trusty' | grep ': SUCCESS in' | tr -s ' ' | cut -d ' ' -f3 | sort -n | uniq"
+  register: passed_job
+  become: true
+
+- debug:
+    var: passed_job
+    verbosity: 2
+
+- debug:
+    msg: "Skip passed unit test job {{ passed_job }}"
+  when: passed_job is defined
+
+- meta: end_play
+  when: passed_job is defined
+  become: true
