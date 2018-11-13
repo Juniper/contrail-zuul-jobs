@@ -4,3 +4,4 @@ contrail_version: "{{ packaging.repo_name }}"
 openstack_version: ocata
 rpm_repo_config_dir: /etc/yum.repos.d/
 docker_build_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-container-builder"
+deployers_build_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-deployers-containers"
