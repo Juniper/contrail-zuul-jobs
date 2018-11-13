@@ -2,7 +2,7 @@
 - name: "Build container {{ item|replace('/','-') }}"
   command: "./build.sh {{ item }}"
   args:
-    chdir: "{{ docker_build_dir }}/containers"
+    chdir: "{{ build_dir }}/containers"
   become: true
   register: container_build
   retries: 5
