@@ -2,7 +2,10 @@
 - name: Prepare build configuration - common.env
   template:
     src: common.env.j2
-    dest: "{{ docker_build_dir }}/common.env"
+    dest: "{{ item }}/common.env"
+  with_items:
+    - "{{ docker_build_dir }}"
+    - "{{ deployers_build_dir }}"
 
 - name: Send common.env to the executor
   synchronize:
@@ -36,6 +39,13 @@
   args:
     chdir: "{{ docker_build_dir }}/containers"
 
+- name: Prepare deployers container list
+  shell: ./build.sh list | grep -v INFO
+  become: true
+  register: deployers_list
+  args:
+    chdir: "{{ deployers_build_dir }}/containers"
+
 - name: "HACK: disable IPv6"
   shell: |
     sysctl -w net.ipv6.conf.all.disable_ipv6=1
@@ -45,4 +55,12 @@
 
 - name: Build microservices
   include: build_container.yaml
+  vars:
+    build_dir: "{{ docker_build_dir }}"
   with_items: "{{ docker_list.stdout_lines }}"
+
+- name: Build deployers
+  include: build_container.yaml
+  vars:
+    build_dir: "{{ deployers_build_dir }}"
+  with_items: "{{ deployers_list.stdout_lines }}"
