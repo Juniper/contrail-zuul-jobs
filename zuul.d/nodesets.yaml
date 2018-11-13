@@ -75,8 +75,6 @@
 - nodeset:
     name: c7-systest-c-multinode
     nodes:
-      - name: deployment-1
-        label: ubuntu-xenial-small
       - name: openstack-control-1
         label: c7-systest-c
       - name: openstack-compute-1
@@ -84,7 +82,7 @@
     groups:
       - name: deployment
         nodes:
-          - deployment-1
+          - openstack-control-1
       - name: control-plane
         nodes:
           - openstack-control-1
