@@ -1,0 +1,4 @@
+openstack_repos_add:
+  - { name: rhel-7-server-openstack-11-devtools-rpms-mirror, repo: rhel-7-server-openstack-11-devtools-rpms, description: rhel-7-server-openstack-11-devtools-rpms }
+  - { name: rhel-7-server-openstack-11-rpms-mirror, repo: rhel-7-server-openstack-11-rpms, description: rhel-7-server-openstack-11-rpms }
+  - { name: rhel-7-server-openstack-11-tools-rpms-mirror, repo: rhel-7-server-openstack-11-tools-rpms, description: rhel-7-server-openstack-11-tools-rpms }
