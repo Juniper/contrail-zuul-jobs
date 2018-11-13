@@ -1,0 +1,78 @@
+---
+- name: include OS-specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution | lower }}.yaml"
+    - "{{ ansible_os_family | lower }}.yaml"
+    - "default.yaml"
+
+- when:
+    - cloud_orchestrator == 'openstack'
+    - ansible_distribution == 'RedHat'
+  block:
+    - name: include OpenStack-specific repos
+      include_vars: "{{ ansible_distribution | lower }}_openstack_{{ openstack_version }}.yaml"
+
+    - name: add OpenStack repos to repos_add
+      set_fact:
+        repos_add: "{{ repos_add }} + {{ openstack_repos_add }}"
+
+- when:
+    - cloud_orchestrator == 'openshift'
+    - ansible_distribution == 'RedHat'
+  block:
+    - name: include OpenShift-specific repos
+      include_vars: '{{ ansible_distribution | lower }}_openshift_{{ openshift_version }}.yaml'
+
+    - name: add OpenShift repos to repos_add
+      set_fact:
+        repos_add: '{{ repos_add }} + {{ openshift_repos_add }}'
+
+- name: disable subscription-manager on RHEL
+  command: subscription-manager config --rhsm.manage_repos=0
+  become: yes
+  become_user: root
+  when: 'ansible_distribution == "RedHat"'
+
+- name: remove the upstream yum repos
+  yum_repository:
+    name: "{{ item.name }}"
+    file: "{{ item.file }}"
+    state: absent
+  with_items: "{{ repos_remove }}"
+  become: yes
+  become_user: root
+
+- name: prepare local base yum mirror repo file
+  yum_repository:
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    file: "{{ repos_file }}"
+    baseurl: "{{ repos_baseurl }}/{{ item.repo }}/"
+    enabled: yes
+    gpgcheck: no
+  with_items: "{{ repos_add }}"
+  become: yes
+  become_user: root
+
+- name: prepare epel mirror repo file
+  yum_repository:
+    name: epel-mirror
+    description: CentOS epel mirror
+    file: epel
+    baseurl: "http://{{ docker_registry.fqdn }}/pulp/repos/centos74-epel/"
+    enabled: "{{ use_epel }}"
+    gpgcheck: no
+  become: yes
+  become_user: root
+
+- name: prepare third party cache yum repo file
+  yum_repository:
+    name: contrail-tpc
+    description: Contrail third-party dependencies
+    file: contrail-tpc
+    baseurl: "http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/{{ tpc_repo_name }}/"
+    enabled: yes
+    gpgcheck: no
+  become: yes
+  become_user: root
