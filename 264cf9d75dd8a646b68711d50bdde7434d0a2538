@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_e7225a52",
+        "filename": "roles/contrail-build-containers/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 457
+      },
+      "writtenOn": "2018-11-15T10:16:12Z",
+      "side": 1,
+      "message": "should be jinja here",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 8,
+        "endChar": 25
+      },
+      "revId": "264cf9d75dd8a646b68711d50bdde7434d0a2538",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_c71d1610",
+        "filename": "roles/contrail-build-containers/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 457
+      },
+      "writtenOn": "2018-11-15T10:16:12Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 64,
+        "startChar": 18,
+        "endLine": 64,
+        "endChar": 28
+      },
+      "revId": "264cf9d75dd8a646b68711d50bdde7434d0a2538",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
