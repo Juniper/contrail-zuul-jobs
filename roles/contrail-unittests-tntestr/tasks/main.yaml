@@ -14,6 +14,7 @@
     testrunner_dir: '{{ ansible_env.HOME }}/src/review.opencontrail.org/tungstenfabric/tungsten-test-runner'
     venv_dir: '{{ ansible_env.HOME }}/testrunner_venv'
     unittest_target_file: 'unittest_list.txt'
+    tntestr_output: '{{ ansible_env.HOME }}/tntestr_output.txt'
 
 # Some tests (like test.test_flow.FlowQuerierTest.test_1_noarg_query) expect
 # PST timezone, and fail otherwise.
@@ -99,7 +100,7 @@
       dest: '{{ ansible_env.HOME }}/{{ unittest_target_file }}'
 
   - name: run unittest's targets
-    command: '{{ venv_dir}}/bin/tntestr --debug --less-strict {{ unittest_target.stdout_lines[-1] }}'
+    shell: '{{ venv_dir}}/bin/tntestr --debug --less-strict {{ unittest_target.stdout_lines[-1] }} | tee {{ tntestr_output }}'
     args:
       chdir: '{{ packaging.target_dir }}'
     become: true
