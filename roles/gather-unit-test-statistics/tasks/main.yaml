@@ -1,0 +1,34 @@
+---
+
+- name: include OS-specific variables
+  include_vars: '{{ item }}'
+  with_first_found:
+    - '{{ ansible_os_family|lower }}.yaml'
+    - 'default.yaml'
+
+- name: template statistics sink configuration
+  template:
+    src: 'config.ini.j2'
+    dest: '{{ ansible_env.HOME }}/{{ script_dir }}/config.ini'
+
+- name: install yum dependencies
+  yum:
+    name: 'mysql-devel'
+    state: 'present'
+  become: true
+
+- name: install requirements
+  pip:
+    requirements: '{{ ansible_env.HOME }}/{{ script_dir }}/requirements.txt'
+    virtualenv_python: '{{ python_version }}'
+    virtualenv: '{{ venv_dir }}'
+
+- name: gather unit test statistics
+  command: >
+    {{ venv_dir }}/bin/python test-analyzer.py
+      --change {{ zuul.change }}
+      --patchset {{ zuul.patchset }}
+      --xml_reports_root_dir {{ ansible_env.HOME }}/unittest_output
+      {{ ansible_env.HOME }}/unittest_output/unittest_targets.json
+  args:
+    chdir: '{{ ansible_env.HOME }}/{{ script_dir }}'
