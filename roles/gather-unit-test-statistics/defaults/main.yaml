@@ -1,0 +1,4 @@
+---
+
+script_dir: '{{ zuul.projects | selectattr("short_name", "equalto", "ci-utils") | map(attribute="src_dir") | list | first }}/tungsten_ci_utils/test_statistics'
+venv_dir: '{{ ansible_env.HOME }}/test_statistics_venv'
