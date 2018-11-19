@@ -1,0 +1,7 @@
+---
+
+#- name: template statistics sink configuration
+#  template:
+#    src: 'config.ini.j2'
+#    dest: '{{ ansible_env.HOME }}/{{ work_dir }}'
+

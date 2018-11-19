@@ -3,4 +3,11 @@
   roles:
     - fetch-logs-unittests
     - gather-ut-fails
+#    - role: gather-unit-test-statistics
+#      database_host: stats.opencontrail.org
+#      database_port: 3360
+#      database_name: poc_test_statistics
+#      database_table: poc_test_statistics_1
+#      database_user: poc_test_statistics
+#      database_password: 123qweasdzxc
     - contrail-upload-dmesg
