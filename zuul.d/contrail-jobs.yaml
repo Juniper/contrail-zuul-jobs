@@ -31,6 +31,7 @@
     parent: contrail-vnc-base2
     required-projects:
       - tungstenfabric/tungsten-test-runner
+      - tungsten-infra/ci-utils
     irrelevant-files:
       - specs/.*
     run: playbooks/contrail-vnc-unittest-tntestr/main
