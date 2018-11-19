@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_2a64b2b8",
+        "filename": "roles/contrail-build-containers/tasks/main.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-11-19T09:53:56Z",
+      "side": 1,
+      "message": "Still, we settled for the actual map syntax as described here: https://github.com/whitecloud/ansible-styleguide#key-value-pairs\n\nThis syntax is also not the same as for the rest of the playbooks in this repo so I\u0027d rather see it compliant with the rest.",
+      "parentUuid": "df6247ed_8a1dde67",
+      "revId": "fa06862da4e9f9cd05ac3ccc27a03b4fd5d33833",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_ef3b4ce8",
         "filename": "roles/contrail-build-containers/tasks/main.yaml",
         "patchSetId": 4
