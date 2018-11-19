@@ -3,4 +3,7 @@
   roles:
     - fetch-logs-unittests
     - gather-ut-fails
+#    - role: gather-unit-test-statistics
+#      database_user: poc_test_statistics
+#      database_password: 123qweasdzxc
     - contrail-upload-dmesg
