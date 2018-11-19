@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_2a03920f",
+        "filename": "roles/contrail-build-containers/tasks/main.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2018-11-19T08:51:26Z",
+      "side": 1,
+      "message": "it works in this way also - https://github.com/Juniper/contrail-ansible-deployer/blob/master/playbooks/roles/docker/tasks/main.yml#L6-L7",
+      "parentUuid": "df6247ed_0f3580f7",
+      "revId": "fa06862da4e9f9cd05ac3ccc27a03b4fd5d33833",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_ef3b4ce8",
         "filename": "roles/contrail-build-containers/tasks/main.yaml",
         "patchSetId": 4
