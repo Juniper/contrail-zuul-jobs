@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_8a1dde67",
+        "filename": "roles/contrail-build-containers/tasks/main.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2018-11-19T09:03:36Z",
+      "side": 1,
+      "message": "it work in any way:\n\n    - name: test include\n      include: debug.yaml\n        test_var\u003d\"test 1\"\n    - name: test include\n      include: debug.yaml\n      vars:\n        test_var: \"test 2\"",
+      "parentUuid": "df6247ed_2a03920f",
+      "revId": "fa06862da4e9f9cd05ac3ccc27a03b4fd5d33833",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_ef3b4ce8",
         "filename": "roles/contrail-build-containers/tasks/main.yaml",
         "patchSetId": 4
