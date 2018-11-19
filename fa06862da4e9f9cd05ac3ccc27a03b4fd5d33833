@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_0f3580f7",
+        "filename": "roles/contrail-build-containers/tasks/main.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-11-19T08:46:54Z",
+      "side": 1,
+      "message": "include: build_container.yaml\nvars:\n  build_dir: \u0027{{ docker_build_dir }}\u0027\n\nI think",
+      "revId": "fa06862da4e9f9cd05ac3ccc27a03b4fd5d33833",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_ef3b4ce8",
+        "filename": "roles/contrail-build-containers/tasks/main.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-11-19T08:46:54Z",
+      "side": 1,
+      "message": "form as above",
+      "revId": "fa06862da4e9f9cd05ac3ccc27a03b4fd5d33833",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
