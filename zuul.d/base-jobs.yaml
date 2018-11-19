@@ -185,3 +185,4 @@
     required-projects:
       - Juniper/contrail-container-builder
       - Juniper/contrail-ansible-deployer
+      - Juniper/contrail-deployers-containers
