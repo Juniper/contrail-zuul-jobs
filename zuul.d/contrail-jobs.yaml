@@ -31,11 +31,14 @@
     parent: contrail-vnc-base2
     required-projects:
       - tungstenfabric/tungsten-test-runner
+      - name: tungsten-infra/ci-utils
+        override-checkout: add-test-statistics-analyzer
     irrelevant-files:
       - specs/.*
     run: playbooks/contrail-vnc-unittest-tntestr/main
     post-run: playbooks/contrail-vnc-unittest-tntestr/post
     timeout: 57600
+    # should be a job with secrets, so base needs to move to c-p-c
 
 - job:
     name: contrail-vnc-unittest-centos7-tntestr
