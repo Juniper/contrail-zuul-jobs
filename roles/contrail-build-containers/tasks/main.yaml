@@ -59,6 +59,15 @@
     build_dir: "{{ docker_build_dir }}"
   with_items: "{{ docker_list.stdout_lines }}"
 
+- name: Copy local copy of contrail-ansible deployer to deployers container
+  copy:
+    src: "{{ item }}"
+    dest: "{{ deployers_build_dir }}/containers/kolla-ansible-deployer/src/"
+    remote_src: true
+  with_items:
+    - "{{ ansible_deployer_dir }}"
+    - "{{ kolla_ansible_dir }}"
+
 - name: Build deployers
   include: build_container.yaml
   vars:
