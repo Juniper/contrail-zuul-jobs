@@ -3,8 +3,6 @@
 - job:
     name: contrail-vnc-build-package-centos74
     parent: contrail-vnc-build-package-el-base
-    irrelevant-files:
-      - specs/.*
     nodeset:
       nodes:
         - name: builder
@@ -13,8 +11,6 @@
 - job:
     name: contrail-vnc-build-package-rhel7-queens
     parent: contrail-vnc-build-package-el-base
-    irrelevant-files:
-      - specs/.*
     nodeset: builder-rhel-7
     vars:
       openstack_version: queens
