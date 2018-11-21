@@ -5,7 +5,7 @@
     tntestr_output: '{{ ansible_env.HOME }}/tntestr_output.txt'
 
 - name: gather list of failed UT
-  shell: "grep -Ew 'FAILED|SKIPPED' {{ tntestr_output }} > {{ fail_log }}"
+  shell: "grep -Ew 'FAIL|TIMEOUT' {{ tntestr_output }} | grep -v 'FAIL:' > {{ fail_log }}"
   ignore_errors: true
 
 - name: fetch unittests output to executor
