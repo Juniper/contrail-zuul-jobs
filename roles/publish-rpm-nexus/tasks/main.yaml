@@ -20,10 +20,10 @@
       no_log: true
 
     - name: upload rpm to nexus repo
-      command: |
-        curl -K {{ nexus_creds_dest }} \
-          --upload-file {{ item }} http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/{{ repo_name }}/
-      with_items: "{{ package_list | json_query('files[*].path') }}"
+      command: >
+        curl -K {{ nexus_creds_dest }}
+          --upload-file {{ item.path }} http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/{{ zuul.branch }}/binary/{{ item.path.split("/RPMS/").1 }}
+      with_items: '{{ package_list.files }}'
       tags:
         # ANSIBLE0006 - can not use either get_url or uri modules for this task
         # they do not support uploads (uri does since ansible 2.6)
