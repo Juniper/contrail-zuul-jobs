@@ -71,7 +71,7 @@
     name: contrail-tpc
     description: Contrail third-party dependencies
     file: contrail-tpc
-    baseurl: "http://{{ docker_registry.fqdn }}/pulp/repos/opencontrail-tpc-{{ tpc_branch }}/"
+    baseurl: "http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/{{ tpc_repo_name }}/"
     enabled: yes
     gpgcheck: no
   become: yes

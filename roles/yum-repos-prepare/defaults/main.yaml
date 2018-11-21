@@ -3,3 +3,10 @@ tpc_branch: "{{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, '
 openstack_version: ocata
 cloud_orchestrator: 'openstack'
 openshift_version: '3.9'
+tpc_repo_name: >-
+  {%- if zuul.pipeline == 'post-merge' -%}
+    opencontrail-tpc-{{ zuul.branch }}
+  {%- else -%}
+    opencontrail-tpc-binary-{{ zuul.branch }}
+  {%- endif -%}
+nexus_rpm_repo: '{{ nexus.repos.yum }}'
