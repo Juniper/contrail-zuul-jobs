@@ -5,6 +5,6 @@ repo_name: >-
   {%- else -%}
     {{ zuul.change }}-{{ zuul.patchset }}-{{ zuul.buildset[0:10] }}
   {%- endif -%}
-nexus_rpm_repo: '{{ nexus.repos.yum }}'
+nexus_rpm_repo: '{{ nexus.repos.yum_tpc }}'
 contrail_built_rpms_src: "{{ ansible_env.HOME }}/{{ zuul.projects | selectattr('short_name', 'equalto', 'contrail-third-party-packages') | map(attribute='src_dir') | list | first }}/../RPMS"
 nexus_creds_dest: '{{ ansible_env.HOME  }}/nexus-creds'
