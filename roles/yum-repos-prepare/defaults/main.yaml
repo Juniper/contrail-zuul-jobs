@@ -3,3 +3,4 @@ tpc_branch: "{{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, '
 openstack_version: ocata
 cloud_orchestrator: 'openstack'
 openshift_version: '3.9'
+nexus_rpm_repo: '{{ nexus.repos.yum_tpc_repo }}'
