@@ -34,6 +34,11 @@
   become_user: root
   when: 'ansible_distribution == "RedHat"'
 
+- name: install yum-priorities
+  yum:
+    name: yum-priorities
+    state: present
+
 - name: remove the upstream yum repos
   yum_repository:
     name: "{{ item.name }}"
@@ -73,6 +78,7 @@
     file: contrail-tpc
     baseurl: "http://{{ docker_registry.fqdn }}/pulp/repos/opencontrail-tpc-{{ tpc_branch }}/"
     enabled: yes
+    priority: 1
     gpgcheck: no
   become: yes
   become_user: root
