@@ -34,6 +34,11 @@
   become_user: root
   when: 'ansible_distribution == "RedHat"'
 
+- name: install yum-priorities
+  yum:
+    name: yum-priorities-1.1.31-46.el7_5
+    state: present
+
 - name: remove the upstream yum repos
   yum_repository:
     name: "{{ item.name }}"
@@ -62,6 +67,7 @@
     file: epel
     baseurl: "http://{{ docker_registry.fqdn }}/pulp/repos/centos74-epel/"
     enabled: "{{ use_epel }}"
+    priority: 1
     gpgcheck: no
   become: yes
   become_user: root
@@ -73,6 +79,7 @@
     file: contrail-tpc
     baseurl: "http://{{ docker_registry.fqdn }}/pulp/repos/opencontrail-tpc-{{ tpc_branch }}/"
     enabled: yes
+    priority: 1
     gpgcheck: no
   become: yes
   become_user: root
