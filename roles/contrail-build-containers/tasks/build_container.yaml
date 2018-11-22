@@ -1,6 +1,6 @@
 ---
 - name: "Build container {{ item|replace('/','-') }}"
-  command: "./build.sh {{ item }}"
+  command: "ls -lR ; ./build.sh {{ item }}"
   args:
     chdir: "{{ build_dir }}/containers"
   become: true
