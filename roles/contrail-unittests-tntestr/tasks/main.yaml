@@ -100,7 +100,19 @@
       dest: '{{ ansible_env.HOME }}/{{ unittest_target_file }}'
 
   - name: run unittest's targets
-    shell: '{{ venv_dir}}/bin/tntestr --debug --less-strict {{ unittest_target.stdout_lines[-1] }} | tee {{ tntestr_output }}'
+    command: '{{ venv_dir}}/bin/tntestr --debug --less-strict {{ unittest_target.stdout_lines[-1] }}'
     args:
       chdir: '{{ packaging.target_dir }}'
     become: true
+    register: testrunner_result
+    ignore_errors: true
+
+  - name: dump testrunner output
+    copy:
+      content: '{{ testrunner_result.stdout.lines }}'
+      dest: '{{ tntestr_output }}'
+
+  - name: explicitly fail if testrunner failed
+    fail:
+      msg: 'There were test failures.'
+    when: testrunner_result.rc != 0
