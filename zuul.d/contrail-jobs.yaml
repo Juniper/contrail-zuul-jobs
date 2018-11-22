@@ -197,16 +197,6 @@
       test_target: ci_sanity
 
 - job:
-    name: post-nightly-registry-port
-    voting: False
-    parent: contrail-base2
-    run: playbooks/post-nightly-registry-port
-    nodeset: ubuntu-xenial
-    vars:
-      release_type: nightly
-      setup_docker_registry: true
-
-- job:
     name: build-third-party-rpms-centos7
     parent: build-third-party-rpms-base
     nodeset: builder-centos-7
