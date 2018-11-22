@@ -1,4 +1,9 @@
 ---
+- name: "Debug list for {{ item|replace('/','-') }}"
+  command: "ls -lR {{ item }}"
+  args:
+    chdir: "{{ build_dir }}/containers"
+  become: true
 - name: "Build container {{ item|replace('/','-') }}"
   command: "./build.sh {{ item }}"
   args:
