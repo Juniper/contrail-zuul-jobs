@@ -186,3 +186,4 @@
       - Juniper/contrail-container-builder
       - Juniper/contrail-ansible-deployer
       - Juniper/contrail-deployers-containers
+      - Juniper/contrail-kolla-ansible
