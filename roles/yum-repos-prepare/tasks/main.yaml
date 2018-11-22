@@ -38,6 +38,7 @@
   yum:
     name: yum-priorities
     state: present
+  become: true
 
 - name: remove the upstream yum repos
   yum_repository:
