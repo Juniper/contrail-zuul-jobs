@@ -59,6 +59,31 @@
     build_dir: "{{ docker_build_dir }}"
   with_items: "{{ docker_list.stdout_lines }}"
 
+# copy with remote_src adn recursive works from ansible 2.8
+# https://github.com/ansible/ansible/issues/14131
+#- name: Copy local version repositories to kolla-ansible-deployer container
+#  command: "cp -fvR {{ item | quote }} {{ deployers_build_dir + '/containers/kolla-ansible-deployer/src/' | quote }}"
+#  become: true
+#  with_items:
+#    - "{{ ansible_deployer_dir }}"
+#    - "{{ kolla_ansible_dir }}"
+
+- name: Copy test ad
+  command: "cp -fvR {{ ansible_deployer_dir | quote }} {{ deployers_build_dir + '/containers/kolla-ansible-deployer/src/' | quote }}"
+  become: true
+  register: ad
+- name: print ad
+  debug:
+    msg: "{{ ad.stdout }}"
+- name: Copy test ka
+  command: "cp -fvR {{ kolla_ansible_dir | quote }} {{ deployers_build_dir + '/containers/kolla-ansible-deployer/src/' | quote }}"
+  become: true
+  register: ka
+- name: print ka
+  debug:
+    msg: "{{ ka.stdout }}"
+
+
 - name: Build deployers
   include: build_container.yaml
   vars:
