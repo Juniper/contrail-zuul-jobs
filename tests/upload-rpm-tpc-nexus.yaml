@@ -1,0 +1,12 @@
+---
+- hosts: builder
+  roles:
+    - fetch-packages
+
+- hosts: builder
+  roles:
+    - role: upload-rpm-to-nexus
+      pkg_src_dir: "{{ ansible_env.HOME }}/{{ zuul.projects | selectattr('short_name', 'equalto', 'contrail-third-party-packages') | map(attribute='src_dir') | list | first }}/../RPMS"
+      remote_repo_path: 'yum-tpc-test'
+      nexus_login: 'test'
+      nexus_password: 'test123'
