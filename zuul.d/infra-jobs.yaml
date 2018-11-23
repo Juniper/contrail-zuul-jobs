@@ -186,11 +186,11 @@
       Untrusted mock of publish-third-party-packages. This job is testing
       fetching and uploading rpm builds to the test Nexus repository.
     parent: build-third-party-rpms-base
-    post-run: tests/publish-rpm-nexus.yaml
+    post-run: tests/upload-rpm-tpc-nexus.yaml
     required-projects:
       - Juniper/contrail-third-party-packages
     nodeset: builder-centos-7
     files:
       - ^tests/.*
-      - ^roles/publish-rpm-nexus/.*
+      - ^roles/upload-rpm-to-nexus/.*
       - ^roles/build-third-party-rpms/.*
