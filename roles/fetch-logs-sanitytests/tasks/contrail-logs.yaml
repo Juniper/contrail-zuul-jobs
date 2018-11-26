@@ -9,7 +9,7 @@
 - name: Fetch contrail logs
   synchronize:
     src: '{{ contrail_log_dir }}/'
-    dest: '{{ zuul.executor.log_root }}/contrail-logs'
+    dest: '{{ zuul.executor.log_root }}/contrail-logs/{{ inventory_hostname }}'
     mode: 'pull'
     recursive: yes
   become: true

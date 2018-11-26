@@ -28,7 +28,7 @@
   - name: Fetch container logs
     synchronize:
       src: '{{ container_log_dir }}/'
-      dest: '{{ zuul.executor.log_root }}/container-logs'
+      dest: '{{ zuul.executor.log_root }}/container-logs/{{ inventory_hostname }}'
       mode: 'pull'
       recursive: true
     become: true

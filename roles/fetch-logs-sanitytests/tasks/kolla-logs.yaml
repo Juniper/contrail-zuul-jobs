@@ -9,7 +9,7 @@
 - name: Fetch kolla logs
   synchronize:
     src: '{{ kolla_log_dir }}/'
-    dest: '{{ zuul.executor.log_root }}/kolla-logs'
+    dest: '{{ zuul.executor.log_root }}/kolla-logs/{{ inventory_hostname }}'
     mode: 'pull'
     recursive: yes
   when: kolla_logdir.stat.isdir is defined and kolla_logdir.stat.isdir
