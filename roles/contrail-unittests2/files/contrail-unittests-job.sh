@@ -212,7 +212,7 @@ function run_unittest() {
 
     logfile=$WORKSPACE/scons_test.log
     echo scons --debug=explain -k -j $SCONS_JOBS $UNIT_TESTS
-    scons -k --debug=explain -j $SCONS_JOBS $UNIT_TESTS | tee $logfile
+    scons -k --debug=explain -j $SCONS_JOBS 'controller/src/xmpp:test' | tee $logfile
     exit_status=$?
     analyze_test_results $logfile
     # If unit test pass, show the results and exit    
