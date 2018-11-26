@@ -25,10 +25,18 @@
     ignore_errors: true
     with_items: '{{ container_list.stdout_lines }}'
 
+  - name: create the container logs dir on executor
+    file:
+      path: '{{ zuul.executor.log_root }}/container-logs'
+      state: 'directory'
+    become: true
+    delegate_to: localhost
+    run_once: true
+
   - name: Fetch container logs
     synchronize:
       src: '{{ container_log_dir }}/'
-      dest: '{{ zuul.executor.log_root }}/container-logs'
+      dest: '{{ zuul.executor.log_root }}/container-logs/{{ inventory_hostname }}'
       mode: 'pull'
       recursive: true
     become: true

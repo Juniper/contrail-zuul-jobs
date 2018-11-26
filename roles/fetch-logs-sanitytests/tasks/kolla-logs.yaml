@@ -6,11 +6,21 @@
   register: kolla_logdir
   become: true
 
-- name: Fetch kolla logs
-  synchronize:
-    src: '{{ kolla_log_dir }}/'
-    dest: '{{ zuul.executor.log_root }}/kolla-logs'
-    mode: 'pull'
-    recursive: yes
+- name: fetch kolla logs
   when: kolla_logdir.stat.isdir is defined and kolla_logdir.stat.isdir
-  become: true
+  block:
+    - name: create the kolla logs dir on executor
+      file:
+        path: '{{ zuul.executor.log_root }}/kolla-logs'
+        state: 'directory'
+      become: true
+      delegate_to: localhost
+      run_once: true
+
+    - name: fetch kolla logs
+      synchronize:
+        src: '{{ kolla_log_dir }}/'
+        dest: '{{ zuul.executor.log_root }}/kolla-logs/{{ inventory_hostname }}'
+        mode: 'pull'
+        recursive: yes
+      become: true
