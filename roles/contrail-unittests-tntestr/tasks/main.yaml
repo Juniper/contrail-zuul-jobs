@@ -104,3 +104,6 @@
     args:
       chdir: '{{ packaging.target_dir }}'
     become: true
+    environment:
+      CONTRAIL_COMPILE_WITHOUT_SYMBOLS: yes
+
