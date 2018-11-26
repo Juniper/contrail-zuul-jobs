@@ -100,7 +100,25 @@
       dest: '{{ ansible_env.HOME }}/{{ unittest_target_file }}'
 
   - name: run unittest's targets
-    shell: '{{ venv_dir}}/bin/tntestr --debug --less-strict {{ unittest_target.stdout_lines[-1] }} | tee {{ tntestr_output }}'
+    shell: |-
+      set -eo pipefail
+      {{ venv_dir}}/bin/tntestr --debug --less-strict 'controller/src/xmpp:test' | tee {{ tntestr_output }}
     args:
+      executable: '/bin/bash'
       chdir: '{{ packaging.target_dir }}'
     become: true
+    environment:
+      WORKSPACE: "{{ ansible_env.HOME }}"
+      UPSTREAM_VERSION: "{{ packaging.version.upstream }}"
+      ZUUL_CHANGES: "{{ zuul.ref }}"
+      ZUUL_PROJECT: "{{ zuul.project.short_name }}"
+      SCONS_JOBS: "1"
+      LC_ALL: "C"
+      GIT_REFS: >-
+        {% set git_refs = [] -%}
+        {% for item in zuul['items'] -%}
+          {% set ref = "refs/changes/" + item.change[-2:] + "/" + item.change + "/" + item.patchset -%}
+          {% set git_ref = item.project.short_name + "^" + ref -%}
+          {% set _ =  git_refs.append(git_ref) -%}
+        {% endfor -%}
+        {{- git_refs|join(",") -}}

@@ -5,3 +5,6 @@
     - contrail-tpc-repos
     - packaging-prepare-contrail2
     - contrail-unittests-tntestr
+  post_tasks:
+    - fail:
+        msg: 'fail'
