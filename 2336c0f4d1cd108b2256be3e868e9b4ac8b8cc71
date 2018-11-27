@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_e99b36c6",
+        "filename": "roles/upload-rpm-to-nexus/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-11-27T09:54:34Z",
+      "side": 1,
+      "message": "what\u0027s the advantage of end_play over adding a \u0027when:\u0027 to the \u0027block:\u0027 ?",
+      "revId": "2336c0f4d1cd108b2256be3e868e9b4ac8b8cc71",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
