@@ -6,7 +6,7 @@
     state: 'directory'
     owner: 'zuul'
     mode: 0755
-  with_items: '{{ unittest_targets }}'
+  with_items: '{{ matched_targets }}'
 
 - name: find the tests log file
   find:
@@ -15,7 +15,7 @@
     file_type: file
   become: true
   register: log_file
-  with_items: '{{ unittest_targets }}'
+  with_items: '{{ matched_targets }}'
 
 - name: gzip log files
   archive:
