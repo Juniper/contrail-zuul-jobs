@@ -27,6 +27,24 @@
     nodeset: builder-centos-7
 
 - job:
+    name: contrail-vnc-unittest-centos7-16-8
+    parent: contrail-vnc-unittest-base
+    voting: False
+    nodeset: centos-7-16g-8vcpu
+
+- job:
+    name: contrail-vnc-unittest-centos7-8-4
+    parent: contrail-vnc-unittest-base
+    voting: False
+    nodeset: centos-7-8g-4vcpu
+
+- job:
+    name: contrail-vnc-unittest-centos7-4-2
+    parent: contrail-vnc-unittest-base
+    voting: False
+    nodeset: centos-7-4g-2vcpu
+
+- job:
     name: contrail-vnc-unittest-tntestr-base
     parent: contrail-vnc-base2
     required-projects:
@@ -42,6 +60,24 @@
     parent: contrail-vnc-unittest-tntestr-base
     voting: False
     nodeset: builder-centos-7
+
+- job:
+    name: contrail-vnc-unittest-centos7-tntestr-16-8
+    parent: contrail-vnc-unittest-tntestr-base
+    voting: False
+    nodeset: centos-7-16g-8vcpu
+
+- job:
+    name: contrail-vnc-unittest-centos7-tntestr-8-4
+    parent: contrail-vnc-unittest-tntestr-base
+    voting: False
+    nodeset: centos-7-8g-4vcpu
+
+- job:
+    name: contrail-vnc-unittest-centos7-tntestr-4-2
+    parent: contrail-vnc-unittest-tntestr-base
+    voting: False
+    nodeset: centos-7-4g-2vcpu
 
 - job:
     name: contrail-vnc-unittest-ubuntu-tntestr

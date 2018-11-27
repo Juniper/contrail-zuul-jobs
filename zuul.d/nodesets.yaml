@@ -11,6 +11,24 @@
         label: centos-7-4-builder-c
 
 - nodeset:
+    name: centos-7-16g-8vcpu
+    nodes:
+      - name: centos-7-16g-8vcpu
+        label: centos-7-4-builder
+
+- nodeset:
+    name: centos-7-8g-4vcpu
+    nodes:
+      - name: centos-7-8g-4vcpu
+        label: centos-7-4-m1-large
+
+- nodeset:
+    name: centos-7-4g-2vcpu
+    nodes:
+      - name: centos-7-4g-2vcpu
+        label: centos-7-4-m1-medium
+
+- nodeset:
     name: ubuntu-xenial
     nodes:
       - name: ubuntu-xenial
