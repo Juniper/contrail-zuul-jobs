@@ -7,6 +7,7 @@
     owner: 'zuul'
     mode: 0755
   with_items: '{{ unittest_targets }}'
+  when: item.matched
 
 - name: find the tests log file
   find:
@@ -16,6 +17,7 @@
   become: true
   register: log_file
   with_items: '{{ unittest_targets }}'
+  when: item.matched
 
 - name: gzip log files
   archive:
