@@ -3,7 +3,8 @@
 - hosts: all:!deployment
   roles:
     - acquire-ip-address
-    - yum-repos-prepare
+    - role: yum-repos-prepare
+      tpc_location: binary
     - role: configure-hosts-entries # openshift installation reconfigures /etc/resolv.conf
       hosts_entries:
         - fqdn: 'ci-repo.englab.juniper.net'
