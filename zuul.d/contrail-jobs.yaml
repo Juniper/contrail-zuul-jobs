@@ -253,7 +253,7 @@
     parent: trigger-win-base
     description: This jobs starts Jenkins job in Windows CI to create Windows containers.
     vars:
-      jenkins_job: ci-contrail-windows-nighly-zuultest-mc
+      jenkins_job: ci-contrail-windows-nighly-build
 
 - job:
     name: contrail-build-test-containers
