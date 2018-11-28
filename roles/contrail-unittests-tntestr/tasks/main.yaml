@@ -83,6 +83,8 @@
     name: '{{ testrunner_dir }}'
     virtualenv: '{{ venv_dir }}'
     virtualenv_python: '{{ python_version }}'
+  environment:
+    VIRTUALENV_NO_DOWNLOAD: "1"
 
 - name: prepare and run list of unittests
   when: unittest_target.stdout_lines[-1] != ''
@@ -99,14 +101,14 @@
       content: '{{ scons_describe.stdout }}'
       dest: '{{ ansible_env.HOME }}/{{ unittest_target_file }}'
 
-  - name: initialize test result fact
-    set_fact:
-      tests_failed: false
+  - name: run unittest's targets
+    shell: |-
+      set -eo pipefail
+      {{ venv_dir}}/bin/tntestr --debug --less-strict 'src/contrail-analytics/contrail-opserver:test' | tee {{ tntestr_output }}
+    args:
+      executable: '/bin/bash'
+      chdir: '{{ packaging.target_dir }}'
+    become: true
+    environment:
+      CONTRAIL_COMPILE_WITHOUT_SYMBOLS: yes
 
-  - include: testrunner.yaml
-    with_items: '{{ unittest_target.stdout_lines[-1].split() }}'
-
-  - name: fail if any test target failed
-    fail:
-      msg: 'there are test fails'
-    when: tests_failed
