@@ -1,0 +1,10 @@
+---
+- hosts: all
+  roles:
+    - dump-key
+    - zuul-include-vars
+    - contrail-common-libs2
+    - contrail-tpc-repos
+    - packaging-prepare-contrail2
+    - contrail-unittests2
+

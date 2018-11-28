@@ -39,6 +39,34 @@
     nodeset: c7-systest-c-aio
 
 - job:
+    name: contrail-vnc-build-unittest-ubuntu-trusty2
+    branches: (master|contrail_dpdk_18_05_1|R6\.0-WIP)
+    required-projects:
+      - Juniper/contrail-api-client
+      - Juniper/contrail-build
+      - Juniper/contrail-controller
+      - name: Juniper/contrail-dpdk
+        override-checkout: contrail_dpdk_18_05_1
+      - Juniper/contrail-generateDS
+      - Juniper/contrail-third-party
+      - Juniper/contrail-packages
+      - Juniper/contrail-provisioning
+      - Juniper/contrail-sandesh
+      - Juniper/contrail-vrouter
+      - Juniper/contrail-nova-vif-driver
+      - Juniper/contrail-common
+      - Juniper/contrail-analytics
+    irrelevant-files:
+      - specs/.*
+    run: playbooks/unittest2/contrail.yaml
+    post-run: playbooks/unittest2/post.yaml
+    timeout: 36000
+    nodeset:
+      nodes:
+        - name: builder
+          label: ubuntu-trusty-builder
+
+- job:
     name: contrail-sanity-centos7-kolla-queens
     parent: contrail-sanity-kolla-base
     required-projects:
