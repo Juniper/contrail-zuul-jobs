@@ -102,7 +102,7 @@
   - name: run unittest's targets
     shell: |-
       set -eo pipefail
-      {{ venv_dir}}/bin/tntestr --debug --less-strict {{ unittest_target.stdout_lines[-1] }} | tee {{ tntestr_output }}
+      {{ venv_dir}}/bin/tntestr --debug --less-strict 'controller/src/config/api-server:test' | tee {{ tntestr_output }}
     args:
       executable: '/bin/bash'
       chdir: '{{ packaging.target_dir }}'
