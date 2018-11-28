@@ -68,3 +68,6 @@
         {% set _ =  git_refs.append(git_ref) -%}
       {% endfor -%}
       {{- git_refs|join(",") -}}
+
+- fail: 
+    msg: 'Autohold UT VM for debug'
