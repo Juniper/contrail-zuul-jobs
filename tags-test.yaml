@@ -1,0 +1,8 @@
+- hosts: all
+  vars:
+    openstack_version: train
+  roles:
+    - contrail-common-libs2
+  tasks:
+    - debug:
+        var: contrail_packaging
