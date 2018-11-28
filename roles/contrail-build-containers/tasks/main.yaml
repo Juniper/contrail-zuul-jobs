@@ -74,6 +74,16 @@
   command: "cp -fR {{ openshift_ansible_dir | quote }} {{ deployers_build_dir + '/containers/openshift-ansible-deployer/src/' | quote }}"
   become: true
 
+# copy with remote_src adn recursive works from ansible 2.8
+# https://github.com/ansible/ansible/issues/14131
+- name: Copy local version repositories to helm-deployer container
+  command: "cp -fR {{ item | quote }} {{ deployers_build_dir + '/containers/helm-deployer/src/' | quote }}"
+  become: true
+  with_items:
+    - "{{ helm_deployer_dir }}"
+    - "{{ openstack_helm_dir }}"
+    - "{{ openstack_helm_infra_dir }}"
+
 - name: Build deployers
   include: build_container.yaml
   vars:

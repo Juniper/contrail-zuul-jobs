@@ -188,3 +188,6 @@
       - Juniper/contrail-deployers-containers
       - Juniper/contrail-kolla-ansible
       - Juniper/openshift-ansible
+      - Juniper/contrail-helm-deployer
+      - Juniper/openstack-helm
+      - Juniper/openstack-helm-infra
