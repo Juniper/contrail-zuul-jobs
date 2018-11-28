@@ -207,18 +207,45 @@ function run_unittest() {
     fi
 
     if [[ -z $UNIT_TESTS ]]; then
-        UNIT_TESTS=test
+	#XXX(pjrusak):
+	#   use badly looking hack until we found solution how to get list of targets per alias from SCons,
+	#   it gather list of targets to be run as final resolution of alias chain test -> controller/test
+        #target_file=$CONTRAIL_SOURCES/controller/SConscript
+        #UNIT_TESTS=$(awk '/controller\/test/{block=1;next}/controller\/flaky-test/{block=0}block' $target_file | awk '/test/' | tr -d ", \'" | sort -u)
+	target_file=$CONTRAIL_SOURCES/controller/ci_unittests.json
+	UNIT_TESTS=$(jq ".[].scons_test_targets[]" $target_file | tr -d '"' | sort -u)
     fi
 
+    # run scons for each target and write failed targets
     logfile=$WORKSPACE/scons_test.log
-    echo scons --debug=explain -k -j $SCONS_JOBS $UNIT_TESTS
-    scons -k --debug=explain -j $SCONS_JOBS $UNIT_TESTS | tee $logfile
-    exit_status=$?
+    failed_targets=$WORKSPACE/ut_failed_targets.log
+    ut_targets=$WORKSPACE/ut_targets_time.log
+    exit_status=0
+
+    for ut in ${UNIT_TESTS[@]}; do
+        echo scons --debug=explain -k -j $SCONS_JOBS $ut
+        exec_start=$(date +%s)
+        scons -k --debug=explain -j $SCONS_JOBS $ut | tee -a $logfile
+        scons_rc=$?
+        exec_end=$(date +%s)
+        exec_time=$(date -d "1970-01-01 + `expr $exec_end - $exec_start` seconds" "+%H:%M:%S")
+
+        echo "Target: $ut with rc: $scons_rc. Execution time: $exec_time"
+        printf "%-50s%-10s\n" $ut $exec_time >> $ut_targets
+        if [[ $scons_rc -ne 0 ]]; then
+            printf "%-50s%-5d\n" $ut $scons_rc >> $failed_targets
+        fi
+    done
+
+    if [[ -s $failed_targets  ]]; then
+        exit_status=1
+    fi
+
     analyze_test_results $logfile
-    # If unit test pass, show the results and exit    
+    # If unit test pass, show the results and exit
     if [[ $exit_status -eq 0 ]]; then
         display_test_results $logfile
-	ci_exit 0
+        ci_exit 0
     fi
     # if we didn't pass, try to get the list of failed tests
     echo "Unit-tests failed"
