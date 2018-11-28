@@ -21,6 +21,10 @@
               - ^roles/.*
               - ^playbooks/.*
               - ^tests/.*
+    experimental:
+      jobs:
+        - contrail-vnc-unittest-centos7-tntestr
+        - contrail-vnc-unittest-centos7
     gate:
       queue: contrail-ci
       jobs:
