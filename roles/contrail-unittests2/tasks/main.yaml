@@ -54,6 +54,7 @@
   become: yes
   become_user: root
   environment:
+    UNIT_TESTS: "src/contrail-analytics/contrail-opserver:test"
     WORKSPACE: "{{ ansible_env.HOME }}"
     UPSTREAM_VERSION: "{{ packaging.version.upstream }}"
     ZUUL_CHANGES: "{{ zuul.ref }}"
