@@ -1,11 +1,8 @@
 ---
 - hosts: all
   roles:
-    - dump-key
-    - skip-job
     - zuul-include-vars
     - contrail-tpc-repos
-    - install-pip-virtualenv
     - packaging-prepare-contrail2
     - contrail-unittests2
 
