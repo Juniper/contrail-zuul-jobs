@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_0d2d71fd",
+        "filename": "tests/publish-rpm-tpc-nexus.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-11-28T14:44:26Z",
+      "side": 1,
+      "message": "name the file after the role please (upload-rpm-tpc-nexus.yaml)",
+      "revId": "947032b2b24e9ccb3184cf1088f11190f34f9ee0",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
