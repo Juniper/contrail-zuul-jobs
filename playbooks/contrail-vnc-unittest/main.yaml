@@ -5,6 +5,8 @@
     - skip-job
     - zuul-include-vars
     - contrail-tpc-repos
+    - yum-repos-prepare
+    - install-pip-virtualenv
     - packaging-prepare-contrail2
     - contrail-unittests2
 

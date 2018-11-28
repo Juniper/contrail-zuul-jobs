@@ -4,9 +4,5 @@
     - zuul-include-vars
     - contrail-tpc-repos
     - packaging-prepare-contrail2
-  tasks:
-    - fail:
-        msg: 'just fail'
-
-#    - contrail-unittests-tntestr
+    - contrail-unittests2
 
