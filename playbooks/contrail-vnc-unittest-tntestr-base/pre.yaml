@@ -4,3 +4,4 @@
     - yum-repos-prepare
     - role: install-pip-virtualenv
       upgrade_tox: true
+      tox_version: 3.1.3

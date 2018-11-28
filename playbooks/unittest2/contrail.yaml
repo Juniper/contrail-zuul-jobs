@@ -3,6 +3,6 @@
   roles:
     - zuul-include-vars
     - contrail-tpc-repos
-    - contrail-unittests-tntestr
-
+    - packaging-prepare-contrail2
+    - contrail-unittests2
 
