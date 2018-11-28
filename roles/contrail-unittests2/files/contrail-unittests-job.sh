@@ -199,12 +199,12 @@ function run_unittest() {
     [ -d $PIP_CACHE ] && rm -rf $PIP_CACHE
 
     # Find and run relevant tests.
-    UNIT_TESTS=$($WORKSPACE/contrail-unittests-gather.rb)
-    exit_code=$?
-    if [ "$exit_code" != "0" ]; then
-        echo "ERROR: Cannot determine unit-tests to run, exiting"
-        ci_exit $exit_code
-    fi
+#    UNIT_TESTS=$($WORKSPACE/contrail-unittests-gather.rb)
+#    exit_code=$?
+#    if [ "$exit_code" != "0" ]; then
+#        echo "ERROR: Cannot determine unit-tests to run, exiting"
+#        ci_exit $exit_code
+#    fi
 
     if [[ -z $UNIT_TESTS ]]; then
         UNIT_TESTS=test
