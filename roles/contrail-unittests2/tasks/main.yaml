@@ -36,6 +36,7 @@
   become_user: root
   with_items:
     - ruby
+    - jq
 
 - name: Run a full Contrail VNC build
   command: "scons -j {{ ansible_processor_vcpus }}"
