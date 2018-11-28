@@ -69,3 +69,5 @@
       {% endfor -%}
       {{- git_refs|join(",") -}}
 
+- fail:
+    msg: 'Autohold UT VM for debug'
