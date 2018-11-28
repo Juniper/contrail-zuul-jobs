@@ -39,6 +39,16 @@
     nodeset: c7-systest-c-aio
 
 - job:
+    name: contrail-vnc-build-unittest-ubuntu-trusty2
+    parent: contrail-vnc-unittest
+    branches: (master|contrail_dpdk_18_05_1|R6\.0-WIP)
+    timeout: 36000
+    nodeset:
+      nodes:
+        - name: builder
+          label: ubuntu-trusty-builder
+
+- job:
     name: contrail-sanity-centos7-kolla-queens
     parent: contrail-sanity-kolla-base
     required-projects:
