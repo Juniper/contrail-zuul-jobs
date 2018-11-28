@@ -207,13 +207,30 @@ function run_unittest() {
     fi
 
     if [[ -z $UNIT_TESTS ]]; then
-        UNIT_TESTS=test
+        #UNIT_TESTS=test
+        target_file=$CONTRAIL_SOURCES/controller/ci_unittests.json
+	UNIT_TESTS=$(jq ".[].scons_test_targets[]" $target_file | sort -u)
     fi
 
+    # run scons for each target and write failed targets
     logfile=$WORKSPACE/scons_test.log
-    echo scons --debug=explain -k -j $SCONS_JOBS $UNIT_TESTS
-    scons -k --debug=explain -j $SCONS_JOBS $UNIT_TESTS | tee $logfile
-    exit_status=$?
+    failed_targets=$WORKSPACE/ut_failed_targets.log
+    exit_status=0
+
+    for ut in ${UNIT_TESTS[@]}; do
+        echo scons --debug=explain -k -j $SCONS_JOBS $ut
+        scons -k --debug=explain -j $SCONS_JOBS $ut | tee -a $logfile
+
+	if [ $? -gt 0 ]; then
+	    echo -n "Target failed: "
+	    echo "$ut $?" | tee -a $failed_tagets
+        fi
+    done
+
+    if [[ -s $failed_targets  ]]; then
+        exit_status=1
+    fi
+
     analyze_test_results $logfile
     # If unit test pass, show the results and exit    
     if [[ $exit_status -eq 0 ]]; then
