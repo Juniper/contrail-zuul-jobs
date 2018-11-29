@@ -26,9 +26,13 @@
 
     - command: make list-containers
 
+    - command: make list-deployers
+
     - command: make rpm
 
     - command: make containers
+
+    - command: make deployers
 
     - name: list built packages
       chdir: /root/contrail/RPMS
