@@ -7,3 +7,7 @@
     - contrail-tpc-repos
     - packaging-prepare-contrail2
     - contrail-unittests2
+  post_tasks:
+    - name: fail
+      fail:
+        msg: 'fail deliberately'
