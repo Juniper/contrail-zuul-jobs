@@ -39,6 +39,7 @@
   with_items:
     - ruby
     - '{{ python_version }}'
+    - cassandra-cpp-driver
   become: true
 
 - name: run a full Contrail VNC build
