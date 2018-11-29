@@ -6,7 +6,7 @@
     state: 'directory'
     owner: 'zuul'
     mode: 0755
-  with_items: '{{ unittest_targets }}'
+  with_items: '{{ matched_targets }}'
 
 - name: find the tests report xml file
   find:
@@ -15,7 +15,7 @@
     file_type: file
   become: true
   register: xml_report_file
-  with_items: '{{ unittest_targets }}'
+  with_items: '{{ matched_targets }}'
 
 - name: gzip reports
   archive:
