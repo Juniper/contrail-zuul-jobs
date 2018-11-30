@@ -291,3 +291,7 @@
     vars:
       openstack_version: queens
 
+- job:
+    name: create-windows-containers-test
+    parent: trigger-win-base-test
+    description: This jobs starts Jenkins job in Windows CI to create Windows containers.
