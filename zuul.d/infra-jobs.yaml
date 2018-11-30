@@ -194,3 +194,16 @@
       - ^tests/.*
       - ^roles/publish-rpm-nexus/.*
       - ^roles/build-third-party-rpms/.*
+
+- job:
+    name: build-windows-containers-test
+    description: |
+      Test job
+    run: playbooks/test-windows-containers/run
+    required-projects:
+      - Juniper/contrail-windows
+      - Juniper/contrail-windows-docker-driver
+    nodeset: ubuntu-xenial
+    vars:
+      setup_docker_registry: true
+      manifest_file: windows.xml
