@@ -191,3 +191,17 @@
       - Juniper/contrail-helm-deployer
       - Juniper/openstack-helm
       - Juniper/openstack-helm-infra
+
+- job:
+    name: trigger-win-base-test
+    parent: contrail-vnc-base2
+    description: |
+      Triggers Windows CI system.
+      Requires jenkins_job.
+    run: playbooks/test-windows-containers/run
+    required-projects:
+      - Juniper/contrail-windows
+      - Juniper/contrail-windows-docker-driver
+    nodeset: ubuntu-xenial
+    vars:
+      manifest_file: windows.xml
