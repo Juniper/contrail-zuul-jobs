@@ -6,6 +6,8 @@ provider_config:
     ssh_private_key: /root/.ssh/id_rsa
     domainsuffix: novalocal
 
+docker_mirror_url: http://{{ docker_registry.fqdn }}/mirrors/rpm/centos/7/docker-ce-stable/
+
 instances:
   {%- for host in (groups['control-plane'] + groups['data-plane']) | unique -%}
   {% set control_plane_roles = control_plane_common_roles + control_plane_specific_roles[cloud_orchestrator] -%}
