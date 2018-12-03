@@ -19,6 +19,47 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_c7296ce6",
+        "filename": "roles/publish-rpm-nexus/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-12-03T15:21:23Z",
+      "side": 1,
+      "message": "You\u0027ll need to change the nexus_rpm_repo value to use nexus.repos.yum-tpc",
+      "parentUuid": "df6247ed_a73d582c",
+      "revId": "840d6ff13f69718fc247f49cc4b1bd2e0b2d5b40",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_a7267814",
+        "filename": "roles/yum-repos-prepare/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-12-03T15:21:23Z",
+      "side": 1,
+      "message": "use the nexus.repos.yum-tpc value instead of hardcoding",
+      "range": {
+        "startLine": 74,
+        "startChar": 48,
+        "endLine": 74,
+        "endChar": 65
+      },
+      "revId": "840d6ff13f69718fc247f49cc4b1bd2e0b2d5b40",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_8746d4bf",
         "filename": "roles/yum-repos-prepare/tasks/main.yaml",
         "patchSetId": 3
@@ -30,6 +71,29 @@
       "writtenOn": "2018-12-03T15:14:31Z",
       "side": 1,
       "message": "Repo with the same name will overwrite the previous one. You need to change this.",
+      "revId": "840d6ff13f69718fc247f49cc4b1bd2e0b2d5b40",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_871ff4b5",
+        "filename": "roles/yum-repos-prepare/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-12-03T15:21:23Z",
+      "side": 1,
+      "message": "use the nexus.repos.yum-tpc value instead of hardcoding",
+      "range": {
+        "startLine": 85,
+        "startChar": 49,
+        "endLine": 85,
+        "endChar": 65
+      },
       "revId": "840d6ff13f69718fc247f49cc4b1bd2e0b2d5b40",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
