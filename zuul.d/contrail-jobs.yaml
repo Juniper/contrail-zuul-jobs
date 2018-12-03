@@ -121,7 +121,8 @@
       and runs sanity test suite on setup CI.
     required-projects:
       - Juniper/contrail
-      - Juniper/contrail-ansible-deployer
+      - name: Juniper/contrail-ansible-deployer
+        override-checkout: R5.0
       - Juniper/contrail-test
     vars:
       cloud_orchestrator: kubernetes
