@@ -18,7 +18,7 @@
         repos_add: "{{ repos_add }} + {{ openstack_repos_add }}"
 
 - when:
-    - cloud_orchestrator == 'openshift'
+    - cloud_orchestrator == 'openshift' or cloud_orchestrator == 'kubernetes'
     - ansible_distribution == 'RedHat'
   block:
     - name: include OpenShift-specific repos
