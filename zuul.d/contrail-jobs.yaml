@@ -140,7 +140,7 @@
     run: playbooks/contrail-deploy-openshift-base/run
     vars:
       openstack_version: queens
-      cloud_orchestrator: openshift # needed only for yum-repos-prepare, not used in templates
+      cloud_orchestrator: kubernetes # yes, this is correct..
       openshift_version: 3.9
       openshift_deployment_type: openshift-enterprise
       contrail_image_os: rhel
