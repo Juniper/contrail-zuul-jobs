@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_a73d582c",
+        "filename": "roles/publish-rpm-nexus/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-12-03T15:14:31Z",
+      "side": 1,
+      "message": "You need to add the filename as the last segment of the URL, without it upload to second-level directory will not work. It\u0027s a Nexus quirk I believe.",
+      "revId": "840d6ff13f69718fc247f49cc4b1bd2e0b2d5b40",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_8746d4bf",
+        "filename": "roles/yum-repos-prepare/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-12-03T15:14:31Z",
+      "side": 1,
+      "message": "Repo with the same name will overwrite the previous one. You need to change this.",
+      "revId": "840d6ff13f69718fc247f49cc4b1bd2e0b2d5b40",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
