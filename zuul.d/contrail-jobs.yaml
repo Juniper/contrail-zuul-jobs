@@ -122,6 +122,7 @@
     required-projects:
       - Juniper/contrail
       - Juniper/contrail-ansible-deployer
+        override-checkout: c691a1ad96f3ef28aabb3f946bdd3e0186b2f7f7
       - Juniper/contrail-test
     vars:
       cloud_orchestrator: kubernetes
