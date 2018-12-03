@@ -96,7 +96,7 @@
     run: playbooks/contrail-sanity-openshift-base/run
     vars:
       openstack_version: queens
-      cloud_orchestrator: openshift # needed only for yum-repos-prepare, not used in templates
+      cloud_orchestrator: kubernetes # yes, this is correct..
       test_target: ci_openshift
     required-projects:
       - name: Juniper/openshift-ansible
