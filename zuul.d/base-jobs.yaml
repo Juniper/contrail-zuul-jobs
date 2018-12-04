@@ -149,6 +149,24 @@
     nodeset: builder-centos-7
 
 - job:
+    name: trigger-win-base-better-security
+    parent: contrail-vnc-base2
+    description: |
+      Triggers Windows CI system.
+      Requires jenkins_job.
+    run: playbooks/trigger-windows-ci/run
+    required-projects:
+      - Juniper/contrail-windows
+      - Juniper/contrail-windows-docker-driver
+      - Juniper/contrail-ansible-deployer
+    nodeset: ubuntu-xenial
+    vars:
+      setup_docker_registry: true
+      manifest_file: windows.xml
+      jenkins_user: bob
+      jenkins_password: ilovealice
+
+- job:
     name: trigger-win-base
     parent: contrail-vnc-base2
     description: |
@@ -158,6 +176,7 @@
     required-projects:
       - Juniper/contrail-windows
       - Juniper/contrail-windows-docker-driver
+      - Juniper/contrail-ansible-deployer
     nodeset: ubuntu-xenial
     vars:
       setup_docker_registry: true
