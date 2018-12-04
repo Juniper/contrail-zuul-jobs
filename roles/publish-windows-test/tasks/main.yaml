@@ -1,0 +1,6 @@
+---
+- name: Push containers to registries
+  include: main_tasks.yaml
+  with_items: '{{ tags }}'
+  loop_control:
+    loop_var: tag
