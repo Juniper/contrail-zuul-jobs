@@ -1,0 +1,6 @@
+---
+- name: Run all tasks
+  include: incl.yaml
+  with_items: '{{ container_name }}'
+  loop_control:
+    loop_var: container

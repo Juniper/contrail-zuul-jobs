@@ -1,0 +1,10 @@
+---
+container_name:
+    - contrail-windows-cnm-plugin
+    - contrail-windows-vrouter
+tags:
+    - debug
+    - release
+contrail_container_tag: 123
+contrail_docker_registry: 10.84.12.70:5000
+workdir: '{{ zuul.projects | selectattr("short_name", "equalto", "containerregistry") | map(attribute="src_dir") | list | first }}'

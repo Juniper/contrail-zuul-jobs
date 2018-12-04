@@ -1,0 +1,7 @@
+---
+- hosts: all
+  roles:
+    - role: publish-windows-test
+      registries:
+        - host: '10.84.12.233:5000'
+          protocol: http
