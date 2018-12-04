@@ -194,3 +194,13 @@
       - ^tests/.*
       - ^roles/publish-rpm-nexus/.*
       - ^roles/build-third-party-rpms/.*
+
+- job:
+    name: test-publish-windows
+    description: |
+      This job is for test only
+    run: playbooks/test-publish-win/run
+    required-projects:
+     - Juniper/contrail-publisher
+     - tungsten-infra/containerregistry
+    nodeset: builder-centos-7
