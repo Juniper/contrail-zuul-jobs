@@ -27,6 +27,11 @@
     manifest_path: "{{ ansible_env.HOME }}/{{ zuul._projects['review.opencontrail.org/Juniper/contrail-vnc'].src_dir }}/{{ manifest_file }}"
     snapshot_path: "{{ ansible_env.HOME }}/manifest.xml"
 
+- name: Copy cad.xml
+  copy:
+    src: cad.xml
+    dest: "{{ ansible_env.HOME }}/cad.xml"
+
 - name: Synchronize repositories to the sandbox
   command: "repo sync --quiet"
   args:
