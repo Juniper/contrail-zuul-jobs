@@ -1,0 +1,18 @@
+---
+- debug:
+  msg: "Host: {{ item.host }}   Protocol: {{ item.protocol }}"
+  with_items: "{{ registries }}"
+
+- name: Push containers to registry with build number
+  command: "./pusher --config {{ ansible_env.HOME }}/{{ container_name }}-{{ tag }}/config.json --protocol {{ item.protocol }} --name {{ item.host }}/{{ container_name }}:master-{{ tag }}-{{ contrail_container_tag }} {{ layers.results[item.0].stdout }} {{ digest.results[item.0].stdout }}"
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ workdir }}/bazel-bin"
+  with_items: "{{ registries }}"
+  become: true
+
+- name: Push containers to registry with latest tag
+  command: "./pusher --config {{ ansible_env.HOME }}/{{ container_name }}/config.json --protocol {{ item.protocol }} --name {{ item.host }}/{{ container_name }}:latest {{ layers.results[item.0].stdout }} {{ digest.results[item.0].stdout }}"
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ workdir }}/bazel-bin"
+  with_items: "{{ registries }}"
+  become: true
