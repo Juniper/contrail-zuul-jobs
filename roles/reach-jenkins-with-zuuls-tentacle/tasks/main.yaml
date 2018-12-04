@@ -17,9 +17,14 @@
   become: True
   become_user: root
 
+- name: Copy cad.xml
+  copy:
+    src: playbooks/trigger-windows-ci/cad.xml
+    dest: "{{ ansible_env.HOME }}/cad.xml"
+
 # TODO: fetch actual Jenkins credentials from Ansible Vault
 - name: Reach Jenkins by Zuul's Tentacle
-  no_log: true
+  no_log: false
   args:
     chdir: '{{ ansible_env.HOME }}'
   command: >
@@ -34,3 +39,4 @@
     --docker_registry {{ contrail_docker_registry }}
     --directory  "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
     --docker_build_number {{ build_number }}
+    --zuul_build {{ zuul.build }}
