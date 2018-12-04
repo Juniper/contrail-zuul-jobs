@@ -1,0 +1,35 @@
+---
+- name: Add bazel repository
+  yum_repository:
+    description: Bazel repository
+    name: bazel_repo
+    file: bazel_repo
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/vbatts/bazel/epel-7-$basearch/
+    gpgcheck: yes
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/vbatts/bazel/pubkey.gpg
+    enabled: yes
+  become: True
+
+- name: Install packages
+  package:
+    name: '{{ item }}'
+    state: present
+  become: yes
+  with_items:
+    - bazel
+    - git
+    - gcc
+
+- name: Build tools using bazel
+  command: "bazel build :{{ item }}"
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ workdir }}"
+  with_items:
+    - puller
+    - pusher
+
+- name: Push containers to registries
+  include: main_tasks.yaml
+  with_items: '{{ tags }}'
+  loop_control:
+    loop_var: tag
