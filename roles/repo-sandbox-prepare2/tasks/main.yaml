@@ -10,6 +10,11 @@
     path: "{{ packaging.target_dir }}"
     state: directory
 
+- name: Copy cad.xml
+  copy:
+    src: cad.xml
+    dest: "{{ ansible_env.HOME }}/cad.xml"
+
 - name: Initialize android repo
   command: "repo init -m {{ manifest_file }} -u {{ ansible_env.HOME }}/{{ zuul._projects['review.opencontrail.org/Juniper/contrail-vnc'].src_dir }}"
   args:
