@@ -16,11 +16,13 @@
         - ci-test-publish-infra-doc-unit
         - ci-test-publish-rpm-nexus
         - zuul-jobs-linters
+        - contrail-windows-test-cad
         - noop:
             irrelevant-files:
               - ^roles/.*
               - ^playbooks/.*
               - ^tests/.*
+
     gate:
       queue: contrail-ci
       jobs:
