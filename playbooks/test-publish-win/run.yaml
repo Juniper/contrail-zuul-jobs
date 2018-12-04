@@ -1,0 +1,5 @@
+ - role: publish-windows-test
+      #when: "contrail_packaging.version.public == 'master'"
+      registries:
+        - host: '10.84.12.70:5000'
+          protocol: http
