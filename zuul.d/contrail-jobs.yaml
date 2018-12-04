@@ -257,6 +257,13 @@
       jenkins_job: ci-contrail-windows-nighly-build
 
 - job:
+    name: contrail-windows-test-cad
+    parent: trigger-win-base
+    description: This jobs starts Jenkins job in Windows CI to test CAD.
+    vars:
+      jenkins_job: winci-server2016-cad
+
+- job:
     name: contrail-build-test-containers
     parent: docker-base
     run: playbooks/contrail-build-test-containers/run
