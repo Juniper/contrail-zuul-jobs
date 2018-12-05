@@ -43,3 +43,34 @@
               - ^roles/.*
               - ^playbooks/.*
               - ^tests/.*
+    experimental-sanity:
+      jobs:
+        - contrail-sanity-centos7-kolla-ocata:
+            vars:
+              contrail_version: '5.0-393'
+              contrail_docker_registry: '10.84.5.85:5010'
+              setup_docker_registry: false
+        - contrail-sanity-centos7-kolla-queens:
+            vars:
+              contrail_version: '5.0-393'
+              contrail_docker_registry: '10.84.5.85:5010'
+              setup_docker_registry: false
+        - contrail-sanity-centos7-kolla-queens-multinode:
+            vars:
+              contrail_version: '5.0-393'
+              contrail_docker_registry: '10.84.5.85:5010'
+              setup_docker_registry: false
+        - contrail-sanity-centos7-k8s:
+            vars:
+              contrail_version: '5.0-393'
+              contrail_docker_registry: '10.84.5.85:5010'
+              setup_docker_registry: false
+        - contrail-sanity-ubuntu1604-helm-ocata:
+            vars:
+              contrail_version: '5.0-393'
+              container_tag: 'ocata-5.0-393'
+              contrail_registry:
+                fqdn: '10.84.5.85'
+                port: '5010'
+              contrail_docker_registry: '10.84.5.85:5010'
+              setup_docker_registry: false

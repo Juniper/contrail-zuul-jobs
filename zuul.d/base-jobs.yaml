@@ -67,7 +67,7 @@
     pre-run: playbooks/contrail-sanity-base/pre
     post-run: playbooks/contrail-sanity-base/post
     vars:
-      setup_docker_registry: True
+      setup_docker_registry: false
 
 - job:
     name: contrail-sanity-kolla-base
