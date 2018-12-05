@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_9c6bc31c",
+        "filename": "roles/publish-rpm-nexus/tasks/main.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-12-05T09:18:46Z",
+      "side": 1,
+      "message": "whenever you want to do something with a variable you should think about using a Jinja filter. Check the \u0027basename\u0027 filter here: https://docs.ansible.com/ansible/2.5/user_guide/playbooks_filters.html",
+      "revId": "1d60e0c8e442aa9439b0d65b8a5f3a61798720c5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
