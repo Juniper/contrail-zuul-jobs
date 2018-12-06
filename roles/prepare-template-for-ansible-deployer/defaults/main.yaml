@@ -6,7 +6,7 @@ contrail_version: >-
   {%- else -%}
     {{ contrail_container_tag }}
   {%- endif -%}
-openstack_version: 'ocata'
+openstack_version: 'queens'
 
 control_plane_common_roles:
   - config_database
