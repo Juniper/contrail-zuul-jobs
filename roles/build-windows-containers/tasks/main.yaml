@@ -22,6 +22,9 @@
   no_log: true
   args:
     chdir: '{{ ansible_env.HOME }}'
+  with_items:
+    - "0"
+    - "1"
   command: >
     ./zuulstentacle.py
     --jenkins_address "http://10.84.12.26:8080"
@@ -34,3 +37,5 @@
     --docker_registry {{ contrail_docker_registry }}
     --directory  "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
     --docker_build_number {{ build_number }}
+    --build_mode "{{ item }}"
+

@@ -1,0 +1,41 @@
+---
+- name: Create directories for containers layers
+  file:
+    path: "{{ ansible_env.HOME }}/{{ item }}-{{ tag }}"
+    state: directory
+    mode: 0775
+  with_items: "{{ container_name }}"
+
+- name: Get containers from temporary registry
+  command: "./puller --name {{ contrail_docker_registry }}/{{ item }}:master-{{ tag }}-{{ contrail_container_tag }} --directory {{ ansible_env.HOME }}/{{ item }}-{{ tag }} --stderrthreshold ERROR"
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ workdir }}/bazel-bin"
+  with_items: "{{ container_name }}"
+
+- name: Get list of layers
+  shell: "for i in `ls {{ ansible_env.HOME }}/{{ item }}-{{ tag }}/*.tar.gz`; do echo -ne --layer $i ''; done"
+  with_items: "{{ container_name }}"
+  register: layers
+
+- name: Get list of digest
+  shell: "for i in `ls {{ ansible_env.HOME }}/{{ item }}-{{ tag }}/*.sha256`; do echo -ne --digest $i ''; done"
+  with_items: "{{ container_name }}"
+  register: digest
+
+- name: log in to dockerhub
+  command: 'docker login -u {{ dockerhub.username }} -p {{ dockerhub.password }}'
+  become: true
+  no_log: true
+
+- name: push containers
+  block:
+    - name: Push containers to registries
+      include: push_containers.yaml
+      with_items: '{{ registries }}'
+      loop_control:
+        loop_var: reg
+
+always:
+    - name: log out of the dockerhub
+      command: 'docker logout'
+      become: true
