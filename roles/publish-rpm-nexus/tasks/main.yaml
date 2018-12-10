@@ -21,7 +21,7 @@
 
     - name: upload rpm to nexus repo
       command: >
-        curl -K {{ nexus_creds_dest }}
+        curl -v -K {{ nexus_creds_dest }}
           --upload-file {{ item }} http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/{{ zuul.branch }}/source/{{ item | basename }}
       with_items: "{{ package_list | json_query('files[*].path') }}"
       tags:
