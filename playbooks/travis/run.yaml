@@ -1,0 +1,6 @@
+---
+
+- hosts: all
+  tasks:
+    - name: 'Test Task'
+      command: 'echo running Travis-ci job'
