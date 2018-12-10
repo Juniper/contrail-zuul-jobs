@@ -43,3 +43,9 @@
               - ^roles/.*
               - ^playbooks/.*
               - ^tests/.*
+
+- project:
+    name: Juniper/contrail-go-api
+    check:
+      jobs:
+        - Travis
