@@ -292,3 +292,15 @@
     vars:
       openstack_version: queens
 
+- job:
+    name: Travis
+    description: |
+      This job runs Travis job for contrail-generateds, contrail-api-client 
+      and contrail-go-api repos
+    required-projects:
+      - Juniper/contrail-project-config
+      - Juniper/zuul-jobs
+      - Juniper/contrail-zuul-jobs
+      - Juniper/contrail-helm-deployer
+    run: playbooks/travis/run
+    nodeset: builder-centos-7
