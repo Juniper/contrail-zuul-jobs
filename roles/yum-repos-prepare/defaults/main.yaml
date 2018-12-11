@@ -1,5 +1,4 @@
 ---
-tpc_branch: "{{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, 'master') }}"
 openstack_version: ocata
 cloud_orchestrator: 'openstack'
 openshift_version: '3.9'
