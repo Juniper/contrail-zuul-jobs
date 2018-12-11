@@ -66,23 +66,12 @@
   become: yes
   become_user: root
 
-- name: prepare third party cache yum repo binary
+- name: prepare third party cache yum repo file
   yum_repository:
-    name: tpc-binary
+    name: contrail-tpc
     description: Contrail third-party dependencies
-    file: tpc-binary
-    baseurl: "http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/{{ zuul.branch }}/binary/"
-    enabled: yes
-    gpgcheck: no
-  become: yes
-  become_user: root
-
-- name: prepare third party cache yum repo source
-  yum_repository:
-    name: tpc-source
-    description: Contrail third-party dependencies
-    file: tpc-source
-    baseurl: "http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/{{ zuul.branch }}/source/"
+    file: contrail-tpc
+    baseurl: "http://{{ docker_registry.fqdn }}/pulp/repos/opencontrail-tpc-{{ tpc_branch }}/"
     enabled: yes
     gpgcheck: no
   become: yes
