@@ -1,5 +1,4 @@
 ---
-
 - hosts: all:!deployment
   roles:
     - acquire-ip-address
