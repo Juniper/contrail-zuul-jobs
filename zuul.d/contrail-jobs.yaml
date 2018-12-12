@@ -299,6 +299,7 @@
     nodeset: builder-rhel-7
     vars:
       openstack_version: queens
+<<<<<<< HEAD
 
 - job:
     name: linters-go
@@ -308,3 +309,5 @@
       and contrail-go-api repos
     run: playbooks/linters-go/run
     nodeset: builder-centos-7
+=======
+>>>>>>> Add yum-repos-prepare to untrusted context.
