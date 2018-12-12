@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  roles:
+    - role: emit-job-header
+      zuul_log_url: "http://logs.opencontrail.org"
+
+- hosts: all
+  roles:
+    - yum-repos-prepare
