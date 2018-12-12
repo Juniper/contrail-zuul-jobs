@@ -9,3 +9,4 @@
   template:
     src: 'settings.xml.j2'
     dest: '{{ ansible_env.HOME }}/.m2/settings.xml'
+

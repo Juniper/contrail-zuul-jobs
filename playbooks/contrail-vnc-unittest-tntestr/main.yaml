@@ -1,7 +1,0 @@
----
-- hosts: all
-  roles:
-    - zuul-include-vars
-    - contrail-tpc-repos
-    - packaging-prepare-contrail2
-    - contrail-unittests-tntestr

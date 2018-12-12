@@ -32,3 +32,4 @@
 - name: Build test containers
   include: build_container.yaml
   with_items: "{{ openstack_version }}"
+

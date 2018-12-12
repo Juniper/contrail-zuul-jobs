@@ -11,3 +11,4 @@
       -bb {{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/common/rpm/{{ item.name }}.spec
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/{{ item.workdir|default('') }}"
+

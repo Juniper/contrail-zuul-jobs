@@ -19,3 +19,4 @@
   fail:
     msg: "rpmlint failed! Please see error details above."
   when: linter_out.rc != 0
+

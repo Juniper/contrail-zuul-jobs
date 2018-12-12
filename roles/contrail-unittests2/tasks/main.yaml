@@ -68,3 +68,4 @@
         {% set _ =  git_refs.append(git_ref) -%}
       {% endfor -%}
       {{- git_refs|join(",") -}}
+

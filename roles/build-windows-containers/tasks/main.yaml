@@ -34,3 +34,4 @@
     --docker_registry {{ contrail_docker_registry }}
     --directory  "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
     --docker_build_number {{ build_number }}
+

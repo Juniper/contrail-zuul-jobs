@@ -67,3 +67,4 @@
     become: true
     with_items: '{{ logs_dir.files }}'
     when: logs_dir.matched > 0
+

@@ -9,3 +9,4 @@
   command: make html
   args:
     chdir: '{{ zuul.projects | selectattr("short_name", "equalto", "contrail-infra-doc") | map(attribute="src_dir") | list | first }}'
+

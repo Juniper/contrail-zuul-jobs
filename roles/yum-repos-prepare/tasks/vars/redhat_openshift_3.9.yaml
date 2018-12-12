@@ -3,3 +3,4 @@ openshift_repos_add:
   - { name: rhel-7-server-ose-3.9-rpms-mirror, repo: rhel-7-server-ose-3.9-rpms, description: rhel-7-server-ose-3.9-rpms }
   - { name: rhel-7-fast-datapath-rpms-mirror, repo: rhel-7-fast-datapath-rpms, description: rhel-7-fast-datapath-rpms }
   - { name: rhel-7-server-ansible-2.5-rpms, repo: rhel-7-server-ansible-2.5-rpms, description: rhel-7-server-ansible-2.5-rpms }
+

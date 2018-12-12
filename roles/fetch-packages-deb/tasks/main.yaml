@@ -18,3 +18,4 @@
     dest: "{{ zuul.executor.work_root }}/packages/"
     mode: pull
   with_items: "{{ packages.files }}"
+

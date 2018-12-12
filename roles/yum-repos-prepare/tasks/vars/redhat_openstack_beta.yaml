@@ -3,3 +3,4 @@ openstack_repos_add:
   - { name: rhel-7-server-openstack-beta-rpms-mirror, repo: rhel-7-server-openstack-beta-rpms, description: rhel-7-server-openstack-beta-rpms }
   - { name: rhel-7-server-openstack-devtools-beta-rpms-mirror, repo: rhel-7-server-openstack-devtools-beta-rpms, description: rhel-7-server-openstack-devtools-beta-rpms }
   - { name: rhel-server-rhscl-7-beta-rpms-mirror, repo: rhel-server-rhscl-7-beta-rpms, description: rhel-server-rhscl-7-beta-rpms }
+

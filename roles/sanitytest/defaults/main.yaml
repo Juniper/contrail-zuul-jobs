@@ -8,3 +8,4 @@ contrail_version: >-
     {{ contrail_container_tag }}
   {%- endif -%}
 contrail_docker_registry: 'localhost:5000'
+

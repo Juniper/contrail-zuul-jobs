@@ -34,3 +34,4 @@
     src: '{{ ansible_env.HOME }}/contrail_test_input.yaml'
     dest: '{{ zuul.executor.log_root }}/'
     mode: 'pull'
+

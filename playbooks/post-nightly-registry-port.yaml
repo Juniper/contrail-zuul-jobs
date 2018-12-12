@@ -8,3 +8,4 @@
         content: '{{ docker_registry_port }}'
         dest: "{{ zuul.executor.log_root }}/registry_port.txt"
       delegate_to: localhost
+

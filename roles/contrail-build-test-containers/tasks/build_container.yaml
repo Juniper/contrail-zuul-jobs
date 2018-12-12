@@ -12,3 +12,4 @@
   args:
     chdir: "{{ test_container_build_dir }}"
   become: true
+

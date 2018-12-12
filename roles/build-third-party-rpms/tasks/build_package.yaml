@@ -5,3 +5,4 @@
   args:
     chdir: '{{ ansible_env.HOME }}/{{ rpm_dir }}/upstream/rpm'
   become: true
+

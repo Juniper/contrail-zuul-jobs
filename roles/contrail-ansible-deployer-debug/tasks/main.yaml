@@ -39,3 +39,4 @@
     command: 'docker restart {{ config_api_container.stdout }}'
     become: true
     when: config_api_container.stdout is defined
+

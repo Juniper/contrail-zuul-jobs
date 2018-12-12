@@ -12,3 +12,4 @@
     data:
       contrail_packaging: "{{ packaging }}"
   delegate_to: localhost
+

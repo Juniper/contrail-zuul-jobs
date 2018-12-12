@@ -12,3 +12,4 @@ contrail_version: >-
   {%- endif -%}
 contrail_docker_registry: 'localhost:5000'
 contrail_image_os: ''
+
