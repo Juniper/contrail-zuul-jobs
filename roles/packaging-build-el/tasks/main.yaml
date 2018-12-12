@@ -123,3 +123,4 @@
       - --no-motd
       - --quiet
   delegate_to: "{{ inventory_hostname }}"
+

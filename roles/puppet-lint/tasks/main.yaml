@@ -106,3 +106,4 @@
     msg: |
       Lint: {{ (lint_check.rc != 0)| ternary("Fail","Pass") }}, Syntax: {{ (syntax_check.rc != 0)| ternary("Fail","Pass") }}.
   when: lint_check.rc != 0 or syntax_check.rc != 0
+

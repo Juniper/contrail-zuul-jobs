@@ -3,3 +3,4 @@
   roles:
     - role: lint-rpm-specs
       specs_dir: '{{ zuul.project.src_dir }}'
+

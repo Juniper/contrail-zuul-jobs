@@ -17,3 +17,4 @@
         dest: '{{ fetch_dst_path }}'
         mode: pull
         recursive: yes
+

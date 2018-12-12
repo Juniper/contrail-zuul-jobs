@@ -14,3 +14,4 @@
   set_fact:
     registry_port: "{{ docker_registry.port }}"
   when: registry_port is not defined
+

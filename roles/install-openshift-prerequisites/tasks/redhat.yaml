@@ -24,3 +24,4 @@
   become: true
 
 # SELINUX is already enforced on nodepool nodes
+

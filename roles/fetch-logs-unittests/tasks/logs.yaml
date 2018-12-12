@@ -38,3 +38,4 @@
     - '{{ log_file.results }}'
     - 'files'
   when: log_file.results | length > 0
+

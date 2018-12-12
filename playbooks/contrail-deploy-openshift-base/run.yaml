@@ -13,3 +13,4 @@
 - hosts: deployment
   roles:
     - openshift-ansible
+

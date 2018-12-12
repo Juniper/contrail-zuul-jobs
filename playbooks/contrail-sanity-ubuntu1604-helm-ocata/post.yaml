@@ -3,3 +3,4 @@
   hosts: all
   roles:
     - fetch-k8s-pods-logs
+

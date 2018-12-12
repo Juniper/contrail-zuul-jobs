@@ -31,3 +31,4 @@ data_plane_specific_roles:
     - openstack_compute
   kubernetes:
     - k8s_node
+

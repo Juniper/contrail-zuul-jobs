@@ -111,3 +111,4 @@
     recursive: yes
   when: objects_dir.stat.isdir is defined and objects_dir.stat.isdir
   become: true
+

@@ -1,2 +1,3 @@
 ---
 workdir: "{{ zuul.projects | selectattr('short_name', 'equalto', 'contrail-infra') | map(attribute='src_dir') | list | first }}"
+

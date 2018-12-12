@@ -11,3 +11,4 @@ repos_add:
   - { name: rhel-7-server-optional-rpms-mirror, repo: rhel-7-server-optional-rpms, description: rhel-7-server-optional-rpms }
   - { name: rhel-server-rhscl-7-rpms-mirror, repo: rhel-server-rhscl-7-rpms, description: rhel-server-rhscl-7-rpms }
 use_epel: no
+

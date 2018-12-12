@@ -37,3 +37,4 @@
   roles:
     - role: configure-hosts-entries
       hosts_entries: '{{ hostvars | json_query(query) }}'
+

@@ -12,3 +12,4 @@ repos_add:
     - { name: extras-mirror, repo: centos74-extras, description: CentOS extras mirror }
     - { name: base-mirror, repo: centos74, description: CentOS base mirror }
 use_epel: yes
+

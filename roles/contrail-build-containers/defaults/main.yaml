@@ -11,3 +11,4 @@ openshift_ansible_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Junip
 helm_deployer_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-helm-deployer"
 openstack_helm_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/openstack-helm"
 openstack_helm_infra_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/openstack-helm-infra"
+

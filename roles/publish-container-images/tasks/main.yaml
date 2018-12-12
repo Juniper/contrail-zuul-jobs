@@ -14,3 +14,4 @@
     tag: "{{ tag }}"
     registry: "{{ registry }}"
   become: true
+

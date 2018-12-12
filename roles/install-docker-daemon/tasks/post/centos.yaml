@@ -6,3 +6,4 @@
     file: 'docker-mirror'
     state: 'absent'
   become: yes
+

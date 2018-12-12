@@ -14,3 +14,4 @@
   roles:
     - openshift-ansible
     - sanitytest
+

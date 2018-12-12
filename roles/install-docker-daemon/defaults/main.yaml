@@ -1,3 +1,4 @@
 ---
 
 docker_mirror_url: http://{{ docker_registry.fqdn }}/pulp/repos/docker-ce-stable
+

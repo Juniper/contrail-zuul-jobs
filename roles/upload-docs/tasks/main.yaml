@@ -10,3 +10,4 @@
     src: '{{ docs_dir }}'
     dest: '{{ zuul_docserver_root }}/'
     mode: push
+

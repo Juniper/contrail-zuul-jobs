@@ -26,3 +26,4 @@
   command: "python fetch_packages.py --site-mirror http://{{ zuul_site_mirror_fqdn }}"
   args:
     chdir: "{{ packaging.target_dir }}/third_party/"
+
