@@ -191,3 +191,12 @@
       - Juniper/contrail-helm-deployer
       - Juniper/openstack-helm
       - Juniper/openstack-helm-infra
+
+- job:
+    name: base-tpc
+    parent: contrail-base
+    description: |
+      Uploads rpms to Nexus server.
+    # pre-run: playbooks/base-tpc/pre
+    required-projects:
+      - Juniper/contrail-project-config
