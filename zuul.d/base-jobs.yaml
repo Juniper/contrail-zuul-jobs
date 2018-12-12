@@ -239,3 +239,13 @@
       - Juniper/contrail-helm-deployer
       - Juniper/openstack-helm
       - Juniper/openstack-helm-infra
+
+- job:
+    name: contrail-base-untrusted
+    parent: contrail-base
+    description: |
+      Adds yum-repos-prepare in untrusted context.
+    pre-run: playbooks/contrail-base-untrusted/pre
+    required-projects:
+      - Juniper/contrail-project-config
+    nodeset: builder-centos-7
