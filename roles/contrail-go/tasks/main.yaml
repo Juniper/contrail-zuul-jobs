@@ -13,8 +13,11 @@
 # TODO: stop using Go toolchain and use pre-build Contrail-go Docker image instead.
 - name: Download Go toolchain to /tmp/
   get_url:
-    url: https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz
+    url: https://dlas.google.com/go/go1.10.3.linux-amd64.tar.gz
     dest: /tmp/go.tar.gz
+  register: download_go_result
+  until: download_go_result.status == 200
+  retries: 3
 
 - name: Extract Go toolchain to /usr/
   unarchive:
@@ -36,4 +39,7 @@
   command: '{{ ansible_env.HOME }}/go/src/github.com/Juniper/contrail/tools/deploy-for_k8s.sh'
   environment:
     PATH: '{{ ansible_env.PATH }}:/usr/go/bin'
+  register: deploy_result
+  until: deploy_result.rc == 0
+  retries: 3
 
