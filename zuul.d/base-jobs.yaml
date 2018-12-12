@@ -2,6 +2,54 @@
 
 - job:
     name: contrail-vnc-base2
+    branches: master
+    parent: contrail-base2
+    description: |
+      A base job that prepares Contrail VNC sandbox using Android repo,
+      as opposed to the contrail-src-base job that copies the sources directly.
+    required-projects:
+      - Juniper/contrail-analytics
+      - Juniper/contrail-api-client
+      - Juniper/contrail-build
+      - Juniper/contrail-common
+      - Juniper/contrail-controller
+      - name: Juniper/contrail-dpdk
+        override-checkout: contrail_dpdk_18_05_1
+      - Juniper/contrail-fabric-utils
+      - Juniper/contrail-generateDS
+      - Juniper/contrail-java-api
+      - Juniper/contrail-heat
+      - Juniper/contrail-neutron-plugin
+      - Juniper/contrail-nova-extensions
+      - Juniper/contrail-nova-vif-driver
+      - Juniper/contrail-packages
+      - Juniper/contrail-packaging
+      - Juniper/contrail-provisioning
+      - Juniper/contrail-sandesh
+      - Juniper/contrail-specs
+      - Juniper/contrail-test
+      - Juniper/contrail-test-ci
+      - Juniper/contrail-third-party
+      - Juniper/contrail-tripleo-puppet
+      - Juniper/contrail-vcenter-manager
+      - Juniper/contrail-vcenter-plugin
+      - Juniper/contrail-vnc
+      - Juniper/contrail-vrouter
+      - Juniper/contrail-vrouter-java-api
+      - Juniper/contrail-vro-plugin
+      - Juniper/contrail-web-controller
+      - Juniper/contrail-web-core
+      - Juniper/contrail-web-server-manager
+      - Juniper/contrail-web-storage
+      - Juniper/contrail-webui-third-party
+      - Juniper/vijava
+    irrelevant-files:
+      - specs/.*
+    pre-run: playbooks/contrail-vnc-base2/pre
+
+- job:
+    name: contrail-vnc-base2
+    branches: R5.0
     parent: contrail-base2
     description: |
       A base job that prepares Contrail VNC sandbox using Android repo,
