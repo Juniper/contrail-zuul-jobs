@@ -36,3 +36,6 @@
   command: '{{ ansible_env.HOME }}/go/src/github.com/Juniper/contrail/tools/deploy-for_k8s.sh'
   environment:
     PATH: '{{ ansible_env.PATH }}:/usr/go/bin'
+  register: deploy_result
+  until: deploy_result.rc == 0
+  retries: 3
