@@ -15,6 +15,9 @@
   get_url:
     url: https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz
     dest: /tmp/go.tar.gz
+  register: download_go_result
+  until: download_go_result|succeeded
+  retries: 3
 
 - name: Extract Go toolchain to /usr/
   unarchive:
@@ -36,4 +39,7 @@
   command: '{{ ansible_env.HOME }}/go/src/github.com/Juniper/contrail/tools/deploy-for_k8s.sh'
   environment:
     PATH: '{{ ansible_env.PATH }}:/usr/go/bin'
+  register: deploy_result
+  until: deploy_result|succeeded
+  retries: 3
 
