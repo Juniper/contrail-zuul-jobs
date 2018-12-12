@@ -1,0 +1,38 @@
+---
+
+- name: 'starting target {{ item }}'
+  shell: |-
+    echo '' | tee -a {{ tntestr_output }}
+    echo '' | tee -a {{ tntestr_output }}
+    echo `date` starting target {{ item }} | tee -a {{ tntestr_output }}
+  changed_when: false
+  args:
+    executable: '/bin/bash'
+  become: true
+
+- name: run unittest's targets
+  shell: |-
+    set -eo pipefail
+    timeout 5400s bash -c '{{ venv_dir}}/bin/tntestr --debug --less-strict {{ item }} | tee -a {{ tntestr_output }}'
+  args:
+    executable: '/bin/bash'
+    chdir: '{{ packaging.target_dir }}'
+  become: true
+  environment:
+    CONTRAIL_COMPILE_WITHOUT_SYMBOLS: yes
+  register: inner
+  failed_when: false
+
+- name: 'target {{ item }} timed out?'
+  shell: |-
+    echo `date` target {{ item }} timed out | tee -a {{ tntestr_output }}
+  changed_when: inner.rc != 0
+  when: inner.rc != 0
+  become: true
+
+- name: 'target {{ item }} finished successfully?'
+  shell: |-
+    echo `date` target {{ item }} finished successfully | tee -a {{ tntestr_output }}
+  changed_when: inner.rc == 0
+  when: inner.rc == 0
+  become: true
