@@ -27,17 +27,6 @@
     nodeset: builder-centos-7
 
 - job:
-    name: contrail-vnc-unittest-tntestr-base
-    parent: contrail-vnc-base2
-    required-projects:
-      - tungstenfabric/tungsten-test-runner
-    irrelevant-files:
-      - specs/.*
-    run: playbooks/contrail-vnc-unittest-tntestr/main
-    post-run: playbooks/contrail-vnc-unittest-tntestr/post
-    timeout: 57600
-
-- job:
     name: contrail-vnc-unittest-centos7-tntestr
     parent: contrail-vnc-unittest-tntestr-base
     voting: False
