@@ -291,4 +291,3 @@
     nodeset: builder-rhel-7
     vars:
       openstack_version: queens
-
