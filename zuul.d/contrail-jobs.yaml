@@ -292,3 +292,10 @@
     vars:
       openstack_version: queens
 
+- job:
+    name: base-tpc-nexus
+    parent: base-tpc
+    nodeset: builder-centos-7
+    vars:
+      openstack_version: ocata
+
