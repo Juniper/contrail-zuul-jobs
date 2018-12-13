@@ -1,3 +1,3 @@
 rulesdir:
-  - ./ansible-lint-rules/
+  - ./czy/to/w/ogole/dziala/
 use_default_rules: true
