@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_23ec9d8d",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-12-13T11:47:13Z",
+      "side": 0,
+      "message": "This should stay I think xD",
+      "revId": "01215b23321475e12a02567c961cac7cace1079e",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}

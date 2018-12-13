@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_63cdf52f",
+        "filename": "zuul.d/base-jobs.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-12-13T11:47:13Z",
+      "side": 1,
+      "message": "playbooks/contrail-base-untrusted/pre",
+      "revId": "33200c5ec5de743380faa7cbd00a31a0885c60b3",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_83f1096e",
+        "filename": "zuul.d/base-jobs.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-12-13T11:47:13Z",
+      "side": 1,
+      "message": "this is most likely unneeded",
+      "revId": "33200c5ec5de743380faa7cbd00a31a0885c60b3",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
