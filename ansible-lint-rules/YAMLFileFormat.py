@@ -13,17 +13,17 @@ class YAMLFileFormat(AnsibleLintRule):
         path = file['path']
 
         first_line = ''
-        last_char = ''
+        last_line = ''
 
         with open(path, 'r') as _file:
             try:
                 first_line = _file.readline()
-                last_char = _file.readlines()[-1][-1]
+                last_line = _file.readlines()[-1]
             except IndexError:  # handle empty or one line files
                 if first_line != '':
-                    last_char = first_line[-1]
+                    last_line = first_line[-1]
 
-            is_format_correct = first_line == '---\n' and last_char == '\n'
+            is_format_correct = first_line == '---\n' and last_line == '\n'
             if not is_format_correct and path not in self.done:
                 self.done.append(path)
                 return True
