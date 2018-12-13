@@ -1,0 +1,24 @@
+---
+
+- name: find files
+  find:
+    paths: /etc/
+    patterns: "contrail*"
+  register: files_matched
+  
+- debug:
+    msg: "{{ files_matched.files[0].path }}"
+
+- name: delete contrail-tpc.repo
+  file:
+    state: absent
+    path: "{{ files_matched.files[0].path }}"
+  become: true
+
+- name: install python-bitstring
+  yum:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - python-bitstring
+  become: true
