@@ -297,3 +297,11 @@
     required-projects:
       - Juniper/contrail-project-config
     nodeset: builder-centos-7
+
+- job:
+    name: contrail-base-untrusted-test
+    parent: contrail-base-untrusted
+    description: |
+      Tests contrail-base-untrusted.
+    run: playbooks/contrail-base-untrusted-test/run
+    nodeset: builder-centos-7
