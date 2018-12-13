@@ -1,0 +1,42 @@
+- hosts: all
+  vars:
+    src_dir_json_query: "[?short_name=='contrail-zuul-jobs'].src_dir"
+    contrail_zuul_jobs_path: '{{ zuul.projects | json_query(src_dir_json_query) | first }}'
+    ansible_lint_rules_path: '{{ "{}/{}/ansible-lint-rules/".format(ansible_env.HOME, contrail_zuul_jobs_path) }}'
+  tasks:
+
+    - name: command
+      command: ls -la {{ ansible_env.HOME }}/{{ contrail_zuul_jobs_path }}
+      register: command
+
+    - name: slurp1
+      slurp:
+        src: '{{ ansible_env.HOME }}/{{ zuul.project.src_dir }}/.ansible-lint'
+      register: slurp1
+
+    - name: debug1
+      debug:
+        var: slurp1
+
+    - name: create ansible-lint config
+      copy:
+        content: |
+          rulesdir:
+            - {{ ansible_lint_rules_path }}
+          use_default_rules: true
+        dest: '{{ ansible_env.HOME }}/{{ zuul.project.src_dir }}/.ansible-lint'
+        mode: 0644
+
+    - name: slurp2
+      slurp:
+        src: '{{ ansible_env.HOME }}/{{ zuul.project.src_dir }}/.ansible-lint'
+      register: slurp2
+
+    - name: debug2
+      debug:
+        var: slurp2
+
+    - name: d3
+      debug:
+        var: vars
+
