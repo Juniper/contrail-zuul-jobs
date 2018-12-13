@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_e37b2525",
+        "filename": "roles/contrail-go/tasks/main.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-12-13T10:50:55Z",
+      "side": 1,
+      "message": "this is idempotent? Can it be rerun multiple times to achieve k8s setup?",
+      "revId": "555d48568094e0b4b84d516394e1ae184db0baf7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
