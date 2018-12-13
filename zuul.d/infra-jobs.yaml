@@ -128,6 +128,7 @@
     description: |
       This job runs against contrail-project-config and zuul-jobs, to lint
       ansible playbooks and roles.
+    #pre-run: playbooks/zuul-jobs-linters/pre.yaml
     required-projects:
       - Juniper/contrail-project-config
       - Juniper/zuul-jobs
