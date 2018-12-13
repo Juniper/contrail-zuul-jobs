@@ -1,0 +1,9 @@
+---
+
+- name: install the Development tools package group
+  yum:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - python-bitstring
+  become: true
