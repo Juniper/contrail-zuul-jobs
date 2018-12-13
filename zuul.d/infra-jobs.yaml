@@ -104,10 +104,10 @@
       Run roles that are used for lint rpm jobs to prevent regressions.
     parent: ci-test-base
     run: tests/lint-rpm-specs.yaml
-    nodeset: builder-centos-7
     files:
       - ^roles/lint-rpm-specs/.*
       - ^tests/.*
+    nodeset: builder-centos-7
 
 - job:
     name: ci-test-ansible-lint-centos-7
@@ -115,19 +115,19 @@
       Run custom ansible linter rules tests to prevent regressions.
     parent: ci-test-base
     run: tests/ansible-lint.yaml
-    nodeset: builder-centos-7
     files:
       - ^ansible-lint-rules/.*
       - ^tests/fixtures/ansible-lint/.*
       - ^tests/ansible-lint.*
+    nodeset: builder-centos-7
 
 - job:
     name: zuul-jobs-linters
     parent: tox
-    nodeset: ubuntu-xenial-c
     description: |
       This job runs against contrail-project-config and zuul-jobs, to lint
       ansible playbooks and roles.
+    pre-run: playbooks/zuul-jobs-linters/pre.yaml
     required-projects:
       - Juniper/contrail-project-config
       - Juniper/zuul-jobs
@@ -137,6 +137,7 @@
       tox_envlist: linters
       tox_environment:
         ANSIBLE_ROLES_PATH: ~/src/github.com/Juniper/zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-project-config/roles:~/src/review.opencontrail.org/Juniper/contrail-helm-deployer/roles
+    nodeset: ubuntu-xenial-c
 
 - job:
     name: build-infra-doc
@@ -189,8 +190,8 @@
     post-run: tests/publish-rpm-nexus.yaml
     required-projects:
       - Juniper/contrail-third-party-packages
-    nodeset: builder-centos-7
     files:
       - ^tests/.*
       - ^roles/publish-rpm-nexus/.*
       - ^roles/build-third-party-rpms/.*
+    nodeset: builder-centos-7
