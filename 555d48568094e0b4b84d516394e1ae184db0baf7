@@ -16,6 +16,24 @@
       "revId": "555d48568094e0b4b84d516394e1ae184db0baf7",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_03cd1965",
+        "filename": "roles/contrail-go/tasks/main.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 482
+      },
+      "writtenOn": "2018-12-13T11:01:37Z",
+      "side": 1,
+      "message": "Actually, it is quite idempotent. You can look at the output of this job http://logs.opencontrail.org/21/48121/7/check/contrail-go-sanity-centos7-k8s/f59be08/ara/ step \"contrail-go : Run deploy-for-k8s script\". In the first attempt, it failed. Moreover, it can be run multiple times. The outcome is always clean k8s setup.",
+      "parentUuid": "df6247ed_e37b2525",
+      "revId": "555d48568094e0b4b84d516394e1ae184db0baf7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
     }
   ]
 }
