@@ -1,0 +1,10 @@
+---
+
+script_dir: '{{ zuul.projects | selectattr("short_name", "equalto", "ci-utils") | map(attribute="src_dir") | list | first }}/tungsten_ci_utils/test_statistics'
+venv_dir: '{{ ansible_env.HOME }}/test_statistics_venv'
+database_host: '127.0.0.1'
+database_port: '3306'
+database_name: 'test'
+database_table: 'test'
+database_user: 'test_user'
+database_password: 'test_password'
