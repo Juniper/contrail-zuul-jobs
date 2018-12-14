@@ -1,0 +1,18 @@
+---
+- name: Set up Contrail third-party apt-get repository
+  apt_repository:
+    repo: "deb http://{{ zuul_site_mirror_fqdn }}/oc-ubuntu-tpc/ {{ ansible_distribution_release }}-{{ tpc_branch }} main"
+  become: True
+  when: hostvars['builder']['ansible_os_family'] == 'Debian'
+
+- name: Set up Contrail third-party yum repository
+  yum_repository:
+    name: contrail-tpc
+    description: Contrail third-party dependencies
+    file: contrail-tpc
+    baseurl: "http://{{ zuul_site_mirror_fqdn }}/oc-centos-tpc-{{ tpc_branch }}/"
+    enabled: yes
+    gpgcheck: no
+  become: True
+  when: hostvars['builder']['ansible_os_family'] == 'RedHat'
+
