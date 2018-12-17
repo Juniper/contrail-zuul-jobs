@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_af7ce682",
+        "filename": "roles/reach-jenkins-with-zuuls-tentacle/files/zuulstentacle.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 447
+      },
+      "writtenOn": "2018-12-17T14:10:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_ac6994f9",
+      "revId": "0cd61b4ab19f4ffc15c5e5571658da8979b8a31c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_6c6f1cfc",
         "filename": "zuul.d/contrail-jobs.yaml",
         "patchSetId": 26
@@ -30,6 +48,24 @@
       "writtenOn": "2018-12-17T13:56:50Z",
       "side": 1,
       "message": "Where\u0027s this used in zuuls tentacle and why is it fixed to 0?",
+      "revId": "0cd61b4ab19f4ffc15c5e5571658da8979b8a31c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_6f726eaf",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 26
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 447
+      },
+      "writtenOn": "2018-12-17T14:10:58Z",
+      "side": 1,
+      "message": "1) It is passed to Jenkins job (line 59).\n2) Not anymore.",
+      "parentUuid": "df6247ed_6c6f1cfc",
       "revId": "0cd61b4ab19f4ffc15c5e5571658da8979b8a31c",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
