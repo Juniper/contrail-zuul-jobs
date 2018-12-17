@@ -4,5 +4,4 @@
     - zuul-include-vars
     - install-repo-script
     - repo-sandbox-prepare2
-    - build-windows-containers
-
+    - reach-jenkins-with-zuuls-tentacle

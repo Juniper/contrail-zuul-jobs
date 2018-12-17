@@ -17,7 +17,6 @@
   become: True
   become_user: root
 
-# TODO: fetch actual Jenkins credentials from Ansible Vault
 - name: Reach Jenkins by Zuul's Tentacle
   no_log: true
   args:
@@ -34,4 +33,4 @@
     --docker_registry {{ contrail_docker_registry }}
     --directory  "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
     --docker_build_number {{ build_number }}
-
+    --zuul_build_id {{ zuul.build }}

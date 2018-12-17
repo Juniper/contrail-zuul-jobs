@@ -103,6 +103,7 @@
       as opposed to the contrail-src-base job that copies the sources directly.
     required-projects:
       - Juniper/contrail-analytics
+      - Juniper/contrail-ansible-deployer
       - Juniper/contrail-api-client
       - Juniper/contrail-build
       - Juniper/contrail-common
