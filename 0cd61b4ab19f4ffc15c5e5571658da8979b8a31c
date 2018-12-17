@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_ac6994f9",
+        "filename": "roles/reach-jenkins-with-zuuls-tentacle/files/zuulstentacle.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-12-17T13:56:50Z",
+      "side": 1,
+      "message": "\u0027Zuul build\u0027 specifies a specific run of a job in a buildset in Zuul\u0027s ecosystem. Can we rename to zuul_build_id?",
+      "revId": "0cd61b4ab19f4ffc15c5e5571658da8979b8a31c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_6c6f1cfc",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 26
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-12-17T13:56:50Z",
+      "side": 1,
+      "message": "Where\u0027s this used in zuuls tentacle and why is it fixed to 0?",
+      "revId": "0cd61b4ab19f4ffc15c5e5571658da8979b8a31c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
