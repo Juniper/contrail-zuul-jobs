@@ -133,6 +133,28 @@
     timeout: 3600
 
 - job:
+    name: contrail-go-sanity-centos7-kolla-ocata
+    parent: contrail-sanity-base
+    run: playbooks/contrail-go-sanity-centos7-kolla-ocata/run
+    description: |
+      Deploy Contrail containers and a Openstack cluster using contrail-ansible-deployer
+      and switch Configuration Node components to contrail-go on setup CI.
+    required-projects:
+      - Juniper/contrail
+      - Juniper/contrail-ansible-deployer
+      - name: Juniper/contrail-kolla-ansible
+        override-checkout: contrail/ocata
+    vars:
+      cloud_orchestrator: openstack
+      contrail_version: master-latest
+      contrail_docker_registry: 10.84.5.81:5000
+      openstack_version: ocata
+      kolla_version: ocata
+      kolla_docker_distro: centos
+    nodeset: c7-systest-c-aio
+    timeout: 3600
+
+- job:
     name: contrail-deploy-rhel7-openshift-3.9
     parent: contrail-sanity-base
     description: |
