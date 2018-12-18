@@ -1,0 +1,17 @@
+---
+
+- hosts: all
+  tasks:
+    - name: Add a repository with Contrail dependencies
+      apt_repository:
+        repo: "deb http://10.87.72.46/ubuntu contrail-{{ ansible_distribution_release }} {{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, 'master') }}"
+      become: true
+      become_user: root
+
+    - name: apt install
+      apt:
+        name: '{{ item }}'
+        state: 'present'
+      with_items:
+        - 'cassandra-cpp-driver'
+        - 'libsnmp-base'
