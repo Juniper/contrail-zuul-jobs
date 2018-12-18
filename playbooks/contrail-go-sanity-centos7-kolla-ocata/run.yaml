@@ -15,6 +15,5 @@
 - hosts: deployment
   roles:
     - role: contrail-go
-      deploy_with: k8s
+      deploy_with: openstack
     - sanitytest
-
