@@ -33,7 +33,7 @@ kolla_config:
     openstack_service_workers: 1
     openstack_release: "{{ kolla_version }}"
     kolla_base_distro: "{{ kolla_docker_distro }}"
-    docker_registry: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
+    docker_registry: "{{ nexus.fqdn }}:{{ nexus.registry.access }}"
   kolla_passwords:
     keystone_admin_password: c0ntrail123
   customize:
