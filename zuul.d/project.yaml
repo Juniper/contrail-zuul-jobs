@@ -2,20 +2,7 @@
     name: Juniper/contrail-zuul-jobs
     check:
       jobs:
-        - ci-test-core-centos-7
-        - ci-test-core-ubuntu-xenial
-        - ci-test-contrail-core-centos-7
-        - ci-test-contrail-core-ubuntu-xenial
-        - ci-test-packaging-centos-7
-        - ci-test-packaging-ubuntu-xenial
-        - ci-test-containers-centos-7
-        - ci-test-containers-ubuntu-xenial
-        - ci-test-lint-rpm-specs-centos-7
-        - ci-test-ansible-lint-centos-7
-        - ci-test-publish-infra-doc
-        - ci-test-publish-infra-doc-unit
-        - ci-test-publish-rpm-nexus
-        - zuul-jobs-linters
+        - test-reprepro
         - noop:
             irrelevant-files:
               - ^roles/.*
