@@ -21,6 +21,14 @@
     nodeset: builder-ubuntu-trusty
 
 - job:
+    name: test-reprepro
+    parent: base-minimal
+    run: playbooks/test-reprepro/run
+    nodeset:
+      nodes:
+        - name: trusty
+          label: ubuntu-trusty-builder
+- job:
     name: contrail-vnc-unittest-centos7
     parent: contrail-vnc-unittest-base
     voting: False
