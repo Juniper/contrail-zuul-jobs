@@ -1,3 +1,5 @@
 rulesdir:
   - ./ansible-lint-rules/
 use_default_rules: true
+
+
