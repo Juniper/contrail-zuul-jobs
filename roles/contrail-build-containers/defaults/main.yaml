@@ -1,7 +1,8 @@
 ---
 contrail_package_repository: http://{{ zuul_site_mirror_fqdn }}/pulp/repos/{{ packaging.repo_names[ansible_distribution] }}/
-contrail_version: "{{ packaging.repo_name }}"
-openstack_version: ocata
+contrail_tag: '{{ packaging.openstack_specific_docker_tags[ansible_distribution] }}'
+contrail_deployers_tag: '{{ packaging.docker_tags[ansible_distribution] }}'
+openstack_version: queens
 rpm_repo_config_dir: /etc/yum.repos.d/
 docker_build_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-container-builder"
 deployers_build_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-deployers-containers"
