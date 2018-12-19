@@ -1,5 +1,5 @@
 contrail_configuration:
-  CONTRAIL_VERSION: "{{ contrail_version }}"
+  CONTRAIL_CONTAINER_TAG: "{{ contrail_version }}"
   OPENSTACK_VERSION: "{{ openstack_version }}"
   CLOUD_ORCHESTRATOR: "{{ cloud_orchestrator }}"
   CONTROLLER_NODES: "{{ hostvars[groups['control-plane'][0]].ansible_default_ipv4.address }}"

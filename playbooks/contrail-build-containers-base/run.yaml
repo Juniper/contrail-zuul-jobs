@@ -2,5 +2,6 @@
 - hosts: all
   roles:
     - zuul-include-vars
+    - contrail-common-libs2
     - contrail-build-containers
 
