@@ -300,3 +300,11 @@
     vars:
       openstack_version: queens
 
+- job:
+    name: linters-go
+    voting: False
+    description: |
+      This job runs linters-go job for contrail-generateds, contrail-api-client
+      and contrail-go-api repos
+    run: playbooks/linters-go/run
+    nodeset: builder-centos-7
