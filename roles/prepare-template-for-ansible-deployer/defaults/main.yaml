@@ -1,11 +1,6 @@
 ---
 docker_provision_dir: '{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-ansible-deployer'
-contrail_version: >-
-  {%- if zuul.change is defined -%}
-    {{ zuul.change }}-{{ zuul.patchset }}
-  {%- else -%}
-    {{ contrail_container_tag }}
-  {%- endif -%}
+contrail_version: '{{ packaging.openstack_specific_docker_tags[ansible_distribution] }}'
 openstack_version: 'queens'
 
 control_plane_common_roles:
