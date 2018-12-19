@@ -131,12 +131,15 @@
     required-projects:
       - Juniper/contrail-project-config
       - Juniper/zuul-jobs
+      - Juniper/zuul:
+          override-checkout: contrail/feature/zuulv3
       - Juniper/contrail-zuul-jobs
       - Juniper/contrail-helm-deployer
     vars:
       tox_envlist: linters
       tox_environment:
         ANSIBLE_ROLES_PATH: ~/src/github.com/Juniper/zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-project-config/roles:~/src/review.opencontrail.org/Juniper/contrail-helm-deployer/roles
+        ANSIBLE_LIBRARY: ~/src/github.com/Juniper/zuul/zuul/ansible:~/src/review.opencontrail.org/Juniper/contrail-zuul-jobs/roles/contrail-common-libs2
 
 - job:
     name: build-infra-doc
