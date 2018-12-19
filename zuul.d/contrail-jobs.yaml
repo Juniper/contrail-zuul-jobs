@@ -1,6 +1,14 @@
 # Jobs for testing Contrail projects
 
 - job:
+    name: tags-test
+    run: tags-test.yaml
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-builder
+
+- job:
     name: contrail-vnc-build-package-centos74
     parent: contrail-vnc-build-package-el-base
     nodeset:
