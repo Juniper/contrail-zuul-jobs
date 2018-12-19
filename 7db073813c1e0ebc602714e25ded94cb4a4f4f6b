@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_71ced12d",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-12-19T16:03:22Z",
+      "side": 1,
+      "message": "$ find . -iname library -type d                                                                                                                                           [17:02:15]\n./roles/publish-container-images/library\n./roles/repo-sandbox-prepare2/library\n./roles/fetch-logs-unittests/library\n./roles/contrail-common-libs2/library",
+      "revId": "7db073813c1e0ebc602714e25ded94cb4a4f4f6b",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
