@@ -5,9 +5,8 @@
     release_type: "{{ release_type }}"
     build_number: "{{ build_number | default(omit) }}"
     openstack_version: "{{ openstack_version | default(omit) }}"
-  delegate_to: localhost
 
-- name: Return contrail_packaging variable back to zuul
+- name: Return contrail_packaging variable back to zuul.
   zuul_return:
     data:
       contrail_packaging: "{{ packaging }}"

@@ -2,6 +2,7 @@
     name: Juniper/contrail-zuul-jobs
     check:
       jobs:
+        - tags-test
         - ci-test-core-centos-7
         - ci-test-core-ubuntu-xenial
         - ci-test-contrail-core-centos-7
