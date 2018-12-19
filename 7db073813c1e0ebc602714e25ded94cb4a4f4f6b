@@ -16,6 +16,24 @@
       "revId": "7db073813c1e0ebc602714e25ded94cb4a4f4f6b",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_318a99be",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2018-12-19T16:18:54Z",
+      "side": 1,
+      "message": "Others are not needed, because they\u0027re used directly from the role where they\u0027re stored, so ansible-lint detects them. Adding c-c-l1.",
+      "parentUuid": "df6247ed_71ced12d",
+      "revId": "7db073813c1e0ebc602714e25ded94cb4a4f4f6b",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
     }
   ]
 }
