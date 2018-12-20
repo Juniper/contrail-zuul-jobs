@@ -8,8 +8,8 @@
          with_items:
          - curl -L http://debian.datastax.com/debian/repo_key | sudo apt-key add -
          - echo "deb http://debian.datastax.com/community stable main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
-         - sudo yum update -qq
-         - sudo yum install -y cassandra
+         - sudo apt-get update -qq
+         - sudo apt-get install -y cassandra
          - sudo sed -ri 's/^(start_rpc:) .*/\1 true/' /etc/cassandra/cassandra.yaml
          - sudo service cassandra start
 
@@ -37,3 +37,5 @@
          with_items:
          - go test -v ./...
          - go test -v ./test -contrail-api=localhost
+
+
