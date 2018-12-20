@@ -1,7 +1,0 @@
----
-- hosts: all
-  roles:
-    - zuul-include-vars
-    - install-repo-script
-    - repo-sandbox-prepare2
-    - reach-jenkins-with-zuuls-tentacle
