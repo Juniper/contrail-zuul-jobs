@@ -8,8 +8,8 @@ repos_remove:
 repos_file: CentOS-Base
 repos_baseurl: http://{{ docker_registry.fqdn }}/pulp/repos
 repos_add:
-    - { name: updates-mirror, repo: centos74-updates, description: CentOS updates mirror }
-    - { name: extras-mirror, repo: centos74-extras, description: CentOS extras mirror }
-    - { name: base-mirror, repo: centos74, description: CentOS base mirror }
+    - { name: updates-mirror, repo: centos76-updates, description: CentOS updates mirror }
+    - { name: extras-mirror, repo: centos76-extras, description: CentOS extras mirror }
+    - { name: base-mirror, repo: centos76-os, description: CentOS base mirror }
 use_epel: yes
 

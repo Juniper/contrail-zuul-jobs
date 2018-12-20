@@ -71,7 +71,7 @@
     name: contrail-tpc
     description: Contrail third-party dependencies
     file: contrail-tpc
-    baseurl: "http://{{ docker_registry.fqdn }}/pulp/repos/opencontrail-tpc-{{ tpc_branch }}/"
+    baseurl: "http://ci-nexus.englab.juniper.net/repository/yum-tungsten-tpc-mlnx7.6-test/"
     enabled: yes
     gpgcheck: no
   become: yes
