@@ -99,14 +99,6 @@
       content: '{{ scons_describe.stdout }}'
       dest: '{{ ansible_env.HOME }}/{{ unittest_target_file }}'
 
-  - name: run unittest's targets
-    shell: |-
-      set -eo pipefail
-      {{ venv_dir}}/bin/tntestr --debug --less-strict {{ unittest_target.stdout_lines[-1] }} | tee {{ tntestr_output }}
-    args:
-      executable: '/bin/bash'
-      chdir: '{{ packaging.target_dir }}'
-    become: true
-    environment:
-      CONTRAIL_COMPILE_WITHOUT_SYMBOLS: yes
+  - include: testrunner.yaml
+    with_items: '{{ unittest_target.stdout_lines[-1] }}'
 
