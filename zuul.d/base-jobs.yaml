@@ -293,3 +293,12 @@
     parent: contrail-vnc-unittest-statistics-base
     run: playbooks/contrail-vnc-unittest-tntestr-base/main
     post-run: playbooks/contrail-vnc-unittest-tntestr-base/post
+
+- job:
+    name: contrail-base-untrusted
+    parent: contrail-base
+    description: |
+      Adds yum-repos-prepare in untrusted context.
+    pre-run: playbooks/contrail-base-untrusted/pre
+    required-projects:
+      - Juniper/contrail-project-config
