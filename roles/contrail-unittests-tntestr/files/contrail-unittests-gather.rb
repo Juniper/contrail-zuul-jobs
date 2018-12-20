@@ -66,7 +66,7 @@ json.each_pair { |module_name, module_data|
 
 # couldn't find changes in any specific project, so
 # default to run generic test target
-@tests.push('test') if @tests.empty?
+@tests += json['test']['scons_test_targets'] if @tests.empty?
 
 STDERR.puts "contrail-unittest-gather.rb: SCons targets to run:\n"
 @tests.sort.uniq.each { |target|
