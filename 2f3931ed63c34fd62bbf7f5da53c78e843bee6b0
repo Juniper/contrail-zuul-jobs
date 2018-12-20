@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_271a56cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 589
+      },
+      "writtenOn": "2018-12-20T11:28:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_e4b9dc78",
+      "revId": "2f3931ed63c34fd62bbf7f5da53c78e843bee6b0",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_c4b49882",
         "filename": "playbooks/contrail-go-sanity-centos7-k8s/run.yaml",
         "patchSetId": 3
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_e7b9de78",
+        "filename": "playbooks/contrail-go-sanity-centos7-k8s/run.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 589
+      },
+      "writtenOn": "2018-12-20T11:28:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_c4b49882",
+      "range": {
+        "startLine": 18,
+        "startChar": 6,
+        "endLine": 18,
+        "endChar": 22
+      },
+      "revId": "2f3931ed63c34fd62bbf7f5da53c78e843bee6b0",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_a4af6428",
         "filename": "roles/contrail-go/tasks/main.yaml",
         "patchSetId": 3
@@ -53,6 +95,30 @@
       "writtenOn": "2018-12-20T08:36:32Z",
       "side": 1,
       "message": "Could we use orchestrator variable here?",
+      "range": {
+        "startLine": 38,
+        "startChar": 27,
+        "endLine": 38,
+        "endChar": 38
+      },
+      "revId": "2f3931ed63c34fd62bbf7f5da53c78e843bee6b0",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_c7b49a82",
+        "filename": "roles/contrail-go/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 589
+      },
+      "writtenOn": "2018-12-20T11:28:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_a4af6428",
       "range": {
         "startLine": 38,
         "startChar": 27,
