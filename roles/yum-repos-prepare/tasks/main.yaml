@@ -68,14 +68,11 @@
 
 - name: prepare third party cache yum Nexus repo
   yum_repository:
-    name: tpc-{{ item }}
+    name: tpc
     description: Contrail third-party dependencies
-    file: tpc-{{ item }}
-    baseurl: "http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/{{ zuul.branch }}/{{ item }}/"
+    file: contrail-tpc
+    baseurl: "http://ci-nexus.englab.juniper.net/repository/yum-tungsten-tpc-mlnx7.6-test/"
     enabled: yes
     gpgcheck: no
-  with_items:
-    - source
-    - binary
   become: yes
   become_user: root
