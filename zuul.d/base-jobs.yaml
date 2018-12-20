@@ -273,9 +273,15 @@
 
 - job:
     name: contrail-vnc-unittest-tntestr-base
-    parent: contrail-vnc-unittest-statistics-base
+    parent: contrail-vnc-base2
     run: playbooks/contrail-vnc-unittest-tntestr-base/main
     post-run: playbooks/contrail-vnc-unittest-tntestr-base/post
+    required-projects:
+      - tungstenfabric/tungsten-test-runner
+      - tungsten-infra/ci-utils
+    irrelevant-files:
+      - specs/.*
+    timeout: 57600
 
 - job:
     name: contrail-base-untrusted
