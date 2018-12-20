@@ -1,0 +1,20 @@
+---
+
+- name: delete contrail-tpc.repo
+  file:
+    state: absent
+    path: '/etc/yum.repos.d/contrail-tpc.repo'
+  become: true
+
+- name: clean metadata
+  command: 'yum clean all'
+  path: '/var/cache/yum'
+  become: true
+
+- name: install python-bitstring
+  yum:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - python-bitstring
+  become: true
