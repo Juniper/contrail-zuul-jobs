@@ -1,0 +1,28 @@
+---
+
+- name: 'running target {{ item }}'
+  shell: |-
+    set -eo pipefail
+    timeout 28800s bash -c '{{ venv_dir}}/bin/tntestr --debug --less-strict {{ item }} | tee -a {{ tntestr_output }}'
+  args:
+    executable: '/bin/bash'
+    chdir: '{{ packaging.target_dir }}'
+  become: true
+  environment:
+    CONTRAIL_COMPILE_WITHOUT_SYMBOLS: yes
+  register: inner
+  failed_when: false
+
+- name: 'target {{ item }} failed?'
+  shell: |-
+    echo `date` target {{ item }} failed | tee -a {{ tntestr_output }}
+  changed_when: inner.rc != 0
+  when: inner.rc != 0
+  become: true
+
+- name: 'target {{ item }} finished successfully?'
+  shell: |-
+    echo `date` target {{ item }} finished successfully | tee -a {{ tntestr_output }}
+  changed_when: inner.rc == 0
+  when: inner.rc == 0
+  become: true
