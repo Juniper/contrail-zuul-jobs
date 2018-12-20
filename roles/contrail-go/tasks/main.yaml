@@ -35,11 +35,21 @@
 - name: Copy Contrail repository inside GOPATH
   command: 'cp -r {{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail {{ ansible_env.HOME }}/go/src/github.com/Juniper/'
 
-- name: Run deploy-for-k8s script
+- name: Run deploy-for_k8s script
   command: '{{ ansible_env.HOME }}/go/src/github.com/Juniper/contrail/tools/deploy-for_k8s.sh'
   environment:
     PATH: '{{ ansible_env.PATH }}:/usr/go/bin'
   register: deploy_result
   until: deploy_result|succeeded
   retries: 3
+  when: cloud_orchestrator == 'kubernetes'
+
+- name: Run deploy-for_openstack script
+  command: '{{ ansible_env.HOME }}/go/src/github.com/Juniper/contrail/tools/deploy-for_openstack.sh'
+  environment:
+    PATH: '{{ ansible_env.PATH }}:/usr/go/bin'
+  register: deploy_result
+  until: deploy_result|succeeded
+  retries: 3
+  when: cloud_orchestrator == 'openstack'
 
