@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_b63c362f",
+        "filename": "zuul.d/base-jobs.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2018-12-21T09:54:06Z",
+      "side": 0,
+      "message": "you did not remove the playbook",
+      "revId": "522819f7c9eb04436ec2e0fe9cced1ea918983b7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
