@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_56d61a2a",
+        "filename": "playbooks/linters-go/run.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 457
+      },
+      "writtenOn": "2018-12-21T08:38:06Z",
+      "side": 1,
+      "message": "is it intended to mix in one review this change with yum repo stuff?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "a6315ae9964bbbf90d2181004b9e936831f13eb8",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
