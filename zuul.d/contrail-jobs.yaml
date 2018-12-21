@@ -262,14 +262,14 @@
 
 - job:
     name: create-windows-containers
-    parent: trigger-win-base
+    parent: trigger-win-base-2
     description: This jobs starts Jenkins job in Windows CI to create Windows containers.
     vars:
       jenkins_job: ci-contrail-windows-nighly-build
 
 - job:
     name: contrail-windows-test-cad
-    parent: trigger-win-base
+    parent: trigger-win-base-2
     description: This jobs starts Jenkins job in Windows CI to test CAD.
     vars:
       manifest_file: windows-ci.xml
