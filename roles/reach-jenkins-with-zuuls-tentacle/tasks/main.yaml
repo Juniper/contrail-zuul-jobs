@@ -25,8 +25,8 @@
     ./zuulstentacle.py
     --jenkins_address "http://10.84.12.26:8080"
     --jenkins_job {{ jenkins_job }}
-    --jenkins_user {{ jenkins_winci_credentials.user }}
-    --jenkins_password {{ jenkins_winci_credentials.password }}
+    --jenkins_user {{ jenkins_winci_credentials_2.user }}
+    --jenkins_password {{ jenkins_winci_credentials_2.password }}
     --gerrit_server review.opencontrail.org
     --http_server_ip {{ ansible_default_ipv4.address }}
     --floating {{ ansible_host }}
