@@ -318,4 +318,7 @@
       This job runs linters-go job for contrail-generateds, contrail-api-client
       and contrail-go-api repos
     run: playbooks/linters-go/run
-    nodeset: builder-ubuntu-trusty
+    nodeset:
+      nodes:
+        - name: builder
+          label: ubuntu-trusty-builder
