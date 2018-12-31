@@ -274,6 +274,7 @@
     vars:
       manifest_file: windows-ci.xml
       jenkins_job: winci-server2016-cad
+      build_number: 0
 
 - job:
     name: contrail-build-test-containers
