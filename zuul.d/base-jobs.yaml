@@ -23,7 +23,6 @@
       - Juniper/contrail-nova-extensions
       - Juniper/contrail-nova-vif-driver
       - Juniper/contrail-packages
-      - Juniper/contrail-packaging
       - Juniper/contrail-provisioning
       - Juniper/contrail-sandesh
       - Juniper/contrail-specs
@@ -70,7 +69,6 @@
       - Juniper/contrail-nova-extensions
       - Juniper/contrail-nova-vif-driver
       - Juniper/contrail-packages
-      - Juniper/contrail-packaging
       - Juniper/contrail-provisioning
       - Juniper/contrail-sandesh
       - Juniper/contrail-specs
