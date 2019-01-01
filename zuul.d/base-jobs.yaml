@@ -2,19 +2,19 @@
 
 - job:
     name: contrail-vnc-base2
-    branches: (master|R6.0-WIP|contrail_dpdk_18_05_1)
     parent: contrail-base2
     description: |
       A base job that prepares Contrail VNC sandbox using Android repo,
       as opposed to the contrail-src-base job that copies the sources directly.
     required-projects:
       - Juniper/contrail-analytics
+      - Juniper/contrail-ansible-deployer
       - Juniper/contrail-api-client
       - Juniper/contrail-build
       - Juniper/contrail-common
       - Juniper/contrail-controller
       - name: Juniper/contrail-dpdk
-        override-checkout: contrail_dpdk_18_05_1
+        override-checkout: contrail_dpdk_17_11_3
       - Juniper/contrail-fabric-utils
       - Juniper/contrail-generateDS
       - Juniper/contrail-java-api
@@ -47,19 +47,19 @@
 
 - job:
     name: contrail-vnc-base2
+    branches: (master|R6.0-WIP|contrail_dpdk_18_05_1)
     parent: contrail-base2
     description: |
       A base job that prepares Contrail VNC sandbox using Android repo,
       as opposed to the contrail-src-base job that copies the sources directly.
     required-projects:
       - Juniper/contrail-analytics
-      - Juniper/contrail-ansible-deployer
       - Juniper/contrail-api-client
       - Juniper/contrail-build
       - Juniper/contrail-common
       - Juniper/contrail-controller
       - name: Juniper/contrail-dpdk
-        override-checkout: contrail_dpdk_17_11_3
+        override-checkout: contrail_dpdk_18_05_1
       - Juniper/contrail-fabric-utils
       - Juniper/contrail-generateDS
       - Juniper/contrail-java-api
