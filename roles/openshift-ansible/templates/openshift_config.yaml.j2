@@ -19,6 +19,11 @@ instances:
    provider: bms
    ip: {{ hostvars['openshift-master'].ansible_default_ipv4.address }}
    roles:
+     k8s_master:
+ openshift-compute:
+   provider: bms
+   ip: {{ hostvars['openshift-compute'].ansible_default_ipv4.address }}
+   roles:
      openstack:
      config_database:
      config:
@@ -26,13 +31,8 @@ instances:
      analytics_database:
      analytics:
      webui:
-     k8s_master:
-     kubemanager:
- openshift-compute:
-   provider: bms
-   ip: {{ hostvars['openshift-compute'].ansible_default_ipv4.address }}
-   roles:
      vrouter:
+     kubemanager:
      k8s_nodes:
  openshift-infra:
    provider: bms
