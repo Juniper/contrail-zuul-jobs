@@ -26,7 +26,6 @@
       - Juniper/contrail-sandesh
       - Juniper/contrail-specs
       - Juniper/contrail-test
-      - Juniper/contrail-test-ci
       - Juniper/contrail-third-party
       - Juniper/contrail-tripleo-puppet
       - Juniper/contrail-vcenter-manager
@@ -71,7 +70,6 @@
       - Juniper/contrail-sandesh
       - Juniper/contrail-specs
       - Juniper/contrail-test
-      - Juniper/contrail-test-ci
       - Juniper/contrail-third-party
       - Juniper/contrail-tripleo-puppet
       - Juniper/contrail-vcenter-manager
@@ -126,7 +124,6 @@
       - name: Juniper/contrail-kolla-ansible
         override-checkout: contrail/ocata
       - Juniper/contrail-test
-      - Juniper/contrail-test-ci
     vars:
       cloud_orchestrator: openstack
       kolla_docker_distro: centos
@@ -146,7 +143,6 @@
       - name: Juniper/openshift-ansible
         override-checkout: release-3.9-contrail
       - Juniper/contrail-test
-      - Juniper/contrail-test-ci
     roles:
       - zuul: Juniper/openshift-ansible
 
@@ -161,7 +157,6 @@
       - Juniper/contrail-helm-deployer
       - Juniper/openstack-helm-infra
       - Juniper/contrail-test
-      - Juniper/contrail-test-ci
     vars:
       cloud_orchestrator: openstack
       contrail_deployer: helm

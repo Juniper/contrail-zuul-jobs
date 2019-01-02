@@ -93,7 +93,6 @@
     required-projects:
       - Juniper/contrail-ansible-deployer
       - Juniper/contrail-test
-      - Juniper/contrail-test-ci
     vars:
       openstack_version: ocata
       cloud_orchestrator: kubernetes
