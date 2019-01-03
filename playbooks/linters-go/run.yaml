@@ -1,5 +1,4 @@
 ---
-
 - name: 'run linters -go-job'
   hosts: all
   tasks:
