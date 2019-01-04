@@ -1,0 +1,35 @@
+---
+- name: Copy zuulstentacle.py script
+  copy:
+    src: zuulstentacle.py
+    dest: '{{ ansible_env.HOME }}/zuulstentacle.py'
+    mode: u+rwx
+
+- name: Install Python 3
+  package:
+    name: python3
+    state: present
+
+- name: Install Jenkins API for Python 3
+  pip:
+    name: jenkinsapi
+    executable: pip3
+  become: True
+  become_user: root
+
+- name: Reach Jenkins by Zuul's Tentacle
+  no_log: true
+  args:
+    chdir: '{{ ansible_env.HOME }}'
+  command: >
+    ./zuulstentacle.py
+    --jenkins_address "http://10.84.12.26:8080"
+    --jenkins_job {{ jenkins_job }}
+    --jenkins_user 'pma-testuser'
+    --jenkins_password 'qwerty123'
+    --gerrit_server review.opencontrail.org
+    --http_server_ip {{ ansible_default_ipv4.address }}
+    --floating {{ ansible_host }}
+    --directory  "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+    --docker_build_number '0'
+
