@@ -42,7 +42,7 @@
       - Juniper/vijava
     irrelevant-files:
       - specs/.*
-    pre-run: playbooks/contrail-vnc-base2/pre
+    pre-run: playbooks/contrail-vnc-base2/pre.yaml
 
 - job:
     name: contrail-vnc-base2
@@ -86,7 +86,7 @@
       - Juniper/vijava
     irrelevant-files:
       - specs/.*
-    pre-run: playbooks/contrail-vnc-base2/pre
+    pre-run: playbooks/contrail-vnc-base2/pre.yaml
 
 - job:
     name: contrail-vnc-unittest-base
@@ -96,8 +96,8 @@
       Requires nodeset.
     irrelevant-files:
       - specs/.*
-    run: playbooks/contrail-vnc-unittest/main
-    post-run: playbooks/contrail-vnc-unittest/post
+    run: playbooks/contrail-vnc-unittest/main.yaml
+    post-run: playbooks/contrail-vnc-unittest/post.yaml
     timeout: 36000
 
 - job:
@@ -106,8 +106,8 @@
     description: |
       Configures hosts and log uplaod for sanity tests.
       Requires run playbook and nodeset.
-    pre-run: playbooks/contrail-sanity-base/pre
-    post-run: playbooks/contrail-sanity-base/post
+    pre-run: playbooks/contrail-sanity-base/pre.yaml
+    post-run: playbooks/contrail-sanity-base/post.yaml
     vars:
       setup_docker_registry: True
 
@@ -117,8 +117,8 @@
     description: |
       Runs kolla-based sanity suite.
       Requires nodeset, openstack_version and kolla_version.
-    pre-run: playbooks/contrail-sanity-kolla-base/pre
-    run: playbooks/contrail-sanity-kolla-base/run
+    pre-run: playbooks/contrail-sanity-kolla-base/pre.yaml
+    run: playbooks/contrail-sanity-kolla-base/run.yaml
     required-projects:
       - Juniper/contrail-ansible-deployer
       - name: Juniper/contrail-kolla-ansible
@@ -134,7 +134,7 @@
     description: |
       Base job for setting up OpenShift with Contrail as CNI and
       running sanity CI tests.
-    run: playbooks/contrail-sanity-openshift-base/run
+    run: playbooks/contrail-sanity-openshift-base/run.yaml
     vars:
       openstack_version: queens
       cloud_orchestrator: openshift # needed only for yum-repos-prepare, not used in templates
@@ -151,7 +151,7 @@
     parent: contrail-sanity-base
     description: |
       A job that deploys Contrail and OpenStack containers using contrail-helm-deployer
-    post-run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/post
+    post-run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/post.yaml
     required-projects:
       - Juniper/openstack-helm
       - Juniper/contrail-helm-deployer
@@ -175,7 +175,7 @@
       on Red Hat-based operating systems. This is a base job,
       nodeset has to be assigned to build for a specific target.
     voting: True
-    run: playbooks/build-third-party-rpms-base/run
+    run: playbooks/build-third-party-rpms-base/run.yaml
 
 - job:
     name: dev-env-base
@@ -193,7 +193,7 @@
     description: |
       Prepares basic docker configuration - proxy and insecure registries.
       Requires nodeset and run playbook.
-    pre-run: playbooks/docker-base/pre
+    pre-run: playbooks/docker-base/pre.yaml
     vars:
       setup_docker_registry: True
 
@@ -203,7 +203,7 @@
     description: |
       Builds Contrail using contrail-container-builder.
       Requires nodeset and openstack_version.
-    run: playbooks/contrail-build-containers-base/run
+    run: playbooks/contrail-build-containers-base/run.yaml
     required-projects:
       - Juniper/contrail-container-builder
       - Juniper/contrail-ansible-deployer
@@ -217,14 +217,14 @@
 - job:
     name: contrail-vnc-unittest-tntestr-base
     parent: contrail-vnc-unittest-statistics-base
-    run: playbooks/contrail-vnc-unittest-tntestr-base/main
-    post-run: playbooks/contrail-vnc-unittest-tntestr-base/post
+    run: playbooks/contrail-vnc-unittest-tntestr-base/main.yaml
+    post-run: playbooks/contrail-vnc-unittest-tntestr-base/post.yaml
 
 - job:
     name: contrail-base-untrusted
     parent: contrail-base
     description: |
       Adds yum-repos-prepare in untrusted context.
-    pre-run: playbooks/contrail-base-untrusted/pre
+    pre-run: playbooks/contrail-base-untrusted/pre.yaml
     required-projects:
       - Juniper/contrail-project-config
