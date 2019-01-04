@@ -74,7 +74,7 @@
 - job:
     name: contrail-sanity-rhel7-kolla-queens
     parent: contrail-sanity-kolla-base
-    pre-run: playbooks/contrail-sanity-kolla-base/redhat-pre
+    pre-run: playbooks/contrail-sanity-kolla-base/redhat-pre.yaml
     required-projects:
       - name: Juniper/contrail-kolla-ansible
         override-checkout: contrail/queens
@@ -86,7 +86,7 @@
 - job:
     name: contrail-sanity-centos7-k8s
     parent: contrail-sanity-base
-    run: playbooks/contrail-sanity-centos7-k8s/run
+    run: playbooks/contrail-sanity-centos7-k8s/run.yaml
     description: |
       A job that first deploys Contrail containers and a Kubernetes cluster
       using contrail-ansible-deployer and runs sanity test suite on setup CI.
@@ -102,7 +102,7 @@
 - job:
     name: contrail-go-sanity-centos7-k8s
     parent: contrail-sanity-base
-    run: playbooks/contrail-go-sanity-centos7-k8s/run
+    run: playbooks/contrail-go-sanity-centos7-k8s/run.yaml
     description: |
       A job that first deploys Contrail containers and a Kubernetes cluster
       using contrail-ansible-deployer, switches Configuration Node components to contrail-go
@@ -123,7 +123,7 @@
 - job:
     name: contrail-go-sanity-centos7-kolla-ocata
     parent: contrail-sanity-base
-    run: playbooks/contrail-go-sanity-centos7-kolla-ocata/run
+    run: playbooks/contrail-go-sanity-centos7-kolla-ocata/run.yaml
     description: |
       Deploy Contrail containers and a Openstack cluster using contrail-ansible-deployer
       and switch Configuration Node components to contrail-go on setup CI.
@@ -147,7 +147,7 @@
     parent: contrail-sanity-base
     description: |
       Base job for setting up OpenShift with Contrail as CNI.
-    run: playbooks/contrail-deploy-openshift-base/run
+    run: playbooks/contrail-deploy-openshift-base/run.yaml
     vars:
       openstack_version: queens
       cloud_orchestrator: openshift # needed only for yum-repos-prepare, not used in templates
@@ -202,7 +202,7 @@
 - job:
     name: contrail-sanity-ubuntu1604-helm-ocata
     parent: contrail-helm-base
-    run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/run
+    run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/run.yaml
     vars:
       openstack_version: ocata
       test_target: ci_sanity
@@ -211,7 +211,7 @@
     name: post-nightly-registry-port
     voting: False
     parent: contrail-base2
-    run: playbooks/post-nightly-registry-port
+    run: playbooks/post-nightly-registry-port.yaml
     nodeset: ubuntu-xenial
     vars:
       release_type: nightly
@@ -227,7 +227,7 @@
     description: |
       This job runs rpmlint on all RPM spec files found in a repository.
       Afterwards, it prints out descriptions of all existing errors.
-    run: playbooks/lint-rpm-specs/run
+    run: playbooks/lint-rpm-specs/run.yaml
     parent: contrail-src-base
     nodeset: builder-centos-7
 
@@ -237,7 +237,7 @@
     description: |
       This job generates a HTML report of changes included in the last nightly
       build.
-    run: playbooks/generate-build-change-info/run
+    run: playbooks/generate-build-change-info/run.yaml
     required-projects:
       - tungsten-infra/ci-utils
     nodeset: builder-centos-7
@@ -248,14 +248,14 @@
       Test job for contrail-dev-env.
       Runs a set of steps to build RPMs and containers.
     parent: dev-env-base
-    run: playbooks/test-dev-env/run
+    run: playbooks/test-dev-env/run.yaml
 
 - job:
     name: publish-dev-env
     description: |
       This job builds and publishes developer-sandbox container.
     parent: dev-env-base
-    run: playbooks/publish-dev-env/run
+    run: playbooks/publish-dev-env/run.yaml
     vars:
       setup_docker_registry: True
 
@@ -278,7 +278,7 @@
 - job:
     name: contrail-build-test-containers
     parent: docker-base
-    run: playbooks/contrail-build-test-containers/run
+    run: playbooks/contrail-build-test-containers/run.yaml
     required-projects:
       - Juniper/contrail-test
     nodeset: builder-centos-7
@@ -317,7 +317,7 @@
     description: |
       This job runs linters-go job for contrail-generateds, contrail-api-client
       and contrail-go-api repos
-    run: playbooks/linters-go/run
+    run: playbooks/linters-go/run.yaml
     nodeset:
       nodes:
         - name: builder
