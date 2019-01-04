@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_670153af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-01-04T14:07:59Z",
+      "side": 1,
+      "message": "Please add some description why we are adding that extension to the paths.",
+      "revId": "df19e5263fe298a4808545275f5e85f9d22bc716",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
