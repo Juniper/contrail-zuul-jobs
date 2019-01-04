@@ -322,3 +322,12 @@
       nodes:
         - name: builder
           label: ubuntu-trusty-builder
+
+- job:
+    name: test-run-jenkins-job
+    parent: contrail-vnc-base2
+    run: playbooks/test-windows-job/run
+    description: Test run jenkins job in WindowsCI
+    vars:
+      jenkins_job: pm-tentacle-build
+      manifest_file: windows.xml
