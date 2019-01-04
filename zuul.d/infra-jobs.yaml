@@ -143,7 +143,7 @@
     description: |
       This jobs builds ci-doc using sphinx.
     parent: contrail-src-base
-    run: playbooks/build-infra-doc/run
+    run: playbooks/build-infra-doc/run.yaml
     nodeset: builder-centos-7
 
 - job:
@@ -175,7 +175,7 @@
     name: puppet-lint
     description: |
       This job is running syntax and lint check for puppet files for contrail-infra
-    run: playbooks/puppet-lint/run
+    run: playbooks/puppet-lint/run.yaml
     required-projects:
       - Juniper/contrail-infra
     nodeset: builder-ubuntu-xenial
