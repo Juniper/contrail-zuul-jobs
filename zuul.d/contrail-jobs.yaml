@@ -322,3 +322,12 @@
       nodes:
         - name: builder
           label: ubuntu-trusty-builder
+
+- job:
+    name: ci-contrail-windows-tentacle
+    parent: trigger-win-base-2
+    description: This jobs starts Jenkins job in Windows CI.
+    vars:
+      manifest_file: windows.xml
+      jenkins_job: pm-tentacle-build
+      build_number: 0
