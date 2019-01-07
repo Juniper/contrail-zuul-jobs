@@ -16,11 +16,6 @@
       openstack_version: queens
 
 - job:
-    name: contrail-vnc-unittest-ubuntu-trusty
-    parent: contrail-vnc-unittest-base
-    nodeset: builder-ubuntu-trusty
-
-- job:
     name: contrail-vnc-unittest-centos7
     parent: contrail-vnc-unittest-base
     voting: False
