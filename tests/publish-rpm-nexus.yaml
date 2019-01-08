@@ -3,10 +3,9 @@
   roles:
     - fetch-packages
 
-- hosts: builder
+- hosts: localhost
   roles:
     - role: publish-rpm-nexus
-      nexus_rpm_repo: 'yum-tpc-test'
-      nexus_credentials:
-        user: 'test'
-        password: 'test123'
+      remote_repo_path: 'yum-tpc-test'
+      nexus_login: 'test'
+      nexus_password: 'test123'

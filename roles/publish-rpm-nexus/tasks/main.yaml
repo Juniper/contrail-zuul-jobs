@@ -1,13 +1,13 @@
 ---
 - name: get a list of package files
   find:
-    paths: '{{ contrail_built_rpms_src }}'
+    paths: '{{ pkg_src_dir }}'
     recurse: yes
     patterns:
       - '*.rpm'
   register: package_list
 
-- name: check if directory contains packages to upload
+- name: check if directory contains any packages to upload
   meta: end_play
   when: package_list.matched|int == 0
 
@@ -15,24 +15,23 @@
   block:
     - name: create a credentials file
       copy:
-        content: '--user {{ nexus_credentials.user }}:{{ nexus_credentials.password }}'
-        dest: '{{ nexus_creds_dest }}'
+        content: '--user {{ nexus_login }}:{{ nexus_password }}'
+        dest: '{{ nexus_creds_path }}'
       no_log: true
 
-    - name: upload rpm to nexus repo
-      command: >
-        curl -K {{ nexus_creds_dest }}
-          --upload-file {{ item }} http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/{{ zuul.branch }}/source/{{ item | basename }}
+    - name: upload rpm to nexus
+      command: |
+        curl -K {{ nexus_creds_path }} \
+          --upload-file {{ item }} http://{{ nexus_host }}/repository/{{ remote_repo_path }}/{{ item | basename }}
       with_items: "{{ package_list | json_query('files[*].path') }}"
       tags:
-        # ANSIBLE0006 - can not use either get_url or uri modules for this task
-        # they do not support uploads (uri does since ansible 2.6)
+        # ANSIBLE0006 - cannot use either get_url or uri modules for this task
+        # as they don't support uploads (uri does since Ansible 2.6)
         - skip_ansible_lint
 
   always:
     - name: remove credentials file
       file:
-        path: '{{ nexus_creds_dest }}'
+        path: '{{ nexus_creds_path }}'
         state: 'absent'
       no_log: true
-
