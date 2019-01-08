@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_e6153b3e",
+        "filename": "roles/contrail-unittests-tntestr/tasks/testrunner.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-01-08T14:04:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_b2fe6268",
+      "revId": "56a79b73179dbfa68e699a8bbf6e194c72af3bcf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_52f7268c",
         "filename": "roles/contrail-unittests-tntestr/tasks/testrunner.yaml",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2019-01-08T12:46:58Z",
       "side": 1,
       "message": "Why do you need to use sudo for setting fact?",
+      "revId": "56a79b73179dbfa68e699a8bbf6e194c72af3bcf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_e62e5b8a",
+        "filename": "roles/contrail-unittests-tntestr/tasks/testrunner.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-01-08T14:04:05Z",
+      "side": 1,
+      "message": ":shrug: done.",
+      "parentUuid": "df6247ed_52f7268c",
       "revId": "56a79b73179dbfa68e699a8bbf6e194c72af3bcf",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
