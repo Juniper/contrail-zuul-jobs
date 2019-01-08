@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_b2fe6268",
+        "filename": "roles/contrail-unittests-tntestr/tasks/testrunner.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2019-01-08T12:46:58Z",
+      "side": 1,
+      "message": "add these options to bash invocation in the line below. Not sure if this will affect the nested bash process",
+      "revId": "56a79b73179dbfa68e699a8bbf6e194c72af3bcf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_52f7268c",
+        "filename": "roles/contrail-unittests-tntestr/tasks/testrunner.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2019-01-08T12:46:58Z",
+      "side": 1,
+      "message": "Why do you need to use sudo for setting fact?",
+      "revId": "56a79b73179dbfa68e699a8bbf6e194c72af3bcf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
