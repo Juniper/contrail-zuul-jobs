@@ -250,14 +250,14 @@
 
 - job:
     name: create-windows-containers
-    parent: trigger-win-base-2
+    parent: trigger-win-base
     description: This jobs starts Jenkins job in Windows CI to create Windows containers.
     vars:
       jenkins_job: ci-contrail-windows-nighly-build
 
 - job:
     name: contrail-windows-test-cad
-    parent: trigger-win-base-2
+    parent: trigger-win-base
     description: This jobs starts Jenkins job in Windows CI to test CAD.
     vars:
       manifest_file: windows-ci.xml
@@ -311,3 +311,12 @@
       nodes:
         - name: builder
           label: ubuntu-trusty-builder
+
+- job:
+    name: contrail-sanity-win2016
+    parent: trigger-win-base
+    description: This jobs starts Jenkins job in Windows CI.
+    vars:
+      manifest_file: windows.xml
+      jenkins_job: pm-tentacle-build
+      build_number: 0
