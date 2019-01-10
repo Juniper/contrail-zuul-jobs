@@ -1,3 +1,4 @@
 ---
-rpm_dir: "{{ zuul.projects | selectattr('short_name', 'equalto', 'contrail-third-party-packages') | map(attribute='src_dir') | list | first }}"
+src_dir_json_query: "[?short_name=='contrail-third-party-packages'].src_dir"
+rpm_dir: '{{ zuul.projects | json_query(src_dir_json_query) | first }}'
 

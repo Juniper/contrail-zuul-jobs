@@ -2,7 +2,8 @@
 
 - name: save the script location to a variable
   set_fact:
-    script_path: '{{ ansible_env.HOME }}/src/github.com/tungsten-infra/ci-utils/tungsten_ci_utils/generate_build_change_info'
+    script_path: >
+      '{{ ansible_env.HOME }}/src/github.com/tungsten-infra/ci-utils/tungsten_ci_utils/generate_build_change_info'
 
 - name: install epel
   package:

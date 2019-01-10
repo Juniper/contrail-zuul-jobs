@@ -11,7 +11,10 @@
     state: directory
 
 - name: Initialize android repo
-  command: "repo init -m {{ manifest_file }} -u {{ ansible_env.HOME }}/{{ zuul._projects['review.opencontrail.org/Juniper/contrail-vnc'].src_dir }}"
+  command: >
+    repo init
+    -m {{ manifest_file }}
+    -u {{ ansible_env.HOME }}/{{ zuul._projects['review.opencontrail.org/Juniper/contrail-vnc'].src_dir }}
   args:
     chdir: "{{ packaging.target_dir }}"
 
@@ -24,8 +27,10 @@
   generate_manifest:
     sandbox_root: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
     projects: "{{ zuul._projects }}"
-    manifest_path: "{{ ansible_env.HOME }}/{{ zuul._projects['review.opencontrail.org/Juniper/contrail-vnc'].src_dir }}/{{ manifest_file }}"
+    manifest_path: "{{ ansible_env.HOME }}/{{ src_dir }}/{{ manifest_file }}"
     snapshot_path: "{{ ansible_env.HOME }}/manifest.xml"
+  vars:
+    src_dir: zuul._projects['review.opencontrail.org/Juniper/contrail-vnc'].src_dir
 
 - name: Synchronize repositories to the sandbox
   command: "repo sync --quiet"
