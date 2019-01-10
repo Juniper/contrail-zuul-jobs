@@ -1,0 +1,6 @@
+---
+- hosts: all
+  roles:
+    - zuul-include-vars
+    - set-zuul-log-path-fact
+    - test-push-windows-logs
