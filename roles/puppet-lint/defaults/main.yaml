@@ -1,3 +1,4 @@
 ---
-workdir: "{{ zuul.projects | selectattr('short_name', 'equalto', 'contrail-infra') | map(attribute='src_dir') | list | first }}"
+src_dir_json_query: "[?short_name=='contrail-infra''].src_dir"
+workdir: '{{ zuul.projects | json_query(src_dir_json_query) | first }}'
 

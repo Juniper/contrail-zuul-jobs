@@ -2,5 +2,6 @@
 image_tag: "build"
 image_name: "opencontrailnightly/developer-sandbox"
 sandbox_branch: "{{ zuul.branch }}"
-workdir: '{{ zuul.projects | selectattr("short_name", "equalto", "contrail-dev-env") | map(attribute="src_dir") | list | first }}'
+src_dir_json_query: "[?short_name=='contrail-dev-env'].src_dir"
+workdir: '{{ zuul.projects | json_query(src_dir_json_query) | first }}'
 
