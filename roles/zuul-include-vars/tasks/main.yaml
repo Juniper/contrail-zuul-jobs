@@ -4,3 +4,8 @@
     file: "{{ zuul.executor.work_root }}/results.json"
   delegate_to: localhost
 
+- debug:
+    msg: "vars: {{ zuul.executor.work_root }}/results.json"
+
+- debug:
+    msg: "file content: {{lookup('file', '{{ zuul.executor.work_root }}/results.json') }}"
