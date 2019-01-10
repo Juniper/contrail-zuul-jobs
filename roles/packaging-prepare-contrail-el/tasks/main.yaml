@@ -13,12 +13,13 @@
 
 - name: Create links for centos 74 specs
   file:
-    path: "{{ item.path }}"
-    src: "{{ item.source }}"
+    path: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/{{ item.path }}"
+    src: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/{{ item.source }}"
     state: link
   with_items:
-    - path: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/controller/build/package_configs"
-      source: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/build/package_configs"
-    - path: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/build/package_configs/centoslinux741708/mitaka"
-      source: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/build/package_configs/centoslinux741708/ocata"
+    - path: "controller/build/package_configs"
+      source: "tools/packaging/build/package_configs"
+    - path: "tools/packaging/build/package_configs/centoslinux741708/mitaka"
+      source: "tools/packaging/build/package_configs/centoslinux741708/ocata"
+
 

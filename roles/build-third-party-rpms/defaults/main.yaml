@@ -1,3 +1,4 @@
 ---
-rpm_dir: "{{ zuul.projects | selectattr('short_name', 'equalto', 'contrail-third-party-packages') | map(attribute='src_dir') | list | first }}"
+third_party_pkg_facts: "{{ zuul.projects | selectattr('short_name', 'equalto', 'contrail-third-party-packages') }}"
+rpm_dir: "{{ third_party_pkg_facts | map(attribute='src_dir') | list | first }}"
 

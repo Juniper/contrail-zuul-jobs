@@ -2,5 +2,6 @@
 container_name:
     - contrail-windows-cnm-plugin
     - contrail-windows-vrouter
-workdir: '{{ zuul.projects | selectattr("short_name", "equalto", "containerregistry") | map(attribute="src_dir") | list | first }}'
+containerregistry_facts: "{{ zuul.projects | selectattr('short_name', 'equalto', 'containerregistry') }}"
+workdir: '{{ containerregistry_facts | map(attribute="src_dir") | list | first }}'
 

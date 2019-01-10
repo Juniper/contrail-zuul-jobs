@@ -6,7 +6,7 @@
     --tag {{ item }}-{{ contrail_container_tag }} \
     --registry-server {{ contrail_docker_registry }} \
     --sku {{ item }} \
-    --contrail-repo {{ contrail_package_repository }} \
+    --contrail-repo {{ contrail_package_repo }} \
     --openstack-repo http://ci-repo.englab.juniper.net/mirrors/rpm/centos/7.4.1708/cloud/x86_64/openstack-{{ item }} \
     --post
   args:

@@ -49,6 +49,15 @@
     CONTRAIL_COMPILE_WITHOUT_SYMBOLS: yes
     LC_ALL: "C"
 
+- name: create git ref list
+  set_fact:
+    refs: '{{ refs | default([]) + [template.format(i.project.short_name, i.change[-2:], i.change, i.patchset)] }}'
+  with_items: '{{ zuul.items }}'
+  loop_control:
+    loop_var: i
+  vars:
+    template: '{}^refs/changes/{}/{}/{}'
+
 - name: Run unittest script
   command: "{{ ansible_env.HOME }}/contrail-unittests-job.sh"
   become: yes
@@ -60,12 +69,5 @@
     ZUUL_PROJECT: "{{ zuul.project.short_name }}"
     SCONS_JOBS: "1"
     LC_ALL: "C"
-    GIT_REFS: >-
-      {% set git_refs = [] -%}
-      {% for item in zuul['items'] -%}
-        {% set ref = "refs/changes/" + item.change[-2:] + "/" + item.change + "/" + item.patchset -%}
-        {% set git_ref = item.project.short_name + "^" + ref -%}
-        {% set _ =  git_refs.append(git_ref) -%}
-      {% endfor -%}
-      {{- git_refs|join(",") -}}
+    GIT_REFS: '{{ refs | join(",") }}'
 

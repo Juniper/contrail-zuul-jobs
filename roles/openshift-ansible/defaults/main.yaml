@@ -1,5 +1,6 @@
 ---
-zuul_project_dir: '{{ zuul.projects | selectattr("short_name", "equalto", "openshift-ansible") | map(attribute="src_dir") | list | first }}'
+openshift_ansible_facts: '{{ zuul.projects | selectattr("short_name", "equalto", "openshift-ansible") }}'
+zuul_project_dir: '{{ openshift_ansible_facts | map(attribute="src_dir") | list | first }}'
 openstack_version: 'ocata'
 openshift_deployment_type: 'origin'
 openshift_version: '3.9'
