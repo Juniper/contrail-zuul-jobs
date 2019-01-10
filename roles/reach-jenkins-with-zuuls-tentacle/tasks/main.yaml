@@ -7,8 +7,11 @@
 
 - name: Install Python 3
   package:
-    name: python3
+    name: '{{ item }}'
     state: present
+  with_items:
+    - python3
+    - python3-pip
 
 - name: Install Jenkins API for Python 3
   pip:
@@ -34,3 +37,4 @@
     --directory  "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
     --docker_build_number {{ build_number }}
     --zuul_build_id {{ zuul.build }}
+    --zuul_log_path {{ zuul_log_path }}

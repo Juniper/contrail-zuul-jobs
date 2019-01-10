@@ -19,7 +19,7 @@ tool_description =\
 class ZuulJenkinsConnector:
     def __init__(self, repository_provider, jenkins_manager, jenkins_job,\
             gerrit_server, docker_registry,directory,docker_build_number,\
-            zuul_build_id):
+            zuul_build_id,zuul_log_path):
         self.repository_provider = repository_provider
         self.jenkins_manager = jenkins_manager
         self.jenkins_job = jenkins_job
@@ -28,6 +28,7 @@ class ZuulJenkinsConnector:
         self.directory = directory
         self.docker_build_number = docker_build_number
         self.zuul_build_id = zuul_build_id
+        self.zuul_log_path = zuul_log_path
 
     def handle_zuul_job(self):
         self.repository_provider.start_server_with_repositories()
@@ -57,6 +58,7 @@ class ZuulJenkinsConnector:
             "DOCKER_REGISTRY": self.docker_registry,
             "DOCKER_BUILD_NUMBER": self.docker_build_number,
             "ZUUL_UUID": self.zuul_build_id,
+            "ZUUL_LOG_PATH": self.zuul_log_path,
         }
         print("Jenkins_job {}" .format(self.jenkins_job))
         job_was_successful =\
@@ -207,6 +209,11 @@ class ConfigurationManager:
             dest="zuul_build_id",
             default=0,
             help="Unique zuul build number")
+        self.argument_parser.add_argument(
+            "--zuul_log_path",
+            dest="zuul_log_apth",
+            default=0,
+            help="Log path for tentacle logs")
 
 def CreateZuulJenkinsConnector(configuration):
     repository_provider = RepositoryProvider(
@@ -227,7 +234,8 @@ def CreateZuulJenkinsConnector(configuration):
         configuration.docker_registry,
         configuration.directory,
         configuration.docker_build_number,
-        configuration.zuul_build_id)
+        configuration.zuul_build_id,
+        configuration.zuul_log_path)
     return zuuls_tentacle
 
 def ReachJenkinsByZuulsTentacle(configuration):
