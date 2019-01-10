@@ -10,6 +10,12 @@
     name: python3
     state: present
 
+- debug:
+    msg: "Test message"
+
+- debug:
+    msg: "zuul_log_url: {{ zuul_log_url }}  zuul_log_path {{ zuul_log_path }} "
+
 - name: Install Jenkins API for Python 3
   pip:
     name: jenkinsapi
