@@ -12,8 +12,10 @@
   ignore_errors: True
 
 - name: Print summary of errors
-  command: 'rpmlint -I {{ linter_out.stdout_lines | map("regex_search", "[EW]: ([%a-z-]+)") | map("regex_replace","[EW]: ", "") | unique | join(" -I ") }}'
+  command: 'rpmlint -I {{ lines | unique | join(" -I ") }}'
   when: linter_out.rc != 0
+  vars:
+    lines: '{{ linter_out.stdout_lines | map("regex_search", "[EW]: ([%a-z-]+)") | map("regex_replace","[EW]: ", "") }}'
 
 - name: Fail on rpmlint errors
   fail:

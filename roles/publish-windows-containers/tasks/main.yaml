@@ -36,7 +36,11 @@
   with_items: "{{ container_name }}"
 
 - name: Get containers from temporary registry
-  command: "./puller --name {{ contrail_docker_registry }}/{{ item }}:{{ contrail_container_tag }} --directory {{ ansible_env.HOME }}/{{ item }} --stderrthreshold ERROR"
+  command: >
+    ./puller
+    --name {{ contrail_docker_registry }}/{{ item }}:{{ contrail_container_tag }}
+    --directory {{ ansible_env.HOME }}/{{ item }}
+    --stderrthreshold ERROR
   args:
     chdir: "{{ ansible_env.HOME }}/{{ workdir }}/bazel-bin"
   with_items: "{{ container_name }}"
