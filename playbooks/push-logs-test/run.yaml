@@ -1,0 +1,7 @@
+---
+
+- debug:
+    msg: "Test message"
+
+- debug:
+    msg: "zuul_log_url: {{ zuul_log_url }}  zuul_log_path {{ zuul_log_path }}"
