@@ -1,5 +1,5 @@
 ---
-contrail_package_repository: "http://{{ zuul_site_mirror_fqdn }}/pulp/repos/{{ packaging.repo_names[ansible_distribution] }}/"
+contrail_package_repo: "http://{{ zuul_site_mirror_fqdn }}/pulp/repos/{{ packaging.repo_names[ansible_distribution] }}/"
 contrail_version: "{{ packaging.repo_name }}"
 openstack_version:
   - ocata

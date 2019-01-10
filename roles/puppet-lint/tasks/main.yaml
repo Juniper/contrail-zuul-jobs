@@ -39,9 +39,9 @@
 
 - name: checking used ruby version
   set_fact:
-    ruby_version: "{{ source.stdout | regex_search(puppet_lint_ruby_version_regex, '\\2') | first | default('2.1.10') }}"
+    ruby_version: "{{ source.stdout | regex_search(puppet_lint_ruby_ver_regex, '\\2') | first | default('2.1.10') }}"
   vars:
-    puppet_lint_ruby_version_regex: "(^ruby '(.*?)')"
+    puppet_lint_ruby_ver_regex: "(^ruby '(.*?)')"
 
 - name: set ruby path
   set_fact:
@@ -103,7 +103,8 @@
 
 - name: check if tests failed
   fail:
-    msg: |
-      Lint: {{ (lint_check.rc != 0)| ternary("Fail","Pass") }}, Syntax: {{ (syntax_check.rc != 0)| ternary("Fail","Pass") }}.
+    msg: >
+      Lint: {{ (lint_check.rc != 0)| ternary("Fail","Pass") }},
+       Syntax: {{ (syntax_check.rc != 0)| ternary("Fail","Pass") }}.
   when: lint_check.rc != 0 or syntax_check.rc != 0
 

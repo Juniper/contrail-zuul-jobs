@@ -52,17 +52,19 @@
     ZUUL_CHANGES: '{{ zuul.ref }}'
   become: true
 
+- name: create git ref list
+  set_fact:
+    refs: '{{ refs | default([]) + [template.format(i.project.short_name, i.change[-2:], i.change, i.patchset)] }}'
+  with_items: '{{ zuul.items }}'
+  loop_control:
+    loop_var: i
+  vars:
+    template: '{}^refs/changes/{}/{}/{}'
+
 - name: gather unittest targets to run
   command: '{{ ansible_env.HOME }}/contrail-unittests-gather.rb'
   environment:
-    GIT_REFS: >-
-      {% set git_refs = [] -%}
-      {% for item in zuul['items'] -%}
-        {% set ref = "refs/changes/" + item.change[-2:] + "/" + item.change + "/" + item.patchset -%}
-        {% set git_ref = item.project.short_name + "^" + ref -%}
-        {% set _ =  git_refs.append(git_ref) -%}
-      {% endfor -%}
-      {{- git_refs|join(",") -}}
+    GIT_REFS: '{{ refs | join(",") }}'
     LC_ALL: 'C'
     UPSTREAM_VERSION: '{{ packaging.version.upstream }}'
     WORKSPACE: '{{ ansible_env.HOME }}'
@@ -74,7 +76,7 @@
 
 - name: install tntestr requirements
   pip:
-    requirements: '{{ testrunner_dir}}/requirements.txt'
+    requirements: '{{ testrunner_dir }}/requirements.txt'
     virtualenv: '{{ venv_dir }}'
     virtualenv_python: '{{ python_version }}'
 
@@ -85,7 +87,7 @@
     virtualenv_python: '{{ python_version }}'
 
 - name: prepare and run list of unittests
-  when: unittest_target.stdout_lines[-1] != ''
+  when: unittest_target.stdout_lines[-1] | length > 0
   block:
   - name: gather list of unit test to be run for changeset
     command: 'scons -Q --warn=no-all --describe-tests {{ unittest_target.stdout_lines[-1] }}'

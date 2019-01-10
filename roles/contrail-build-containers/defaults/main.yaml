@@ -1,5 +1,6 @@
 ---
-contrail_package_repository: http://{{ zuul_site_mirror_fqdn }}/pulp/repos/{{ packaging.repo_names[ansible_distribution] }}/
+repo_path: "{{ packaging.repo_names[ansible_distribution] }}"
+contrail_package_repository: http://{{ zuul_site_mirror_fqdn }}/pulp/repos/{{ repo_path }}/
 contrail_version: "{{ packaging.repo_name }}"
 openstack_version: ocata
 rpm_repo_config_dir: /etc/yum.repos.d/
