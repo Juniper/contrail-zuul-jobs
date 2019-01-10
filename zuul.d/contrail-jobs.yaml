@@ -320,3 +320,16 @@
       manifest_file: windows.xml
       jenkins_job: pm-tentacle-build
       build_number: 0
+
+- job:
+    name: push-log-test
+    parent: contrail-vnc-base2
+    description: Test job
+    run: playbooks/push-logs-test/run.yaml
+    required-projects:
+      - Juniper/contrail-windows
+      - Juniper/contrail-windows-docker-driver
+    vars:
+      manifest_file: windows.xml
+      jenkins_job: pm-test-log
+      build_number: 0
