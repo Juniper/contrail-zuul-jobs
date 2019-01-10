@@ -9,9 +9,18 @@
   package:
     name: '{{ item }}'
     state: present
+  become: True
   with_items:
     - python3
-    - python3-pip
+
+- name: Download pip installation script
+  get_url:
+    url: https://bootstrap.pypa.io/3.3/get-pip.py
+    dest: '{{ ansible_env.HOME }}/get-pip.py'
+    mode: 0744
+
+- name: Install pip
+  shell: 'python3 {{ ansible_env.HOME }}/get-pip.py '
 
 - name: Install Jenkins API for Python 3
   pip:
@@ -28,8 +37,8 @@
     ./zuulstentacle.py
     --jenkins_address "http://10.84.12.26:8080"
     --jenkins_job {{ jenkins_job }}
-    --jenkins_user {{ jenkins_winci_credentials.user }}
-    --jenkins_password {{ jenkins_winci_credentials.password }}
+    --jenkins_user {{ pma-testuser }}
+    --jenkins_password {{ qwerty123 }}
     --gerrit_server review.opencontrail.org
     --http_server_ip {{ ansible_default_ipv4.address }}
     --floating {{ ansible_host }}
@@ -37,3 +46,4 @@
     --directory  "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
     --docker_build_number {{ build_number }}
     --zuul_build_id {{ zuul.build }}
+    --zuul_log_path {{ zuul_log_path }}
