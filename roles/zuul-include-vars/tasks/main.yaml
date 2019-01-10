@@ -3,4 +3,3 @@
   include_vars:
     file: "{{ zuul.executor.work_root }}/results.json"
   delegate_to: localhost
-
