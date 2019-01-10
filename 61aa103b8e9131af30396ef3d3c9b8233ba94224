@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_0b1f2f08",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 31
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-01-10T07:32:26Z",
+      "side": 1,
+      "message": "*rules",
+      "range": {
+        "startLine": 10,
+        "startChar": 21,
+        "endLine": 10,
+        "endChar": 25
+      },
+      "revId": "61aa103b8e9131af30396ef3d3c9b8233ba94224",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_2b24335d",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 31
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-01-10T07:32:26Z",
+      "side": 1,
+      "message": "Could you move nodeset to the bottom? I know that\u0027s not your change but we are keeping to that convention due to our rules.",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 28
+      },
+      "revId": "61aa103b8e9131af30396ef3d3c9b8233ba94224",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
