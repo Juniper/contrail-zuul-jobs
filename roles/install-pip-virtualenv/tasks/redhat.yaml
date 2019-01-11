@@ -1,13 +1,17 @@
 ---
 
-- name: install pip
+- name: install setuptools
   package:
-    name: python27-python-pip
+    name: python-setuptools
     state: installed
+  become: true
+
+- name: install pip
+  command: easy_install pip
   become: true
 
 - name: install virtualenv
   package:
-    name: python27-python-virtualenv
+    name: python-virtualenv
     state: installed
   become: true
