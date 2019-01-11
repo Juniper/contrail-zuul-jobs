@@ -1,0 +1,13 @@
+---
+
+- name: install pip
+  package:
+    name: python27-python-pip
+    state: installed
+  become: true
+
+- name: install virtualenv
+  package:
+    name: python27-python-virtualenv
+    state: installed
+  become: true
