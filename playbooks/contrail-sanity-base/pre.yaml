@@ -11,6 +11,11 @@
 # Support for AIO deployments
 # contrail-ansible-deployer docker in a different version / from a different repo than in c-z-j
 # TODO: work this out, so installation methods are in sync
+
+- hosts: all
+  roles:
+    - install-pip-virtualenv
+
 - hosts: deployment:!control-plane:!data-plane
   roles:
     - install-docker-daemon
