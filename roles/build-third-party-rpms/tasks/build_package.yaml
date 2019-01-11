@@ -1,8 +1,7 @@
 ---
 
-- name: Build package {{ item }}
-  command: 'make {{ item }}'
+- name: Build package python-thrift
+  command: 'make python-thrift'
   args:
     chdir: '{{ ansible_env.HOME }}/{{ rpm_dir }}/upstream/rpm'
   become: true
-
