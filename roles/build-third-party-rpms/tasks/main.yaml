@@ -12,10 +12,11 @@
 
 - name: Build packages
   include: build_package.yaml
-  with_items: '{{ third_party_packages.stdout.split(" ") }}'
+  with_items:
+    - python-thrift
+    - libuv
 
 - name: List created packages
   find:
     path: '{{ ansible_env.HOME }}/{{ rpm_dir }}/../RPMS'
     patterns: '*.rpm'
-
