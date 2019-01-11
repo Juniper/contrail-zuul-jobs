@@ -2,6 +2,7 @@
 - hosts: all
   roles:
     - yum-repos-prepare
+    - install-pip-virtualenv
     - install-docker-daemon
     - zuul-include-vars
     - role: add-insecure-registry
