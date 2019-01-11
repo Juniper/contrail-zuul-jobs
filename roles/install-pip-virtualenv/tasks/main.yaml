@@ -1,0 +1,19 @@
+---
+
+- name: install pip
+  pkg:
+    name: python-pip
+    state: installed
+    become: true
+
+- name: install virtualenv
+  pkg:
+    name: python-virtualenv
+    state: installed
+    become: true
+
+- name: install tox
+  pkg:
+    name: python-tox
+    state: installed
+    become: true
