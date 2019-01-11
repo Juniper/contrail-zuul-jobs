@@ -1,4 +1,4 @@
 ---
 
-include: '{{ ansible_distribution | lower }}.yaml'
+- include: '{{ ansible_distribution | lower }}.yaml'
 
