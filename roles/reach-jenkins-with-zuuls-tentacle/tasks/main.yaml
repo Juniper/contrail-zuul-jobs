@@ -7,11 +7,18 @@
 
 - name: Install Python 3
   package:
-    name: '{{ item }}'
+    name: python3
     state: present
-  with_items:
-    - python3
-    - python3-pip
+
+- name: Download pip installation script
+  get_url:
+    url: https://bootstrap.pypa.io/3.3/get-pip.py
+    dest: '{{ ansible_env.HOME }}/get-pip.py'
+    mode: 0755
+
+- name: Install pip
+  shell: 'python3 {{ ansible_env.HOME }}/get-pip.py '
+  become: True
 
 - name: Install Jenkins API for Python 3
   pip:
