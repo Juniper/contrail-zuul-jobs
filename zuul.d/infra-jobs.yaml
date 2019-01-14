@@ -140,6 +140,24 @@
     nodeset: ubuntu-xenial-c
 
 - job:
+    name: zuul-jobs-linters2
+    parent: unittests
+    run: playbooks/test/zjl.yaml
+    description: |
+      This job runs against contrail-project-config and zuul-jobs, to lint
+      ansible playbooks and roles.
+    required-projects:
+      - Juniper/contrail-project-config
+      - Juniper/zuul-jobs
+      - Juniper/contrail-zuul-jobs
+      - Juniper/contrail-helm-deployer
+    vars:
+      tox_envlist: linters
+      tox_environment:
+        ANSIBLE_ROLES_PATH: ~/src/github.com/Juniper/zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-zuul-jobs/roles:~/src/review.opencontrail.org/Juniper/contrail-project-config/roles:~/src/review.opencontrail.org/Juniper/contrail-helm-deployer/roles
+    nodeset: ubuntu-xenial-c
+
+- job:
     name: build-infra-doc
     description: |
       This jobs builds ci-doc using sphinx.
