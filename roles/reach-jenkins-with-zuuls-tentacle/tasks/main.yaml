@@ -17,7 +17,7 @@
     mode: 0755
 
 - name: Install pip
-  shell: 'python3 {{ ansible_env.HOME }}/get-pip.py '
+  command: 'python3 {{ ansible_env.HOME }}/get-pip.py '
   become: True
 
 - name: Install Jenkins API for Python 3
