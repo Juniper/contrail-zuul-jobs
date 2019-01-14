@@ -2,7 +2,7 @@
 
 - name: install pip
   package:
-    name: python-pip
+    name: python2-pip
     state: installed
   become: true
 
