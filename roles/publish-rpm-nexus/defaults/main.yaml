@@ -1,4 +1,9 @@
 ---
 pkg_src_dir: '{{ zuul.executor.work_root }}/packages'
 nexus_creds_path: '{{ zuul.executor.work_root }}/nexus-creds'
-
+remote_repo_path: >-
+  {% if zuul.pipeline == 'post-merge' %}
+    {{ nexus.repos.yum_tpc }}/{{ zuul.branch }}/source
+  {% elif zuul.pipeline == 'experimental' %}
+    {{ nexus.repos.yum-tungsten }}/{{ repo_name }}-cttp
+  {% endif %}
