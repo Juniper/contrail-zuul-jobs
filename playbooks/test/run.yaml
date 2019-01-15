@@ -1,0 +1,6 @@
+---
+
+- hosts: all
+  tasks:
+    - fail:
+        msg: hehe
