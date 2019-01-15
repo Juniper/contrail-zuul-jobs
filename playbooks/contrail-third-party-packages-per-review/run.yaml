@@ -1,0 +1,8 @@
+#This playbook will override default urls from rpm building and uploading roles.
+#That will let us to use rpms with changes per build.
+---
+- hosts: builder
+  roles:
+    - role: install-third-party-toolchain
+    - role: build-third-party-rpms
+      build_dir: 'smth'
