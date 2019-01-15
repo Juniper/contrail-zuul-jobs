@@ -43,3 +43,12 @@
               - ^roles/.*
               - ^playbooks/.*
               - ^tests/.*
+
+- project:
+    name: Juniper/contrail-third-party-packages
+    check:
+      jobs:
+        - ctpp-per-review
+        - noop:
+            irrelevant-files:
+              - ^upstream/.*
