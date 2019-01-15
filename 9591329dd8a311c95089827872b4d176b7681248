@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "df6247ed_99480cb3",
+        "filename": "playbooks/linters-go/run.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-01-15T11:28:11Z",
+      "side": 1,
+      "message": "pipelining doesn\u0027t work with `command` module, right?\n\nAlso, would prefer to see the datastax_url without the trailing slash, so it would be present here as in\n\n{{ datastax_url }}/debian/repo_key\n\nIs just more pleasant for the eye, what do you think?",
+      "revId": "9591329dd8a311c95089827872b4d176b7681248",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_39cfe029",
+        "filename": "playbooks/linters-go/run.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-01-15T11:28:11Z",
+      "side": 1,
+      "message": "remove all `sudo` and add become: true? think the curl and echo also need escalated privileges",
+      "revId": "9591329dd8a311c95089827872b4d176b7681248",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_b9e2b09e",
+        "filename": "playbooks/linters-go/run.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-01-15T11:28:11Z",
+      "side": 1,
+      "message": "tar -zxvf {{ contrail_go_api_filename }}",
+      "revId": "9591329dd8a311c95089827872b4d176b7681248",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_994dac3c",
         "filename": "roles/build-infra-doc/tasks/main.yaml",
         "patchSetId": 3
@@ -36,6 +87,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_b9fbd044",
+        "filename": "roles/contrail-build-containers/defaults/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-01-15T11:28:11Z",
+      "side": 1,
+      "message": "If you\u0027re asking whether this variable is the correct one, then it is ;(",
+      "parentUuid": "df6247ed_5965f4b3",
+      "revId": "9591329dd8a311c95089827872b4d176b7681248",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_790798cb",
         "filename": "roles/contrail-build-test-containers/defaults/main.yaml",
         "patchSetId": 3
@@ -47,6 +116,24 @@
       "writtenOn": "2019-01-15T10:11:44Z",
       "side": 1,
       "message": "it was changed different way in `contrail-build-containers`, choose one",
+      "revId": "9591329dd8a311c95089827872b4d176b7681248",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_799798ed",
+        "filename": "roles/contrail-build-test-containers/defaults/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-01-15T11:28:11Z",
+      "side": 1,
+      "message": "You should leave the former name. We provide the variable in packaging jobs using zuul_return (which allows sharing variables between jobs).\n\nSee here: https://github.com/Juniper/contrail-project-config/blob/master/roles/packaging-publish-el/tasks/publish_to_nexus.yaml#L23",
+      "parentUuid": "df6247ed_790798cb",
       "revId": "9591329dd8a311c95089827872b4d176b7681248",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
