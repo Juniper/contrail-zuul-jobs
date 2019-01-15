@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_99148cea",
+        "filename": "roles/publish-rpm-nexus/defaults/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-01-15T10:11:44Z",
+      "side": 0,
+      "message": "do not remove this line",
+      "revId": "d99ee449ef8294a82f384c18a422065d3e7f584a",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_f996e84b",
+        "filename": "roles/sanitytest/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-01-15T10:11:44Z",
+      "side": 0,
+      "message": "this line looks terrible\nit sould be possible to do it ansible way, e.g. slurp + fail_when\nbut it is not scope of this task :-(",
+      "revId": "d99ee449ef8294a82f384c18a422065d3e7f584a",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}

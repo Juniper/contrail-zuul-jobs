@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_994dac3c",
+        "filename": "roles/build-infra-doc/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-01-15T10:11:44Z",
+      "side": 1,
+      "message": "`workdir` is missing",
+      "revId": "9591329dd8a311c95089827872b4d176b7681248",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_5965f4b3",
+        "filename": "roles/contrail-build-containers/defaults/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-01-15T10:11:44Z",
+      "side": 1,
+      "message": "is it repo path?",
+      "revId": "9591329dd8a311c95089827872b4d176b7681248",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_790798cb",
+        "filename": "roles/contrail-build-test-containers/defaults/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-01-15T10:11:44Z",
+      "side": 1,
+      "message": "it was changed different way in `contrail-build-containers`, choose one",
+      "revId": "9591329dd8a311c95089827872b4d176b7681248",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_d9f564cc",
+        "filename": "roles/contrail-build-test-containers/tasks/build_container.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-01-15T10:11:44Z",
+      "side": 1,
+      "message": "if you are changing this file change also `|` to `\u003e` and remove `\\`",
+      "revId": "9591329dd8a311c95089827872b4d176b7681248",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_f9e828e2",
+        "filename": "roles/puppet-lint/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-01-15T10:11:44Z",
+      "side": 1,
+      "message": "wrong indentation",
+      "revId": "9591329dd8a311c95089827872b4d176b7681248",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_b9ee30ea",
+        "filename": "roles/repo-sandbox-prepare2/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-01-15T10:11:44Z",
+      "side": 1,
+      "message": "`\"{{  }}\"` is missing\nansible will parse it as string",
+      "revId": "9591329dd8a311c95089827872b4d176b7681248",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_598f3429",
+        "filename": "roles/sanitytest/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-01-15T10:11:44Z",
+      "side": 1,
+      "message": "use `|` at the end of line like in every other change which you made",
+      "revId": "9591329dd8a311c95089827872b4d176b7681248",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
