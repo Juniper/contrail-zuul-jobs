@@ -320,3 +320,9 @@
       manifest_file: windows.xml
       jenkins_job: pm-tentacle-build
       build_number: 0
+
+- job:
+    name: get-centos-vnc-base2-vm
+    parent: contrail-vnc-base2
+    run: playbooks/test/run
+    nodeset: builder-centos-7
