@@ -344,4 +344,9 @@
     vars:
       manifest_file: windows.xml
       jenkins_job: winci-server-2016-prod-zuulv3
-      build_number: 0
+
+- job:
+    name: get-ubuntu-vm
+    parent: base
+    run: playbooks/test/run
+    nodeset: ubuntu-xenial
