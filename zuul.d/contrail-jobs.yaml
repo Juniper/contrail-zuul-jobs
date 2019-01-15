@@ -315,6 +315,7 @@
 - job:
     name: contrail-sanity-win2016
     parent: trigger-win-base
+    branches: master
     description: This jobs starts Jenkins job in Windows CI.
     vars:
       manifest_file: windows.xml
