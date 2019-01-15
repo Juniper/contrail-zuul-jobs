@@ -195,3 +195,16 @@
       - ^roles/publish-rpm-nexus/.*
       - ^roles/build-third-party-rpms/.*
     nodeset: builder-centos-7
+# - job:
+#     name: ctpp-per-review
+#     description: |
+#       This job is bulding rpms from c-t-p-p and uploading them to Nexus for
+#       per review use.
+#     parent: build-third-party-rpms-base
+#     required-projects:
+#       - Juniper/contrail-third-party-packages
+#     files:
+#       - ^tests/.*
+#       - ^roles/publish-rpm-nexus/.*
+#       - ^roles/build-third-party-rpms/.*
+#     nodeset: builder-centos-7
