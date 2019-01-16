@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_5d2efbfa",
+        "filename": "playbooks/linters-go/run.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-01-16T12:01:24Z",
+      "side": 1,
+      "message": "remove the trailing slash",
+      "revId": "ab23e73e030d1a2f7bf5ad5cef4df4665cc23512",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_9dd593e8",
+        "filename": "roles/contrail-build-test-containers/tasks/build_container.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-01-16T12:01:24Z",
+      "side": 1,
+      "message": "wrong variable name",
+      "revId": "ab23e73e030d1a2f7bf5ad5cef4df4665cc23512",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
