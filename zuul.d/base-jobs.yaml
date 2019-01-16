@@ -226,5 +226,7 @@
     description: |
       Adds yum-repos-prepare in untrusted context.
     pre-run: playbooks/contrail-base-untrusted/pre.yaml
+    vars:
+      tpc_branch: 'R5.0'
     required-projects:
       - Juniper/contrail-project-config
