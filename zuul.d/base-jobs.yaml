@@ -218,6 +218,7 @@
 - job:
     name: contrail-vnc-unittest-tntestr-base
     parent: contrail-vnc-unittest-statistics-base
+    pre-run: playbooks/contrail-vnc-unittest-tntestr-base/pre.yaml
     run: playbooks/contrail-vnc-unittest-tntestr-base/main.yaml
     post-run: playbooks/contrail-vnc-unittest-tntestr-base/post.yaml
 
