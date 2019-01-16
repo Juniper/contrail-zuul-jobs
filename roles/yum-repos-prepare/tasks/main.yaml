@@ -71,7 +71,7 @@
     name: tpc-{{ item }}
     description: Contrail third-party dependencies
     file: tpc-{{ item }}
-    baseurl: "http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/{{ tpc_branch }}/{{ item }}/"
+    baseurl: "http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/R5.0/{{ item }}/"
     enabled: yes
     gpgcheck: no
   with_items:

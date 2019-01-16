@@ -2,7 +2,7 @@
 # this fallback is required to handle branches other than master anr RX.X
 # (for example contrail/ocata, contrail_18_05_3, R6.0-WIP)
 # this will use TPC repo from the master branch by default
-tpc_branch: "{{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, 'master') }}"
+tpc_branch: "{{ {'contrail_dpdk_17_11_3': 'R5.0'}[zuul.branch] if ( zuul.branch | match('^contrail_dpdk_17_11_3$') ) else ( zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, 'master') ) }}"
 openstack_version: ocata
 cloud_orchestrator: 'openstack'
 openshift_version: '3.9'
