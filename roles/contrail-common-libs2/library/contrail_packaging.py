@@ -62,15 +62,16 @@ def main():
         version['distrib'] = "ci{change}.{patchset}".format(
             change=change, patchset=patchset, date=date
         )
-        repo_name = "{change}-{patchset}".format(change=change, patchset=patchset)
+        docker_version = "{change}-{patchset}".format(change=change, patchset=patchset)
     elif release_type == ReleaseType.NIGHTLY:
         version['distrib'] = "{}".format(build_number)
         docker_version = '{}-{}'.format(docker_version, build_number)
-        repo_name = docker_version
     else:
         module.fail_json(
             msg="Unknown release_type: %s" % (release_type,), **result
         )
+
+    repo_name = docker_version
 
     debian_dir = None
     for project in zuul['projects']:
