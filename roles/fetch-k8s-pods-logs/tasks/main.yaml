@@ -20,8 +20,7 @@
     }
     function get_pods () {
       NAMESPACE=$1
-      kubectl get pods -n ${NAMESPACE} -o name --show-all | \
-      awk -F '/' '{ print $NF }' | xargs -L1 -P 1 -I {} echo ${NAMESPACE} {}
+      kubectl get pods -n ${NAMESPACE} -o name --show-all | awk -F '/' '{ print $NF }' | xargs -L1 -P 1 -I {} echo ${NAMESPACE} {}
     }
     export -f get_pods
     function get_pod_logs () {
@@ -32,8 +31,7 @@
       for CONTAINER in ${INIT_CONTAINERS} ${CONTAINERS}; do
         echo "${NAMESPACE}/${POD}/${CONTAINER}"
         mkdir -p "{{ ansible_env.HOME }}/pod-logs/${NAMESPACE}/${POD}"
-        kubectl logs ${POD} -n ${NAMESPACE} -c ${CONTAINER} > \
-        "{{ ansible_env.HOME }}/pod-logs/${NAMESPACE}/${POD}/${CONTAINER}.txt"
+        kubectl logs ${POD} -n ${NAMESPACE} -c ${CONTAINER} > "{{ ansible_env.HOME }}/pod-logs/${NAMESPACE}/${POD}/${CONTAINER}.txt"
       done
     }
     export -f get_pod_logs
@@ -61,8 +59,7 @@
       input=($1)
       export NAMESPACE=${input[0]}
       export OBJECT=${input[1]}
-      kubectl get -n ${NAMESPACE} ${OBJECT} -o name | xargs -L1 -I {} -P1 -n1 \
-      bash -c 'echo "${NAMESPACE} ${OBJECT} $@"' _ {}
+      kubectl get -n ${NAMESPACE} ${OBJECT} -o name | xargs -L1 -I {} -P1 -n1 bash -c 'echo "${NAMESPACE} ${OBJECT} $@"' _ {}
     }
     export -f name_objects
     function get_objects () {

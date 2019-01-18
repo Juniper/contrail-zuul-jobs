@@ -2,11 +2,11 @@
 - name: install required packages
   pip:
     requirements: 'requirements.txt'
-    chdir: '{{ workdir }}'
+    chdir: '{{ zuul.projects | selectattr("short_name", "equalto", "contrail-infra-doc") | map(attribute="src_dir") | list | first }}'
   become: True
 
 - name: build HTML documentation
   command: make html
   args:
-    chdir: '{{ workdir }}'
+    chdir: '{{ zuul.projects | selectattr("short_name", "equalto", "contrail-infra-doc") | map(attribute="src_dir") | list | first }}'
 

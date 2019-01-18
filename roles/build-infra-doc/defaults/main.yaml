@@ -1,4 +1,0 @@
----
-
-contrail_infra_doc_facts: "{{ zuul.projects | selectattr('short_name', 'equalto', 'contrail-infra-doc') }}"
-workdir: '{{ contrail_infra_doc_facts | map(attribute="src_dir") | list | first }}'
