@@ -16,6 +16,24 @@
       "revId": "e7781455fb6351273af9aac582d14a1720100bb6",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_7cbbf8c3",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 443
+      },
+      "writtenOn": "2019-01-18T16:09:47Z",
+      "side": 1,
+      "message": "Libraries invoked inside their own roles lint without problems, the issue is when you call the library from another role. Then you need to specify the right path. This is the case for c-c-l roles.",
+      "parentUuid": "df6247ed_fcc0087f",
+      "revId": "e7781455fb6351273af9aac582d14a1720100bb6",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
     }
   ]
 }
