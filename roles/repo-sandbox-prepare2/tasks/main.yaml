@@ -34,7 +34,7 @@
 
 # `origins` fact is set by the generate_manifest module
 - name: Restore project origins
-  command: git remote add origin {{ item.value }}
+  shell: git remote add origin {{ item.value }}
   changed_when: remote.rc == 0
   failed_when:
     - remote.rc > 0
