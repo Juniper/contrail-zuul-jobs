@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_fcc0087f",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-01-18T15:09:44Z",
+      "side": 1,
+      "message": "do you need to add the c-c-l and c-c-l2 paths? if yes, why repo-sandbox-prepare2 and fetch-logs-unittest doesnt have to be linked? They\u0027re written modules also.",
+      "revId": "e7781455fb6351273af9aac582d14a1720100bb6",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
