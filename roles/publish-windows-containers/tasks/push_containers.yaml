@@ -13,7 +13,7 @@
 
 - name: Push containers to registry with latest tag
   command: >
-    ./pusher"
+    ./pusher
     --config {{ ansible_env.HOME }}/{{ item.1 }}/config.json
     --protocol {{ reg.protocol }}
     --name {{ reg.host }}/{{ item.1 }}:latest
