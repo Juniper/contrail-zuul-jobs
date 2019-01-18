@@ -1,6 +1,6 @@
 ---
-src_dir_json_query: "[?short_name=='ci-utils'].src_dir"
-script_dir: '{{ zuul.projects | json_query(src_dir_json_query) | first }}/tungsten_ci_utils/test_statistics'
+
+script_dir: '{{ zuul.projects | selectattr("short_name", "equalto", "ci-utils") | map(attribute="src_dir") | list | first }}/tungsten_ci_utils/test_statistics'
 venv_dir: '{{ ansible_env.HOME }}/test_statistics_venv'
 database_host: '127.0.0.1'
 database_port: '3306'

@@ -16,7 +16,7 @@
   delay: 20
   register: vhost_interface
   retries: 30
-  until: vhost_interface.stdout | length > 0
+  until: vhost_interface.stdout != ""
   when:
     - inventory_hostname in groups['data-plane']
     - cloud_orchestrator == 'openstack'

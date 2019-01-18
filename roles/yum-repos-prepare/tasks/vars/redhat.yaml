@@ -1,25 +1,14 @@
 ---
 repos_remove:
-  - name: rhel-7-server-rpms
-    file: redhat
-  - name: epel
-    file: epel
-  - name: epel-source
-    file: epel
+  - { name: rhel-7-server-rpms, file: redhat }
+  - { name: epel, file: epel }
+  - { name: epel-source, file: epel }
 repos_file: redhat-mirror
 repos_baseurl: http://{{ zuul_site_mirror_fqdn }}/rhel
 repos_add:
-  - name: rhel-7-server-rpms-mirror
-    repo: rhel-7-server-rpms
-    description: rhel-7-server-rpms
-  - name: rhel-7-server-extras-rpms-mirror
-    repo: rhel-7-server-extras-rpms
-    description: rhel-7-server-extras-rpms
-  - name: rhel-7-server-optional-rpms-mirror
-    repo: rhel-7-server-optional-rpms
-    description: rhel-7-server-optional-rpms
-  - name: rhel-server-rhscl-7-rpms-mirror
-    repo: rhel-server-rhscl-7-rpms
-    description: rhel-server-rhscl-7-rpms
+  - { name: rhel-7-server-rpms-mirror, repo: rhel-7-server-rpms, description: rhel-7-server-rpms }
+  - { name: rhel-7-server-extras-rpms-mirror, repo: rhel-7-server-extras-rpms, description: rhel-7-server-extras-rpms }
+  - { name: rhel-7-server-optional-rpms-mirror, repo: rhel-7-server-optional-rpms, description: rhel-7-server-optional-rpms }
+  - { name: rhel-server-rhscl-7-rpms-mirror, repo: rhel-server-rhscl-7-rpms, description: rhel-server-rhscl-7-rpms }
 use_epel: no
 

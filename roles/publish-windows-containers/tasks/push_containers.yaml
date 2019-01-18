@@ -1,23 +1,13 @@
 ---
 - name: Push containers to registry with build number
-  command: >
-    ./pusher
-    --config {{ ansible_env.HOME }}/{{ item.1 }}/config.json
-    --protocol {{ reg.protocol }}
-    --name {{ reg.host }}/{{ item.1 }}:{{ contrail_container_tag }}
-    {{ layers.results[item.0].stdout }} {{ digest.results[item.0].stdout }}
+  command: "./pusher --config {{ ansible_env.HOME }}/{{ item.1 }}/config.json --protocol {{ reg.protocol }} --name {{ reg.host }}/{{ item.1 }}:{{ contrail_container_tag }} {{ layers.results[item.0].stdout }} {{ digest.results[item.0].stdout }}"
   args:
     chdir: "{{ ansible_env.HOME }}/{{ workdir }}/bazel-bin"
   with_indexed_items: "{{ container_name }}"
   become: true
 
 - name: Push containers to registry with latest tag
-  command: >
-    ./pusher"
-    --config {{ ansible_env.HOME }}/{{ item.1 }}/config.json
-    --protocol {{ reg.protocol }}
-    --name {{ reg.host }}/{{ item.1 }}:latest
-    {{ layers.results[item.0].stdout }} {{ digest.results[item.0].stdout }}
+  command: "./pusher --config {{ ansible_env.HOME }}/{{ item.1 }}/config.json --protocol {{ reg.protocol }} --name {{ reg.host }}/{{ item.1 }}:latest {{ layers.results[item.0].stdout }} {{ digest.results[item.0].stdout }}"
   args:
     chdir: "{{ ansible_env.HOME }}/{{ workdir }}/bazel-bin"
   with_indexed_items: "{{ container_name }}"

@@ -8,8 +8,7 @@
 - name: Update debian/changelog
   shell: |
       dch -v "{{ packaging.full_version }}" -m ""
-      dch --release --distribution "{{ ansible_distribution_release }}" \
-      -m "Releasing version {{ packaging.full_version }}."
+      dch --release --distribution "{{ ansible_distribution_release }}" -m "Releasing version {{ packaging.full_version }}."
   args:
     chdir: "{{ packaging.target_dir }}"
 
