@@ -38,7 +38,7 @@
     - ruby
 
 - name: Run a full Contrail VNC build
-  command: "scons -j {{ ansible_processor_vcpus }}"
+  shell: "scons -j {{ ansible_processor_vcpus }}"
   args:
     chdir: "{{ packaging.target_dir }}"
   become: yes
