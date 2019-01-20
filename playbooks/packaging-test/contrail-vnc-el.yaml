@@ -1,0 +1,7 @@
+---
+
+- hosts: builder
+  roles:
+    - contrail-common-libs2
+    - packaging-build-el-makefile
+
