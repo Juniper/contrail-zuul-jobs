@@ -40,6 +40,7 @@
       - Juniper/contrail-web-storage
       - Juniper/contrail-webui-third-party
       - Juniper/vijava
+    override-checkout: 'R5.0'
     irrelevant-files:
       - specs/.*
     pre-run: playbooks/contrail-vnc-base2/pre.yaml

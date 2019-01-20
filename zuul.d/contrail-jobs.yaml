@@ -2,11 +2,22 @@
 
 - job:
     name: contrail-vnc-build-package-centos74
-    parent: contrail-vnc-build-package-el-base
+    parent: contrail-vnc-build-package-el-base-test
     nodeset:
       nodes:
         - name: builder
           label: centos-7-4-builder
+
+- job:
+    name: contrail-vnc-build-package-el-base-test
+    parent: contrail-vnc-base2
+    description: |
+      Job that tests Contrail VNC (controller, analytics, etc.) packaging
+
+      This is a base job for testing packaging of Contrail VNC for Enterprise
+      Linux based distributions (CentOS, RHEL). Release-based variants of this
+      job are then added to the Juniper/contrail-packages project.
+    run: playbooks/packaging-test/contrail-vnc-el.yaml
 
 - job:
     name: contrail-vnc-build-package-rhel7-queens
