@@ -1,0 +1,15 @@
+---
+repos_remove:
+    - { name: base, file: CentOS-Base }
+    - { name: updates, file: CentOS-Base }
+    - { name: extras, file: CentOS-Base }
+    - { name: epel, file: epel }
+    - { name: epel-source, file: epel }
+repos_file: CentOS-Base
+repos_baseurl: http://{{ docker_registry.fqdn }}/pulp/repos
+repos_add:
+    - { name: updates-mirror, repo: centos74-updates, description: CentOS updates mirror }
+    - { name: extras-mirror, repo: centos74-extras, description: CentOS extras mirror }
+    - { name: base-mirror, repo: centos74, description: CentOS base mirror }
+use_epel: yes
+
