@@ -44,3 +44,4 @@
     --directory  "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
     --docker_build_number {{ build_number }}
     --zuul_build_id {{ zuul.build }}
+    --zuul_log_path "/var/www/logs/{{ zuul_log_path }}"
