@@ -19,15 +19,7 @@ instances:
    provider: bms
    ip: {{ hostvars['openshift-master'].ansible_default_ipv4.address }}
    roles:
-     openstack:
-     config_database:
-     config:
-     control:
-     analytics_database:
-     analytics:
-     webui:
      k8s_master:
-     kubemanager:
  openshift-compute:
    provider: bms
    ip: {{ hostvars['openshift-compute'].ansible_default_ipv4.address }}
@@ -38,6 +30,14 @@ instances:
    provider: bms
    ip: {{ hostvars['openshift-infra'].ansible_default_ipv4.address }}
    roles:
+     openstack:
+     config_database:
+     config:
+     control:
+     analytics_database:
+     analytics:
+     webui:
+     kubemanager:
 contrail_configuration:
  PHYSICAL_INTERFACE: {{ hostvars['openshift-master'].ansible_default_ipv4.interface }}
  CONTROLLER_NODES: {{ hostvars['openshift-master'].ansible_default_ipv4.address }}
