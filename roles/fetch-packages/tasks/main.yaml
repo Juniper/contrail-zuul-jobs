@@ -22,3 +22,8 @@
     mode: pull
   with_items: "{{ packages.files }}"
 
+- name: Return packaging dest variable back to zuul
+  zuul_return:
+    data:
+      pkg_src_dir: "{{ zuul.executor.work_root }}/packages/"
+  delegate_to: localhost
