@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_765d4be8",
+        "filename": "roles/fetch-packages/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-01-23T12:48:26Z",
+      "side": 1,
+      "message": "dont think you need to return this as this is set as the default value for the var in publish-rpm-nexus",
+      "revId": "6595556d7d755f7a9a8d9b5dbc3f326f60e79749",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_166ccf9a",
+        "filename": "roles/publish-rpm-nexus/defaults/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-01-23T12:48:26Z",
+      "side": 1,
+      "message": "should be {{ packaging.repo_name }} I think",
+      "range": {
+        "startLine": 5,
+        "startChar": 41,
+        "endLine": 5,
+        "endChar": 78
+      },
+      "revId": "6595556d7d755f7a9a8d9b5dbc3f326f60e79749",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
