@@ -21,4 +21,12 @@
     dest: "{{ zuul.executor.work_root }}/packages/{{ item.path|basename }}"
     mode: pull
   with_items: "{{ packages.files }}"
+  register: package_list
 
+- name: check list
+  debug:
+    var: package_list
+
+- name: check dest
+  debug:
+    var: "{{ zuul.executor.work_root }}/packages/"
