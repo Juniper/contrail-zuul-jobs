@@ -17,4 +17,3 @@
     name: 'python-tox'
     state: 'installed'
   become: true
-

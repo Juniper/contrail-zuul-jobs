@@ -2,3 +2,9 @@
 
 - include: '{{ ansible_distribution | lower }}.yaml'
 
+- name: upgrade tox
+  pip:
+    name: 'tox'
+    state: 'latest'
+  become: true
+  when: upgrade_tox
