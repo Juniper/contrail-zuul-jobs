@@ -2,3 +2,8 @@
 
 - include: '{{ ansible_distribution | lower }}.yaml'
 
+- name: upgrade tox
+  pip:
+    name: 'tox=={{ tox_version }}'
+  become: true
+  when: upgrade_tox
