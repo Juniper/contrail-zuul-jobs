@@ -7,6 +7,7 @@
   roles:
     - role: publish-rpm-nexus
       remote_repo_path: 'yum-tpc-test'
-      nexus_credentials:
+      pkg_src_dir: "{{ ansible_env.HOME }}/"
+      nexus_creds_path: '{{ ansible_env.HOME }}/nexus-creds'
         user: 'test'
         password: 'test123'
