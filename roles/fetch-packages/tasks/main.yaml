@@ -15,6 +15,18 @@
     recurse: true
   register: packages
 
+- name: get a list of package files
+  find:
+    paths: '{{ ansible_env.HOME }}/'
+    recurse: yes
+    patterns:
+      - '*.rpm'
+  register: package_list
+
+- name: check list
+  debug:
+    var: package_list
+
 - name: Fetch packages from the build VM to the executor
   synchronize:
     src: "{{ item.path }}"

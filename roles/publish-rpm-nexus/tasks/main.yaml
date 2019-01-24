@@ -11,10 +11,11 @@
     patterns:
       - '*.rpm'
   register: package_list
+  become: true
 
-- name: check if directory contains any packages to upload
-  meta: end_play
-  when: package_list.matched|int == 0
+# - name: check if directory contains any packages to upload
+#   # meta: end_play
+#   when: package_list.matched|int == 0
 
 - name: upload rpms
   block:
@@ -22,7 +23,7 @@
       copy:
         content: '--user {{ nexus_credentials.user }}:{{ nexus_credentials.password }}'
         dest: '{{ nexus_creds_path }}'
-      no_log: true
+      # no_log: true
 
     - name: upload rpm to nexus
       command: >
