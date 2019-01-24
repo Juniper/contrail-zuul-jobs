@@ -6,7 +6,7 @@
 
 - name: get a list of package files
   find:
-    paths: '{{ pkg_src_dir }}'
+    paths: "{{ ansible_env.HOME }}/"
     recurse: yes
     patterns:
       - '*.rpm'
