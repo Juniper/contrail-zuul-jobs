@@ -1,6 +1,7 @@
 - name: Test the configure-mirrors role
   hosts: all
   roles:
+    - { role: install-pip-virtualenv, when: ansible_os_family == "centos" }
     - role: configure-mirrors
       mirror_fqdn: "{{ zuul_site_mirror_fqdn|default(omit) }}"
       pypi_mirror: "http://{{ mirror_fqdn }}/pypi/simple"
