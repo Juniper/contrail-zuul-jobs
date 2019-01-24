@@ -3,7 +3,7 @@
   roles:
     - fetch-packages
 
-- hosts: builder
+- hosts: localhost
   roles:
     - role: publish-rpm-nexus
       remote_repo_path: 'yum-tpc-test'
