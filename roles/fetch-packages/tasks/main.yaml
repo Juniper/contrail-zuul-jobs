@@ -6,7 +6,7 @@
   file:
     path: "{{ zuul.executor.work_root }}/packages"
     state: directory
-  delegate_to: localhost
+  # delegate_to: localhost
 
 - name: get a list of packages
   find:
@@ -21,4 +21,16 @@
     dest: "{{ zuul.executor.work_root }}/packages/{{ item.path|basename }}"
     mode: pull
   with_items: "{{ packages.files }}"
+  register: package_list
 
+- name: check list
+  debug:
+    var: package_list
+
+- name: check dest
+  debug:
+    msg: "{{ zuul.executor.work_root }}/packages"
+
+- name: check dest
+  debug:
+    msg: "{{ ansible_env.HOME }}"
