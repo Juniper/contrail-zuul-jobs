@@ -2,4 +2,5 @@
 - hosts: all
   roles:
     - yum-repos-prepare
-    - install-pip-virtualenv
+    - role: install-pip-virtualenv
+      upgrade_tox: true
