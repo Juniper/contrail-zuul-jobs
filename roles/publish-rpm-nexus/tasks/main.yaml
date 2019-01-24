@@ -6,14 +6,15 @@
 
 - name: get a list of package files
   find:
-    paths: '{{ pkg_src_dir }}'
+    paths: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/RPMS/"
     recurse: yes
     patterns:
       - '*.rpm'
   register: package_list
+  become: true
 
 - name: check if directory contains any packages to upload
-  meta: end_play
+  # meta: end_play
   when: package_list.matched|int == 0
 
 - name: upload rpms
@@ -21,12 +22,12 @@
     - name: create a credentials file
       copy:
         content: '--user {{ nexus_credentials.user }}:{{ nexus_credentials.password }}'
-        dest: '{{ nexus_creds_path }}'
-      no_log: true
+        dest: "{{ ansible_env.HOME }}/nexus_creds"
+      # no_log: true
 
     - name: upload rpm to nexus
       command: >
-        curl -K {{ nexus_creds_path }}
+        curl -K {{ ansible_env.HOME }}/nexus_creds
           --upload-file {{ item }} {{ nexus_repo_url }}/{{ item | basename }}
       with_items: "{{ package_list | json_query('files[*].path') }}"
       tags:
@@ -44,6 +45,6 @@
   always:
     - name: remove credentials file
       file:
-        path: '{{ nexus_creds_path }}'
+        path: "{{ ansible_env.HOME }}/nexus_creds"
         state: 'absent'
       no_log: true
