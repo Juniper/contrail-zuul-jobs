@@ -319,5 +319,5 @@
     description: This jobs starts Jenkins job in Windows CI.
     vars:
       manifest_file: windows.xml
-      jenkins_job: pm-tentacle-build
+      jenkins_job: winci-server-2016-prod-zuulv3
       build_number: 0
