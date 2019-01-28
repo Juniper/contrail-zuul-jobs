@@ -67,12 +67,27 @@
   become: yes
   become_user: root
 
+- name: check if repodata exists to set corrrect path.
+  stat:
+    path: '{{ nexus_repo_path }}/repodata/repomd.xml'
+  register: stat_result
+
+- name: check result and set path.
+  debug:
+    msg: 'true'
+  when: stat_result == true
+
+- name: check result and set path to tcp per review
+  debug:
+    msg: 'false'
+  when: stat_result == false
+
 - name: prepare third party cache yum Nexus repo
   yum_repository:
     name: tpc-{{ item }}
     description: Contrail third-party dependencies
     file: tpc-{{ item }}
-    baseurl: "http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/{{ tpc_branch }}/{{ item }}/"
+    baseurl: '{{ nexus_repo_path }}'
     enabled: yes
     gpgcheck: no
   with_items:
