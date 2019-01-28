@@ -7,3 +7,6 @@ openstack_version: ocata
 cloud_orchestrator: 'openstack'
 openshift_version: '3.9'
 nexus_rpm_repo: '{{ nexus.repos.yum_tpc }}'
+base_url: 'http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/{{ tpc_branch }}/{{ item }}/'
+ctpp_review: 'http://{{ nexus.fqdn }}/repository/{{ nexus.repos.yum }}/{{ zuul.change }}-{{ zuul.patchset }}-ctpp'
+nexus_repo_path: '{{ ctpp_review if zuul.pipeline == "experimental" and item == "source" else base_url }}'
