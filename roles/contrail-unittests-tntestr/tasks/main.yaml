@@ -77,6 +77,8 @@
     requirements: '{{ testrunner_dir}}/requirements.txt'
     virtualenv: '{{ venv_dir }}'
     virtualenv_python: '{{ python_version }}'
+  environment:
+    VIRTUALENV_NO_DOWNLOAD: "1"
 
 - name: install tntestr
   pip:

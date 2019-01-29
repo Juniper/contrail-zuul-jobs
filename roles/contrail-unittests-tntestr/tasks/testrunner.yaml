@@ -8,6 +8,7 @@
   become: true
   environment:
     CONTRAIL_COMPILE_WITHOUT_SYMBOLS: yes
+    VIRTUALENV_NO_DOWNLOAD: "1"
   register: inner
   failed_when: false
 
