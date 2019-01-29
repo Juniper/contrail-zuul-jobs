@@ -83,6 +83,8 @@
     name: '{{ testrunner_dir }}'
     virtualenv: '{{ venv_dir }}'
     virtualenv_python: '{{ python_version }}'
+  environment:
+    VIRTUALENV_NO_DOWNLOAD: "1"
 
 - name: prepare and run list of unittests
   when: unittest_target.stdout_lines[-1] != ''
