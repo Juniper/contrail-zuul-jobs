@@ -1,0 +1,10 @@
+---
+
+- name: Send k8s logs to the executor
+  hosts: openshift-master
+  become: true
+  roles:
+    # this is intendent, we use kubectl
+    # binary provided by OC to check status
+    - fetch-k8s-pods-logs
+
