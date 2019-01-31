@@ -135,6 +135,7 @@
       Base job for setting up OpenShift with Contrail as CNI and
       running sanity CI tests.
     run: playbooks/contrail-sanity-openshift-base/run.yaml
+    post-run: playbooks/contrail-sanity-openshift-base/post.yaml
     vars:
       openstack_version: queens
       cloud_orchestrator: openshift # needed only for yum-repos-prepare, not used in templates
