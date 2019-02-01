@@ -3,6 +3,7 @@
 # (for example contrail/ocata, contrail_18_05_3, R6.0-WIP)
 # this will use TPC repo from the master branch by default
 tpc_branch: "{{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, 'master') }}"
+enable_tpc_repo: true
 openstack_version: ocata
 cloud_orchestrator: 'openstack'
 openshift_version: '3.9'

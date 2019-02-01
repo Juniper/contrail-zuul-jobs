@@ -80,3 +80,4 @@
     - binary
   become: yes
   become_user: root
+  when: {{ enable_tpc_repo | bool }} == true
