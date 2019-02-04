@@ -1,3 +1,4 @@
 .swp
 .tox/
+ansible-lint-rules/*.pyc
 __pycache__
