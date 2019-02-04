@@ -2,7 +2,7 @@
 
 - name: template ose-install inventory file
   template:
-    src: 'ose-install.j2'
+    src: 'ose-install_{{ openshift_version }}.j2'
     dest: '{{ zuul_project_dir }}/inventory/ose-install'
     force: true
 
@@ -11,6 +11,17 @@
     src: '{{ zuul_project_dir }}/inventory/ose-install'
     dest: '{{ zuul.executor.log_root }}/'
     mode: 'pull'
+
+# this binary is required on ansible control host while running
+# deploy_cluster playbook during metric installation phase
+- name: install additional requirements for cluster deployment phase
+  package:
+    name: '{{ item }}'
+    state: 'present'
+  with_items:
+    - 'apache2-utils'
+    - 'python-passlib'
+  become: true
 
 - name: run playbooks/prerequisites.yml playbook
   command: 'ansible-playbook -i inventory/ose-install playbooks/prerequisites.yml'

@@ -1,0 +1,33 @@
+---
+
+# source: https://github.com/Juniper/contrail-kubernetes-docs/blob/master/install/openshift/3.11/redhat/configurations.md
+
+- name: install OpenShift Container Platform utilities
+  package:
+    name: '{{ item }}'
+    state: 'present'
+  with_items:
+    - 'tcpdump'
+    - 'wget'
+    - 'git'
+    - 'net-tools'
+    - 'bind-utils'
+    - 'yum-utils'
+    - 'iptables-services'
+    - 'bridge-utils'
+    - 'bash-completion'
+    - 'kexec-tools'
+    - 'sos'
+    - 'psacct'
+    - 'python-netaddr'
+  become: true
+  become_user: 'root'
+
+- name: make resolv.conf immutable
+  file:
+    path: '/etc/resolv.conf'
+    attr: 'ie'
+  become: true
+
+# SELINUX is already enforced on nodepool nodes
+

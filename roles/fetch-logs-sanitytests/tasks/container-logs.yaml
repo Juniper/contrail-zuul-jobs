@@ -1,12 +1,12 @@
 ---
 
-- name: Check whether docker is installed
+- name: check whether docker is installed
   command: 'which docker'
   changed_when: false
   failed_when: false
   register: docker_check
 
-- name: Gather docker logs
+- name: gather docker logs
   when: docker_check.rc == 0
   block:
   - name: List running containers
@@ -14,12 +14,12 @@
     become: true
     register: container_list
 
-  - name: Create container logdir
+  - name: create container logdir
     file:
       path: '{{ container_log_dir }}'
       state: 'directory'
 
-  - name: Dump container logs
+  - name: dump container logs
     shell: 'docker logs {{ item }} 1> {{ container_log_dir }}/{{ item }}.log 2>&1'
     become: true
     ignore_errors: true
@@ -34,11 +34,18 @@
     delegate_to: localhost
     run_once: true
 
-  - name: Fetch container logs
+  - name: check if we have something in container dir
+    find:
+      path: '{{ container_log_dir }}'
+      patterns: '*.log'
+    register: found_logs
+
+  - name: fetch container logs
     synchronize:
       src: '{{ container_log_dir }}/'
       dest: '{{ zuul.executor.log_root }}/container-logs/{{ inventory_hostname }}'
       mode: 'pull'
       recursive: true
+    when: found_logs.matched > 0
     become: true
 
