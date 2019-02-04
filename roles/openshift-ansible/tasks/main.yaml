@@ -2,7 +2,7 @@
 
 - name: template ose-install inventory file
   template:
-    src: 'ose-install.j2'
+    src: 'ose-install_{{ openshift_version }}.j2'
     dest: '{{ zuul_project_dir }}/inventory/ose-install'
     force: true
 
