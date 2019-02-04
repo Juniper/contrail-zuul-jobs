@@ -15,4 +15,5 @@
 - hosts: deployment
   roles:
     - contrail-go
+    - sanitytest
 

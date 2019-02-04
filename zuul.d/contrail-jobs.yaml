@@ -121,6 +121,7 @@
       - Juniper/contrail-ansible-deployer
       - name: Juniper/contrail-kolla-ansible
         override-checkout: contrail/ocata
+      - Juniper/contrail-test
     vars:
       cloud_orchestrator: openstack
       contrail_version: master-latest
@@ -128,6 +129,7 @@
       openstack_version: ocata
       kolla_version: ocata
       kolla_docker_distro: centos
+      test_target: ci_contrail_go_kolla_ocata_sanity
     nodeset: c7-systest-c-aio
     timeout: 3600
 
