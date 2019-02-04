@@ -3,6 +3,6 @@
 - name: include OS-specific tasks
   include: '{{ item }}'
   with_first_found:
-    - '{{ ansible_distribution | lower }}.yaml'
-    - '{{ ansible_os_family | lower }}.yaml'
+    - '{{ ansible_distribution | lower }}_{{ openshift_version }}.yaml'
+    - '{{ ansible_os_family | lower }}_{{ openshift_version }}.yaml'
 
