@@ -1,0 +1,5 @@
+---
+openshift_repos_add:
+  - { name: rhel-7-server-ose-3.11-rpms-mirror, repo: rhel-7-server-ose-3.11-rpms, description: rhel-7-server-ose-3.11-rpms }
+  - { name: rhel-7-server-ansible-2.6-rpms, repo: rhel-7-server-ansible-2.6-rpms, description: rhel-7-server-ansible-2.6-rpms }
+
