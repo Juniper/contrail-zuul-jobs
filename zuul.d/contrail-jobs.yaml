@@ -189,6 +189,33 @@
             - deployment-1
 
 - job:
+    name: contrail-sanity-rhel7-openshift-3.11
+    parent: contrail-sanity-openshift-base
+    vars:
+      openshift_version: 3.11
+      openshift_deployment_type: openshift-enterprise
+      ansible_ver: '2.6.*'
+      enable_tpc_repo: false # python2-docker breaks deps
+      contrail_image_os: rhel
+    required-projects:
+      - name: Juniper/openshift-ansible
+        override-checkout: release-3.11-contrail
+    nodeset:
+      nodes:
+        - name: openshift-master
+          label: rhel-7-builder
+        - name: openshift-infra
+          label: rhel-7-builder
+        - name: openshift-compute
+          label: rhel-7-builder
+        - name: deployment-1
+          label: ubuntu-xenial-small
+      groups:
+        - name: deployment
+          nodes:
+            - deployment-1
+
+- job:
     name: contrail-sanity-ubuntu1604-helm-ocata
     parent: contrail-helm-base
     run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/run.yaml
