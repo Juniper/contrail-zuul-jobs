@@ -61,6 +61,18 @@
     nodeset: c7-systest-c-multinode
 
 - job:
+    name: contrail-sanity-centos7-kolla-rocky
+    voting: False
+    parent: contrail-sanity-kolla-base
+    required-projects:
+      - name: Juniper/contrail-kolla-ansible
+        override-checkout: contrail/rocky
+    vars:
+      openstack_version: rocky
+      kolla_version: rocky
+    nodeset: c7-systest-c-aio
+
+- job:
     name: contrail-sanity-rhel7-kolla-queens
     parent: contrail-sanity-kolla-base
     pre-run: playbooks/contrail-sanity-kolla-base/redhat-pre.yaml
@@ -301,6 +313,14 @@
     nodeset: builder-rhel-7
     vars:
       openstack_version: queens
+
+- job:
+    name: contrail-build-containers-centos7-rocky
+    voting: False
+    parent: contrail-build-containers-base
+    nodeset: builder-centos-7
+    vars:
+      openstack_version: rocky
 
 - job:
     name: linters-go
