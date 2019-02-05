@@ -50,6 +50,17 @@
     nodeset: c7-systest-c-aio
 
 - job:
+    name: contrail-sanity-centos7-kolla-queens
+    parent: contrail-sanity-kolla-base
+    required-projects:
+      - name: Juniper/contrail-kolla-ansible
+        override-checkout: contrail/rocky
+    vars:
+      openstack_version: rocky
+      kolla_version: rocky
+    nodeset: c7-systest-c-aio
+
+- job:
     name: contrail-sanity-centos7-kolla-queens-multinode
     parent: contrail-sanity-kolla-base
     required-projects:
@@ -294,6 +305,13 @@
     nodeset: builder-centos-7
     vars:
       openstack_version: queens
+
+- job:
+    name: contrail-build-containers-centos7-rocky
+    parent: contrail-build-containers-base
+    nodeset: builder-centos-7
+    vars:
+      openstack_version: rocky
 
 - job:
     name: contrail-build-containers-rhel7-queens
