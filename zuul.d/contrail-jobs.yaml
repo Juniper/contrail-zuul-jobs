@@ -63,6 +63,7 @@
 - job:
     name: contrail-sanity-centos7-kolla-rocky
     voting: False
+    branches: master
     parent: contrail-sanity-kolla-base
     required-projects:
       - name: Juniper/contrail-kolla-ansible
@@ -317,6 +318,7 @@
 - job:
     name: contrail-build-containers-centos7-rocky
     voting: False
+    branches: master
     parent: contrail-build-containers-base
     nodeset: builder-centos-7
     vars:
