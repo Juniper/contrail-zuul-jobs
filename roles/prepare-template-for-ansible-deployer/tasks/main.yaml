@@ -12,6 +12,9 @@
     state: 'present'
   become: true
   with_items: '{{ package_dependecies }}'
+  register: install_kolla_deps_role_items
+  retries: 10
+  until: install_kolla_deps_role_items | success
 
 - name: Copy template for testrunner
   template:
