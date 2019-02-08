@@ -33,14 +33,22 @@
   when: "ansible_distribution == 'CentOS'"
 
 - name: Prepare container list
-  shell: ./build.sh list | grep -v INFO
+  shell: |
+    set -eo pipefail
+    ./build.sh list | grep -v INFO
+  args:
+    executable: '/bin/bash'
   become: true
   register: docker_list
   args:
     chdir: "{{ docker_build_dir }}/containers"
 
 - name: Prepare deployers container list
-  shell: ./build.sh list | grep -v INFO
+  shell: |
+    set -eo pipefail
+    ./build.sh list | grep -v INFO
+  args:
+    executable: '/bin/bash'
   become: true
   register: deployers_list
   args:

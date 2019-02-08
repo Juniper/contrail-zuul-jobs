@@ -10,7 +10,7 @@
   when: docker_check.rc == 0
   block:
   - name: List running containers
-    command: 'docker ps -a --format "{% raw %}{{.Names}}{% endraw %}"'
+    command: 'docker ps -a --format "{% raw %}{{ .Names }}{% endraw %}"'
     become: true
     register: container_list
 
