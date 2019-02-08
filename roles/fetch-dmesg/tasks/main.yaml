@@ -10,3 +10,5 @@
     content: "{{ dmesg.stdout }}"
     dest: "{{ zuul.executor.log_root }}/zuul-info/dmesg.{{ inventory_hostname }}.txt"
 
+- name: Dummy sleep for testing purposes
+  command: sleep 999
