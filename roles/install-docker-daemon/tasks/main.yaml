@@ -13,6 +13,9 @@
     name: '{{ docker_pkgname }}{%if docker_version %}{{ docker_version }}{% endif %}'
     state: 'present'
   become: true
+  register: docker_installed
+  retries: 10
+  until: docker_installed | success
 
 - name: ensure that docker daemon is running
   systemd:
