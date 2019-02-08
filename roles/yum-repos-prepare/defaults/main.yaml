@@ -7,4 +7,4 @@ enable_tpc_repo: true
 openstack_version: ocata
 cloud_orchestrator: 'openstack'
 openshift_version: '3.9'
-nexus_rpm_repo: '{{ nexus.repos.yum_tpc }}'
+nexus_rpm_repo: "{{ nexus.repos.yum_tpc }}"
