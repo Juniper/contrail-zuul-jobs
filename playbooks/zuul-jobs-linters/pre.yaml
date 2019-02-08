@@ -13,6 +13,8 @@
           rulesdir:
             - {{ ansible_lint_rules_path }}
           use_default_rules: true
+          skip_list:
+            - '306'
         dest: '{{ ansible_env.HOME }}/{{ zuul.project.src_dir }}/.ansible-lint'
         mode: 0644
 
