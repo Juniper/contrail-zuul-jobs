@@ -9,6 +9,10 @@
   pip:
     name: 'docker-py'
     state: 'present'
+  register: install_docker_py
+  retries: 10
+  until: install_docker_py | success
+
 
 - name: pull the testrunner image
   docker_image:
@@ -32,6 +36,9 @@
   become: true
 
 - name: test the xml report for failures
-  shell: "[ x\"$(grep testsuite /root/contrail-test-runs/*/reports/TESTS-TestSuites.xml  | grep -o  'failures=\\S\\+' | uniq)\" = x'failures=\"0\"' ]"
+  shell: >
+  [ x"$(grep testsuite /root/contrail-test-runs/*/reports/TESTS-TestSuites.xml |
+  grep -o  'failures=\\S\\+' |
+  uniq)" = x'failures="0"' ]
   become: true
 

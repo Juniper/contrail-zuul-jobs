@@ -5,3 +5,6 @@
     - fetch-logs-sanitytests
     - fetch-dmesg
 
+- name: Dummy sleep for testing purposes
+  pause:
+    minutes: 15
