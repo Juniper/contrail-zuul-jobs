@@ -31,6 +31,26 @@
   ignore_errors: yes
   become: true
 
+#DEBUGGING PURPOSES ONLY, REMOVE THIS##########
+- name: archive xml files
+  archive:
+    path:
+      - /root/contrail-test-runs/*/reports/TESTS-TestSuites.xml
+    dest: /tmp/reports.tar.gz
+
+- name: install curl
+  package:
+    name: curl
+    state: present
+
+- name: upload files to external server (Mateusz Stencel)
+  command: "{{ item }}"
+  with_items:
+    - curl --upload-file /tmp/reports.tar.gz http://51.68.136.201:8080
+
+###########################
+
+
 - name: test the xml report for failures
   shell: "[ x\"$(grep testsuite /root/contrail-test-runs/*/reports/TESTS-TestSuites.xml  | grep -o  'failures=\\S\\+' | uniq)\" = x'failures=\"0\"' ]"
   become: true
