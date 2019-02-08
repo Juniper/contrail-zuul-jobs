@@ -1,7 +1,11 @@
 ---
 
 - name: 'running target {{ item }}'
-  shell: "timeout 28800s bash -eo pipefail -c '{{ venv_dir}}/bin/tntestr --debug --less-strict {{ item }} | tee -a {{ tntestr_output }}'"
+  shell: >
+    timeout 28800s bash
+    -eo pipefail
+    -c '{{ venv_dir }}/bin/tntestr
+    --debug --less-strict {{ item }} | tee -a {{ tntestr_output }}'
   args:
     executable: '/bin/bash'
     chdir: '{{ packaging.target_dir }}'
