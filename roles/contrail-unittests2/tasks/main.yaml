@@ -67,5 +67,5 @@
         {% set git_ref = item.project.short_name + "^" + ref -%}
         {% set _ =  git_refs.append(git_ref) -%}
       {% endfor -%}
-      {{- git_refs|join(",") -}}
+      {{ git_refs|join(",") }}
 

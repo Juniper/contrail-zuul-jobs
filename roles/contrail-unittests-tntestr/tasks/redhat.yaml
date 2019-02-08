@@ -1,6 +1,10 @@
 ---
 - name: enable EPEL repository (RedHat)
-  command: 'yum-config-manager --enable epel'
+  ini_file:
+    dest: /etc/yum.repos.d/epel.repo
+    section: epel
+    option: enabled
+    value: 1
   become: true
 
 # XXX(kklimonda): seems like EPEL repomd.xml is not deleted by configure-mirrors
@@ -13,17 +17,21 @@
 
 # XXX(kklimonda): workaround for yum-builddep force-enabling non-existing repo
 - name: remove epel-source repository completely (RedHat)
-  command: sed -e '/\[epel-source\]/,+6 s/^/#/' -i /etc/yum.repos.d/epel.repo
+  ini_file:
+    dest: /etc/yum.repos.d/epel.repo
+    section: epel-source
+    option: enabled
+    value: 0
   become: true
 
-- name: install system build dependencies
+- name: Install system build dependencies
   command: make dep
   args:
-    chdir: '{{ packaging.target_dir }}/tools/packages'
+    chdir: "{{ packaging.target_dir }}/tools/packages"
   become: true
 
-- name: fetch third-party dependencies
-  command: 'python fetch_packages.py --site-mirror http://{{ zuul_site_mirror_fqdn }}'
+- name: Fetch third-party dependencies
+  command: "python fetch_packages.py --site-mirror http://{{ zuul_site_mirror_fqdn }}"
   args:
-    chdir: '{{ packaging.target_dir }}/third_party/'
+    chdir: "{{ packaging.target_dir }}/third_party/"
 
