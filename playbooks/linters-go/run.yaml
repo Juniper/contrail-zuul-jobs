@@ -8,20 +8,28 @@
     contrail_go_api_filename: contrail-go-api-generated-types-r2.20.tar.gz
     contrail_go_api_bin: "{{ contrail_go_api_url }}/releases/download/1.0.0/{{ contrail_go_api_filename }}"
   tasks:
-    - name: 'Set up datastax repository'
-      shell: |
-        curl -L {{ datastax_url }}/debian/repo_key | apt-key add -
-        echo "deb {{ datastax_url }}/community stable main" | tee -a {{ casandra_list_path }}
-      become: true
+    - name: 'Add datastax repo key'
+      apt_key:
+        url: '{{ datastax_url }}/debian/repo_key'
+        state: present
+
+    - name: 'Add datastax repo'
+      apt_repository:
+        repo: 'deb {{ datastax_url }}/community stable main'
+        state: present
+        update_cache: yes
+        filename: datastax
 
     - name: 'Install cassandra package'
       apt:
         name: cassandra
         state: present
-        update_cache: yes
 
-    - name: 'Execute a sed command on cassandra config'
-      command: sed -ri 's/^(start_rpc:) .*/\1 true/' /etc/cassandra/cassandra.yaml
+    - name: 'Execute a regexp replace on cassandra config'
+      replace:
+        path: /etc/cassandra/cassandra.yaml
+        regexp: '^(start_rpc:) .*'
+        replace: '\1 true'
 
     - name: 'Start cassandra service'
       service:
