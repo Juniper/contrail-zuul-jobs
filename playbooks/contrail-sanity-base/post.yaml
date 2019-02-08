@@ -4,4 +4,3 @@
   roles:
     - fetch-logs-sanitytests
     - fetch-dmesg
-
