@@ -325,18 +325,6 @@
       openstack_version: rocky
 
 - job:
-    name: linters-go
-    voting: False
-    description: |
-      This job runs linters-go job for contrail-generateds, contrail-api-client
-      and contrail-go-api repos
-    run: playbooks/linters-go/run.yaml
-    nodeset:
-      nodes:
-        - name: builder
-          label: ubuntu-trusty-builder
-
-- job:
     name: contrail-sanity-win2016
     parent: trigger-win-base
     branches: master
