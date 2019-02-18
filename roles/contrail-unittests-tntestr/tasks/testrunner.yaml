@@ -8,6 +8,7 @@
   become: true
   environment:
     CONTRAIL_COMPILE_WITHOUT_SYMBOLS: yes
+    LOG_DISABLE: '1'
   register: inner
   failed_when: false
 
