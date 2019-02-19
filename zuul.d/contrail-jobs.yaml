@@ -119,8 +119,6 @@
       - Juniper/contrail-test
     vars:
       cloud_orchestrator: kubernetes
-      contrail_version: master-latest
-      contrail_docker_registry: 10.84.5.81:5000
       test_target: ci_contrail_go_k8s_sanity
     nodeset: c7-systest-c-aio
     timeout: 3600
@@ -140,8 +138,6 @@
       - Juniper/contrail-test
     vars:
       cloud_orchestrator: openstack
-      contrail_version: master-latest
-      contrail_docker_registry: 10.84.5.81:5000
       openstack_version: ocata
       kolla_version: ocata
       kolla_docker_distro: centos
