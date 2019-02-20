@@ -263,9 +263,13 @@
 - job:
     name: create-windows-containers
     parent: trigger-win-base
+    run: playbooks/create-publish-windows-containers/run.yaml
     description: This jobs starts Jenkins job in Windows CI to create Windows containers.
+    required-projects:
+      - tungsten-infra/containerregistry
     vars:
-      jenkins_job: ci-contrail-windows-nighly-build
+      jenkins_job: test-windows-containers-pm
+      build_number: 1234
 
 - job:
     name: contrail-windows-test-cad
