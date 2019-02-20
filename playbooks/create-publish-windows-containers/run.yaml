@@ -1,0 +1,12 @@
+---
+- hosts: all
+  roles:
+    - zuul-include-vars
+    - install-repo-script
+    - repo-sandbox-prepare2
+    - set-zuul-log-path-fact
+    - reach-jenkins-with-zuuls-tentacle
+    - publish-windows-containers
+      registries:
+        - host: "10.84.5.81:33036"
+          protocol: http
