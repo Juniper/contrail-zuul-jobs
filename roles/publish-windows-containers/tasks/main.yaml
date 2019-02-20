@@ -17,7 +17,7 @@
     - gcc
 
 - name: Install bazel
-  command: "{{ installer['dest'] }} --bin=/usr/bin"
+  command: "bash {{ installer['dest'] }} --bin=/usr/bin"
   become: yes
 
 - name: Build tools using bazel
@@ -42,19 +42,15 @@
   with_items: "{{ container_name }}"
 
 - name: Get list of layers
-  shell: "for i in `ls {{ ansible_env.HOME }}/{{ item }}/*.tar.gz`; do echo -ne --layer $i ''; done"
+  shell: "for i in `ls {{ ansible_env.HOME }}/{{ item }}/*.tar.gz`; do echo -n --layer $i ''; done"
   with_items: "{{ container_name }}"
   register: layers
 
 - name: Get list of digest
-  shell: "for i in `ls {{ ansible_env.HOME }}/{{ item }}/*.sha256`; do echo -ne --digest $i ''; done"
+  shell: "for i in `ls {{ ansible_env.HOME }}/{{ item }}/*.sha256`; do echo -n --digest $i ''; done"
   with_items: "{{ container_name }}"
   register: digest
 
-- name: log in to dockerhub
-  command: 'docker login -u {{ dockerhub.username }} -p {{ dockerhub.password }}'
-  become: true
-  no_log: true
 
 - name: push containers
   block:
@@ -63,9 +59,4 @@
       with_items: '{{ registries }}'
       loop_control:
         loop_var: reg
-
-  always:
-    - name: log out of the dockerhub
-      command: 'docker logout'
-      become: true
 
