@@ -53,7 +53,7 @@
     creates: '{{ ruby_path }}/ruby'
 
 - name: install bundler
-  command: '{{ ruby_path }}/gem install bundler'
+  command: '{{ ruby_path }}/gem install bundler -v 1.17.3'
   args:
     creates: '{{ ruby_path }}/bundler'
 
