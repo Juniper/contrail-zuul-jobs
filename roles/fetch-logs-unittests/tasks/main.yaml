@@ -49,11 +49,13 @@
       with_items: '{{ unittest_targets }}'
       when: item.matched | bool
 
-    - name: execute tasks for fetching logs to log server
-      include: logs.yaml
-
-    - name: execute tasks for fetching reports to log server
-      include: xmls.yaml
+    - name: execute tasks for fetching files to log server
+      include: fetch_files.yaml
+      with_items:
+        - extension: log
+        - extension: xml
+      loop_control:
+        loop_var: fetch
 
   always:
     - name: fetch unittests output to executor
