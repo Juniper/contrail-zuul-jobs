@@ -1,0 +1,47 @@
+---
+
+- name: prepare variables
+  set_fact:
+    extension: '{{ fetch.extension }}'
+    target_key_name: '{{ fetch.target_key_name | default(fetch.extension + "_path")}}'
+    split_string: '{{ fetch.split_string | default(fetch.extension + "s") }}'
+
+- name: create directory hierarchy for {{ extension }} files
+  file:
+    path: '{{ results_dir }}/{{ item[target_key_name] | dirname }}'
+    state: 'directory'
+    owner: 'zuul'
+    mode: 0755
+  with_items: '{{ matched_targets }}'
+
+- name: find the tests {{ extension }} file
+  find:
+    paths: '{{ packaging.target_dir }}/{{ (item[target_key_name] | dirname).split(split_string)[1] }}'
+    pattern: "{{ item[target_key_name].split('.' + extension)[0] | basename }}.*.{{ extension }}"
+    file_type: file
+  become: true
+  register: found_files
+  with_items: '{{ matched_targets }}'
+
+- name: gzip {{ extension }} files
+  archive:
+    path: '{{ item.1.path }}'
+    remove: false
+  become: true
+  with_subelements:
+    - '{{ found_files.results }}'
+    - 'files'
+  when: found_files.results | length > 0
+
+- name: copy gziped {{ extension }} files
+  copy:
+    src: '{{ item.1.path }}.gz'
+    dest: '{{ results_dir }}/{{ item.0.item[target_key_name] | dirname }}/'
+    remote_src: true
+    owner: 'zuul'
+    mode: 0644
+  with_subelements:
+    - '{{ found_files.results }}'
+    - 'files'
+  when: found_files.results | length > 0
+
