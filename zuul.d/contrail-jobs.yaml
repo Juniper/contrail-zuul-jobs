@@ -306,6 +306,7 @@
     nodeset: builder-centos-7
     vars:
       openstack_version: queens
+      setup_docker_registry: false
 
 - job:
     name: contrail-build-containers-rhel7-queens
