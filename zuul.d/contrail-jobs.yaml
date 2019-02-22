@@ -278,7 +278,7 @@
 
 - job:
     name: contrail-build-test-containers
-    parent: docker-base
+    parent: contrail-docker-push-base
     run: playbooks/contrail-build-test-containers/run.yaml
     required-projects:
       - Juniper/contrail-test
@@ -286,7 +286,8 @@
 
 - job:
     name: contrail-build-containers-centos7-newton
-    parent: contrail-build-containers-base
+    # XXX experiment, change back
+    parent: contrail-build-containers-ci-base
     nodeset: builder-centos-7
     vars:
       openstack_version: newton
