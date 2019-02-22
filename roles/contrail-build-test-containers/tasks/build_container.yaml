@@ -7,8 +7,7 @@
     --registry-server {{ contrail_docker_registry }} \
     --sku {{ item }} \
     --contrail-repo {{ contrail_package_repository }} \
-    --openstack-repo http://ci-repo.englab.juniper.net/mirrors/rpm/centos/7.4.1708/cloud/x86_64/openstack-{{ item }} \
-    --post
+    --openstack-repo http://ci-repo.englab.juniper.net/mirrors/rpm/centos/7.4.1708/cloud/x86_64/openstack-{{ item }}
   args:
     chdir: "{{ test_container_build_dir }}"
   become: true
