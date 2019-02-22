@@ -278,7 +278,7 @@
 
 - job:
     name: contrail-build-test-containers
-    parent: docker-base
+    parent: contrail-docker-push-base
     run: playbooks/contrail-build-test-containers/run.yaml
     required-projects:
       - Juniper/contrail-test

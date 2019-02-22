@@ -200,7 +200,7 @@
 
 - job:
     name: contrail-build-containers-base
-    parent: docker-base
+    parent: contrail-docker-push-base
     description: |
       Builds Contrail using contrail-container-builder.
       Requires nodeset and openstack_version.
