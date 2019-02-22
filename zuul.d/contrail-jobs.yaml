@@ -288,28 +288,28 @@
 
 - job:
     name: contrail-build-containers-centos7-newton
-    parent: contrail-build-containers-base
+    parent: contrail-build-containers-ci-base
     nodeset: builder-centos-7
     vars:
       openstack_version: newton
 
 - job:
     name: contrail-build-containers-centos7-ocata
-    parent: contrail-build-containers-base
+    parent: contrail-build-containers-ci-base
     nodeset: builder-centos-7
     vars:
       openstack_version: ocata
 
 - job:
     name: contrail-build-containers-centos7-queens
-    parent: contrail-build-containers-base
+    parent: contrail-build-containers-ci-base
     nodeset: builder-centos-7
     vars:
       openstack_version: queens
 
 - job:
     name: contrail-build-containers-rhel7-queens
-    parent: contrail-build-containers-base
+    parent: contrail-build-containers-ci-base
     nodeset: builder-rhel-7
     vars:
       openstack_version: queens
