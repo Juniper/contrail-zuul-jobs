@@ -205,7 +205,7 @@
     branches:
       - ^R5\.0$
       - ^release-3.9-contrail$
-    parent: docker-base
+    parent: contrail-docker-push-base
     override-checkout: R5.0
     description: |
       Builds Contrail using contrail-container-builder.
@@ -225,7 +225,7 @@
 - job:
     name: contrail-build-containers-base
     branches: ^(?!(R5\.0|release-3\.9-contrail)).*$
-    parent: docker-base
+    parent: contrail-docker-push-base
     description: |
       Builds Contrail using contrail-container-builder.
       Requires nodeset and openstack_version.

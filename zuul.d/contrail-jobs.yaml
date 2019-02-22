@@ -271,7 +271,7 @@
 
 - job:
     name: contrail-build-test-containers
-    parent: docker-base
+    parent: contrail-docker-push-base
     branches: ^(?!(R5\.0|release-3\.9-contrail)).*$
     run: playbooks/contrail-build-test-containers/run.yaml
     required-projects:
@@ -280,7 +280,7 @@
 
 - job:
     name: contrail-build-test-containers
-    parent: docker-base
+    parent: contrail-docker-push-base
     branches:
       - ^R5\.0$
       - ^release-3.9-contrail$
