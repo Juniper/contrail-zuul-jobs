@@ -1,3 +1,30 @@
+
+# test only - can we even place secrets outside c-p-c?
+- secret:
+    name: registry_tungsten_ci
+    data:
+      user: tungsten
+      password: !encrypted/pkcs1-oaep
+        - MwcSWQxjneVUdXQss0ON1SKKmxFxBEYHl+Fv8LbbKi78YnBq874uuo6K4vUyiFqWFqrBU
+          VTbi494U3a904JjYpSfHVmHIw4DldQzOdeB1seIU/5/uU1F6pgI/Mxnk0P0xnV4QD3/Bi
+          YcYegO+AwL3VRfuaaK6tEQnJtpwaVkXyVj+mQEJIITCDjuvNZlkBJBbrsnnUQ+himYvxZ
+          H26SoMpe3NC3uoqyRumuQOv3P6rjMDFzXx7CrncL+LArgMEvUHWuoZeCsSEP/OoqYY6+a
+          14yHm7UvMjt25SewDK5BE4bWmQH9HnfpybuwF/zEJqs/GgsVvzm4LM2qfPFI5c+TWiJVJ
+          2ltJMqq/0KkMKS8kiXZcU1DUJOfiRgxgAt9L3w0FZhRkw4P25hJ+Z0VU0WlGcAi/Ry8zH
+          OJscmTErPMBPrsR5p/TLgzJLael3LKTZGjnFMhfD8cClnABRjiS6YPizmMjDXne3EMLTI
+          aXwE7Ab8x4fORbSF0Pc5Ad5CxprhCxFxouwBmn+UmJ0cDJCmDa5+gwgAcY5P1bSBd/zXi
+          AAcxhtVFBTT6a76LQ/Bo4Lpn/K4pVY5Q8q4C7OTKgNymFpw+3hCEJ6j15J+Py0IyxNtCO
+          aLFi/5ssbNX0rFTheAzItKw0+pDv0ymO5OsmYhschyE1TljMfJQCQoZxSMw3OY=
+
+- job:
+    name: experiment
+    parent: contrail-build-containers-ci-base
+    run: playbooks/experiment.yaml
+    nodeset: builder-centos-7
+    secrets:
+      - name: pipeline_docker_registry
+        secret: registry_tungsten_ci
+
 - job:
     name: ci-test-base
     description: |
