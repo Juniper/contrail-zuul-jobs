@@ -1,3 +1,9 @@
+
+- job:
+    name: experiment
+    parent: contrail-build-containers-ci-base
+    run: playbooks/experiment.yaml
+
 - job:
     name: ci-test-base
     description: |
