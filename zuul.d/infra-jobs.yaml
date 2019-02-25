@@ -1,3 +1,10 @@
+
+- job:
+    name: experiment
+    parent: contrail-build-containers-ci-base
+    run: playbooks/experiment.yaml
+    nodeset: builder-centos-7
+
 - job:
     name: ci-test-base
     description: |
