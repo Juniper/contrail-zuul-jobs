@@ -1,0 +1,14 @@
+---
+- hosts: all
+  roles:
+    - zuul-include-vars
+  tasks:
+    - name: "docker commands"
+      command: "{{ item }}"
+      with_items:
+        - cat /etc/docker/daemon.json
+        - docker pull centos:7
+        - docker tag  centos:7                 ci-nexus.englab.juniper.net:5001/mycentos:7
+        - docker images
+        # docker push will be done by parent's post.yaml
+  become: true
