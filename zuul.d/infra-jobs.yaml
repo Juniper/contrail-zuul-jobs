@@ -1,3 +1,14 @@
+
+- job:
+    name: experiment
+    parent: contrail-build-containers-ci-base
+    run: playbooks/experiment.yaml
+    nodeset: builder-centos-7
+    # test only - can we even place secrets outside c-p-c?
+    secrets:
+      - name: pipeline_docker_registry
+        secret: registry_tungsten_ci1
+
 - job:
     name: ci-test-base
     description: |
