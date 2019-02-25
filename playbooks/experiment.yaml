@@ -1,0 +1,17 @@
+---
+- hosts: all
+  roles:
+    - zuul-include-vars
+  tasks:
+    - name: "docker commands"
+      command: "{{ item }}"
+      with_items:
+        - docker ps
+        - docker images
+        - cat /etc/docker/daemon.json
+        # docker login -u test1 -p wrong       ci-nexus.englab.juniper.net:5001
+        - docker login -u {{ pipeline_docker_registry.username }} -p {{ pipeline_docker_registry.password }}  ci-nexus.englab.juniper.net:5001
+        - docker pull centos:7
+        - docker tag  centos:7                 ci-nexus.englab.juniper.net:5001/mycentos:7
+        - docker push                          ci-nexus.englab.juniper.net:5001/mycentos:7
+  become: true
