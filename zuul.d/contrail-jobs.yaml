@@ -134,6 +134,7 @@
 - job:
     name: contrail-deploy-rhel7-openshift-3.9
     parent: contrail-sanity-base
+    branches: ^R5\.0$
     description: |
       Base job for setting up OpenShift with Contrail as CNI.
     run: playbooks/contrail-deploy-openshift-base/run.yaml
@@ -166,6 +167,7 @@
 - job:
     name: contrail-sanity-rhel7-openshift-3.9
     parent: contrail-sanity-openshift-base
+    branches: ^R5\.0$
     vars:
       openshift_version: 3.9
       openshift_deployment_type: openshift-enterprise
