@@ -198,3 +198,15 @@
       - ^roles/publish-rpm-nexus/.*
       - ^roles/build-third-party-rpms/.*
     nodeset: builder-centos-7
+
+- job:
+    name: ci-test-mock-contrail-vnc-build-packages
+    description: |
+      Mock of contrail-vnc-build-packages, it just returns a yum repo.
+      This is much faster than `make rpm-*`.
+    parent: contrail-vnc-build-package-el-base
+    run: playbooks/ci-test-mock-contrail-vnc-build-packages/main.yaml
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-builder
