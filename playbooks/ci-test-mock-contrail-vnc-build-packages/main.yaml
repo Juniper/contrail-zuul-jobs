@@ -1,0 +1,12 @@
+---
+
+- name: set repository url
+  set_fact:
+    nexus_repo_url: 'http://{{ nexus.fqdn }}/repository/yum-tungsten-nightly/master-538-centos'
+
+- name: return repository location back to zuul for children jobs
+  zuul_return:
+    data:
+      contrail_package_repository: '{{ nexus_repo_url }}'
+  delegate_to: localhost
+  # when: zuul_execution_trusted
