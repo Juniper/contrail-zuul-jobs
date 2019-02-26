@@ -1,0 +1,30 @@
+---
+
+- hosts: all
+  tasks:
+
+  - name: set mocked fact for publish-rpm-nexus that the parent executes post-run
+    set_fact:
+      remote_repo_path: '{{ nexus.repos.yum_nightly }}/master-538-centos'
+
+  - debug:
+      msg: 'http://{{ nexus.fqdn }}/service/rest/v1/search/assets?repository={{ nexus.repos.yum_nightly }}&version=5.1.0-538.el7'
+    when: nexus is defined and nexus.fqdn is defined and nexus.repos is defined and nexus.repos.yum_nightly is defined
+
+  - name: list packages from a nightly job
+    uri:
+      url: 'http://ci-nexus.englab.juniper.net/service/rest/v1/search/assets?repository=yum-tungsten-nightly&version=5.1.0-538.el7'
+      return_content: yes
+    register: package_list
+
+  - debug:
+      msg: "{{ package_list.content | default('{}') | from_json | json_query('items[*].downloadUrl') | join('\n') | regex_findall('.*-centos.*') }}"
+
+  - name: download all packages
+    uri:
+      url: '{{ item }}'
+      dest: '{{ ansible_env.HOME }}/{{ packaging.target_dir }}'
+    vars:
+      json_filter: "items[?contains(downloadUrl, '-centos')].downloadUrl"
+    with_items: "{{ package_list.content | default('{}') | from_json | json_query(json_filter) }}"
+
