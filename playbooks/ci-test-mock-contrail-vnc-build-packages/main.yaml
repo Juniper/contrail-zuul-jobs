@@ -1,0 +1,36 @@
+---
+
+- hosts: all
+  tasks:
+
+  - name: set repository url
+    set_fact:
+      nexus_repo_url: 'http://{{ nexus.fqdn }}/repository/yum-tungsten-nightly/master-538-centos'
+
+  - name: list rpm files from a nightly job
+    command: >
+      curl 'http://ci-nexus.englab.juniper.net/service/rest/v1/search?repository=yum-tungsten-nightly&version=5.1.0-538.el7'
+    register: package_list
+
+  - name: download all rpm
+    uri:
+      url: {{ item }}
+      dest: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+    with_items: "{{ package_list.stdout | to_json | from_json | json_query('items[*].downloadUrl') }}"
+
+#  - name: download rpm using curl
+#    command: >
+#      curl {{ item }}
+#    args:
+#      chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+#    with_items: "{{ package_list.stdout | to_json | from_json | json_query('items[*].downloadUrl') }}"
+#    tags:
+#      # I'm lazy
+#      - skip_ansible_lint
+
+  - name: return repository location back to zuul for children jobs
+    zuul_return:
+      data:
+        contrail_package_repository: '{{ nexus_repo_url }}'
+    delegate_to: localhost
+    when: zuul_execution_trusted
