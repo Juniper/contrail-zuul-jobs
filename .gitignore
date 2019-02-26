@@ -1,3 +1,4 @@
 .swp
 .tox/
+*.pyc
 __pycache__
