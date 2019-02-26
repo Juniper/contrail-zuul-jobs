@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  tasks:
+
+  - name: Prepare packaging variables
+    contrail_packaging:  # is it recognized
+      zuul: "{{ zuul }}"
+      release_type: 'master' # "{{ release_type }}"
+      build_number: '123'    # "{{ build_number | default('unset_build_number') }}"
+
