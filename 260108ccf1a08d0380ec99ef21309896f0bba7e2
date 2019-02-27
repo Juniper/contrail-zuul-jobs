@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_f074236a",
+        "filename": "playbooks/linters-go/run.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-02-27T11:11:49Z",
+      "side": 1,
+      "message": "YAGNI. A {{ var }} that is used just once hurts readability a lot.\n\nAlso if I want to modify it, I need to find out where to go.\n\nSame 1 line above.",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_90b96716",
+        "filename": "roles/contrail-unittests-tntestr/tasks/redhat.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-02-27T11:11:49Z",
+      "side": 1,
+      "message": "Now it\u0027s a noop. The workaround of kklimonda was to prevent enabling later - as long as the repo exists it can be re-enabled.\n\nIMHO delete that entire \"workaround section\" and check the tests.",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_b06a2b7e",
+        "filename": "roles/skip-job/tasks/main.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-02-27T11:11:49Z",
+      "side": 1,
+      "message": "Nice, very readable now. Maybe it would be better to move the pipe `|` to the beginning of the next line? Here and next section.",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
