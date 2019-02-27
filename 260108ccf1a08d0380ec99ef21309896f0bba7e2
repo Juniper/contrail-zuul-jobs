@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "df6247ed_904287aa",
+        "filename": "playbooks/linters-go/run.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-02-27T13:08:06Z",
+      "side": 1,
+      "message": "according to our rules please do not quote tasks names: http://logs.tungsten.io/static/infra-doc/rfc/ansible-style-guide.html#ansible-j0006-quotes",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_501acfcb",
+        "filename": "playbooks/linters-go/run.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-02-27T13:08:06Z",
+      "side": 1,
+      "message": "use package instead: http://logs.tungsten.io/static/infra-doc/rfc/ansible-style-guide.html#ansible-j0009-module-usage",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_f028a3e2",
+        "filename": "playbooks/linters-go/run.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-02-27T13:08:06Z",
+      "side": 1,
+      "message": "this will make cassandra restart every time, even if nothing was changed\nthis is small problem because as far as I know it is run once per host",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_f074236a",
         "filename": "playbooks/linters-go/run.yaml",
         "patchSetId": 37
@@ -13,6 +64,41 @@
       "writtenOn": "2019-02-27T11:11:49Z",
       "side": 1,
       "message": "YAGNI. A {{ var }} that is used just once hurts readability a lot.\n\nAlso if I want to modify it, I need to find out where to go.\n\nSame 1 line above.",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_d03c7f30",
+        "filename": "playbooks/linters-go/run.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-02-27T13:08:06Z",
+      "side": 1,
+      "message": "originally it was made because ansible-lint v4.0.1 alowes only 120 chars in line. Link which you want in here have 111 chars so it was not possible to put it in one line with command and that’s why it was split.\nYou are wrong that this variable is used only once. It is also used to build download link (contrail_go_api_bin).\nBeside that, I think that magic values like paths or URLs should be delivered as variables because it is easier to change them, e.g. you can provide extra_vars with different URL to download different version without changes in code.",
+      "parentUuid": "df6247ed_f074236a",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_901ba7c8",
+        "filename": "roles/contrail-unittests-tntestr/tasks/main.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-02-27T13:08:06Z",
+      "side": 1,
+      "message": "are you sure it will create the same value after this change?",
       "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -36,6 +122,41 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_707a73f1",
+        "filename": "roles/contrail-unittests-tntestr/tasks/redhat.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-02-27T13:08:06Z",
+      "side": 1,
+      "message": "is it a problem that it can be re-enabled?\nafter it is commented out it can be uncommented",
+      "parentUuid": "df6247ed_90b96716",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_507f6fdf",
+        "filename": "roles/contrail-unittests-tntestr/tasks/redhat.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-02-27T13:08:06Z",
+      "side": 1,
+      "message": "if you are changing tasks names change it in whole file or do not do that at all",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_b06a2b7e",
         "filename": "roles/skip-job/tasks/main.yaml",
         "patchSetId": 37
@@ -47,6 +168,57 @@
       "writtenOn": "2019-02-27T11:11:49Z",
       "side": 1,
       "message": "Nice, very readable now. Maybe it would be better to move the pipe `|` to the beginning of the next line? Here and next section.",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_d0d8ffef",
+        "filename": "roles/yum-repos-prepare/vars/centos.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-02-27T13:08:06Z",
+      "side": 1,
+      "message": "this file is the same as default.yaml so why it exists at all?\nI suggest to move defaults.yaml to defaults and change only variables different than we have in defaults\nIn the other side it is not scope of this task",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_105e9775",
+        "filename": "roles/yum-repos-prepare/vars/centos.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-02-27T13:08:06Z",
+      "side": 1,
+      "message": "use true instead: http://logs.tungsten.io/static/infra-doc/rfc/ansible-style-guide.html#ansible-j0007-booleans\nedit it in all vars in this role",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_10ba176d",
+        "filename": "test-requirements.txt",
+        "patchSetId": 37
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-02-27T13:08:06Z",
+      "side": 1,
+      "message": "it cannot be merged without fixes in contrail-project-config\nbeside that put here exact version",
       "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
