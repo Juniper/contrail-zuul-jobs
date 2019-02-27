@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_1048d784",
+        "filename": "playbooks/linters-go/run.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-02-27T13:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_904287aa",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_501acfcb",
         "filename": "playbooks/linters-go/run.yaml",
         "patchSetId": 37
@@ -30,6 +48,24 @@
       "writtenOn": "2019-02-27T13:08:06Z",
       "side": 1,
       "message": "use package instead: http://logs.tungsten.io/static/infra-doc/rfc/ansible-style-guide.html#ansible-j0009-module-usage",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_f060a303",
+        "filename": "playbooks/linters-go/run.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-02-27T13:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_501acfcb",
       "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -88,6 +124,42 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_b056ab29",
+        "filename": "playbooks/linters-go/run.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-02-27T13:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_d03c7f30",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_10b457d0",
+        "filename": "playbooks/linters-go/run.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-02-27T13:39:46Z",
+      "side": 1,
+      "message": "I don\u0027t agree. Hardcoding URLs or filenames in a shell command looks nasty. All of those variables are defined in the same file (at the top) and IMHO it is more readable that way. You can also override these variables easily when launching a playbook.",
+      "parentUuid": "df6247ed_f074236a",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_901ba7c8",
         "filename": "roles/contrail-unittests-tntestr/tasks/main.yaml",
         "patchSetId": 37
@@ -99,6 +171,24 @@
       "writtenOn": "2019-02-27T13:08:06Z",
       "side": 1,
       "message": "are you sure it will create the same value after this change?",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_5052cf3c",
+        "filename": "roles/contrail-unittests-tntestr/tasks/main.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-02-27T13:39:46Z",
+      "side": 1,
+      "message": "Pretty sure it does, but I\u0027m going to double check. Thanks for pointing this out.",
+      "parentUuid": "df6247ed_901ba7c8",
       "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -140,6 +230,42 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_907a87b7",
+        "filename": "roles/contrail-unittests-tntestr/tasks/redhat.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-02-27T13:39:46Z",
+      "side": 1,
+      "message": "It can be only uncommented manually haven\u0027t found any traces of automated uncommenting of this section. \n\nThis was done to prevent other tasks re-enabling the repository. As I said above, I think it will be safer to just delete it completely here (as the name of the task states).",
+      "parentUuid": "df6247ed_707a73f1",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_30e4fbdf",
+        "filename": "roles/contrail-unittests-tntestr/tasks/redhat.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-02-27T13:39:46Z",
+      "side": 1,
+      "message": "Good point. After looking at yum-builddep I think this workaround is still necessary. I\u0027m going to remove the whole \"epel-source\" repo section instead of setting the \"enabled\" option to 0.",
+      "parentUuid": "df6247ed_90b96716",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_507f6fdf",
         "filename": "roles/contrail-unittests-tntestr/tasks/redhat.yaml",
         "patchSetId": 37
@@ -151,6 +277,24 @@
       "writtenOn": "2019-02-27T13:08:06Z",
       "side": 1,
       "message": "if you are changing tasks names change it in whole file or do not do that at all",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_704dd398",
+        "filename": "roles/contrail-unittests-tntestr/tasks/redhat.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-02-27T13:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_507f6fdf",
       "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -174,6 +318,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_50e3efd9",
+        "filename": "roles/skip-job/tasks/main.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-02-27T13:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_b06a2b7e",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_d0d8ffef",
         "filename": "roles/yum-repos-prepare/vars/centos.yaml",
         "patchSetId": 37
@@ -185,6 +347,24 @@
       "writtenOn": "2019-02-27T13:08:06Z",
       "side": 1,
       "message": "this file is the same as default.yaml so why it exists at all?\nI suggest to move defaults.yaml to defaults and change only variables different than we have in defaults\nIn the other side it is not scope of this task",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_b07d8bb3",
+        "filename": "roles/yum-repos-prepare/vars/centos.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-02-27T13:39:46Z",
+      "side": 1,
+      "message": "Out of scope of the task.",
+      "parentUuid": "df6247ed_d0d8ffef",
       "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -208,6 +388,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_d0747fd1",
+        "filename": "roles/yum-repos-prepare/vars/centos.yaml",
+        "patchSetId": 37
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-02-27T13:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6247ed_105e9775",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_10ba176d",
         "filename": "test-requirements.txt",
         "patchSetId": 37
@@ -219,6 +417,24 @@
       "writtenOn": "2019-02-27T13:08:06Z",
       "side": 1,
       "message": "it cannot be merged without fixes in contrail-project-config\nbeside that put here exact version",
+      "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_106fb7fc",
+        "filename": "test-requirements.txt",
+        "patchSetId": 37
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-02-27T13:39:46Z",
+      "side": 1,
+      "message": "This change is temporary and will be reverted when all the other issues are solved.",
+      "parentUuid": "df6247ed_10ba176d",
       "revId": "260108ccf1a08d0380ec99ef21309896f0bba7e2",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
