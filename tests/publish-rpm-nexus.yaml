@@ -9,6 +9,7 @@
       remote_repo_path: 'yum-tpc-test'
       pkg_src_dir: '{{ ansible_env.HOME }}/'
       nexus_creds_path: '{{ ansible_env.HOME }}/nexus-creds'
+      nexus_task_uuid: 'fff750d5-6d67-41d5-8cce-e65d97bb730e'
       nexus_credentials:
         user: 'test'
         password: 'test123'
