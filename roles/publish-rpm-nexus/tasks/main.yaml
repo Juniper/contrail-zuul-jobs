@@ -42,6 +42,11 @@
       when: zuul_execution_trusted
 
   always:
+    - name: rebuild metadata
+      command: >
+        curl -K {{ nexus_creds_path }}
+        -X POST {{ nexus_metadata }}
+
     - name: remove credentials file
       file:
         path: '{{ nexus_creds_path }}'
