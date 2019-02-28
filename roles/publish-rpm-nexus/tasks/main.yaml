@@ -4,6 +4,10 @@
   set_fact:
     nexus_repo_url: 'http://{{ nexus.fqdn }}/repository/{{ remote_repo_path }}'
 
+- name: set metadata rebuild script url
+  set_fact:
+    nexus_metadata: 'http://{{ nexus.fqdn }}/service/rest/v1/tasks/277418cf-cbc4-4219-a86b-9be48cdd0c2c/run'
+
 - name: get a list of package files
   find:
     paths: '{{ pkg_src_dir }}'
@@ -42,6 +46,11 @@
       when: zuul_execution_trusted
 
   always:
+    - name: rebuild metadata
+      command: >
+        curl -K {{ nexus_creds_path }}
+        -X POST {{ nexus_metadata }}
+
     - name: remove credentials file
       file:
         path: '{{ nexus_creds_path }}'
