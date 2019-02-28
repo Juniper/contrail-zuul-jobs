@@ -104,7 +104,8 @@
       tests_failed: false
 
   - include: testrunner.yaml
-    with_items: '{{ unittest_target.stdout_lines[-1].split() }}'
+    with_items:
+      - 'controller/src/config/api-server:test'
 
   - name: fail if any test target failed
     fail:
