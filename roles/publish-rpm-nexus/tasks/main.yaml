@@ -4,6 +4,13 @@
   set_fact:
     nexus_repo_url: 'http://{{ nexus.fqdn }}/repository/{{ remote_repo_path }}'
 
+- name: return repository location back to zuul for children jobs
+  zuul_return:
+    data:
+      contrail_package_repository: '{{ nexus_repo_url }}'
+  delegate_to: localhost
+  when: zuul_execution_trusted
+
 - name: get a list of package files
   find:
     paths: '{{ pkg_src_dir }}'
@@ -12,12 +19,10 @@
       - '*.rpm'
   register: package_list
 
-- name: check if directory contains any packages to upload
-  meta: end_play
-  when: package_list.matched|int == 0
-
 - name: upload rpms
+  when: package_list.matched|int != 0
   block:
+
     - name: create a credentials file
       copy:
         content: '--user {{ nexus_credentials.user }}:{{ nexus_credentials.password }}'
@@ -33,13 +38,6 @@
         # ANSIBLE0006 - cannot use either get_url or uri modules for this task
         # as they don't support uploads (uri does since Ansible 2.6)
         - skip_ansible_lint
-
-    - name: return repository location back to zuul for children jobs
-      zuul_return:
-        data:
-          contrail_package_repository: '{{ nexus_repo_url }}'
-      delegate_to: localhost
-      when: zuul_execution_trusted
 
   always:
     - name: remove credentials file
