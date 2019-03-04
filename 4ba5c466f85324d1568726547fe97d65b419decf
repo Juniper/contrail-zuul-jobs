@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_fe6984bd",
+        "filename": "roles/contrail-unittests2/tasks/main.yaml",
+        "patchSetId": 39
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-03-04T11:10:40Z",
+      "side": 1,
+      "message": "Empty line.",
+      "revId": "4ba5c466f85324d1568726547fe97d65b419decf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_de66c0ed",
+        "filename": "roles/contrail-unittests2/tasks/redhat.yaml",
+        "patchSetId": 39
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-03-04T11:10:40Z",
+      "side": 1,
+      "message": "Empty line.",
+      "revId": "4ba5c466f85324d1568726547fe97d65b419decf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_be5f8c0d",
+        "filename": "roles/yum-repos-prepare/vars/centos.yaml",
+        "patchSetId": 39
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-03-04T11:10:40Z",
+      "side": 1,
+      "message": "separate tasks.",
+      "revId": "4ba5c466f85324d1568726547fe97d65b419decf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_de3da0bb",
+        "filename": "roles/yum-repos-prepare/vars/centos.yaml",
+        "patchSetId": 39
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-03-04T11:10:40Z",
+      "side": 1,
+      "message": "Empty line.",
+      "revId": "4ba5c466f85324d1568726547fe97d65b419decf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_be466c4f",
+        "filename": "roles/yum-repos-prepare/vars/default.yaml",
+        "patchSetId": 39
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-03-04T11:10:40Z",
+      "side": 1,
+      "message": "Empty line.",
+      "revId": "4ba5c466f85324d1568726547fe97d65b419decf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_7e76b4a6",
+        "filename": "roles/yum-repos-prepare/vars/redhat.yaml",
+        "patchSetId": 39
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-03-04T11:10:40Z",
+      "side": 1,
+      "message": "Empty line.",
+      "revId": "4ba5c466f85324d1568726547fe97d65b419decf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_3e539c18",
+        "filename": "roles/yum-repos-prepare/vars/redhat_openshift_3.9.yaml",
+        "patchSetId": 39
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-03-04T11:10:40Z",
+      "side": 1,
+      "message": "Empty line.",
+      "revId": "4ba5c466f85324d1568726547fe97d65b419decf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_5e52d014",
+        "filename": "roles/yum-repos-prepare/vars/redhat_openstack_queens.yaml",
+        "patchSetId": 39
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-03-04T11:10:40Z",
+      "side": 1,
+      "message": "empty line.",
+      "revId": "4ba5c466f85324d1568726547fe97d65b419decf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
