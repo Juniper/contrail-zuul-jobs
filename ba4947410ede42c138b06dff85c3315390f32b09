@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_aabce7db",
+        "filename": "roles/publish-rpm-nexus/defaults/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-03-04T08:48:54Z",
+      "side": 1,
+      "message": "That\u0027s a good idea. I will group up nexus scripts in cpc site variables at nexus.scripts key, which could help us with tidiness.",
+      "parentUuid": "df6247ed_fef509cc",
+      "revId": "ba4947410ede42c138b06dff85c3315390f32b09",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_fe94e98c",
         "filename": "tests/publish-rpm-nexus.yaml",
         "patchSetId": 6
