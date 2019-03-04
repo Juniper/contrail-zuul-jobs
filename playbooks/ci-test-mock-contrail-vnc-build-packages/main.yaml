@@ -3,44 +3,9 @@
 - hosts: all
   tasks:
 
-#  Totally unused.
-#  - name: Prepare packaging variables
-#    contrail_packaging:  # XXX why is it unrecognized
-#      zuul: "{{ zuul }}"
-#      release_type: "{{ release_type }}"
-#      build_number: "{{ build_number | default('unset_build_number') }}"
+  - name: Prepare packaging variables
+    contrail_packaging:  # is it recognized
+      zuul: "{{ zuul }}"
+      release_type: 'master' # "{{ release_type }}"
+      build_number: '123'    # "{{ build_number | default('unset_build_number') }}"
 
-  - name: set mocked fact for publish-rpm-nexus that the parent executes post-run
-      set_facts:
-        remote_repo_path: '{{ nexus.repos.yum_nightly }}/master-538-centos'
-
-#  Probably unneccesary complication:
-#
-#  - name: block
-#    when: download_to_reupload is defined
-#    block:
-#
-#    - name: list packages from a nightly job
-#      uri:
-#        url: 'http://ci-nexus.englab.juniper.net/service/rest/v1/search/assets?repository=yum-tungsten-nightly&version=5.1.0-538.el7'
-#        return_content: yes
-#      register: package_list
-#
-#    - debug:
-#        msg: "{{ package_list.content | default('{}') | from_json | json_query('items[*].downloadUrl') | join('\n') | regex_findall('.*-centos.*') }}"
-#
-#    - name: download all packages
-#      uri:
-#        url: "{{ item }}"
-#        dest: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
-#      vars:
-#        json_filter: "items[?contains(downloadUrl, '-centos')].downloadUrl"
-#      with_items: "{{ package_list.content | default('{}') | from_json | json_query(json_filter) }}"
-
-# XXX needed by the next job contrail-build-test-containers, but in untrusted "check" pipeline
-#  - name: return repository location back to zuul for children jobs
-#    zuul_return:
-#      data:
-#        contrail_package_repository: 'http://{{ nexus.fqdn }}/repository/{{ nexus.repos.yum_nightly }}/master-538-centos'
-#    delegate_to: localhost
-#    when: zuul_execution_trusted
