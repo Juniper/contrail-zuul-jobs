@@ -4,11 +4,11 @@
   tasks:
 
 #  Totally unused.
-#  - name: Prepare packaging variables
-#    contrail_packaging:  # XXX why is it unrecognized
-#      zuul: "{{ zuul }}"
-#      release_type: "{{ release_type }}"
-#      build_number: "{{ build_number | default('unset_build_number') }}"
+  - name: Prepare packaging variables
+    contrail_packaging:  # XXX why is it unrecognized
+      zuul: "{{ zuul }}"
+      release_type: 'master' # "{{ release_type }}"
+      build_number: '123'    # "{{ build_number | default('unset_build_number') }}"
 
   - name: set mocked fact for publish-rpm-nexus that the parent executes post-run
       set_facts:
