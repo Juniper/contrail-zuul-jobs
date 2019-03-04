@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_2a6d9731",
+        "filename": "roles/publish-rpm-nexus/defaults/main.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-03-04T09:38:08Z",
+      "side": 1,
+      "message": "See my comment in 49884",
+      "revId": "b4dadd341c3273f3384402d17a3f8d5bc4424761",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_aa62a73c",
+        "filename": "roles/publish-rpm-nexus/tasks/main.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-03-04T09:38:08Z",
+      "side": 1,
+      "message": "hope it doesn\u0027t log the user and password in any way?",
+      "revId": "b4dadd341c3273f3384402d17a3f8d5bc4424761",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
