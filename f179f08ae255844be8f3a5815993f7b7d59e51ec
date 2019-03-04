@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_4a47ab78",
+        "filename": "roles/publish-rpm-nexus/defaults/main.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-03-04T10:24:17Z",
+      "side": 1,
+      "message": "nexus.scripts.yum_tpc.rebuild_metadata :-3",
+      "revId": "f179f08ae255844be8f3a5815993f7b7d59e51ec",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
