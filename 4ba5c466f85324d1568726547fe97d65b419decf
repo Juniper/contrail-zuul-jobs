@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "df6247ed_9eb84811",
+        "filename": "roles/contrail-unittests2/tasks/main.yaml",
+        "patchSetId": 39
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-03-04T11:32:30Z",
+      "side": 1,
+      "message": "Irrelevant to the changes. It\u0027s a matter of interpretation by text editors and gerrit. This is not visible as a double line in github for example.",
+      "parentUuid": "df6247ed_fe6984bd",
+      "revId": "4ba5c466f85324d1568726547fe97d65b419decf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df6247ed_de66c0ed",
         "filename": "roles/contrail-unittests2/tasks/redhat.yaml",
         "patchSetId": 39
@@ -47,6 +65,24 @@
       "writtenOn": "2019-03-04T11:10:40Z",
       "side": 1,
       "message": "separate tasks.",
+      "revId": "4ba5c466f85324d1568726547fe97d65b419decf",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_bebb0c0d",
+        "filename": "roles/yum-repos-prepare/vars/centos.yaml",
+        "patchSetId": 39
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-03-04T11:32:30Z",
+      "side": 1,
+      "message": "These are vars, not tasks, and should not be separated.",
+      "parentUuid": "df6247ed_be5f8c0d",
       "revId": "4ba5c466f85324d1568726547fe97d65b419decf",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
