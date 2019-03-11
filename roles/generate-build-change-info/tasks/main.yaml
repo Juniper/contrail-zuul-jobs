@@ -21,11 +21,39 @@
     - PyYAML
     - git
     - python-pygit2
+    - MySQL-python
 
-- name: run the change script
-  command: python generate_build_change_info.py {{ zuul.branch }} {{ build_number }}
+#temporary for development purposes
+- name: save db credentials to json file
+  copy:
+    content: '{{ db_credentials | to_json }}'
+    dest: '{{ script_path }}/creds.json'
+  ignore_errors: true
+  register: db_credentials_json
+
+- name: get previous successful nightly build number
+  command: >
+    python last_successful.py
+    {{ zuul.branch }}
+    {{ build_number }}
+    --credentials-json {{ db_credentials_json.dest }}
+  ignore_errors: true
+  register: last_successful
   args:
     chdir: '{{ script_path }}'
+
+- name: run the change script
+  command: >
+    python generate_build_change_info.py
+    {{ zuul.branch }}
+    {{ build_number }}
+    {{ (last_successful.rc == 0) | ternary (last_successful.stdout_lines | last, '') }}
+    {{ (last_successful.rc == 0) | ternary (' --fetched-prev', '') }}
+  args:
+    chdir: '{{ script_path }}'
+  register: change_script
+  retries: 3
+  until: change_script.rc == 0
 
 - name: fetch the HTML file with changes
   synchronize:
