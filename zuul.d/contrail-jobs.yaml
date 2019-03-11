@@ -240,7 +240,8 @@
       build.
     run: playbooks/generate-build-change-info/run.yaml
     required-projects:
-      - tungsten-infra/ci-utils
+      - name: tungsten-infra/ci-utils
+        override-checkout: build-change-info-additional-features
     nodeset: builder-centos-7
 
 - job:
