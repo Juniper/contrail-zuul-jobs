@@ -1,0 +1,10 @@
+---
+
+#TEMPORARY FOR DEVELOPMENT PURPOSES
+#THIS READONLY USER WILL BE DELETED SOON
+db_credentials:
+  user: "zuul-ro-buildchange"
+  passwd: "wKTRFiF1iJ88s9eL"
+  db: "zuul"
+  host: "148.251.110.24"
+  port: 8080
