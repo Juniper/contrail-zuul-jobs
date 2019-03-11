@@ -90,18 +90,6 @@
     pre-run: playbooks/contrail-vnc-base2/pre.yaml
 
 - job:
-    name: contrail-vnc-unittest-base
-    parent: contrail-vnc-base2
-    description: |
-      Runs unittest suite using Contrail VNC sandbox.
-      Requires nodeset.
-    irrelevant-files:
-      - specs/.*
-    run: playbooks/contrail-vnc-unittest/main.yaml
-    post-run: playbooks/contrail-vnc-unittest/post.yaml
-    timeout: 36000
-
-- job:
     name: contrail-sanity-base
     parent: contrail-base2
     description: |
