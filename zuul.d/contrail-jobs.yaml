@@ -233,14 +233,15 @@
     nodeset: builder-centos-7
 
 - job:
-    name: generate-build-change-info
+    name: generate-build-change-info-czj
     parent: contrail-src-base
     description: |
       This job generates a HTML report of changes included in the last nightly
       build.
     run: playbooks/generate-build-change-info/run.yaml
     required-projects:
-      - tungsten-infra/ci-utils
+      - name: tungsten-infra/ci-utils
+        override-checkout: build-change-info-additional-features
     nodeset: builder-centos-7
 
 - job:
