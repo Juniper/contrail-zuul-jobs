@@ -1,0 +1,6 @@
+---
+
+- hosts: all
+  roles:
+    - generate-build-change-info-czj
+
