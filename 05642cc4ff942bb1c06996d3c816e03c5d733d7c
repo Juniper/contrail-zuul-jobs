@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df6247ed_a79f664e",
+        "filename": "roles/run-nexus-script/defaults/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-03-12T14:30:45Z",
+      "side": 1,
+      "message": "I\u0027d remove this as default, it should be passed to the role in a playbook. We don\u0027t want to rebuild the metadata in case someone runs this or does not override and when it\u0027s not necessary.",
+      "revId": "05642cc4ff942bb1c06996d3c816e03c5d733d7c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df6247ed_c7a49aa8",
+        "filename": "roles/run-nexus-script/defaults/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-03-12T14:30:45Z",
+      "side": 1,
+      "message": "nexus_script_url",
+      "revId": "05642cc4ff942bb1c06996d3c816e03c5d733d7c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
