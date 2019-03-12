@@ -1,0 +1,3 @@
+---
+nexus_task_uuid: '{{ nexus.scripts.yum_tpc.rebuild_metadata }}'
+nexus_metadata: 'http://{{ nexus.fqdn }}/service/rest/v1/tasks/{{ nexus_task_uuid }}/run'
