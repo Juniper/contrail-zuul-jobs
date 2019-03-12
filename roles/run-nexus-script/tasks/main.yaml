@@ -1,0 +1,11 @@
+---
+- name: rebuild metadata
+  uri:
+    url: '{{ nexus_script_url }}'
+    user: '{{ nexus_credentials.user }}'
+    password: '{{ nexus_credentials.password }}'
+    headers:
+      Content-Type: 'application/json'
+    method: POST
+    status_code: 200,204
+    force_basic_auth: true
