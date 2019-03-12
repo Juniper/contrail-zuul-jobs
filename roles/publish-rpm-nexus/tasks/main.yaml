@@ -42,17 +42,6 @@
       when: zuul_execution_trusted
 
   always:
-    - name: rebuild metadata
-      uri:
-        url: '{{ nexus_metadata }}'
-        user: '{{ nexus_credentials.user }}'
-        password: '{{ nexus_credentials.password }}'
-        headers:
-          Content-Type: 'application/json'
-        method: POST
-        status_code: 200,204
-        force_basic_auth: true
-
     - name: remove credentials file
       file:
         path: '{{ nexus_creds_path }}'
