@@ -1,0 +1,8 @@
+---
+
+- hosts: all
+  tasks:
+
+  - name: mocked fact for post-run publish-rpm-nexus role of our parent job
+    set_fact:
+      remote_repo_path: '{{ nexus.repos.yum_nightly }}/master-538-centos'
