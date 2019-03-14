@@ -6,8 +6,8 @@
     description: Contrail third-party dependencies
     file: contrail-tpc
     baseurl: "http://{{ zuul_site_mirror_fqdn }}/oc-centos-tpc-{{ tpc_branch }}/"
-    enabled: yes
-    gpgcheck: no
-  become: True
+    enabled: true
+    gpgcheck: false
+  become: true
   when: hostvars['builder']['ansible_os_family'] == 'RedHat'
 
