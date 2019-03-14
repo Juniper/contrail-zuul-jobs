@@ -23,8 +23,8 @@
   unarchive:
     src: /tmp/go.tar.gz
     dest: /usr/
-    remote_src: yes
-  become: yes
+    remote_src: true
+  become: true
   become_user: root
 
 - name: Create directory for Contrail repository within GOPATH
