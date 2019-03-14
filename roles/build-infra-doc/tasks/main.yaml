@@ -3,7 +3,7 @@
   pip:
     requirements: 'requirements.txt'
     chdir: '{{ zuul.projects | selectattr("short_name", "equalto", "contrail-infra-doc") | map(attribute="src_dir") | list | first }}'
-  become: True
+  become: true
 
 - name: build HTML documentation
   command: make html
