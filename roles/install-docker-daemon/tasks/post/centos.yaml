@@ -5,5 +5,5 @@
     name: 'docker-ce-stable'
     file: 'docker-mirror'
     state: 'absent'
-  become: yes
+  become: true
 
