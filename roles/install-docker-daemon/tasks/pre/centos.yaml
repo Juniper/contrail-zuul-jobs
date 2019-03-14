@@ -6,7 +6,7 @@
     description: 'docker-ce-stable'
     file: 'docker-mirror'
     baseurl: '{{ docker_mirror_url }}/'
-    enabled: yes
-    gpgcheck: no
-  become: yes
+    enabled: true
+    gpgcheck: false
+  become: true
 

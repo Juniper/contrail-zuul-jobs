@@ -22,7 +22,7 @@
   copy:
     src: "{{ ansible_env.HOME }}/contrail_test_input.yaml"
     dest: "{{ docker_provision_dir }}/config/instances.yaml"
-    remote_src: yes
+    remote_src: true
 
 - name: Fetch instances.yaml to executor
   synchronize:
