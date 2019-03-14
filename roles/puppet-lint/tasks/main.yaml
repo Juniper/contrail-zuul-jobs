@@ -1,7 +1,7 @@
 ---
 - name: install required packages
   apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time : 86400
     name: '{{ item }}'
     state: present
@@ -23,14 +23,14 @@
   git:
       repo: https://github.com/rbenv/rbenv.git
       dest: ~/.rbenv
-      clone: yes
+      clone: true
       version: v1.1.1
 
 - name: clone ruby for rbenv
   git:
       repo: https://github.com/rbenv/ruby-build.git
       dest: ~/.rbenv/plugins/ruby-build
-      clone: yes
+      clone: true
       version: v20180822
 
 - name: read Gemfile
