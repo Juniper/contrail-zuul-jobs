@@ -7,7 +7,7 @@
   lineinfile:
     dest: /etc/hosts
     line: "{{ ansible_default_ipv4.address }} {{ ansible_hostname }}"
-  become: True
+  become: true
   become_user: root
 
 # Some tests (like test.test_flow.FlowQuerierTest.test_1_noarg_query) expect
@@ -15,7 +15,7 @@
 - name: Change the timezone to America/Los_Angeles
   timezone:
     name: America/Los_Angeles
-  become: True
+  become: true
   become_user: root
 
 - name: Copy over unittest scripts to the builder VM
@@ -32,7 +32,7 @@
   package:
     name: "{{ item }}"
     state: present
-  become: True
+  become: true
   become_user: root
   with_items:
     - ruby

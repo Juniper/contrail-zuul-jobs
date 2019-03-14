@@ -4,15 +4,15 @@
   stat:
     path: '{{ daemon_json_path }}'
   register: daemon_json_file
-  become: True
+  become: true
 
 - name: read dockerd conf file
   slurp:
     src: '{{ daemon_json_path }}'
   register: daemon_json
   when: daemon_json_file.stat.exists
-  no_log: True
-  become: True
+  no_log: true
+  become: true
 
 - name: add docker proxy statement
   set_fact:
@@ -26,7 +26,7 @@
   copy:
     content: '{{ dockerd_config | to_nice_json }}'
     dest: '{{ daemon_json_path }}'
-  become: True
+  become: true
 
 - name: restart docker daemon
   service:
@@ -34,5 +34,5 @@
     name: docker
     state: restarted
     daemon_reload: yes
-  become: True
+  become: true
 

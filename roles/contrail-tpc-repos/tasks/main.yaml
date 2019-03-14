@@ -8,6 +8,6 @@
     baseurl: "http://{{ zuul_site_mirror_fqdn }}/oc-centos-tpc-{{ tpc_branch }}/"
     enabled: yes
     gpgcheck: no
-  become: True
+  become: true
   when: hostvars['builder']['ansible_os_family'] == 'RedHat'
 
