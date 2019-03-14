@@ -18,13 +18,13 @@
 - job:
     name: contrail-vnc-unittest-centos7
     parent: contrail-vnc-unittest-base
-    voting: False
+    voting: false
     nodeset: builder-centos-7
 
 - job:
     name: contrail-vnc-unittest-centos7-tntestr
     parent: contrail-vnc-unittest-tntestr-base
-    voting: False
+    voting: false
     nodeset: builder-centos-7
     irrelevant-files:
       - docs/.*
@@ -210,7 +210,7 @@
 
 - job:
     name: post-nightly-registry-port
-    voting: False
+    voting: false
     parent: contrail-base2
     run: playbooks/post-nightly-registry-port.yaml
     nodeset: ubuntu-xenial
@@ -258,7 +258,7 @@
     parent: dev-env-base
     run: playbooks/publish-dev-env/run.yaml
     vars:
-      setup_docker_registry: True
+      setup_docker_registry: true
 
 - job:
     name: create-windows-containers
@@ -322,7 +322,7 @@
 
 - job:
     name: linters-go
-    voting: False
+    voting: false
     description: |
       This job runs linters-go job for contrail-generateds, contrail-api-client
       and contrail-go-api repos
