@@ -28,7 +28,7 @@
         -P '{{ ansible_env.HOME }}'/contrail_test_input.yaml \
         -k /root/.ssh/id_rsa \
         -f '{{ test_target }}' '{{ testrunner_image }}'
-  ignore_errors: yes
+  ignore_errors: true
   become: true
 
 - name: test the xml report for failures
