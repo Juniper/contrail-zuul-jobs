@@ -3,7 +3,7 @@
   command: yum-builddep -y tools/packages/rpm/contrail/contrail.spec
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
-  become: True
+  become: true
   become_user: root
 
 # XXX(kklimonda): Expand role to install dependencies for all .spec files used
