@@ -5,7 +5,7 @@
       --tool="apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes"
   args:
     chdir: "{{ packaging.target_dir }}"
-  become: True
+  become: true
   register: deps
   failed_when: "'mk-build-deps: Unable to install all build-dep packages' in deps.stdout"
 
@@ -15,7 +15,7 @@
   apt:
     name: liburcu-dev
     state: present
-  become: True
+  become: true
 
 # XXX(kklimonda): can't reproduce "error: end of file reached" error outside
 #   of CI, making it impossible to fix it. The following patch adds some
@@ -25,6 +25,6 @@
     src: tarfile_verbose.patch
     basedir: /usr/lib/python2.7/
     strip: 1
-  become: True
-  ignore_errors: True
+  become: true
+  ignore_errors: true
 
