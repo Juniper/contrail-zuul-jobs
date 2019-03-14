@@ -3,7 +3,7 @@
   become: true
   user:
     name: "{{ user }}"
-    generate_ssh_key: yes
+    generate_ssh_key: true
   register: user
 
 - name: Get user's home path along other info (saved in getent_passwd fact)
