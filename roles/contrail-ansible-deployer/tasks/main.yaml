@@ -7,7 +7,7 @@
   environment:
     ANSIBLE_HOST_KEY_CHECKING: 'False'
     ANSIBLE_STDOUT_CALLBACK: debug
-  become: True
+  become: true
 
 - name: Provision OpenStack with install_openstack.yml playbook
   command: ansible-playbook -i inventory/ -e orchestrator=openstack playbooks/install_openstack.yml
@@ -16,7 +16,7 @@
   environment:
     ANSIBLE_HOST_KEY_CHECKING: 'False'
     ANSIBLE_STDOUT_CALLBACK: debug
-  become: True
+  become: true
   when: cloud_orchestrator == 'openstack'
 
 - name: Provision k8s with install_k8s.yml playbook
@@ -26,7 +26,7 @@
   environment:
     ANSIBLE_HOST_KEY_CHECKING: 'False'
     ANSIBLE_STDOUT_CALLBACK: debug
-  become: True
+  become: true
   when: cloud_orchestrator == 'kubernetes'
 
 - name: Provision Contrail with install_contrail.yml playbook
@@ -36,5 +36,5 @@
   environment:
     ANSIBLE_HOST_KEY_CHECKING: 'False'
     ANSIBLE_STDOUT_CALLBACK: debug
-  become: True
+  become: true
 
