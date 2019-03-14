@@ -29,5 +29,5 @@
     basedir: /usr/lib/python2.7/
     strip: 1
   become: true
-  ignore_errors: True
+  ignore_errors: true
 
