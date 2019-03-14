@@ -10,7 +10,7 @@
   package:
     name: '{{ item }}'
     state: present
-  become: yes
+  become: true
   with_items:
     - unzip
     - git
@@ -18,7 +18,7 @@
 
 - name: Install bazel
   command: "./{{ installer['dest'] }} --bin=/usr/bin"
-  become: yes
+  become: true
 
 - name: Build tools using bazel
   command: "bazel build :{{ item }}"

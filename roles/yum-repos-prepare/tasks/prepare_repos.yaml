@@ -31,7 +31,7 @@
 
 - name: disable subscription-manager on RHEL
   command: subscription-manager config --rhsm.manage_repos=0
-  become: yes
+  become: true
   become_user: root
   when: 'ansible_distribution == "RedHat"'
 
@@ -41,7 +41,7 @@
     file: "{{ item.file }}"
     state: absent
   with_items: "{{ repos_remove }}"
-  become: yes
+  become: true
   become_user: root
 
 - name: prepare local base yum mirror repo file
@@ -50,10 +50,10 @@
     description: "{{ item.description }}"
     file: "{{ repos_file }}"
     baseurl: "{{ repos_baseurl }}/{{ item.repo }}/"
-    enabled: yes
-    gpgcheck: no
+    enabled: true
+    gpgcheck: false
   with_items: "{{ repos_add }}"
-  become: yes
+  become: true
   become_user: root
 
 - name: prepare epel mirror repo file
@@ -63,8 +63,8 @@
     file: epel
     baseurl: "http://{{ docker_registry.fqdn }}/pulp/repos/centos74-epel/"
     enabled: "{{ use_epel }}"
-    gpgcheck: no
-  become: yes
+    gpgcheck: false
+  become: true
   become_user: root
 
 - name: prepare third party cache yum Nexus repo
@@ -73,11 +73,11 @@
     description: Contrail third-party dependencies
     file: tpc-{{ item }}
     baseurl: "http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/{{ tpc_branch }}/{{ item }}/"
-    enabled: yes
-    gpgcheck: no
+    enabled: true
+    gpgcheck: false
   with_items:
     - source
     - binary
-  become: yes
+  become: true
   become_user: root
   when: enable_tpc_repo

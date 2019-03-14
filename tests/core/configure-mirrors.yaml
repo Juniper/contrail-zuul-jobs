@@ -12,9 +12,9 @@
       package:
         name: "emacs"
         state: "present"
-      become: yes
+      become: true
     - name: Install python package to sanity check pypi mirroring
       pip:
         name: "pbr"
         state: "present"
-      become: yes
+      become: true
