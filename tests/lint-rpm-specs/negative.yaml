@@ -24,7 +24,7 @@
       rescue:
         - name: 'Mark that the role failed'
           set_fact:
-            role_failed: True
+            role_failed: true
     - name: 'Check if the test failed'
       fail:
         msg: 'Role: passed, expected: failed'
