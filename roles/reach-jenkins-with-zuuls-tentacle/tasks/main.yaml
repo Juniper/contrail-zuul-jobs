@@ -18,13 +18,13 @@
 
 - name: Install pip
   command: 'python3 {{ ansible_env.HOME }}/get-pip.py '
-  become: True
+  become: true
 
 - name: Install Jenkins API for Python 3
   pip:
     name: jenkinsapi
     executable: pip3
-  become: True
+  become: true
   become_user: root
 
 - name: Reach Jenkins by Zuul's Tentacle
