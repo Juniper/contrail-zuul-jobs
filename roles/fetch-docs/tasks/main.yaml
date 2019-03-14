@@ -16,5 +16,5 @@
         src: '{{ fetch_src_path }}'
         dest: '{{ fetch_dst_path }}'
         mode: pull
-        recursive: yes
+        recursive: true
 

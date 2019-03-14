@@ -1,0 +1,29 @@
+---
+
+- name: test the ansible-lint {{ rule_id }} rule for fails
+  hosts: all
+  pre_tasks:
+    - name: Cleanup playbook directory
+      file:
+        dest: '{{ ansible_env.HOME }}/playbooks'
+        state: absent
+    - name: Create directory for playbooks
+      file:
+        dest: '{{ ansible_env.HOME }}/playbooks'
+        state: directory
+    - name: Copy valid playbooks to working directory
+      copy:
+        src: '{{ item }}'
+        dest: '{{ ansible_env.HOME }}/playbooks/'
+      with_fileglob: 'fixtures/ansible-lint/{{ rule_id }}/positive*'
+  tasks:
+    - name: find files to lint
+      find:
+        path: '{{ ansible_env.HOME }}/playbooks/'
+      register: files_to_lint
+
+    - name: lint well-formated YAML files
+      command: 'ansible-lint -r {{ ansible_env.HOME }}/ansible-lint-rules -t {{ rule_id }} {{ item.path }}'
+      changed_when: false
+      with_items: '{{ files_to_lint.files }}'
+
