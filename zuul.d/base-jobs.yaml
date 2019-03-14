@@ -110,7 +110,7 @@
     pre-run: playbooks/contrail-sanity-base/pre.yaml
     post-run: playbooks/contrail-sanity-base/post.yaml
     vars:
-      setup_docker_registry: True
+      setup_docker_registry: true
 
 - job:
     name: contrail-sanity-kolla-base
@@ -175,7 +175,7 @@
       This job builds packages from third-party-packages repo
       on Red Hat-based operating systems. This is a base job,
       nodeset has to be assigned to build for a specific target.
-    voting: True
+    voting: true
     run: playbooks/build-third-party-rpms-base/run.yaml
 
 - job:
@@ -196,7 +196,7 @@
       Requires nodeset and run playbook.
     pre-run: playbooks/docker-base/pre.yaml
     vars:
-      setup_docker_registry: True
+      setup_docker_registry: true
 
 - job:
     name: contrail-build-containers-base
