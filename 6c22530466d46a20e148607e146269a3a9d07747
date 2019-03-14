@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf57530f_b1be42fd",
+        "filename": "roles/run-nexus-script/defaults/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-03-14T09:03:14Z",
+      "side": 1,
+      "message": "we do not want the default value to be yum-tungsten-tpc metadata rebuild",
+      "revId": "6c22530466d46a20e148607e146269a3a9d07747",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
