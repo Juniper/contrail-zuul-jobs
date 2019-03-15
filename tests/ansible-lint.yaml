@@ -7,10 +7,13 @@
       copy:
         src: '{{ zuul.executor.work_root }}/{{ zuul.project.src_dir }}/test-requirements.txt'
         dest: '{{ ansible_env.HOME }}/'
-
+  tasks:
     - name: 'install test requirements'
       pip:
         requirements: '{{ ansible_env.HOME }}/test-requirements.txt'
+  
+  roles:
+    - install-pip-virtualenv
 
 - hosts: all
   tasks:
