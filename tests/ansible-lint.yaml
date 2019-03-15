@@ -11,6 +11,8 @@
     - name: 'install test requirements'
       pip:
         requirements: '{{ ansible_env.HOME }}/test-requirements.txt'
+  roles:
+    - install-pip-virtualenv
 
 - hosts: all
   tasks:
