@@ -8,12 +8,15 @@
         src: '{{ zuul.executor.work_root }}/{{ zuul.project.src_dir }}/test-requirements.txt'
         dest: '{{ ansible_env.HOME }}/'
 
+  roles:
+    - install-pip-virtualenv
+
+- hosts: all
+  tasks:
     - name: 'install test requirements'
       pip:
         requirements: '{{ ansible_env.HOME }}/test-requirements.txt'
 
-- hosts: all
-  tasks:
     - name: copy ansible-lint-rules
       copy:
         src: '{{ zuul.executor.work_root }}/{{ zuul.project.src_dir }}/ansible-lint-rules'
