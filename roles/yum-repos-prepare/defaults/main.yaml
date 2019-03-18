@@ -3,8 +3,11 @@
 # (for example contrail/ocata, contrail_18_05_3, R6.0-WIP)
 # this will use TPC repo from the master branch by default
 tpc_branch: "{{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, 'master') }}"
-enable_tpc_repo: true
 openstack_version: ocata
 cloud_orchestrator: 'openstack'
 openshift_version: '3.9'
 nexus_rpm_repo: '{{ nexus.repos.yum_tpc }}'
+base_url: 'http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/{{ tpc_branch }}'
+ctpp_review: 'http://{{ nexus.fqdn }}/repository/{{ nexus.repos.yum }}/{{ zuul.change }}-{{ zuul.patchset }}-ctpp'
+nexus_repo_path: '{{ ctpp_review if zuul.pipeline == "experimental" else base_url }}'
+# zuul_ctpp_checkout: '{{ zuul.projects{contrail-third-party-packages}.checkout == true }}'
