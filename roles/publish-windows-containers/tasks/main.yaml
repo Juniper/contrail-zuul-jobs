@@ -17,7 +17,7 @@
     - gcc
 
 - name: Install bazel
-  command: "./{{ installer['dest'] }} --bin=/usr/bin"
+  command: ".{{ installer['dest'] }} --bin=/usr/bin"
   become: yes
 
 - name: Build tools using bazel
