@@ -1,3 +1,3 @@
 ---
-nexus_script_url: 'http://{{ nexus.fqdn }}/service/rest/v1/tasks/{{ nexus_task_uuid }}/run'
+nexus_script_url: 'http://{{ nexus.fqdn }}/service/rest/v1/tasks/fff750d5-6d67-41d5-8cce-e65d97bb730e/run'
 nexus_task_uuid: '{{ nexus.scripts.yum_tpc_test.rebuild_metadata }}'
