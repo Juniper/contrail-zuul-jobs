@@ -16,6 +16,40 @@
       "revId": "6ee7d921b17be3c7cb90a99b1e579846690771ce",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf57530f_a58dd97c",
+        "filename": "zuul.d/base-jobs.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-03-18T11:30:20Z",
+      "side": 1,
+      "message": "This is not ansible config so I would not mix changes here with ansible-linter-related changes.",
+      "revId": "6ee7d921b17be3c7cb90a99b1e579846690771ce",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf57530f_65eda124",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-03-18T11:30:20Z",
+      "side": 1,
+      "message": "This is not ansible config so I would not mix changes here with ansible-linter-related changes.",
+      "revId": "6ee7d921b17be3c7cb90a99b1e579846690771ce",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
     }
   ]
 }
