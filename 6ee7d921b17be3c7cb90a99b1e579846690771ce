@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf57530f_05aee5e6",
+        "filename": "ansible-lint-rules/YAMLBooleans.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-03-18T11:27:33Z",
+      "side": 1,
+      "message": "unused",
+      "revId": "6ee7d921b17be3c7cb90a99b1e579846690771ce",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
