@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf57530f_88e8ac16",
+        "filename": "roles/publish-windows-containers/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-03-18T15:18:56Z",
+      "side": 1,
+      "message": "without \u0027.\u0027\n\n$ /tmp/script.sh                                                                                                                                                        \nzsh: permission denied: /tmp/script.sh\n$ ./tmp/script.sh                                                                                                                                                        \nzsh: no such file or directory: ./tmp/script.sh",
+      "revId": "96770ee11dda9027b4ebfe5366aa5bce10c6c3c9",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
