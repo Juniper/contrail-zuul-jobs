@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bf57530f_da50a3d7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 33
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-03-20T16:05:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf57530f_7af2d708",
+      "revId": "9a1ad682948e8053fb613bf71be1d62a90ede4c8",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bf57530f_9ad6ab4f",
         "filename": "zuul.d/contrail-jobs.yaml",
         "patchSetId": 33
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "bf57530f_1a475b20",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 33
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-03-20T16:05:33Z",
+      "side": 1,
+      "message": "not anymore, as it has been merged to master\nthanks",
+      "parentUuid": "bf57530f_9ad6ab4f",
+      "revId": "9a1ad682948e8053fb613bf71be1d62a90ede4c8",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bf57530f_7acbf7a4",
         "filename": "zuul.d/contrail-jobs.yaml",
         "patchSetId": 33
@@ -47,6 +83,24 @@
       "writtenOn": "2019-03-20T15:48:33Z",
       "side": 1,
       "message": "ditto",
+      "revId": "9a1ad682948e8053fb613bf71be1d62a90ede4c8",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf57530f_fa5367e1",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 33
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 756
+      },
+      "writtenOn": "2019-03-20T16:05:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf57530f_7acbf7a4",
       "revId": "9a1ad682948e8053fb613bf71be1d62a90ede4c8",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
