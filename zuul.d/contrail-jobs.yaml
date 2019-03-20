@@ -269,7 +269,7 @@
     parent: dev-env-base
     run: playbooks/publish-dev-env/run.yaml
     vars:
-      setup_docker_registry: True
+      setup_docker_registry: false
 
 - job:
     name: contrail-windows-test-cad
