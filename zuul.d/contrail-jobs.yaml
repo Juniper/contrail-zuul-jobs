@@ -333,6 +333,16 @@
           label: ubuntu-trusty-builder
 
 - job:
+    name: contrail-build-win2016
+    parent: trigger-win-base
+    branches: master
+    description: This jobs starts Jenkins job in Windows CI.
+    vars:
+      manifest_file: windows.xml
+      jenkins_job: winci-server-2016-prod-zuulv3
+      build_number: 0
+
+- job:
     name: contrail-sanity-win2016
     parent: trigger-win-base
     branches: master
