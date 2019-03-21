@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_07d03650",
+        "filename": "tests/ansible-lint/fixtures/ANSIBLE-J0007/negative-001.yaml",
+        "patchSetId": 34
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-03-21T08:52:11Z",
+      "side": 1,
+      "message": "this comment is redundant, I\u0027d remove it. In other files also.",
+      "revId": "a3cf725c20bd532f3b04989194117f1c0f57f600",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
