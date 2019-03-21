@@ -244,6 +244,17 @@
     nodeset: builder-centos-7
 
 - job:
+    name: generate-build-change-info-czj
+    parent: contrail-src-base
+    description: |
+      This job generates a HTML report of changes included in the last nightly
+      build.
+    run: playbooks/generate-build-change-info-czj/run.yaml
+    required-projects:
+      - tungsten-infra/ci-utils
+    nodeset: builder-centos-7
+
+- job:
     name: test-dev-env
     description: |
       Test job for contrail-dev-env.
