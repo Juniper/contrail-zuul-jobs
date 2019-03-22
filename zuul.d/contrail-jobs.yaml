@@ -341,3 +341,9 @@
       manifest_file: windows.xml
       jenkins_job: winci-server-2016-prod-zuulv3
       build_number: 0
+
+- job:
+    name: test-minimal
+    parent: base-minimal
+    run: playbooks/test-minimal/run.yaml
+    nodeset: builder-centos-7
