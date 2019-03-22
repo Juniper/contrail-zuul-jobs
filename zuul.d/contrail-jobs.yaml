@@ -272,16 +272,6 @@
       setup_docker_registry: True
 
 - job:
-    name: create-windows-containers
-    parent: trigger-win-base
-    run: playbooks/create-publish-windows-containers/run.yaml
-    required-projects:
-      - tungsten-infra/containerregistry
-    description: This jobs starts Jenkins job in Windows CI to create Windows containers.
-    vars:
-      jenkins_job: ci-contrail-windows-nighly-build
-
-- job:
     name: contrail-windows-test-cad
     parent: trigger-win-base
     description: This jobs starts Jenkins job in Windows CI to test CAD.
