@@ -1,0 +1,41 @@
+- job:
+    name: contrail-base-variant-test
+    branches:
+      - ^R5\.0$
+      - ^contrail_dpdk_17_11_3$
+      - ^release-3.9-contrail$
+    override-checkout: R5.0
+    parent: contrail-base2
+    description: |
+      A base job that prepares Contrail VNC sandbox using Android repo,
+      as opposed to the contrail-src-base job that copies the sources directly.
+    required-projects:
+      - Juniper/contrail-analytics
+      - name: Juniper/contrail-dpdk
+        override-checkout: contrail_dpdk_17_11_3
+      - name: Juniper/openshift-ansible
+        override-checkout: release-3.9-contrail
+    run: playbooks/contrail-base-variant-test/run.yaml
+
+- job:
+    name: contrail-base-variant-test
+    branches: ^(?!(R5\.0|contrail_dpdk_17_11_3|release-3\.9-contrail)).*$
+    parent: contrail-base2
+    description: |
+      A base job that prepares Contrail VNC sandbox using Android repo,
+      as opposed to the contrail-src-base job that copies the sources directly.
+    required-projects:
+      - Juniper/contrail-analytics
+      - name: Juniper/contrail-dpdk
+        override-checkout: contrail_dpdk_18_05_1
+      - name: Juniper/openshift-ansible
+        override-checkout: release-3.11-contrail
+    run: playbooks/contrail-base-variant-test/run.yaml
+
+- job:
+    name: contrail-base-variant-run
+    parent: contrail-base-variant-test
+    nodeset:
+      nodes:
+        - name: ubuntu-small
+          label: ubuntu-xenial-small
