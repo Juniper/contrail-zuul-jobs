@@ -2,5 +2,6 @@
 container_name:
     - contrail-windows-cnm-plugin
     - contrail-windows-vrouter
+contrail_container_tag: "master-{{ build_number }}"
 workdir: '{{ zuul.projects | selectattr("short_name", "equalto", "containerregistry") | map(attribute="src_dir") | list | first }}'
 
