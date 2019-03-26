@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_b35083d6",
+        "filename": "roles/publish-windows-containers/vars/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-03-26T10:47:48Z",
+      "side": 1,
+      "message": "Maybe better {{ zuul.branch }} than master.",
+      "revId": "707a8aa1fee41a37d05a82e22edeb51d5dedba4a",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
