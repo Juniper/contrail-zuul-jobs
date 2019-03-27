@@ -20,6 +20,7 @@
         - ci-test-publish-infra-doc-unit
         - ci-test-publish-rpm-nexus
         - zuul-jobs-linters
+        - contrail-build-win2016
         - noop:
             irrelevant-files:
               - ^roles/.*
