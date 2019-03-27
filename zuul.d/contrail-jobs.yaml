@@ -340,8 +340,36 @@
     name: contrail-build-win2016
     parent: trigger-win-base
     branches: master
-    description: This jobs starts Jenkins job in Windows CI.
+    description: This jobs starts Jenkins job in Windows CI. Build only.
     vars:
       manifest_file: windows.xml
       jenkins_job: winci-server-2016-prod-zuulv3
       build_number: 0
+      test_level: None
+
+- job:
+    name: trigger-win-base-2
+    parent: contrail-vnc-base2
+    description: |
+      Triggers Windows CI system.
+      Requires jenkins_job.
+    run: playbooks/trigger-win-base-2/run.yaml
+    required-projects:
+      - Juniper/contrail-windows
+      - Juniper/contrail-windows-docker-driver
+      - Juniper/contrail-windows-test
+    nodeset: ubuntu-xenial
+    vars:
+      setup_docker_registry: true
+      manifest_file: windows.xml
+
+- job:
+    name: contrail-alltests-win2016
+    parent: trigger-win-base-2
+    branches: master
+    description: This jobs starts Jenkins job in Windows CI. Build and run all tests.
+    vars:
+      manifest_file: windows.xml
+      jenkins_job: winci-server-2016-prod-zuulv3
+      build_number: 0
+      test_level: All
