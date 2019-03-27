@@ -16,12 +16,9 @@ result = dict(
     message='',
 )
 
+MASTER_RELEASE = '5.1.0'
 version_branch_regex = re.compile(r'^(master)|(R\d+\.\d+(\.\d+)?(\.x)?)$')
 
-next_release = {
-    'R5.0': '5.0.3',
-    'master': '5.1.0'
-}
 
 class ReleaseType(object):
     CONTINUOUS_INTEGRATION = 'continuous-integration'
@@ -44,45 +41,63 @@ def main():
     openstack_version = module.params['openstack_version']
 
     branch = zuul['branch']
-    release = next_release.get(branch, next_release['master'])
+    if not version_branch_regex.match(branch):
+        branch = 'master'
     date = datetime.now().strftime("%Y%m%d%H%M%S")
+
+    version = {'epoch': None}
+    if branch == 'master':
+        version['upstream'] = MASTER_RELEASE
+        version['public'] = 'master'
+        docker_version = 'master'
+    else:
+        version['upstream'] = branch[1:]
+        version['public'] = branch[1:]
+        docker_version = version['upstream']
 
     if release_type == ReleaseType.CONTINUOUS_INTEGRATION:
         # Versioning in CI consists of change id, pachset and date
         change = zuul['change']
         patchset = zuul['patchset']
-        build = patchset + '.' + change
+        version['distrib'] = "ci{change}.{patchset}".format(
+            change=change, patchset=patchset, date=date
+        )
+        docker_version = "{change}-{patchset}".format(change=change, patchset=patchset)
     elif release_type == ReleaseType.NIGHTLY:
-        build = '0.' + str(build_number)
+        version['distrib'] = "{}".format(build_number)
+        docker_version = '{}-{}'.format(docker_version, build_number)
     else:
         module.fail_json(
             msg="Unknown release_type: %s" % (release_type,), **result
         )
-    tag = release + '-' + build
 
-    target_dir = 'contrail-' + release
+    repo_name = docker_version
+
+    debian_dir = None
+    for project in zuul['projects']:
+        if project['short_name'] == 'contrail-packages':
+            debian_dir = project['src_dir']
+    if debian_dir:
+        debian_dir = os.path.join(debian_dir, "debian/contrail/debian")
+    target_dir = "contrail-%s" % (version['upstream'],)
+
+    full_version = "{upstream}~{distrib}".format(**version)
 
     openstack_suffix = ('-' + openstack_version) if openstack_version else ''
     repo_names = {
-        "CentOS": tag + '-centos',
-        "RedHat": tag + '-rhel' + openstack_suffix,
+        "CentOS": repo_name + '-centos',
+        "RedHat": repo_name + '-rhel' + openstack_suffix,
     }
-
-    docker_tags = {
-        "CentOS": tag,
-        "RedHat": tag + '-rhel'
-    }
-
-    openstack_specific_docker_tags = { k: v + openstack_suffix for k,v in docker_tags.items() }
 
     packaging = {
-        'release': release,
-        'build': build,
-        'tag': tag,
+        'name': 'contrail',
+        'debian_dir': debian_dir,
+        'full_version': full_version,
+        'version': version,
         'target_dir': target_dir,
+        'repo_name': repo_name,
         'repo_names': repo_names,
-        'docker_tags': docker_tags,
-        'openstack_specific_docker_tags': openstack_specific_docker_tags
+        'docker_version': docker_version,
     }
 
     module.exit_json(ansible_facts={'packaging': packaging}, **result)
