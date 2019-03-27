@@ -17,18 +17,11 @@ tool_description =\
         "Zuul's Tentacle - simple tool for integrating Zuul v3 with Jenkins"
 
 class ZuulJenkinsConnector:
-    def __init__(self, repository_provider, jenkins_manager, jenkins_job,\
-            gerrit_server, docker_registry,directory,docker_build_number,\
-            zuul_build_id,zuul_log_path):
+    def __init__(self, repository_provider, jenkins_manager, jenkins_job, build_parameters):
         self.repository_provider = repository_provider
         self.jenkins_manager = jenkins_manager
         self.jenkins_job = jenkins_job
-        self.gerrit_server = gerrit_server
-        self.docker_registry = docker_registry
-        self.directory = directory
-        self.docker_build_number = docker_build_number
-        self.zuul_build_id = zuul_build_id
-        self.zuul_log_path = zuul_log_path
+        self.build_parameters = build_parameters
 
     def handle_zuul_job(self):
         self.repository_provider.start_server_with_repositories()
@@ -38,7 +31,6 @@ class ZuulJenkinsConnector:
         job_was_successful = self.start_jenkins_job_and_wait_for_result()
         self.repository_provider.shutdown_server_with_repositories()
         return job_was_successful
-
 
     def setup_repositories_archive_url(self):
         self.repositories_archive_url = (
@@ -50,20 +42,15 @@ class ZuulJenkinsConnector:
         self.jenkins_manager.authenticate_to_jenkins_server()
         print(("Starting Jenkins job\n" +
             "    job name: \"{}\"\n" +
-            "Docker registry IP: {}" .format(self.docker_registry) +
+            "Docker registry IP: {}" .format(self.build_parameters.docker_registry) +
             "    URL to repository contents: {}.").format(
                 self.jenkins_job, self.repositories_archive_url))
-        build_parameters = {
-            "REPOSITORIES_ARCHIVE_URL": self.repositories_archive_url,
-            "DOCKER_REGISTRY": self.docker_registry,
-            "DOCKER_BUILD_NUMBER": self.docker_build_number,
-            "ZUUL_UUID": self.zuul_build_id,
-            "ZUUL_LOG_PATH": self.zuul_log_path,
-        }
+        self.build_parameters["REPOSITORIES_ARCHIVE_URL"] = self.repositories_archive_url
+
         print("Jenkins_job {}" .format(self.jenkins_job))
         job_was_successful =\
             self.jenkins_manager.start_jenkins_job_and_wait_for_result(
-                self.jenkins_job, build_parameters)
+                self.jenkins_job, self.build_parameters)
         return job_was_successful
 
 class RepositoryProvider:
@@ -170,11 +157,6 @@ class ConfigurationManager:
             default="hunter2",
             help="Password of Jenkins user")
         self.argument_parser.add_argument(
-            "--gerrit_server",
-            dest="gerrit_server",
-            help="Address of Gerrit server",
-            required=True)
-        self.argument_parser.add_argument(
             "--http_server_ip",
             dest="http_server_ip",
             help="IP of HTTP server providing repositories",
@@ -205,6 +187,14 @@ class ConfigurationManager:
             default=0,
             help="Build number")
         self.argument_parser.add_argument(
+            "--docker_container_tag",
+            dest="docker_container_tag",
+            help="Container tag")
+        self.argument_parser.add_argument(
+            "--windows_version",
+            dest="windows_version",
+            help="Windows Server version")
+        self.argument_parser.add_argument(
             "--zuul_build_id",
             dest="zuul_build_id",
             default=0,
@@ -214,6 +204,26 @@ class ConfigurationManager:
             dest="zuul_log_path",
             default=0,
             help="Log path for tentacle logs")
+        self.argument_parser.add_argument(
+            "--test_level",
+            dest="test_level",
+            help="Sets TEST_LEVEL passed to Jenkins job. Available options are 'None', 'Sanity' and 'All'")
+
+def GetBuildParameters(configuration):
+    build_parameters = {
+        "DOCKER_REGISTRY": configuration.docker_registry,
+        "DOCKER_BUILD_NUMBER": configuration.docker_build_number,
+        "ZUUL_UUID": configuration.zuul_build_id,
+        "ZUUL_LOG_PATH": configuration.zuul_log_path,
+    }
+    if configuration.test_level:
+        build_parameters["TEST_LEVEL"] = configuration.test_level
+    if configuration.docker_container_tag:
+        build_parameters["DOCKER_CONTAINER_TAG"] = configuration.docker_container_tag
+    if configuration.windows_version:
+        build_parameters["WINDOWS_VERSION"] = configuration.windows_version
+
+    return build_parameters
 
 def CreateZuulJenkinsConnector(configuration):
     repository_provider = RepositoryProvider(
@@ -230,12 +240,7 @@ def CreateZuulJenkinsConnector(configuration):
         repository_provider,
         jenkins_manager,
         configuration.jenkins_job,
-        configuration.gerrit_server,
-        configuration.docker_registry,
-        configuration.directory,
-        configuration.docker_build_number,
-        configuration.zuul_build_id,
-        configuration.zuul_log_path)
+        GetBuildParameters(configuration))
     return zuuls_tentacle
 
 def ReachJenkinsByZuulsTentacle(configuration):
