@@ -19,7 +19,7 @@ tool_description =\
 class ZuulJenkinsConnector:
     def __init__(self, repository_provider, jenkins_manager, jenkins_job,\
             gerrit_server, docker_registry,directory,docker_build_number,\
-            zuul_build_id,zuul_log_path):
+            zuul_build_id,zuul_log_path,test_level):
         self.repository_provider = repository_provider
         self.jenkins_manager = jenkins_manager
         self.jenkins_job = jenkins_job
@@ -29,6 +29,7 @@ class ZuulJenkinsConnector:
         self.docker_build_number = docker_build_number
         self.zuul_build_id = zuul_build_id
         self.zuul_log_path = zuul_log_path
+        self.test_level = test_level
 
     def handle_zuul_job(self):
         self.repository_provider.start_server_with_repositories()
@@ -60,6 +61,8 @@ class ZuulJenkinsConnector:
             "ZUUL_UUID": self.zuul_build_id,
             "ZUUL_LOG_PATH": self.zuul_log_path,
         }
+        if self.test_level:
+            build_parameters["TEST_LEVEL"] = self.test_level
         print("Jenkins_job {}" .format(self.jenkins_job))
         job_was_successful =\
             self.jenkins_manager.start_jenkins_job_and_wait_for_result(
@@ -214,6 +217,10 @@ class ConfigurationManager:
             dest="zuul_log_path",
             default=0,
             help="Log path for tentacle logs")
+        self.argument_parser.add_argument(
+            "--test_level",
+            dest="test_level",
+            help="Sets TEST_LEVEL passed to Jenkins job. Available options are 'None', 'Sanity' and 'All'.")
 
 def CreateZuulJenkinsConnector(configuration):
     repository_provider = RepositoryProvider(
@@ -235,7 +242,8 @@ def CreateZuulJenkinsConnector(configuration):
         configuration.directory,
         configuration.docker_build_number,
         configuration.zuul_build_id,
-        configuration.zuul_log_path)
+        configuration.zuul_log_path,
+        configuration.test_level)
     return zuuls_tentacle
 
 def ReachJenkinsByZuulsTentacle(configuration):
