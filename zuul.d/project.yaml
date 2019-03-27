@@ -2,6 +2,10 @@
     name: Juniper/contrail-zuul-jobs
     check:
       jobs:
+        - tags-test
+        #- contrail-build-containers-centos7-queens:
+        #    vars:
+        #      contrail_package_repository: http://10.84.5.81/pulp/repos/master-464-centos
         - ci-test-core-centos-7
         - ci-test-core-ubuntu-xenial
         - ci-test-contrail-core-centos-7
