@@ -27,21 +27,39 @@
   become: True
   become_user: root
 
+- name: Set Zuul's Tentacle command
+  set_fact:
+    tentacle_command: >
+      ./zuulstentacle.py
+      --jenkins_address "http://10.84.12.26:8080"
+      --jenkins_job {{ jenkins_job }}
+      --jenkins_user "pma-testuser"
+      --jenkins_password "qwerty123"
+      --http_server_ip {{ ansible_default_ipv4.address }}
+      --floating {{ ansible_host }}
+      --docker_registry {{ contrail_docker_registry }}
+      --directory  "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+      --docker_build_number {{ build_number }}
+      --zuul_build_id {{ zuul.build }}
+      --zuul_log_path "/var/www/logs/{{ zuul_log_path }}"
+
+- name: Append docker_container_tag to Zuul's Tentacle command
+  set_fact:
+    tentacle_command: "{{ tentacle_command }} --docker_container_tag {{ docker_container_tag }}"
+  when: docker_container_tag is defined
+
+- name: Append windows_version to Zuul's Tentacle command
+  set_fact:
+    tentacle_command: "{{ tentacle_command }} --windows_version {{ windows_version }}"
+  when: windows_version is defined
+
+- name: Append test_level to Zuul's Tentacle command
+  set_fact:
+    tentacle_command: "{{ tentacle_command }} --test_level {{ test_level }}"
+  when: test_level is defined
+
 - name: Reach Jenkins by Zuul's Tentacle
   no_log: true
   args:
     chdir: '{{ ansible_env.HOME }}'
-  command: >
-    ./zuulstentacle.py
-    --jenkins_address "http://10.84.12.26:8080"
-    --jenkins_job {{ jenkins_job }}
-    --jenkins_user {{ jenkins_winci_credentials.user }}
-    --jenkins_password {{ jenkins_winci_credentials.password }}
-    --gerrit_server review.opencontrail.org
-    --http_server_ip {{ ansible_default_ipv4.address }}
-    --floating {{ ansible_host }}
-    --docker_registry {{ contrail_docker_registry }}
-    --directory  "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
-    --docker_build_number {{ build_number }}
-    --zuul_build_id {{ zuul.build }}
-    --zuul_log_path "/var/www/logs/{{ zuul_log_path }}"
+  command: "{{ tentacle_command }}"
