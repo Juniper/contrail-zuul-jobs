@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_7921c59f",
+        "filename": "roles/reach-jenkins-with-zuuls-tentacle/files/zuulstentacle.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 571
+      },
+      "writtenOn": "2019-03-28T14:21:12Z",
+      "side": 1,
+      "message": "I don\u0027t really like this change. Configuration has fields that aren\u0027t used in ZuulJenkinsConnector and it breaks convention used for REpositoryProvider and JenkinsManager",
+      "revId": "0122bca43f576c8f52ce4862744b76db5d7cc8d4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
