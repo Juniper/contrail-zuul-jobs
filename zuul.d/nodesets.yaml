@@ -89,3 +89,19 @@
       - name: data-plane
         nodes:
           - openstack-compute-1
+
+- nodeset:
+    name: openshift
+    nodes:
+      - name: openshift-master
+        label: rhel-7-builder
+      - name: openshift-infra
+        label: rhel-7-builder
+      - name: openshift-compute
+        label: rhel-7-builder
+      - name: deployment-1
+        label: ubuntu-xenial-small
+      groups:
+        - name: deployment
+          nodes:
+            - deployment-1

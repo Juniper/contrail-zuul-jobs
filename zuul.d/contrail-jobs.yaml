@@ -146,6 +146,7 @@
 - job:
     name: contrail-deploy-rhel7-openshift-3.9
     parent: contrail-sanity-base
+    override-checkout: R5.0
     description: |
       Base job for setting up OpenShift with Contrail as CNI.
     run: playbooks/contrail-deploy-openshift-base/run.yaml
@@ -178,27 +179,25 @@
 - job:
     name: contrail-sanity-rhel7-openshift-3.9
     parent: contrail-sanity-openshift-base
+    branches: release-3.9-contrail
+    override-checkout: R5.0
     vars:
       openshift_version: 3.9
-      openshift_deployment_type: openshift-enterprise
-      contrail_image_os: rhel
     required-projects:
       - name: Juniper/openshift-ansible
         override-checkout: release-3.9-contrail
-    nodeset:
-      nodes:
-        - name: openshift-master
-          label: rhel-7-builder
-        - name: openshift-infra
-          label: rhel-7-builder
-        - name: openshift-compute
-          label: rhel-7-builder
-        - name: deployment-1
-          label: ubuntu-xenial-small
-      groups:
-        - name: deployment
-          nodes:
-            - deployment-1
+    nodeset: openshift
+
+- job:
+    name: contrail-sanity-rhel7-openshift-3.11
+    parent: contrail-sanity-openshift-base
+    branches: release-3.11-contrail
+    vars:
+      openshift_version: 3.11
+    required-projects:
+      - name: Juniper/openshift-ansible
+        override-checkout: release-3.11-contrail
+    nodeset: openshift
 
 - job:
     name: contrail-sanity-ubuntu1604-helm-ocata
