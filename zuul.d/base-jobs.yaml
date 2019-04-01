@@ -140,6 +140,8 @@
       openstack_version: queens
       cloud_orchestrator: kubernetes # yes, this is correct..
       test_target: ci_openshift
+      openshift_deployment_type: openshift-enterprise
+      contrail_image_os: rhel
     required-projects:
       - name: Juniper/openshift-ansible
         override-checkout: release-3.9-contrail
