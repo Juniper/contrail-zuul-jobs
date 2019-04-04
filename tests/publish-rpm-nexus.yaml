@@ -6,7 +6,7 @@
 - hosts: builder
   roles:
     - role: publish-rpm-nexus
-      remote_repo_path: 'yum-tpc-test'
+      remote_repo_path: 'yum-tpc-test/master/source'
       pkg_src_dir: '{{ ansible_env.HOME }}/'
       nexus_creds_path: '{{ ansible_env.HOME }}/nexus-creds'
       nexus_credentials:
