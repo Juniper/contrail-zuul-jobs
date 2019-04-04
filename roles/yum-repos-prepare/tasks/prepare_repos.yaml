@@ -76,8 +76,19 @@
     enabled: yes
     gpgcheck: no
   with_items:
-    - source
     - binary
+  become: yes
+  become_user: root
+  when: enable_tpc_repo
+
+- name: prepare third party cache yum Nexus repo
+  yum_repository:
+    name: tpc-source
+    description: Contrail third-party dependencies
+    file: tpc-source
+    baseurl: "http://{{ nexus.fqdn }}/repository/yum-tpc-test/master-tpc-source/"
+    enabled: yes
+    gpgcheck: no
   become: yes
   become_user: root
   when: enable_tpc_repo
