@@ -19,14 +19,17 @@ osm_cluster_network_cidr=10.32.0.0/12
 openshift_portal_net=10.96.0.0/12
 openshift_use_dnsmasq=true
 openshift_clock_enabled=true
-openshift_hosted_manage_registry=true
-openshift_hosted_manage_router=true
+openshift_hosted_manage_registry=false
+openshift_hosted_manage_router=false
 openshift_enable_service_catalog=false
 openshift_use_openshift_sdn=false
 os_sdn_network_plugin_name='cni'
 openshift_disable_check=memory_availability,package_availability,disk_availability,package_version,docker_storage
 openshift_docker_insecure_registries={{ contrail_docker_registry }}
+openshift_web_console_install=false
+#openshift_web_console_nodeselector={'region':'infra'}
 
+openshift_web_console_contrail_install=true
 openshift_use_contrail=true
 nested_mode_contrail=false
 contrail_version={{ contrail_major_version }}
@@ -36,16 +39,18 @@ contrail_registry={{ contrail_docker_registry }}
 #contrail_registry_username=test
 #contrail_registry_password=test
 # Below option presides over contrail masters if set
-#vrouter_physical_interface={{ hostvars['openshift-master'].ansible_default_ipv4.interface }}
-contrail_vip={{ hostvars['openshift-master'].ansible_default_ipv4.address }}
-vrouter_gateway={{ hostvars['openshift-compute'].ansible_default_ipv4.gateway }}
+#vrouter_physical_interface=ens160
 #docker_version=1.13.1
+#ntpserver=10.1.1.1 # a proper ntpserver is required for contrail.
 
 # Contrail_vars
-#kubernetes_api_server=10.84.13.52
-#kubernetes_api_port=8080
+# below variables are used by contrail kubemanager to configure the cluster,
+# you can configure all options below. All values are defaults and can be modified.
+
+#kubernetes_api_server=10.84.13.52         # in our case this is the master, which is default
+#kubernetes_api_port=8080               
 #kubernetes_api_secure_port=8443
-cluster_name=k8s
+#cluster_name=myk8s                  
 #cluster_project={}
 #cluster_network={}
 #pod_subnets=10.32.0.0/12
@@ -70,7 +75,4 @@ cluster_name=k8s
 {{ hostvars['openshift-infra'].ansible_default_ipv4.address }} openshift_hostname={{ hostvars['openshift-infra'].ansible_fqdn }} openshift_node_labels="{'region': 'infra'}"
 
 [openshift_ca]
-{{ hostvars['openshift-master'].ansible_default_ipv4.address }} openshift_hostname={{ hostvars['openshift-master'].ansible_fqdn }}
-
-[contrail_masters]
 {{ hostvars['openshift-master'].ansible_default_ipv4.address }} openshift_hostname={{ hostvars['openshift-master'].ansible_fqdn }}
