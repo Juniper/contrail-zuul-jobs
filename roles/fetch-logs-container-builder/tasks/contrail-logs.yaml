@@ -1,0 +1,29 @@
+---
+
+- name: Check whether contrail log dir exists
+  stat:
+    path: '{{ contrail_log_dir }}'
+  register: contrail_logdir
+  become: true
+
+- name: fetch contrail logs
+  when: contrail_logdir.stat.isdir is defined and contrail_logdir.stat.isdir
+  block:
+    - name: create the contrail logs dir on executor
+      file:
+        path: '{{ zuul.executor.log_root }}/contrail-logs'
+        state: 'directory'
+        owner: 'zuul'
+        mode: '0755'
+      delegate_to: localhost
+      run_once: true
+
+    - name: fetch contrail logs
+      synchronize:
+        src: '{{ contrail_log_dir }}/'
+        dest: '{{ zuul.executor.log_root }}/contrail-logs/{{ inventory_hostname }}'
+        mode: 'pull'
+        recursive: yes
+      become: true
+      ignore_errors: true
+

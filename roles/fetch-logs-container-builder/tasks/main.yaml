@@ -1,0 +1,7 @@
+---
+
+- include: sanity-logs.yaml
+- include: contrail-logs.yaml
+- include: kolla-logs.yaml
+- include: container-logs.yaml
+

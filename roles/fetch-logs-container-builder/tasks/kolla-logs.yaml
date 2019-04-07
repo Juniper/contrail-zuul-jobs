@@ -1,0 +1,28 @@
+---
+
+- name: Check whether kolla log dir exists
+  stat:
+    path: '{{ kolla_log_dir }}'
+  register: kolla_logdir
+  become: true
+
+- name: fetch kolla logs
+  when: kolla_logdir.stat.isdir is defined and kolla_logdir.stat.isdir
+  block:
+    - name: create the kolla logs dir on executor
+      file:
+        path: '{{ zuul.executor.log_root }}/kolla-logs'
+        state: 'directory'
+        owner: 'zuul'
+        mode: '0755'
+      delegate_to: localhost
+      run_once: true
+
+    - name: fetch kolla logs
+      synchronize:
+        src: '{{ kolla_log_dir }}/'
+        dest: '{{ zuul.executor.log_root }}/kolla-logs/{{ inventory_hostname }}'
+        mode: 'pull'
+        recursive: yes
+      become: true
+

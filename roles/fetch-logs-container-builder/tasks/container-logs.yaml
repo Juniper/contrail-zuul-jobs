@@ -1,0 +1,44 @@
+---
+
+- name: Check whether docker is installed
+  command: 'which docker'
+  changed_when: false
+  failed_when: false
+  register: docker_check
+
+- name: Gather docker logs
+  when: docker_check.rc == 0
+  block:
+  - name: List running containers
+    command: 'docker ps -a --format "{% raw %}{{.Names}}{% endraw %}"'
+    become: true
+    register: container_list
+
+  - name: Create container logdir
+    file:
+      path: '{{ container_log_dir }}'
+      state: 'directory'
+
+  - name: Dump container logs
+    shell: 'docker logs {{ item }} 1> {{ container_log_dir }}/{{ item }}.log 2>&1'
+    become: true
+    ignore_errors: true
+    with_items: '{{ container_list.stdout_lines }}'
+
+  - name: create the container logs dir on executor
+    file:
+      path: '{{ zuul.executor.log_root }}/container-logs'
+      state: 'directory'
+      owner: 'zuul'
+      mode: '0755'
+    delegate_to: localhost
+    run_once: true
+
+  - name: Fetch container logs
+    synchronize:
+      src: '{{ container_log_dir }}/'
+      dest: '{{ zuul.executor.log_root }}/container-logs/{{ inventory_hostname }}'
+      mode: 'pull'
+      recursive: true
+    become: true
+
