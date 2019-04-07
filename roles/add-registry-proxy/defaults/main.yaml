@@ -1,6 +1,8 @@
 ---
 
-daemon_json_path: /etc/docker/daemon.json
+daemon_json_path: '/etc/docker/daemon.json'
 proxy_fqdn: '{{ nexus.fqdn }}'
 proxy_port: '{{ nexus.registry.proxy }}'
+proxy_url: 'http://{{ proxy_fqdn }}:{{ proxy_port }}'
+proxy_insecure: true
 
