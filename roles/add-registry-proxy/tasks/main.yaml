@@ -4,35 +4,42 @@
   stat:
     path: '{{ daemon_json_path }}'
   register: daemon_json_file
-  become: True
+  become: true
 
 - name: read dockerd conf file
   slurp:
     src: '{{ daemon_json_path }}'
   register: daemon_json
   when: daemon_json_file.stat.exists
-  no_log: True
-  become: True
+  no_log: true
+  become: true
 
 - name: add docker proxy statement
   set_fact:
-    docker_proxy_config: "{ 'registry-mirrors': ['http://{{ proxy_fqdn }}:{{ proxy_port }}'] }"
+    docker_proxy_config: '{ "registry-mirrors": ["{{ proxy_url }}"] }'
 
 - name: assemble dockerd config
   set_fact:
-    dockerd_config: '{{ daemon_json.content|b64decode|from_json | default() | combine( docker_proxy_config ) }}'
+    dockerd_config: '{{ daemon_json.content | b64decode | from_json | default() | combine(docker_proxy_config) }}'
 
 - name: write new dockerd configuration to a file
   copy:
     content: '{{ dockerd_config | to_nice_json }}'
     dest: '{{ daemon_json_path }}'
-  become: True
+  become: true
+
+- name: add proxy as an insecure registry
+  include_role:
+    name: add-insecure-registry
+  vars:
+    new_registry: '{{ proxy_url }}'
+  when: proxy_insecure
 
 - name: restart docker daemon
   service:
-    enabled: yes
-    name: docker
-    state: restarted
-    daemon_reload: yes
-  become: True
+    name: 'docker'
+    state: 'restarted'
+    enabled: true
+    daemon_reload: true
+  become: true
 
