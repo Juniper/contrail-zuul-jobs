@@ -211,6 +211,7 @@
       Builds Contrail using contrail-container-builder.
       Requires nodeset and openstack_version.
     run: playbooks/contrail-build-containers-base/run.yaml
+    post-run: playbooks/contrail-build-containers-base/post.yaml
     required-projects:
       - Juniper/contrail-container-builder
       - Juniper/contrail-ansible-deployer
@@ -230,6 +231,7 @@
       Builds Contrail using contrail-container-builder.
       Requires nodeset and openstack_version.
     run: playbooks/contrail-build-containers-base/run.yaml
+    post-run: playbooks/contrail-build-containers-base/post.yaml
     required-projects:
       - Juniper/contrail-container-builder
       - Juniper/contrail-ansible-deployer
