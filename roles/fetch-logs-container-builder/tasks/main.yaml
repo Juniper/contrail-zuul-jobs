@@ -1,0 +1,33 @@
+---
+
+- name: Check whether test runner log dir exists
+  stat:
+    path: '{{ build_logs_dir }}'
+  register: build_logdir
+  become: true
+
+- name: Fetch container builder logs
+  when: build_logdir.stat.isdir is defined and build_logdir.stat.isdir
+  block:
+  - name: 'Create the log directory on executor'
+    file:
+      path: '{{ target_dir }}'
+      state: 'directory'
+    delegate_to: localhost
+
+  - name: Find the log files
+    find:
+      paths: '{{ build_logs_dir }}'
+      pattern: '*.log'
+      recurse: true
+    become: true
+    register: log_files
+
+  - name: Fetch xml report files
+    synchronize:
+      src: '{{ item.path }}'
+      dest: '{{ target_dir }}'
+      mode: 'pull'
+    become: true
+    with_items: '{{ log_files.files }}'
+    when: log_files.matched > 0

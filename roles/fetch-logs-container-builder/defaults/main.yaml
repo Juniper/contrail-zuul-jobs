@@ -1,0 +1,5 @@
+---
+
+build_logs_dir: '{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-container-builder/containers'
+target_dir: '{{ zuul.executor.log_root }}/container-builder-logs'
+
