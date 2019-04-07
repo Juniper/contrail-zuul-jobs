@@ -5,7 +5,12 @@
   block:
     - name: set path to docker config file
       set_fact:
-        file_path: /etc/docker/daemon.json
+        file_path: '/etc/docker/daemon.json'
+
+    - name: ensure /etc/docker directory
+      file:
+        path: '/etc/docker'
+        state: 'directory'
 
     - name: check for /etc/docker/daemon.json existence
       stat:
@@ -15,11 +20,11 @@
     - name: create emtpy docker config if it doesn't exist
       copy:
         content: '{{ {} | to_json }}'
-        dest: "{{ file_path }}"
+        dest: '{{ file_path }}'
       when: not p.stat.exists
 
     - name: now we know that the file exists, read it
-      command: cat {{ file_path }}
+      command: 'cat {{ file_path }}'
       register: docker_daemon_file
 
     - name: load docker config to dictionary
@@ -37,12 +42,12 @@
     - name: write new /etc/docker/daemon.json
       copy:
         content: '{{ docker_daemon | to_nice_json }}'
-        dest: "{{ file_path }}"
+        dest: '{{ file_path }}'
 
     - name: restart docker daemon
       service:
-        enabled: yes
-        name: docker
-        state: restarted
-        daemon_reload: yes
+        name: 'docker'
+        state: 'restarted'
+        enabled: true
+        daemon_reload: true
 
