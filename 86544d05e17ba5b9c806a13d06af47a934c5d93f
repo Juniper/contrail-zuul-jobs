@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_a32c9e47",
+        "filename": "roles/reach-jenkins-with-zuuls-tentacle/files/zuulstentacle.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-04-08T07:56:42Z",
+      "side": 0,
+      "message": "entirely removed? not needed?",
+      "revId": "86544d05e17ba5b9c806a13d06af47a934c5d93f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
