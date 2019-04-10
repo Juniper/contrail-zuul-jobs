@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_9de68f16",
+        "filename": "roles/packaging-build-el-makefile/tasks/redhat.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 448
+      },
+      "writtenOn": "2019-04-10T21:05:58Z",
+      "side": 1,
+      "message": "Remember that fetch_packages is not yet ported to python 3, so if you merge this, master will be broken. Also it would break R5.0.",
+      "revId": "fce0d6e01adeae770791360401148d5826910410",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
