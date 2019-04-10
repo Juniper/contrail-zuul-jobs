@@ -1,0 +1,14 @@
+tinker panic 0
+
+disable monitor
+restrict default kod nomodify notrap nopeer noquery
+restrict -6 default kod nomodify notrap nopeer noquery
+restrict 127.0.0.1
+restrict -6 ::1
+{% for server in ntp_servers %}
+server {{ server }} iburst
+{% endfor %}
+
+
+# Driftfile.
+driftfile /var/lib/ntp/drift

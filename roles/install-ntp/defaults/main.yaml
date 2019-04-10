@@ -1,0 +1,6 @@
+---
+
+ntp_servers:
+  - anyntp.juniper.net
+  - 10.84.5.101
+  - 172.21.200.60
