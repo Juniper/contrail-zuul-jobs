@@ -201,6 +201,20 @@
             - deployment-1
 
 - job:
+    name: packaging-test-centos
+    parent: contrail-vnc-base
+    run: playbooks/packaging-test/contrail-vnc-el.yaml
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-builder
+- job:
+    name: packaging-test-rhel
+    parent: contrail-vnc-base
+    run: playbooks/packaging-test/contrail-vnc-el.yaml
+    nodeset: builder-rhel-7
+
+- job:
     name: contrail-sanity-ubuntu1604-helm-ocata
     parent: contrail-helm-base
     run: playbooks/contrail-sanity-ubuntu1604-helm-ocata/run.yaml
