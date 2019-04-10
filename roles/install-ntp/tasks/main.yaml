@@ -1,0 +1,52 @@
+---
+
+- name: install ntp packages
+  package:
+    name:
+      - ntpdate
+      - ntp
+    state: present
+  become: true
+  register: res
+  retries: 5
+  until: res | success
+
+- name: set ntp service name
+  set_fact:
+    ntp_svc_name: "{{ 'ntp' if ansible_os_family == 'Debian' else 'ntpd' }}"
+
+- name: stop ntp service
+  service: name={{ ntp_svc_name }} state=stopped enabled=yes
+  become: true
+
+- name: add ntp servers
+  lineinfile:
+    path: /etc/ntp.conf
+    regexp: "^server {{ item }} iburst"
+    line: "server {{ item }} iburst"
+  with_items: "{{ ntp_servers }}"
+  become: true
+
+- name: initial time sync
+  shell: "ntpdate {{ item }}"
+  ignore_errors: yes
+  with_items: "{{ ntp_servers }}"
+  become: true
+  #ANSIBLE0013 ignore since we there is no official ansible task for ntpdate
+  tags:
+  - skip_ansible_lint
+
+- name: start ntp service
+  service: name={{ ntp_svc_name }} state=started enabled=yes
+  become: true
+
+# centos(redhat?) and ubuntu18 use chronyd by default and run it after restart instead of ntpd
+# let's disable it for now
+# service can be absent - so ignore it
+- name: disable service chronyd
+  systemd:
+    name: chronyd
+    enabled: no
+  ignore_errors: yes
+  when: ansible_os_family == 'RedHat'
+  become: true
