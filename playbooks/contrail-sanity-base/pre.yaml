@@ -16,6 +16,7 @@
   roles:
     - yum-repos-prepare
     - install-pip-virtualenv
+    - install-ntp
 
 - hosts: deployment:!control-plane:!data-plane
   roles:
