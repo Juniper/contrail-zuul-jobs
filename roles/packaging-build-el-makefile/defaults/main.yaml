@@ -1,0 +1,17 @@
+# do not merge this - only for tests
+
+packaging:
+  debian_dir: src/review.opencontrail.org/Juniper/contrail-packages/debian/contrail/debian
+  docker_version: 50733-5
+  full_version: 5.1.0~ci50733.5
+  name: contrail
+  repo_name: 50733-5
+  repo_names:
+    CentOS: 50733-5-centos
+    RedHat: 50733-5-rhel
+  target_dir: contrail-5.1.0
+  version:
+    distrib: ci50733.5
+    epoch:
+    public: master
+    upstream: 5.1.0
