@@ -1,4 +1,11 @@
 ---
+
+# remove when JD-637 done
+- name: install python3
+  yum:
+    name: 'python36'
+    state: 'present'
+
 - name: Prepare packaging variables
   contrail_packaging:
     zuul: "{{ zuul }}"
