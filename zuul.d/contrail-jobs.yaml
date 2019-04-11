@@ -283,6 +283,19 @@
 - job:
     name: contrail-build-test-containers
     parent: docker-base
+    branches: ^(?!(R5\.0|release-3\.9-contrail)).*$
+    run: playbooks/contrail-build-test-containers/run.yaml
+    required-projects:
+      - Juniper/contrail-test
+    nodeset: builder-centos-7
+
+- job:
+    name: contrail-build-test-containers
+    parent: docker-base
+    branches:
+      - ^R5\.0$
+      - ^release-3.9-contrail$
+    override-checkout: R5.0
     run: playbooks/contrail-build-test-containers/run.yaml
     required-projects:
       - Juniper/contrail-test
