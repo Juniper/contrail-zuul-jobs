@@ -7,13 +7,9 @@
 - hosts: deployment
   roles:
     - prepare-template-for-ansible-deployer
-    - contrail-ansible-deployer
 
-- hosts: all:!deployment
-  roles:
-    - contrail-ansible-deployer-debug
-
-- hosts: deployment
-  roles:
-    - sanitytest
-
+- hosts: all
+  tasks:
+    - fail:
+        msg: 'just fail'
+    
