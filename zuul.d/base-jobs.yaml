@@ -202,6 +202,29 @@
 
 - job:
     name: contrail-build-containers-base
+    branches:
+      - ^R5\.0$
+      - ^release-3.9-contrail$
+    parent: docker-base
+    override-checkout: R5.0
+    description: |
+      Builds Contrail using contrail-container-builder.
+      Requires nodeset and openstack_version.
+    run: playbooks/contrail-build-containers-base/run.yaml
+    required-projects:
+      - Juniper/contrail-container-builder
+      - Juniper/contrail-ansible-deployer
+      - Juniper/contrail-deployers-containers
+      - Juniper/contrail-kolla-ansible
+      - name: Juniper/openshift-ansible
+        override-checkout: release-3.9-contrail
+      - Juniper/contrail-helm-deployer
+      - Juniper/openstack-helm
+      - Juniper/openstack-helm-infra
+
+- job:
+    name: contrail-build-containers-base
+    branches: ^(?!(R5\.0|release-3\.9-contrail)).*$
     parent: docker-base
     description: |
       Builds Contrail using contrail-container-builder.
@@ -212,7 +235,8 @@
       - Juniper/contrail-ansible-deployer
       - Juniper/contrail-deployers-containers
       - Juniper/contrail-kolla-ansible
-      - Juniper/openshift-ansible
+      - name: Juniper/openshift-ansible
+        override-checkout: release-3.11-contrail
       - Juniper/contrail-helm-deployer
       - Juniper/openstack-helm
       - Juniper/openstack-helm-infra
