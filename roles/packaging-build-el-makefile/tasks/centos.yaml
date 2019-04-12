@@ -1,0 +1,14 @@
+---
+
+- name: install python3
+  yum:
+    name: 'python36'
+    state: 'present'
+  become: true
+
+- name: Fetch third-party packages
+  command: ./fetch_packages.py --site-mirror http://{{ zuul_site_mirror_fqdn }}
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/third_party/"
+  tags:
+    - skip_ansible_lint
