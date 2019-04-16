@@ -1,0 +1,11 @@
+---
+- hosts: all
+  vars:
+    source_location: "//s/vrouter/input"
+  tasks:
+    - name: create ansible-lint config
+      shell: echo Job done!
+      register: the_message
+    - name: Print the message
+      debug:
+        msg: "{{ the_message }}"
