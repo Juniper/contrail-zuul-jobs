@@ -370,3 +370,13 @@
       jenkins_job: winci-server-2016-prod-zuulv3
       build_number: 0
       test_level: All
+
+- job:
+    name: contrail-sign-vrouter-win2016
+    description: |
+      Signs, runs certification tests and requests Microsoft certificate for vRouter
+    nodeset:
+      nodes:
+        - name: the-signing-machine
+          label: ubuntu-xenial-small
+    run: playbooks/contrail-sign-vrouter-win2016/run.yaml
