@@ -32,15 +32,6 @@
     - contrail-unittests-gather.rb
     - repo
 
-- name: install additional packages used by unittest scripts
-  package:
-    name: '{{ item }}'
-    state: present
-  with_items:
-    - ruby
-    - '{{ python_version }}'
-  become: true
-
 - name: run a full Contrail VNC build
   command: 'scons -j {{ ansible_processor_vcpus }}'
   args:
