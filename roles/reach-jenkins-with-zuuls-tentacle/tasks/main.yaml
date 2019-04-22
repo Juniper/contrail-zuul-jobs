@@ -59,7 +59,7 @@
   when: test_level is defined
 
 - name: Reach Jenkins by Zuul's Tentacle
-  no_log: true
+  no_log: false
   args:
     chdir: '{{ ansible_env.HOME }}'
   command: "{{ tentacle_command }}"
