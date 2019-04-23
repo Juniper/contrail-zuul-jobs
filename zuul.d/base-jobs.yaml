@@ -4,6 +4,7 @@
     name: contrail-vnc-base2
     branches:
       - ^R5\.0$
+      - ^R5\.1$
       - ^contrail_dpdk_17_11_3$
     parent: contrail-base2
     description: |
@@ -49,7 +50,7 @@
 
 - job:
     name: contrail-vnc-base2
-    branches: ^(?!(R5\.0|contrail_dpdk_17_11_3)).*$
+    branches: ^(?!(R5\.1|R5\.0|contrail_dpdk_17_11_3)).*$
     parent: contrail-base2
     description: |
       A base job that prepares Contrail VNC sandbox using Android repo,
