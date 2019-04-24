@@ -65,7 +65,7 @@
 
 - job:
     name: contrail-sanity-centos7-kolla-rocky
-    branches: ^(master|contrail\/rocky)$
+    branches: ^(R5.1|master|contrail\/rocky)$
     parent: contrail-sanity-kolla-base
     required-projects:
       - name: Juniper/contrail-kolla-ansible
