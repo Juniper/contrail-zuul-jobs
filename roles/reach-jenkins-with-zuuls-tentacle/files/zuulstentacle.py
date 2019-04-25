@@ -206,6 +206,10 @@ class ConfigurationManager:
             default=0,
             help="Log path for tentacle logs")
         self.argument_parser.add_argument(
+            "--branch",
+            dest="branch",
+            help="Branch")
+        self.argument_parser.add_argument(
             "--test_level",
             dest="test_level",
             help="Sets TEST_LEVEL passed to Jenkins job. Available options are 'None', 'Sanity' and 'All'")
@@ -216,6 +220,7 @@ def GetBuildParameters(configuration):
         "DOCKER_BUILD_NUMBER": configuration.docker_build_number,
         "ZUUL_UUID": configuration.zuul_build_id,
         "ZUUL_LOG_PATH": configuration.zuul_log_path,
+        "ZUUL_BRANCH": configuration.branch,
     }
     if configuration.test_level:
         build_parameters["TEST_LEVEL"] = configuration.test_level
