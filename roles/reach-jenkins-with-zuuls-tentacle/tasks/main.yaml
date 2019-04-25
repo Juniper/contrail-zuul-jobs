@@ -41,7 +41,7 @@
       --directory  "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
       --docker_build_number {{ build_number }}
       --zuul_build_id {{ zuul.build }}
-      --branch {{ branch }}
+      --branch {{ zuul.branch }}
       --zuul_log_path "/var/www/logs/{{ zuul_log_path }}"
 
 - name: Append docker_container_tag to Zuul's Tentacle command
