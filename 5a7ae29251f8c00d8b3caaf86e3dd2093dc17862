@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_03b9062d",
+        "filename": "roles/publish-windows-containers/tasks/push_containers.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-04-30T08:21:38Z",
+      "side": 1,
+      "message": "It\u0027s correct now, but next time maybe better no double quotes?",
+      "revId": "5a7ae29251f8c00d8b3caaf86e3dd2093dc17862",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
