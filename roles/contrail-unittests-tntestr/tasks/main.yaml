@@ -1,13 +1,14 @@
 ---
-# Execute OS-specific tasks
-- name: run OS specific tasks
-  include: '{{ ansible_os_family|lower }}.yaml'
 
 - name: read variables
   include_vars: "{{ item }}"
   with_first_found:
     - '{{ ansible_os_family|lower }}.yaml'
     - default.yaml
+
+# Execute OS-specific tasks
+- name: run OS specific tasks
+  include: '{{ ansible_os_family|lower }}.yaml'
 
 - name: set variables
   set_fact:
@@ -31,15 +32,6 @@
   with_items:
     - contrail-unittests-gather.rb
     - repo
-
-- name: install additional packages used by unittest scripts
-  package:
-    name: '{{ item }}'
-    state: present
-  with_items:
-    - ruby
-    - '{{ python_version }}'
-  become: true
 
 - name: run a full Contrail VNC build
   command: 'scons -j {{ ansible_processor_vcpus }}'
