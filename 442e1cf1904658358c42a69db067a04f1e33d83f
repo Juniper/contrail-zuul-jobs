@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_9b3b16ea",
+        "filename": "roles/openshift-ansible/templates/openshift_config.yaml.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-05-15T09:03:00Z",
+      "side": 0,
+      "message": "wow, we are keeping that password without any encryption?",
+      "range": {
+        "startLine": 13,
+        "startChar": 12,
+        "endLine": 13,
+        "endChar": 23
+      },
+      "revId": "442e1cf1904658358c42a69db067a04f1e33d83f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
