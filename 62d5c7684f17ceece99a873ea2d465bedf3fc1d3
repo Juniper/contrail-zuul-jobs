@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_ea3b55c5",
+        "filename": "roles/install-ntp/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-05-15T09:13:47Z",
+      "side": 1,
+      "message": "Line not needed. The comment above says Ubuntu+RHEL anyway.",
+      "revId": "62d5c7684f17ceece99a873ea2d465bedf3fc1d3",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
