@@ -1,8 +1,10 @@
 ---
-- name: set variables
+- name: set facts
+  vars:
+    src_dir: '{{ zuul.projects | selectattr("short_name", "equalto", "contrail-test") | map(attribute="src_dir") | list | first }}'
   set_fact:
-    testrunner_image: "{{ contrail_docker_registry }}/contrail-test-test:{{ openstack_version }}-{{ contrail_version }}"
-    repos_dir: "{{ ansible_env.HOME }}/src/{{ zuul.project.canonical_hostname }}/Juniper"
+    testrunner_image: '{{ contrail_docker_registry }}/contrail-test-test:{{ openstack_version }}-{{ contrail_version }}'
+    testrunner_script: '{{ ansible_env.HOME }}/{{ src_dir }}/testrunner.sh'
 
 - name: make sure python docker bindings are installed
   become: true
@@ -17,17 +19,18 @@
 
 - name: (hack) change networking mode for containers run directly on docker engine
   replace:
-    path: '{{ repos_dir }}/contrail-test/testrunner.sh'
+    path: '{{ testrunner_script }}'
     regexp: '--privileged'
     replace: '--privileged --network host'
   when: (contrail_deployer is defined) and contrail_deployer == 'helm'
 
 - name: run the sanity test
   command: |
-    '{{ repos_dir }}'/contrail-test/testrunner.sh run \
+    '{{ testrunner_script }}' run \
         -P '{{ ansible_env.HOME }}'/contrail_test_input.yaml \
         -k /root/.ssh/id_rsa \
-        -f '{{ test_target }}' '{{ testrunner_image }}'
+        -f '{{ test_target }}' \
+        '{{ testrunner_image }}'
   ignore_errors: yes
   become: true
 
