@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_f9d568b8",
+        "filename": "roles/sanitytest/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-05-22T12:19:36Z",
+      "side": 1,
+      "message": "Accourding to ansible-lint rule E204 (https://docs.ansible.com/ansible-lint/rules/default_rules.html) this line is too long.",
+      "revId": "62b1bb30380947826bc9a99ca050f7c93453e9d5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
