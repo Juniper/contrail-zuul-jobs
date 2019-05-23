@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_cf63f6db",
+        "filename": "roles/sanitytest/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 731
+      },
+      "writtenOn": "2019-05-23T07:49:45Z",
+      "side": 1,
+      "message": "This line will fail. Set_fact is creating all values at once so it is not possible to use different variable from the same set_fact task.\nYou can create another set_fact task or move varaibles to vars directory.",
+      "revId": "944da1511792a45f1ba9f1ad408c7d3109acfa58",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
