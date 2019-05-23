@@ -16,6 +16,24 @@
       "revId": "95981fa298a4bacc99d6910e0b7b2a3835943103",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_0fa34ea0",
+        "filename": "roles/sanitytest/tasks/main.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-05-23T11:51:38Z",
+      "side": 1,
+      "message": "Didn\u0027t spot it - true `\u003e` looks so much better.",
+      "parentUuid": "9f5c4f37_2fae1298",
+      "revId": "95981fa298a4bacc99d6910e0b7b2a3835943103",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
     }
   ]
 }
