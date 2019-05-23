@@ -16,6 +16,24 @@
       "revId": "944da1511792a45f1ba9f1ad408c7d3109acfa58",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_af4fa232",
+        "filename": "roles/sanitytest/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-05-23T09:11:22Z",
+      "side": 1,
+      "message": "Done - good catch :)",
+      "parentUuid": "9f5c4f37_cf63f6db",
+      "revId": "944da1511792a45f1ba9f1ad408c7d3109acfa58",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
     }
   ]
 }
