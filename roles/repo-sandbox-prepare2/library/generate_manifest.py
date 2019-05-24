@@ -7,7 +7,6 @@ ANSIBLE_METADATA = {
         'supported_by': 'community'
 }
 
-import argparse
 import os
 import subprocess
 
@@ -35,6 +34,7 @@ def dump_xml(node):
 def del_node(node):
     node.getparent().remove(node)
 
+
 def get_project(projects, short_name):
     for project, data in projects.items():
         if data['short_name'] == short_name:
@@ -42,6 +42,15 @@ def get_project(projects, short_name):
     msg = "Zuul does not know about project {}.\n".format(short_name)
     msg += "Make sure it is defined in ``required-projects'' for this job."
     raise RuntimeError(msg)
+
+
+def get_parent_dir(dirname):
+    parent_dir, _ = dirname.rsplit('/', 1)
+    return parent_dir
+
+
+def fake_git_remote_name(dirname):
+    return dirname.replace('/', '--')
 
 
 def translate(projects, sandbox_root, manifest_path):
@@ -60,12 +69,15 @@ def translate(projects, sandbox_root, manifest_path):
 
     remotes = {}
     for canonical_name, project in projects.items():
-        remotes[project['canonical_hostname']] = etree.Element(
+        parent_dir = get_parent_dir(project['src_dir'])
+        remote_name = fake_git_remote_name(parent_dir)
+        absolute_parent_dir = 'file://{}/{}'.format(os.environ['HOME'], parent_dir)
+        remotes[remote_name] = etree.Element(
             'remote',
-            name=project['canonical_hostname'],
-            fetch='file://{}/src/{}/Juniper'.format(
-                os.environ['HOME'], project['canonical_hostname']))
-        remotes[project['canonical_hostname']].tail = '\n'
+            name=remote_name,
+            fetch=absolute_parent_dir
+        )
+        remotes[remote_name].tail = '\n'
 
     for remote in remotes.values():
         manifest.getroot().insert(0, remote)
@@ -77,7 +89,8 @@ def translate(projects, sandbox_root, manifest_path):
     for project in manifest.xpath('//project'):
         name = project.attrib['name']
         zuul_project = get_project(projects, name)
-        project.attrib['remote'] = zuul_project['canonical_hostname']
+        remote_name = fake_git_remote_name(get_parent_dir(zuul_project['src_dir']))
+        project.attrib['remote'] = remote_name
         head = get_head_branch(
             os.path.join(os.environ['HOME'], zuul_project['src_dir'])
         )
