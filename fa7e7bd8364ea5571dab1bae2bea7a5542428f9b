@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_f4cfaaad",
+        "filename": "roles/repo-sandbox-prepare2/library/generate_manifest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-05-27T07:58:56Z",
+      "side": 1,
+      "message": "Already implemented in os\n\nhttps://docs.python.org/2/library/os.path.html#os.path.dirname",
+      "revId": "fa7e7bd8364ea5571dab1bae2bea7a5542428f9b",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_74505ad5",
+        "filename": "roles/repo-sandbox-prepare2/library/generate_manifest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-05-27T07:58:56Z",
+      "side": 1,
+      "message": "you\u0027re not using canonical_name in the loop so I think you can just do `for project in projects.items():`",
+      "revId": "fa7e7bd8364ea5571dab1bae2bea7a5542428f9b",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
