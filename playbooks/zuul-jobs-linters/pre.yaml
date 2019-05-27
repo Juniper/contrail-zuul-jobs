@@ -2,8 +2,7 @@
 
 - hosts: all
   vars:
-    src_dir_json_query: "[?short_name=='contrail-zuul-jobs'].src_dir"
-    contrail_zuul_jobs_path: '{{ zuul.projects | json_query(src_dir_json_query) | first }}'
+    contrail_zuul_jobs_path: '{{ zuul.projects  | selectattr("short_name", "equalto", "contrail-zuul-jobs") | map(attribute="src_dir") | list | first }}'
     ansible_lint_rules_path: '{{ "{}/{}/ansible-lint-rules/".format(ansible_env.HOME, contrail_zuul_jobs_path) }}'
   tasks:
 
