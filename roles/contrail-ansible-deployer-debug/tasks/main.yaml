@@ -24,19 +24,3 @@
 - name: check interfaces for addresses
   command: 'ip addr'
   become: true
-
-- name: (hack) restart config_api container
-  when:
-    - inventory_hostname in groups['control-plane']
-    - cloud_orchestrator == 'openstack'
-  block:
-  - name: (hack) get config_api container id
-    shell: "docker ps | awk '/config_api/ { print $1 }'"
-    become: true
-    register: config_api_container
-
-  - name: (hack) restart config_api container to fix issue with VNC API lib
-    command: 'docker restart {{ config_api_container.stdout }}'
-    become: true
-    when: config_api_container.stdout is defined
-
