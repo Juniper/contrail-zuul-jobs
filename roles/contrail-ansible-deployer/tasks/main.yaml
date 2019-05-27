@@ -1,40 +1,24 @@
 ---
 
+- name: start deployers container
+  shell: "docker run --name contrail-deployer -id --privileged -w /root --network host -v {{ docker_provision_dir }}/config/instances.yaml:/root/contrail-ansible-deployer/config/instances.yaml -v /var/run/docker.sock:/var/run/docker.sock {{ contrail_docker_registry }}/contrail-kolla-ansible-deployer:{{ contrail_version }}"
+  become: True
+
 - name: Configure AIO VM with configure_instances.yml playbook
-  command: ansible-playbook -i inventory/ playbooks/configure_instances.yml -v
-  args:
-    chdir: "{{ docker_provision_dir }}"
-  environment:
-    ANSIBLE_HOST_KEY_CHECKING: 'False'
-    ANSIBLE_STDOUT_CALLBACK: debug
+  command: docker exec -i -w /root/contrail-ansible-deployer contrail-deployer ansible-playbook -i inventory/ playbooks/configure_instances.yml -v
   become: True
 
 - name: Provision OpenStack with install_openstack.yml playbook
-  command: ansible-playbook -i inventory/ -e orchestrator=openstack playbooks/install_openstack.yml
-  args:
-    chdir: "{{ docker_provision_dir }}"
-  environment:
-    ANSIBLE_HOST_KEY_CHECKING: 'False'
-    ANSIBLE_STDOUT_CALLBACK: debug
+  command: docker exec -i -w /root/contrail-ansible-deployer ansible-playbook -i inventory/ -e orchestrator=openstack playbooks/install_openstack.yml
   become: True
   when: cloud_orchestrator == 'openstack'
 
 - name: Provision k8s with install_k8s.yml playbook
-  command: ansible-playbook -i inventory/ -e orchestrator={{ cloud_orchestrator }} playbooks/install_k8s.yml
-  args:
-    chdir: "{{ docker_provision_dir }}"
-  environment:
-    ANSIBLE_HOST_KEY_CHECKING: 'False'
-    ANSIBLE_STDOUT_CALLBACK: debug
+  command: docker exec -i -w /root/contrail-ansible-deployer ansible-playbook -i inventory/ -e orchestrator={{ cloud_orchestrator }} playbooks/install_k8s.yml
   become: True
   when: cloud_orchestrator == 'kubernetes'
 
 - name: Provision Contrail with install_contrail.yml playbook
-  command: ansible-playbook -i inventory/ -e orchestrator={{ cloud_orchestrator }} playbooks/install_contrail.yml
-  args:
-    chdir: "{{ docker_provision_dir }}"
-  environment:
-    ANSIBLE_HOST_KEY_CHECKING: 'False'
-    ANSIBLE_STDOUT_CALLBACK: debug
+  command: docker exec -i -w /root/contrail-ansible-deployer ansible-playbook -i inventory/ -e orchestrator={{ cloud_orchestrator }} playbooks/install_contrail.yml
   become: True
 
