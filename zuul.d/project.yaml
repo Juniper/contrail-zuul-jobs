@@ -38,6 +38,7 @@
         - ci-test-publish-infra-doc-unit
         - ci-test-publish-rpm-nexus
         - zuul-jobs-linters
+        - test-nodepool-job
         - noop:
             irrelevant-files:
               - ^roles/.*
