@@ -1,0 +1,6 @@
+---
+
+- hosts: all
+  tasks:
+    - name: Show version
+      command: 'uname -a'
