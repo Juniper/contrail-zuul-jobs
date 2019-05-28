@@ -353,3 +353,12 @@
       jenkins_job: winci-server-2016-prod-zuulv3
       build_number: 0
       test_level: All
+
+- job:
+    name: test-nodepool-job
+    parent: contrail-base
+    run: playbooks/testjob/run.yaml
+    nodeset:
+      nodes:
+        - name: fedora
+          label: fedora
