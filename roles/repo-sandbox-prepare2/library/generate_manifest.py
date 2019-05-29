@@ -7,7 +7,6 @@ ANSIBLE_METADATA = {
         'supported_by': 'community'
 }
 
-import argparse
 import os
 import subprocess
 
@@ -35,6 +34,7 @@ def dump_xml(node):
 def del_node(node):
     node.getparent().remove(node)
 
+
 def get_project(projects, short_name):
     for project, data in projects.items():
         if data['short_name'] == short_name:
@@ -44,7 +44,11 @@ def get_project(projects, short_name):
     raise RuntimeError(msg)
 
 
-def translate(projects, sandbox_root, manifest_path):
+def convert_to_valid_git_id(dirname):
+    return dirname.replace('/', '--')
+
+
+def translate(zuul_projects, sandbox_root, manifest_path):
     """This will rewrite manifest to fetch repositories from filesystem locations
     instead of GitHub URLs. This way zuul-merger-prepared checkouts can be used
     during `repo sync`
@@ -59,13 +63,16 @@ def translate(projects, sandbox_root, manifest_path):
         del_node(default)
 
     remotes = {}
-    for canonical_name, project in projects.items():
-        remotes[project['canonical_hostname']] = etree.Element(
+    for zuul_project in zuul_projects.values():
+        parent_dir = os.path.dirname(zuul_project['src_dir'])
+        remote_name = convert_to_valid_git_id(parent_dir)
+        absolute_parent_url = 'file://{}/{}'.format(os.environ['HOME'], parent_dir)
+        remotes[remote_name] = etree.Element(
             'remote',
-            name=project['canonical_hostname'],
-            fetch='file://{}/src/{}/Juniper'.format(
-                os.environ['HOME'], project['canonical_hostname']))
-        remotes[project['canonical_hostname']].tail = '\n'
+            name=remote_name,
+            fetch=absolute_parent_url
+        )
+        remotes[remote_name].tail = '\n'
 
     for remote in remotes.values():
         manifest.getroot().insert(0, remote)
@@ -76,8 +83,9 @@ def translate(projects, sandbox_root, manifest_path):
     origins = {}
     for project in manifest.xpath('//project'):
         name = project.attrib['name']
-        zuul_project = get_project(projects, name)
-        project.attrib['remote'] = zuul_project['canonical_hostname']
+        zuul_project = get_project(zuul_projects, name)
+        remote_name = convert_to_valid_git_id(os.path.dirname(zuul_project['src_dir']))
+        project.attrib['remote'] = remote_name
         head = get_head_branch(
             os.path.join(os.environ['HOME'], zuul_project['src_dir'])
         )
