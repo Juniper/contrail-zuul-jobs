@@ -7,8 +7,6 @@ contrail_configuration:
   CONTROLLER_NODES: "{{ hostvars[groups['control-plane'][0]].ansible_default_ipv4.address }}"
   CONTROL_NODES: "{{ hostvars[groups['control-plane'][0]].ansible_eth1.ipv4.address }}"
   LOG_LEVEL: SYS_DEBUG
-  PHYSICAL_INTERFACE: eth1
-  VROUTER_GATEWAY: "{{ hostvars[groups['data-plane'][0]].ansible_default_ipv4.gateway }}"
   AUTH_MODE: keystone
   AAA_MODE: rbac
   KEYSTONE_AUTH_ADMIN_PASSWORD: c0ntrail123
