@@ -17,8 +17,7 @@ result = dict(
 )
 
 MASTER_RELEASE = '5.1.0'
-version_branch_regex = re.compile(r'^(master)|(R\d+\.\d+(\.\d+)?(\.x)?)$')
-
+version_branch_regex = re.compile(r'^(master)|^(R\d?)|(R\d+\.\d+(\.\d+)?(\.x)?)$')
 
 class ReleaseType(object):
     CONTINUOUS_INTEGRATION = 'continuous-integration'
