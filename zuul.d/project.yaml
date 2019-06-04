@@ -41,7 +41,7 @@
         - noop:
             irrelevant-files:
               - ^roles/.*
-              - ^playbooks/.*
+              - ^playbooks/.*fafaf
               - ^tests/.*
     experimental:
       jobs:
