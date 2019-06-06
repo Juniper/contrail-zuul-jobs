@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_867276e2",
+        "filename": "ansible-lint-rules/TasksDeclaration.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-06T12:10:28Z",
+      "side": 1,
+      "message": "not needed?",
+      "revId": "d1aebe691d6000ca81cf41ce0b56929e1e393896",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
