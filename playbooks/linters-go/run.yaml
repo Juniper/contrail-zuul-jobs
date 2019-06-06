@@ -2,7 +2,7 @@
 - name: 'run linters -go-job'
   hosts: all
   tasks:
-       - name: 'Pre setup tasks'
+       - name: 'pre setup tasks'
          command: "{{ item }}"
          with_items:
          - curl -L http://debian.datastax.com/debian/repo_key | sudo apt-key add -
