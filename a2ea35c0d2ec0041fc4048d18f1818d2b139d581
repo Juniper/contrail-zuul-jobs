@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_468ebed0",
+        "filename": "ansible-lint-rules/TasksDeclaration.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-06T11:30:09Z",
+      "side": 1,
+      "message": "The method islower() checks whether all the case-based characters (letters) of the string are lowercase. Do we want to allow stuff like \"SOAP\" or \"TF\"?",
+      "revId": "a2ea35c0d2ec0041fc4048d18f1818d2b139d581",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_26bf4a62",
+        "filename": "ansible-lint-rules/TasksDeclaration.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-06T11:30:09Z",
+      "side": 1,
+      "message": "I like these indents, quite readable.",
+      "revId": "a2ea35c0d2ec0041fc4048d18f1818d2b139d581",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
