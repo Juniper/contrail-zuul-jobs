@@ -86,6 +86,7 @@
       - Juniper/contrail-web-server-manager
       - Juniper/contrail-web-storage
       - Juniper/contrail-webui-third-party
+      - Juniper/contrail-vcenter-fabric-manager
       - Juniper/vijava
     irrelevant-files:
       - specs/.*
