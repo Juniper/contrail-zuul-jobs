@@ -87,6 +87,268 @@
     },
     {
       "key": {
+        "uuid": "9f5c4f37_89a3a29e",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-11T12:18:16Z",
+      "side": 1,
+      "message": "Hmm, is it?",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_e9bb3ec1",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-11T12:18:16Z",
+      "side": 1,
+      "message": "No it\u0027s not simple. Simple is when you say \u0027build: 42, branch: master\u0027. This one is \"Example within Zuul CI system\". Other than this example, I don\u0027t see how this module is connected to Zuul CI :)",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_29a83675",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-11T12:18:16Z",
+      "side": 1,
+      "message": "More spaces for readability?",
+      "range": {
+        "startLine": 55,
+        "startChar": 30,
+        "endLine": 55,
+        "endChar": 31
+      },
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_09a212af",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-11T12:18:16Z",
+      "side": 1,
+      "message": "So if we close the issue fast we\u0027ll be punished with another one :) Nasty. If it\u0027s easy, then maybe something like \"updated up to 21 days ago\" instead? If it\u0027s hard, some other way to shrink the search.",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_49ca4a6d",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-11T12:18:16Z",
+      "side": 1,
+      "message": "Too hard to read.",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_499fea5e",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-11T12:18:16Z",
+      "side": 1,
+      "message": "any string really...",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_299a766d",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-11T12:18:16Z",
+      "side": 1,
+      "message": "What does Zuul have to do with it? Any url will work.",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_e98d7e31",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-11T12:18:16Z",
+      "side": 1,
+      "message": "Caps and exclamation bring too much emotion to this, I think.",
+      "range": {
+        "startLine": 90,
+        "startChar": 38,
+        "endLine": 90,
+        "endChar": 47
+      },
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_a987860f",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-11T12:18:16Z",
+      "side": 1,
+      "message": "Hmm What is this?",
+      "range": {
+        "startLine": 94,
+        "startChar": 33,
+        "endLine": 94,
+        "endChar": 41
+      },
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_897e0217",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-11T12:18:16Z",
+      "side": 1,
+      "message": "Nice idea",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_49f12acd",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-11T12:18:16Z",
+      "side": 1,
+      "message": "Comments are great for explaining. Anything to explain here? If not, delete.",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_e9bfbecd",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-11T12:18:16Z",
+      "side": 1,
+      "message": "`api` isn\u0027t a clear name, how about `token`",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_2973964f",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-11T12:18:16Z",
+      "side": 1,
+      "message": "delivered",
+      "range": {
+        "startLine": 125,
+        "startChar": 28,
+        "endLine": 125,
+        "endChar": 35
+      },
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_e9921e4b",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-11T12:18:16Z",
+      "side": 1,
+      "message": "Tell which issue number (may be a surprise).",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f5c4f37_69906e4f",
         "filename": "roles/jira-handler/jira-handler/jira_handler.py",
         "patchSetId": 1
