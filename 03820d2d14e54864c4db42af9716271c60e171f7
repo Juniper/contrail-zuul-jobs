@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_a9e0a6fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-11T12:09:17Z",
+      "side": 1,
+      "message": "Write more elaborate commit messages. This does not say anything specific what the change actually introduces.\n\nSomething of the form:\n\nAdd new \u0027jira\u0027 ansible role\n\nThe role will be used to create new tickets\nafter a nightly run fails.",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_09bd72d7",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-11T12:09:17Z",
+      "side": 1,
+      "message": "Rename to build_number. `build` is a Zuul term, see inventory file from the next comment.",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_29ecb6f1",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-11T12:09:17Z",
+      "side": 1,
+      "message": "zuul.build is not the \u0027build number\u0027. It\u0027s a UUID zuul gives to a build. See inventory file here:http://logs.opencontrail.org/periodic-nightly/review.opencontrail.org/master/748/contrail-build-containers-rhel7-queens/zuul-info/inventory.yaml\n\nWhat you want to use is the \u0027build_number\u0027 var returned by contrail_packaging https://github.com/Juniper/contrail-zuul-jobs/blob/master/roles/contrail-common-libs2/tasks/main.yaml",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_29c5d65b",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-11T12:09:17Z",
+      "side": 1,
+      "message": "It can be anything.",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_c9b63afb",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-11T12:09:17Z",
+      "side": 1,
+      "message": "Dont think this is a dependency. Anything can go into \u0027details\u0027. We just choose to put it there.",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_69906e4f",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-11T12:09:17Z",
+      "side": 1,
+      "message": "+result[\u0027changed\u0027] \u003d True ?",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_098b321f",
+        "filename": "roles/jira-handler/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-11T12:09:17Z",
+      "side": 1,
+      "message": "remove this, secret handling is done differently in zuul\n\nSee: http://logs.opencontrail.org/static/infra-doc/admin/zuul.html#encryption\nand\nhttps://github.com/Juniper/contrail-project-config/blob/master/zuul.d/secrets.yaml\n\nThen, you add `secrets` to a zuul job definition.",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_69798e2d",
+        "filename": "roles/jira-handler/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-11T12:09:17Z",
+      "side": 1,
+      "message": "add a defaults file for all these params, we will be passing these values from outside, from a playbook",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_49780a29",
+        "filename": "roles/jira-handler/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-11T12:09:17Z",
+      "side": 1,
+      "message": "{{ }} are unneeded in `when:` statements afaik, also the pipe to `bool` is unneeded IMO",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
