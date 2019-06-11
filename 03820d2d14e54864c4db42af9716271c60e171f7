@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "9f5c4f37_89d162fe",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f5c4f37_09bd72d7",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f5c4f37_29ecb6f1",
         "filename": "roles/jira-handler/jira-handler/jira_handler.py",
         "patchSetId": 1
@@ -65,6 +83,24 @@
       "writtenOn": "2019-06-11T12:09:17Z",
       "side": 1,
       "message": "zuul.build is not the \u0027build number\u0027. It\u0027s a UUID zuul gives to a build. See inventory file here:http://logs.opencontrail.org/periodic-nightly/review.opencontrail.org/master/748/contrail-build-containers-rhel7-queens/zuul-info/inventory.yaml\n\nWhat you want to use is the \u0027build_number\u0027 var returned by contrail_packaging https://github.com/Juniper/contrail-zuul-jobs/blob/master/roles/contrail-common-libs2/tasks/main.yaml",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_49db6a1a",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f5c4f37_29ecb6f1",
       "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -88,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "9f5c4f37_29d6f6f2",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f5c4f37_29c5d65b",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f5c4f37_c9b63afb",
         "filename": "roles/jira-handler/jira-handler/jira_handler.py",
         "patchSetId": 1
@@ -99,6 +153,24 @@
       "writtenOn": "2019-06-11T12:09:17Z",
       "side": 1,
       "message": "Dont think this is a dependency. Anything can go into \u0027details\u0027. We just choose to put it there.",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_e909fe94",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f5c4f37_c9b63afb",
       "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -122,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "9f5c4f37_c9007a6a",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f5c4f37_89a3a29e",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f5c4f37_e9bb3ec1",
         "filename": "roles/jira-handler/jira-handler/jira_handler.py",
         "patchSetId": 1
@@ -133,6 +223,24 @@
       "writtenOn": "2019-06-11T12:18:16Z",
       "side": 1,
       "message": "No it\u0027s not simple. Simple is when you say \u0027build: 42, branch: master\u0027. This one is \"Example within Zuul CI system\". Other than this example, I don\u0027t see how this module is connected to Zuul CI :)",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_a9030673",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f5c4f37_e9bb3ec1",
       "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -162,6 +270,30 @@
     },
     {
       "key": {
+        "uuid": "9f5c4f37_89fa8272",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f5c4f37_29a83675",
+      "range": {
+        "startLine": 55,
+        "startChar": 30,
+        "endLine": 55,
+        "endChar": 31
+      },
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f5c4f37_09a212af",
         "filename": "roles/jira-handler/jira-handler/jira_handler.py",
         "patchSetId": 1
@@ -173,6 +305,24 @@
       "writtenOn": "2019-06-11T12:18:16Z",
       "side": 1,
       "message": "So if we close the issue fast we\u0027ll be punished with another one :) Nasty. If it\u0027s easy, then maybe something like \"updated up to 21 days ago\" instead? If it\u0027s hard, some other way to shrink the search.",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_29ef16b1",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f5c4f37_09a212af",
       "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -196,6 +346,24 @@
     },
     {
       "key": {
+        "uuid": "9f5c4f37_092c5200",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "seems better than for iteration and if inside",
+      "parentUuid": "9f5c4f37_49ca4a6d",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f5c4f37_499fea5e",
         "filename": "roles/jira-handler/jira-handler/jira_handler.py",
         "patchSetId": 1
@@ -207,6 +375,24 @@
       "writtenOn": "2019-06-11T12:18:16Z",
       "side": 1,
       "message": "any string really...",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_e92e9ef8",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "what\u0027s wrong with it?",
+      "parentUuid": "9f5c4f37_499fea5e",
       "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -230,6 +416,24 @@
     },
     {
       "key": {
+        "uuid": "9f5c4f37_c9351a48",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f5c4f37_299a766d",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f5c4f37_e98d7e31",
         "filename": "roles/jira-handler/jira-handler/jira_handler.py",
         "patchSetId": 1
@@ -241,6 +445,30 @@
       "writtenOn": "2019-06-11T12:18:16Z",
       "side": 1,
       "message": "Caps and exclamation bring too much emotion to this, I think.",
+      "range": {
+        "startLine": 90,
+        "startChar": 38,
+        "endLine": 90,
+        "endChar": 47
+      },
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_a938a63c",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f5c4f37_e98d7e31",
       "range": {
         "startLine": 90,
         "startChar": 38,
@@ -276,6 +504,30 @@
     },
     {
       "key": {
+        "uuid": "9f5c4f37_893f2224",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Ask Krzysztof, he need it",
+      "parentUuid": "9f5c4f37_a987860f",
+      "range": {
+        "startLine": 94,
+        "startChar": 33,
+        "endLine": 94,
+        "endChar": 41
+      },
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f5c4f37_897e0217",
         "filename": "roles/jira-handler/jira-handler/jira_handler.py",
         "patchSetId": 1
@@ -287,6 +539,24 @@
       "writtenOn": "2019-06-11T12:18:16Z",
       "side": 1,
       "message": "Nice idea",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_693aae34",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f5c4f37_897e0217",
       "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -310,6 +580,24 @@
     },
     {
       "key": {
+        "uuid": "9f5c4f37_49492ace",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Thenp pylink will lower my code rate :(",
+      "parentUuid": "9f5c4f37_49f12acd",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f5c4f37_e9bfbecd",
         "filename": "roles/jira-handler/jira-handler/jira_handler.py",
         "patchSetId": 1
@@ -321,6 +609,24 @@
       "writtenOn": "2019-06-11T12:18:16Z",
       "side": 1,
       "message": "`api` isn\u0027t a clear name, how about `token`",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_2944b6b6",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f5c4f37_e9bfbecd",
       "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -350,6 +656,30 @@
     },
     {
       "key": {
+        "uuid": "9f5c4f37_0915729c",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f5c4f37_2973964f",
+      "range": {
+        "startLine": 125,
+        "startChar": 28,
+        "endLine": 125,
+        "endChar": 35
+      },
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f5c4f37_e9921e4b",
         "filename": "roles/jira-handler/jira-handler/jira_handler.py",
         "patchSetId": 1
@@ -361,6 +691,24 @@
       "writtenOn": "2019-06-11T12:18:16Z",
       "side": 1,
       "message": "Tell which issue number (may be a surprise).",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_e917bea2",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Too hard to do it. Need to rework function",
+      "parentUuid": "9f5c4f37_e9921e4b",
       "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
@@ -384,6 +732,24 @@
     },
     {
       "key": {
+        "uuid": "9f5c4f37_c90e3a8c",
+        "filename": "roles/jira-handler/jira-handler/jira_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f5c4f37_69906e4f",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f5c4f37_098b321f",
         "filename": "roles/jira-handler/tasks/main.yaml",
         "patchSetId": 1
@@ -401,6 +767,24 @@
     },
     {
       "key": {
+        "uuid": "9f5c4f37_e97c5eec",
+        "filename": "roles/jira-handler/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f5c4f37_098b321f",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f5c4f37_69798e2d",
         "filename": "roles/jira-handler/tasks/main.yaml",
         "patchSetId": 1
@@ -412,6 +796,24 @@
       "writtenOn": "2019-06-11T12:09:17Z",
       "side": 1,
       "message": "add a defaults file for all these params, we will be passing these values from outside, from a playbook",
+      "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_49adaa86",
+        "filename": "roles/jira-handler/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 804
+      },
+      "writtenOn": "2019-06-11T13:32:57Z",
+      "side": 1,
+      "message": "can you explain what us defaults file for this params?",
+      "parentUuid": "9f5c4f37_69798e2d",
       "revId": "03820d2d14e54864c4db42af9716271c60e171f7",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": false
