@@ -1,0 +1,31 @@
+- include_vars:
+    file: oauth.yaml
+
+- name: Set zuul-log-path fact
+  include_role:
+    name: set-zuul-log-path-fact
+
+- name: copy requirements.txt to temp folder
+  copy:
+    src: "requirements.txt"
+    dest: "/tmp/requirements.txt"
+
+- name: install pip dependencies
+  pip:
+    requirements: "/tmp/requirements.txt"
+    executable: pip3
+  become: True
+
+- name: Create jira issue
+  jira_handler:
+    username: "{{ username }}"
+    password: "{{ password }}"
+    build: "{{ zuul.build }}"
+    branch: "{{ zuul.branch }}"
+    details: "{{ zuul_log_path }}"
+  register: jira_std
+  when: not {{ zuul_success }}| bool
+  no_log: true
+
+- debug:
+    msg: "{{ jira_std }}"
