@@ -3,3 +3,4 @@
   roles:
     - yum-repos-prepare
     - install-pip-virtualenv
+    - disable-os-unattended-upgrades
