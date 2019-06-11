@@ -1,0 +1,11 @@
+- name: disable unattended upgrades on Debian systems
+  command: cp /usr/share/unattended-upgrades/20auto-upgrades-disabled  /etc/apt/apt.conf.d/
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+- name: debug ls
+  command: ls -l /etc/apt/apt.conf.d/
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+- name: debug contents
+  command: cat /etc/apt/apt.conf.d/*
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
