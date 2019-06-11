@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_291716f0",
+        "filename": "zuul.d/base-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-11T11:44:41Z",
+      "side": 1,
+      "message": "For 5.0 too?",
+      "revId": "7c0d0206aab2f971ec12e0bb2fd894bbd38f6471",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
