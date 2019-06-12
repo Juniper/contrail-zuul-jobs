@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_9f2510ae",
+        "filename": "roles/disable-os-unattended-upgrades/tasks/main.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-12T12:10:35Z",
+      "side": 1,
+      "message": "https://docs.ansible.com/ansible/latest/modules/copy_module.html\n\nuse `remote_src`",
+      "revId": "690fa9bd8d70e966881fb21f98b925d493d374c6",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
