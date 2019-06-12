@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_3fb9842d",
+        "filename": "roles/jira-handler/library/jira_handler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-12T13:48:40Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 52,
+        "startChar": 15,
+        "endLine": 52,
+        "endChar": 25
+      },
+      "revId": "a19a3de42fc54118da4c38a02cbb3afabd001305",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_5faaf8d1",
+        "filename": "roles/jira-handler/tasks/main.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-12T13:48:40Z",
+      "side": 1,
+      "message": "Nice idea to work around no_log. May be improved if you use `var:` instead of `msg:`.",
+      "revId": "a19a3de42fc54118da4c38a02cbb3afabd001305",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
