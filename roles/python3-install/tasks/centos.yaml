@@ -1,0 +1,55 @@
+---
+- name: requirements for Python install
+  block:
+    - name: install IUS repo
+      become: true
+      yum:
+        name: "https://centos{{ ansible_distribution_major_version }}.iuscommunity.org/ius-release.rpm"
+        state: present
+        update_cache: true
+
+    - name: install system packages
+      become: true
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - python36u
+        - python36u-devel
+        - python36u-pip
+
+    - name: install pip
+      become: true
+      command: "{{ python3_command }} -m ensurepip"
+
+    - name: find installed executable
+      shell: "which {{ python3_command }}"
+      register: python3_which
+
+    - name: link executable to generic name
+      become: true
+      file:
+        src: "{{ python3_which.stdout }}"
+        dest: "{{ python3_which.stdout|dirname }}/python3"
+        state: link
+  when: python3_pyenv == None
+
+
+- name: requirements for pyenv install
+  block:
+    - name: install system packages for pyenv
+      become: true
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - git
+        - zlib-devel
+        - openssl-devel
+        - openssl-static
+        - sqlite-devel
+        - bzip2-devel
+        - bzip2-libs
+        - readline-devel
+        - readline-static
+  when: python3_pyenv != None
