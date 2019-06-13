@@ -1,0 +1,9 @@
+---
+
+- name: disable unattended upgrades on Debian systems
+  copy:
+      src: /usr/share/unattended-upgrades/20auto-upgrades-disabled
+      dest: /etc/apt/apt.conf.d/
+      remote_src: true
+  become: true
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
