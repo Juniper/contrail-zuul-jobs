@@ -1,0 +1,20 @@
+---
+- name: OS-specific tasks
+  include_tasks: "{{ ansible_distribution|lower }}.yaml"
+
+- name: Download pip installation script
+  get_url:
+    url: https://bootstrap.pypa.io/3.3/get-pip.py
+    dest: '{{ ansible_env.HOME }}/get-pip.py'
+    mode: 0755
+
+- name: Install pip
+  command: 'python3 {{ ansible_env.HOME }}/get-pip.py '
+
+- name: install/upgrade utilities
+  become: true
+  command: "python3 -m pip install --upgrade {{ item }}"
+  with_items:
+    - pip
+    - pipenv
+    - virtualenv
