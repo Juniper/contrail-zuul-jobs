@@ -1,0 +1,9 @@
+---
+- name: install packages
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  with_items:
+    - epel-release
+    - python36
