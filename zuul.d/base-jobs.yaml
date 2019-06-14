@@ -238,6 +238,12 @@
     post-run: playbooks/contrail-vnc-unittest-tntestr-base/post.yaml
 
 - job:
+    name: contrail-vrouter-ut-base
+    pre-run: playbooks/contrail-vrouter-ut-base/pre.yaml
+    run: playbooks/contrail-vrouter-ut-base/main.yaml
+    post-run: playbooks/contrail-vrouter-ut-base/post.yaml
+
+- job:
     name: contrail-base-untrusted
     parent: contrail-base
     description: |
