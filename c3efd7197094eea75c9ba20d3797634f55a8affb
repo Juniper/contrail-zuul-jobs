@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_6bddfe6e",
+        "filename": "roles/python3-install/tasks/centos.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-14T12:26:41Z",
+      "side": 1,
+      "message": "Is it possible to match it more closely with Ubuntu? It\u0027s bad to force 3.6 here, when for Ubuntu the same role installs 3.7 (or something else in future).",
+      "revId": "c3efd7197094eea75c9ba20d3797634f55a8affb",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_2be70643",
+        "filename": "roles/python3-install/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-14T12:26:41Z",
+      "side": 1,
+      "message": "needed?",
+      "revId": "c3efd7197094eea75c9ba20d3797634f55a8affb",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_0be20230",
+        "filename": "roles/python3-install/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-14T12:26:41Z",
+      "side": 1,
+      "message": "needed?",
+      "revId": "c3efd7197094eea75c9ba20d3797634f55a8affb",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_8bcf12af",
+        "filename": "roles/python3-install/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-14T12:26:41Z",
+      "side": 1,
+      "message": "Maybe better to run one command without `with_items` looping? And I would upgrade what the manual suggests:  https://packaging.python.org/tutorials/installing-packages/#id14",
+      "revId": "c3efd7197094eea75c9ba20d3797634f55a8affb",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
