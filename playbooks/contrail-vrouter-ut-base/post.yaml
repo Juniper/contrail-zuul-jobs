@@ -1,0 +1,7 @@
+---
+- hosts: all
+  roles:
+    - fetch-logs-vrouter-ut
+    - gather-ut-fails
+    - contrail-upload-dmesg
+
