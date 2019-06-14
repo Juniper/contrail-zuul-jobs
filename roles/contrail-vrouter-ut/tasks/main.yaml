@@ -1,0 +1,45 @@
+---
+
+- name: read variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - '{{ ansible_os_family|lower }}.yaml'
+    - default.yaml
+
+# Execute OS-specific tasks
+#- name: run OS specific tasks
+#  include: '{{ ansible_os_family|lower }}.yaml'
+
+- name: set variables
+  set_fact:
+    testrunner_dir: '{{ ansible_env.HOME }}/src/review.opencontrail.org/tungstenfabric/tungsten-test-runner'
+    venv_dir: '{{ ansible_env.HOME }}/testrunner_venv'
+    unittest_target_file: 'unittest_list.txt'
+    tntestr_output: '{{ ansible_env.HOME }}/tntestr_output.txt'
+
+# Some tests (like test.test_flow.FlowQuerierTest.test_1_noarg_query) expect
+# PST timezone, and fail otherwise.
+- name: change the timezone to America/Los_Angeles
+  timezone:
+    name: 'America/Los_Angeles'
+  become: true
+
+- name: copy repo file
+  copy:
+    src: '{{ item }}'
+    dest: '.'
+    mode: '0755'
+  with_items:
+    - repo
+
+- name: run a full Contrail vrouter build test
+  command: 'scons vrouter-ut'
+  args:
+    chdir: '{{ src_dir }}'
+  environment:
+    BUILD_ONLY: 1
+    CONTRAIL_COMPILE_WITHOUT_SYMBOLS: yes
+    LC_ALL: 'C'
+    ZUUL_CHANGES: '{{ zuul.ref }}'
+  become: true
+

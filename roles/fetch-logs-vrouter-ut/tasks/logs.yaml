@@ -1,0 +1,41 @@
+---
+
+- name: create directory hierarchy for logs
+  file:
+    path: '{{ results_dir }}/{{ item.log_path | dirname }}'
+    state: 'directory'
+    owner: 'zuul'
+    mode: 0755
+  with_items: '{{ matched_targets }}'
+
+- name: find the tests log file
+  find:
+    paths: '{{ packaging.target_dir }}/{{ (item.log_path | dirname).split("logs")[1] }}'
+    pattern: '{{ item.log_path.split(".log")[0] | basename }}.*.log'
+    file_type: file
+  become: true
+  register: log_file
+  with_items: '{{ matched_targets }}'
+
+- name: gzip log files
+  archive:
+    path: '{{ item.1.path }}'
+    remove: false
+  become: true
+  with_subelements:
+    - '{{ log_file.results }}'
+    - 'files'
+  when: log_file.results | length > 0
+
+- name: copy gziped logs
+  copy:
+    src: '{{ item.1.path }}.gz'
+    dest: '{{ results_dir }}/{{ item.0.item.log_path | dirname }}/'
+    remote_src: true
+    owner: 'zuul'
+    mode: 0644
+  with_subelements:
+    - '{{ log_file.results }}'
+    - 'files'
+  when: log_file.results | length > 0
+
