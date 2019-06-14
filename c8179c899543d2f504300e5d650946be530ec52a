@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_f0f0bb69",
+        "filename": "roles/contrail-ansible-deployer/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-14T07:30:13Z",
+      "side": 1,
+      "message": "You can also use https://docs.ansible.com/ansible/2.6/modules/docker_module.html for this.",
+      "revId": "c8179c899543d2f504300e5d650946be530ec52a",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
