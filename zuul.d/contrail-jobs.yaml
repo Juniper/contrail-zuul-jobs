@@ -25,6 +25,13 @@
       - README.md
 
 - job:
+    name: contrail-vrouter-ut-centos7
+    parent: contrail-vnc-base
+    run: playbooks/contrail-vrouter-ut-base/main.yaml
+    nodeset: builder-centos-7
+    voting: False
+
+- job:
     name: contrail-sanity-centos7-kolla-ocata
     parent: contrail-sanity-kolla-base
     required-projects:
