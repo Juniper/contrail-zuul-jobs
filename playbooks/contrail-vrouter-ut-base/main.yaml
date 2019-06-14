@@ -1,0 +1,6 @@
+---
+- hosts: all
+  roles:
+    - zuul-include-vars
+    - contrail-vrouter-ut
+
