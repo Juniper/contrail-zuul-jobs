@@ -1,0 +1,64 @@
+---
+
+- name: set variables
+  set_fact:
+    unittest_target_file: '{{ ansible_env.HOME }}/unittest_list.txt'
+    results_dir: '{{ ansible_env.HOME }}/unittest_output'
+
+- name: check that the Scons describe tests file exists
+  stat:
+    path: '{{ unittest_target_file }}'
+  register: unittest_stat
+
+- name: fetch unit test's results
+  when: unittest_stat.stat.exists
+  block:
+    - name: create directory for unittest results
+      file:
+        path: '{{ results_dir }}'
+        state: 'directory'
+        owner: 'zuul'
+        mode: 0755
+
+    - name: move Scons output to UT results dir
+      copy:
+        src: '{{ unittest_target_file }}'
+        dest: '{{ results_dir }}/scons_describe_tests.txt'
+        remote_src: true
+        owner: 'zuul'
+        mode: 0644
+
+    - name: create unittest submodules list
+      convert_target_list:
+        description_file: '{{ unittest_target_file }}'
+        target_file: '{{ results_dir }}/unittest_targets.json'
+        strip_prefix: '{{ packaging.target_dir }}'
+
+    - name: load content of UT target file
+      slurp:
+        src: '{{ results_dir }}/unittest_targets.json'
+      register: unittest_file
+
+    - name: set targets in variable
+      set_fact:
+        unittest_targets: '{{ unittest_file.content | b64decode | from_json }}'
+
+    - name: remove dangling nodes from UT target list
+      set_fact:
+        matched_targets: '{{ matched_targets | default([]) + [ item ] }}'
+      with_items: '{{ unittest_targets }}'
+      when: item.matched | bool
+
+    - name: execute tasks for fetching logs to log server
+      include: logs.yaml
+
+    - name: execute tasks for fetching reports to log server
+      include: xmls.yaml
+
+  always:
+    - name: fetch unittests output to executor
+      synchronize:
+        src: '{{ results_dir }}'
+        dest: '{{ zuul.executor.log_root }}/'
+        mode: 'pull'
+

@@ -1,0 +1,7 @@
+---
+- hosts: all
+  roles:
+    - zuul-include-vars
+    - repo-sandbox-prepare2
+    - contrail-vrouter-ut
+
