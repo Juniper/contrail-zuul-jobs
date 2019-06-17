@@ -1,0 +1,4 @@
+---
+HOME: "{{ ansible_env.HOME }}"
+CONTRAIL: "{{ HOME }}/contrail"
+BRANCH: "master"
