@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_77cde064",
+        "filename": "playbooks/contrail-vcenter-fabric-manager/pre.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-17T13:12:56Z",
+      "side": 1,
+      "message": "Just use this job as a parent for your new one: https://github.com/Juniper/contrail-project-config/blob/master/zuul.d/jobs.yaml#L68\n\nIt has prepare-workspace in it\u0027s pre playbook.",
+      "revId": "179a61ef93b16e4c4a7b200c53042a67eb2f3bd4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_97b4d4d2",
+        "filename": "roles/python-black-lint/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-17T13:12:56Z",
+      "side": 1,
+      "message": "not needed, defaults are loaded by default",
+      "revId": "179a61ef93b16e4c4a7b200c53042a67eb2f3bd4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_17a7c4a9",
+        "filename": "roles/python-black-lint/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-17T13:12:56Z",
+      "side": 1,
+      "message": "The below pip task will create this venv, so no need for this task.",
+      "revId": "179a61ef93b16e4c4a7b200c53042a67eb2f3bd4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_f7b9d0cb",
+        "filename": "roles/python-black-lint/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-17T13:12:56Z",
+      "side": 1,
+      "message": "quote value",
+      "revId": "179a61ef93b16e4c4a7b200c53042a67eb2f3bd4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_d7beccb2",
+        "filename": "roles/python-black-lint/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 593
+      },
+      "writtenOn": "2019-06-17T13:12:56Z",
+      "side": 1,
+      "message": "missing quotations",
+      "revId": "179a61ef93b16e4c4a7b200c53042a67eb2f3bd4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
