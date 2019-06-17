@@ -1,0 +1,5 @@
+---
+- hosts: builder
+  roles:
+    - install-contrail-api-client
+    - python-black-lint
