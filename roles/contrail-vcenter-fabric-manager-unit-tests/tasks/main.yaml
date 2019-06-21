@@ -1,0 +1,10 @@
+---
+- name: install requirements
+  pip:
+    requirements: "{{ zuul_project_dir }}/requirements_dev.txt"
+    virtualenv: "{{ zuul_project_dir }}/venv"
+- name: run unit tests
+  command: "pytest {{ zuul_project_dir }}/tests/unit"
+  register: result
+  failed_when: result.rc =! 0
+
