@@ -1,6 +1,6 @@
 ---
 - name: OS-specific tasks
-  include_tasks: "{{ ansible_distribution|lower }}.yaml"
+  import_playbook: "{{ ansible_distribution|lower }}.yaml"
 
 - name: Download pip installation script
   get_url:
