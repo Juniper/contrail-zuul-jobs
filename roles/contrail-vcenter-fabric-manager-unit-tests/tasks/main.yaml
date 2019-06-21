@@ -1,0 +1,16 @@
+---
+- name: Manually create the initial virtualenv
+  command: "virtualenv '{{ ansible_env.HOME }}/{{ zuul_project_dir }}/venv' -p python2 creates='{{ ansible_env.HOME }}/{{ zuul_project_dir }}/venv'"
+
+- name: install requirements
+  pip:
+    requirements: "{{ ansible_env.HOME }}/{{ zuul_project_dir }}/requirements_dev.txt"
+    executable: "pip2"
+    virtualenv: "{{ ansible_env.HOME }}/{{ zuul_project_dir }}/venv"
+    virtualenv_python: python2
+  become: true
+
+- name: run unit tests
+  command: "python -m pytest {{ ansible_env.HOME }}/{{ zuul_project_dir }}/tests/unit"
+  register: result
+  failed_when: result.rc  != 0
