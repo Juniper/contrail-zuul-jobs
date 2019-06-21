@@ -1,0 +1,10 @@
+---
+- name: install black inside virtenv
+  pip:
+    name: "black"
+  become: true
+
+- name: run black linter on project
+  command: "black {{ zuul_project_dir }}/cvfm {{ zuul_project_dir }}/tests --check"
+  register: linter_result
+  failed_when: linter_result.rc != 0
