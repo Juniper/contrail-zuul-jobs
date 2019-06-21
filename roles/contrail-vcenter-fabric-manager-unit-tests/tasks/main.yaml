@@ -1,0 +1,22 @@
+---
+- name: fix pytest install error
+  command: 'pip2 install --upgrade pip'
+  become: true
+
+- name: install requirements
+  pip:
+    name: "six==1.10.0"
+    executable: "pip2"
+  become: true
+
+- name: install requirements
+  pip:
+    requirements: "{{ ansible_env.HOME }}/{{ zuul_project_dir }}/requirements_dev.txt"
+    extra_args: "--ignore-installed PyYAML"
+    executable: "pip2"
+  become: true
+
+- name: run unit tests
+  command: "python -m pytest {{ ansible_env.HOME }}/{{ zuul_project_dir }}/tests/unit"
+  register: result
+  failed_when: result.rc  != 0
