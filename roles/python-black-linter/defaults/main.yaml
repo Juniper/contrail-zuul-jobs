@@ -1,0 +1,2 @@
+---
+zuul_project_dir: '{{ zuul.projects | selectattr("short_name", "equalto", "contrail-vcenter-fabric-manager") | map(attribute="src_dir") | list | first }}'
