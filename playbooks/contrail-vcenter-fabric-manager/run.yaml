@@ -1,0 +1,7 @@
+---
+- hosts: builder
+  roles:
+    - install-python3
+    - install-contrail-api-client
+    - python-black-linter
+    - contrail-vcenter-fabric-manager-unit-tests
