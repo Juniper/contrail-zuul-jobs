@@ -1,0 +1,17 @@
+---
+- name: list files
+  command: "ls -la"
+  args:
+    chdir: "{{ zuul_project_dir }}"
+
+- name: install requirements
+  pip:
+    requirements: "{{ zuul_project_dir }}/requirements_dev.txt"
+    executable: "pip3.6"
+  become: true
+
+- name: run unit tests
+  command: "pytest {{ zuul_project_dir }}/tests/unit"
+  register: result
+  failed_when: result.rc =! 0
+
