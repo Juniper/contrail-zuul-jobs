@@ -1,18 +1,19 @@
 ---
-- include_vars:
-    file: main.yaml
-
 - name: prepare virtual env
   shell: virtualenv "{{ zuul_project_dir }}/venv"
     creates="{{ zuul_project_dir }}/venv/bin/activate"
 
+- name: install dependencies
+  pip:
+    requirements: "{{ zuul_project_dir }}/requirements.txt"
+    virtualenv: "{{ zuul_project_dir }}/venv"
+
 - name: install black inside virtenv
   pip:
-    name: black
-    virtualenv_site_packages: yes
-    virtualenv: /{{ zuul_project_dir }}/venv
+    name: "black"
+    virtualenv: "{{ zuul_project_dir }}/venv"
 
 - name: run black linter on project
   shell: "black {{ zuul_project_dir }}/cvfm {{ zuul_project_dir }}/tests --check"
   register: linter_result
-  failed_when: "1 in linter_result.stdout"
+  failed_when: linter_result.rc == 1

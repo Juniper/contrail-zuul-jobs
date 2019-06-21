@@ -1,0 +1,88 @@
+---
+- name: create contrail dir
+  file:
+    path: "{{ CONTRAIL }}"
+    state: directory
+
+- name: install android repo
+  shell: curl -s https://storage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo |  chmod a+x /usr/bin/repo
+
+- name: Inject repositories that we might need
+  copy:
+    src: "{{ role_path }}/files/tcp.repo"
+    dest: /etc/yum.repos.d
+
+
+- name: Install basic packages
+  yum:
+    name:
+      - epel-release
+      - createrepo
+      - gcc
+      - gdb
+      - git
+      - kernel
+      - make
+      - python-devel
+      - python-pip
+      - python36
+      - rpm-build
+      - vim
+      - wget
+      - yum-utils
+    state: present
+
+- name: Download pip installation script
+  get_url:
+    url: https://bootstrap.pypa.io/3.3/get-pip.py
+    dest: '{{ ansible_env.HOME }}/get-pip.py'
+    mode: 0755
+
+- name: Install pip for python3
+  command: 'python3 {{ ansible_env.HOME }}/get-pip.py '
+
+- name: Initializing contrail repo
+  shell:
+    cmd: repo init --no-clone-bundle -q -u https://github.com/Juniper/contrail-vnc -b  {{ BRANCH }}
+    chdir: "{{ CONTRAIL }}"
+
+- name: Initializing third-party repo
+  shell:
+    cmd: repo sync --no-clone-bundle -q contrail-packages contrail-third-party
+    chdir: "{{ CONTRAIL }}"
+
+- name: build something
+  shell: make -f {{ CONTRAIL }}/tools/packages/Makefile dep
+
+- name: run python script
+  shell: "python3 {{ CONTRAIL }}/third_party/fetch_packages.py"
+
+- name: upgrade pip packages
+  pip:
+    name:
+      - "tox"
+      - "geventhttpclient"
+
+- name: export contrail varaible
+  shell: "export CONTRAIL={{ CONTRAIL }} >> {{ HOME }}/.bashrc"
+
+- name: export LD_LIBRARY_PATH varailbe
+  shell: "export LD_LIBRARY_PATH={{ CONTRAIL }}/build/lib >> {{ HOME }}/.bashrc"
+
+- name: download contrail-api-client repo
+  git:
+    repo: "https://github.com/Juniper/contrail-api-client"
+    dest: "{{ CONTRAIL }}/contrail-api-client"
+
+- name: build contrail-api-client
+  shell:
+    cmd: scons
+    chdir: "{{ CONTRAIL }}/contrail-api-client"
+
+- name: install contrail-api-client
+  shell: "python3 -m pip install {{ CONTRAIL }}/contrail-api-client/build/debug/api-lib/dist/contrail-api-client-*.tar.gz"
+
+- name: check contrail-api-client installation
+  shell: 'python3 -c "import vnc_api"'
+  register: import
+  failed_when: import.rc != 0
