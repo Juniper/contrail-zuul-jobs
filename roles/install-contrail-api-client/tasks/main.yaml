@@ -73,7 +73,6 @@
   git:
     repo: "https://github.com/Juniper/contrail-api-client"
     dest: "{{ CONTRAIL }}/contrail-api-client"
-    version: latest
 
 - name: build contrail-api-client
   command: scons
