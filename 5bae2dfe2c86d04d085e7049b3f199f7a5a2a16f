@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_b9cea2b1",
+        "filename": "roles/contrail-vcenter-fabric-manager-unit-tests/tasks/main.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-25T11:34:35Z",
+      "side": 1,
+      "message": "Is venv required? This step ignores venv.",
+      "revId": "5bae2dfe2c86d04d085e7049b3f199f7a5a2a16f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_79c4aa91",
+        "filename": "roles/install-contrail-api-client/files/tcp.repo",
+        "patchSetId": 17
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-25T11:34:35Z",
+      "side": 1,
+      "message": "tpc is correct, but the file is called tcp",
+      "revId": "5bae2dfe2c86d04d085e7049b3f199f7a5a2a16f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_59bd6600",
+        "filename": "roles/install-contrail-api-client/tasks/main.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-25T11:34:35Z",
+      "side": 1,
+      "message": "tpc",
+      "range": {
+        "startLine": 19,
+        "startChar": 32,
+        "endLine": 19,
+        "endChar": 35
+      },
+      "revId": "5bae2dfe2c86d04d085e7049b3f199f7a5a2a16f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_d95716ca",
+        "filename": "roles/install-contrail-api-client/tasks/main.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-25T11:34:35Z",
+      "side": 1,
+      "message": "Look at http://logs.opencontrail.org/85/51985/2/check/contrail-vnc-build-package-centos74/bd34861/ara/\n\nReuse as much of it as possible, it avoids some nasty bugs.\n\nAlso, take a look at paths inside ssh://olek@review.opencontrail.org:29418/Juniper/contrail-vnc   \ninside default.xml",
+      "revId": "5bae2dfe2c86d04d085e7049b3f199f7a5a2a16f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_596b2684",
+        "filename": "roles/python-black-linter/defaults/main.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-25T11:34:35Z",
+      "side": 1,
+      "message": "Yup, exactly. It\u0027s a good zuulish way to get your code without any github/repo complexity.\n\nIf it\u0027s a single line, wouldn\u0027t it be slightly more readable to place it above a block of `tasks:`, I saw it somewhere like this:\n\ntasks:\n   - name: my block\n     vars:\n       x\n     block:\n     - name: my task\n       pip: x",
+      "revId": "5bae2dfe2c86d04d085e7049b3f199f7a5a2a16f",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
