@@ -11,5 +11,6 @@ repos_add:
     - { name: updates-mirror, repo: centos74-updates, description: CentOS updates mirror }
     - { name: extras-mirror, repo: centos74-extras, description: CentOS extras mirror }
     - { name: base-mirror, repo: centos74, description: CentOS base mirror }
+    - { name: static-mirror, repo: static-rpms, description: CentOS static mirror }
 use_epel: yes
 
