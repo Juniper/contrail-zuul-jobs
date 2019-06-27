@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f5c4f37_45ee99b4",
+        "filename": "playbooks/contrail-vcenter-fabric-manager/pre.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-27T09:36:34Z",
+      "side": 1,
+      "message": "Elegant :)",
+      "revId": "9bfc31fb05d6559d80d20ee7ebb410c370ee74e5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_0532e15f",
+        "filename": "roles/install-contrail-api-client/tasks/main.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-27T09:36:34Z",
+      "side": 1,
+      "message": "I don\u0027t think you need it now?",
+      "revId": "9bfc31fb05d6559d80d20ee7ebb410c370ee74e5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f5c4f37_65f19d95",
+        "filename": "roles/python-black-linter/tasks/main.yaml",
+        "patchSetId": 19
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-06-27T09:36:34Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 36
+      },
+      "revId": "9bfc31fb05d6559d80d20ee7ebb410c370ee74e5",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
