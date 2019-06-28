@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f4b6375_246fb2c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 22
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 645
+      },
+      "writtenOn": "2019-06-28T11:05:03Z",
+      "side": 1,
+      "message": "I think, it should be project name: CVFM",
+      "range": {
+        "startLine": 9,
+        "startChar": 25,
+        "endLine": 9,
+        "endChar": 29
+      },
+      "revId": "e62d2ca2eeea9d4cf30acde9933ef2ac5b04e7c6",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
