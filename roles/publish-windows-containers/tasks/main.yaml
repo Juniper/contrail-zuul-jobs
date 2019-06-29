@@ -28,6 +28,16 @@
     - puller
     - pusher
 
+
+
+
+
+
+ 
+
+
+
+
 - name: Create directories for containers layers
   file:
     path: "{{ ansible_env.HOME }}/{{ item }}"
