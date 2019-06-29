@@ -6,6 +6,8 @@
     mode: 0755
   register: installer
 
+
+
 - name: Install packages
   package:
     name: '{{ item }}'
