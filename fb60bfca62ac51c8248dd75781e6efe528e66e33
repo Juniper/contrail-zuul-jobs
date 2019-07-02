@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a44da65b_5d21ac91",
+        "filename": "roles/contrail-vcenter-fabric-manager-unit-tests/tasks/main.yaml",
+        "patchSetId": 25
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 645
+      },
+      "writtenOn": "2019-07-02T10:57:20Z",
+      "side": 1,
+      "message": "!\u003d",
+      "range": {
+        "startLine": 9,
+        "startChar": 25,
+        "endLine": 9,
+        "endChar": 27
+      },
+      "revId": "fb60bfca62ac51c8248dd75781e6efe528e66e33",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
