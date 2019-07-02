@@ -7,3 +7,9 @@
     name: 'tox=={{ tox_version }}'
   become: true
   when: upgrade_tox
+
+- name: upgrade setuptools
+  pip:
+    name: 'setuptools==40.0'
+  become: true
+  when: "{{ upgrade_setuptools | default('false') | bool }}"
