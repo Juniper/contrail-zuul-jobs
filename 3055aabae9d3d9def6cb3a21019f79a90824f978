@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c2b0847_087ac869",
+        "filename": "roles/install-contrail-api-client/files/tpc.repo",
+        "patchSetId": 34
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2019-07-03T09:08:43Z",
+      "side": 1,
+      "message": "is it possible to not redistribute this information? it\u0027s very hard to catch such places while moving all of this to TF CI",
+      "revId": "3055aabae9d3d9def6cb3a21019f79a90824f978",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de6def41_85c2a05a",
+        "filename": "roles/install-contrail-api-client/tasks/main.yaml",
+        "patchSetId": 34
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2019-07-03T09:08:43Z",
+      "side": 1,
+      "message": "i see that installation of pip is already implemented in other roles - it it possible to use them?",
+      "revId": "3055aabae9d3d9def6cb3a21019f79a90824f978",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    }
+  ]
+}
