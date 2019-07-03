@@ -46,6 +46,11 @@
   with_items: "{{ container_name }}"
   register: layers
 
+
+
+
+
+
 - name: Get list of digest
   shell: "for i in `ls {{ ansible_env.HOME }}/{{ item }}/*.sha256`; do echo -n --digest $i ''; done"
   with_items: "{{ container_name }}"
