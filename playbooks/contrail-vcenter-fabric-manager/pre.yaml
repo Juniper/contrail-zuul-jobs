@@ -3,4 +3,3 @@
   roles:
     - zuul-include-vars
     - prepare-workspace
-    - repo-sandbox-prepare
