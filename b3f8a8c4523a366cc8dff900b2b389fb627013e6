@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be372f7d_6244625e",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-07-04T13:31:05Z",
+      "side": 1,
+      "message": "...vcenter-fabric-manager-unittest, similarly to other names\n\nNow, use this job via Depends-On inside 52100. Try to have only projects.yaml inside 52100.",
+      "revId": "b3f8a8c4523a366cc8dff900b2b389fb627013e6",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
