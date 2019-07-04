@@ -353,3 +353,12 @@
       jenkins_job: winci-server-2016-prod-zuulv3
       build_number: 0
       test_level: All
+
+- job:
+    name: contrail-vcenter-fabric-manager-linters
+    parent: contrail-vnc-base
+    description: |
+      Run linters and unit tests on contrail-vcenter-fabric-manager
+    pre-run: playbooks/contrail-vcenter-fabric-manager/pre.yaml
+    run: playbooks/contrail-vcenter-fabric-manager/run.yaml
+    nodeset: builder-centos-7
