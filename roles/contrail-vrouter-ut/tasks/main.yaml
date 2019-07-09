@@ -1,0 +1,56 @@
+---
+
+- name: set variables
+  set_fact:
+    testrunner_dir: '{{ ansible_env.HOME }}/src/review.opencontrail.org/tungstenfabric/tungsten-test-runner'
+    venv_dir: '{{ ansible_env.HOME }}/testrunner_venv'
+    unittest_target_file: 'unittest_list.txt'
+    tntestr_output: '{{ ansible_env.HOME }}/tntestr_output.txt'
+
+- name: change the timezone to America/Los_Angeles
+  timezone:
+    name: 'America/Los_Angeles'
+  become: true
+
+- name: copy repo file
+  copy:
+    src: '{{ item }}'
+    dest: '.'
+    mode: '0755'
+  with_items:
+    - repo
+
+- name: install basic packages
+  yum:
+    name:
+      - flex
+      - bison
+      - numactl-devel
+      - gcc-c++
+      - python36
+      - boost-devel
+      - userspace-rcu
+      - userspace-rcu-devel
+      - libpcap
+      - libpcap-devel
+      - libnl3
+      - libnl3-devel
+      - libxml2-devel
+    state: present
+  become: true
+
+- name: run fetch_packages script
+  command: "python3 {{ packaging.target_dir }}/third_party/fetch_packages.py"
+  become: true
+
+- name: run a full Contrail vrouter build test
+  command: 'scons vrouter-ut'
+  args:
+    chdir: '{{ packaging.target_dir }}'
+  environment:
+    BUILD_ONLY: 1
+    CONTRAIL_COMPILE_WITHOUT_SYMBOLS: yes
+    LC_ALL: 'C'
+    ZUUL_CHANGES: '{{ zuul.ref }}'
+  become: true
+
