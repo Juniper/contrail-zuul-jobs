@@ -1,6 +1,6 @@
 ---
 - name: startup
-  command: ./startup.sh -i "{{ image_name }}" -t "{{ image_tag }}"
+  shell: ./startup.sh -i "{{ image_name }}" -t "{{ image_tag }}"
   args:
     chdir: "{{ workdir }}"
   become: true
