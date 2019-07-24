@@ -39,7 +39,7 @@ def main():
     except ImportError as e:
         module.fail_json(msg="Couldn't import docker package: %s" % (str(e),), **result)
 
-    client = docker.from_env()
+    client = docker.from_env(timeout=300)
 
     images = []
     for i in params['images']:
