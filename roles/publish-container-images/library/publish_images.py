@@ -40,6 +40,7 @@ def main():
         module.fail_json(msg="Couldn't import docker package: %s" % (str(e),), **result)
 
     client = docker.from_env()
+    client.timeout = 300
 
     images = []
     for i in params['images']:
