@@ -44,7 +44,10 @@
   become: true
 
 - name: run a full Contrail vrouter build test
-  command: 'scons vrouter-ut'
+  command: "scons {{ item }}"
+  with_items:
+    - vrouter
+    - vrouter-py-ut
   args:
     chdir: '{{ packaging.target_dir }}'
   environment:
