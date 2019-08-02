@@ -292,6 +292,11 @@
     nodeset: builder-centos-7
 
 - job:
+    name: contrail-build-containers-centos7
+    parent: contrail-build-containers-base
+    nodeset: builder-centos-7
+
+- job:
     name: contrail-build-containers-centos7-newton
     parent: contrail-build-containers-base
     nodeset: builder-centos-7
@@ -318,6 +323,11 @@
     nodeset: builder-rhel-7
     vars:
       openstack_version: queens
+
+- job:
+    name: contrail-build-containers-rhel7
+    parent: contrail-build-containers-base
+    nodeset: builder-rhel-7
 
 - job:
     name: contrail-build-containers-centos7-rocky
