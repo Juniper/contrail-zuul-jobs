@@ -1,6 +1,6 @@
 ---
 test_target: 'ci_sanity'
-openstack_version: 'ocata'
+openstack_version: ''
 contrail_version: >-
   {%- if zuul.change is defined -%}
     {{ zuul.change }}-{{ zuul.patchset }}
