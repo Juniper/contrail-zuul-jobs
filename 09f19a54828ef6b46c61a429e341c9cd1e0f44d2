@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "616774c3_a274904b",
+        "filename": "roles/contrail-build-containers/templates/common.env.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 56
+      },
+      "writtenOn": "2019-08-07T18:31:27Z",
+      "side": 1,
+      "message": "Will this be consumed, because i see this warning  msg \n\n\"\u001b[91m[Warning] One or more build-args [BASE_EXTRA_RPMS CONTAINER_NAME CONTRAIL_REGISTRY LINUX_DISTR LINUX_DISTR_VER] were not consumed\"\n\n in build log http://logs.opencontrail.org/periodic-nightly/review.opencontrail.org/R1908/24/contrail-build-containers-rhel7-queens/ara/result/98793732-1ec4-4873-8cb5-0039eb863947/",
+      "revId": "09f19a54828ef6b46c61a429e341c9cd1e0f44d2",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
