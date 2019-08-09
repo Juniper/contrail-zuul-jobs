@@ -1,6 +1,6 @@
 ---
 
-- name: Check whether kolla log dir exists
+- name: check whether kolla log dir exists
   stat:
     path: '{{ kolla_log_dir }}'
   register: kolla_logdir

@@ -5,14 +5,14 @@
     src: "{{ ansible_env.HOME }}/{{ packaging.debian_dir }}"
     dest: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/debian"
 
-- name: Update debian/changelog
+- name: update debian/changelog
   shell: |
       dch -v "{{ packaging.full_version }}" -m ""
       dch --release --distribution "{{ ansible_distribution_release }}" -m "Releasing version {{ packaging.full_version }}."
   args:
     chdir: "{{ packaging.target_dir }}"
 
-- name: Create orig tarball
+- name: create orig tarball
   shell: |
       fakeroot debian/rules get-orig-source
       mv contrail_{{ packaging.full_version }}.orig.tar.gz ../

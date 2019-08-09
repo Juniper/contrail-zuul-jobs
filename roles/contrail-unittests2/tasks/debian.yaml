@@ -1,5 +1,5 @@
 ---
-- name: Install package dependencies for the build (Debian)
+- name: install package dependencies for the build (Debian)
   command: |
     mk-build-deps -r -i debian/control \
       --tool="apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes"
@@ -11,7 +11,7 @@
 
 # DPDK is built from the same sources, but the dependencies were split
 # to another source package, so make sure we also install them.
-- name: Install DPDK build dependencies (Debian)
+- name: install DPDK build dependencies (Debian)
   apt:
     name: liburcu-dev
     state: present
@@ -20,7 +20,7 @@
 # XXX(kklimonda): can't reproduce "error: end of file reached" error outside
 #   of CI, making it impossible to fix it. The following patch adds some
 #   extra logging to tarfile module to see if we can spot any pattern.
-- name: 'Patch python tarfile module (LP: #1754066)'
+- name: 'patch python tarfile module (LP: #1754066)'
   patch:
     src: tarfile_verbose.patch
     basedir: /usr/lib/python2.7/

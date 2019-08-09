@@ -1,5 +1,5 @@
 ---
-- name: Include OS-specific variables
+- name: include OS-specific variables
   include_vars: "{{ ansible_os_family | lower }}.yaml"
 
 - name: create package dir on the executor
@@ -15,7 +15,7 @@
     recurse: true
   register: packages
 
-- name: Fetch packages from the build VM to the executor
+- name: fetch packages from the build VM to the executor
   synchronize:
     src: "{{ item.path }}"
     dest: "{{ zuul.executor.work_root }}/packages/{{ item.path|basename }}"

@@ -1,5 +1,5 @@
 ---
-- name: Load contrail packaging variables
+- name: load contrail packaging variables
   contrail_packaging:
     zuul: "{{ zuul }}"
     release_type: "{{ release_type }}"
@@ -7,7 +7,7 @@
     openstack_version: "{{ openstack_version | default(omit) }}"
   delegate_to: localhost
 
-- name: Return contrail_packaging variable back to zuul
+- name: return contrail_packaging variable back to zuul
   zuul_return:
     data:
       contrail_packaging: "{{ packaging }}"

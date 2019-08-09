@@ -1,5 +1,5 @@
 ---
-- name: Load variables from results.json
+- name: load variables from results.json
   include_vars:
     file: "{{ zuul.executor.work_root }}/results.json"
   delegate_to: localhost
