@@ -3,7 +3,7 @@
 - include: "{{ ansible_os_family|lower }}.yaml"
 
 # XXX(kklimonda) move to configure-hosts-entries.
-- name: Ensure that hostname is in /etc/hosts
+- name: ensure that hostname is in /etc/hosts
   lineinfile:
     dest: /etc/hosts
     line: "{{ ansible_default_ipv4.address }} {{ ansible_hostname }}"
@@ -12,13 +12,13 @@
 
 # Some tests (like test.test_flow.FlowQuerierTest.test_1_noarg_query) expect
 # PST timezone, and fail otherwise.
-- name: Change the timezone to America/Los_Angeles
+- name: change the timezone to America/Los_Angeles
   timezone:
     name: America/Los_Angeles
   become: True
   become_user: root
 
-- name: Copy over unittest scripts to the builder VM
+- name: copy over unittest scripts to the builder VM
   copy:
     src: "{{ item }}"
     dest: "."
@@ -28,7 +28,7 @@
     - contrail-unittests-job.sh
     - repo
 
-- name: Install additional packages used by unittest scripts
+- name: install additional packages used by unittest scripts
   package:
     name: "{{ item }}"
     state: present
@@ -37,7 +37,7 @@
   with_items:
     - ruby
 
-- name: Run a full Contrail VNC build
+- name: run a full Contrail VNC build
   command: "scons -j {{ ansible_processor_vcpus }}"
   args:
     chdir: "{{ packaging.target_dir }}"
@@ -49,7 +49,7 @@
     CONTRAIL_COMPILE_WITHOUT_SYMBOLS: yes
     LC_ALL: "C"
 
-- name: Run unittest script
+- name: run unittest script
   command: "{{ ansible_env.HOME }}/contrail-unittests-job.sh"
   become: yes
   become_user: root

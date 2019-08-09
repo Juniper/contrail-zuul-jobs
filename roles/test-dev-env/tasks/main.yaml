@@ -10,7 +10,7 @@
   become: true
 
 # For commands below, default chdir is /root/contrail-dev-env
-- name: Test contrail-dev-env
+- name: test contrail-dev-env
   include: docker_exec.yaml
   with_items:
     - chdir: /root/contrail

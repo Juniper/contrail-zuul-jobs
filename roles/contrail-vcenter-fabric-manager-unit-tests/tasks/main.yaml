@@ -1,5 +1,5 @@
 ---
-- name: Manually create the initial virtualenv
+- name: manually create the initial virtualenv
   command: "virtualenv '{{ ansible_env.HOME }}/{{ zuul_project_dir }}/venv' -p python2 creates='{{ ansible_env.HOME }}/{{ zuul_project_dir }}/venv' --system-site-packages"
 
 - name: install requirements

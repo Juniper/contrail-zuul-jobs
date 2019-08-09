@@ -1,39 +1,39 @@
 ---
-- name: Include OS-specific variables
+- name: include OS-specific variables
   include_vars: "{{ item }}"
   with_first_found:
     - "{{ ansible_distribution_release }}.yaml"
     - "{{ ansible_os_family|lower }}.yaml"
 
-- name: Create directory for the sandbox
+- name: create directory for the sandbox
   file:
     path: "{{ packaging.target_dir }}"
     state: directory
 
-- name: Initialize android repo
+- name: initialize android repo
   command: "repo init -m {{ manifest_file }} -u {{ ansible_env.HOME }}/{{ zuul._projects['review.opencontrail.org/Juniper/contrail-vnc'].src_dir }}"
   args:
     chdir: "{{ packaging.target_dir }}"
 
-- name: Install generate_manifest.py dependencies
+- name: install generate_manifest.py dependencies
   package:
     name: python-lxml
     state: present
 
-- name: Create CI & snapshot manifests
+- name: create CI & snapshot manifests
   generate_manifest:
     sandbox_root: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
     projects: "{{ zuul._projects }}"
     manifest_path: "{{ ansible_env.HOME }}/{{ zuul._projects['review.opencontrail.org/Juniper/contrail-vnc'].src_dir }}/{{ manifest_file }}"
     snapshot_path: "{{ ansible_env.HOME }}/manifest.xml"
 
-- name: Synchronize repositories to the sandbox
+- name: synchronize repositories to the sandbox
   command: "repo sync --quiet"
   args:
     chdir: "{{ packaging.target_dir }}"
 
 # `origins` fact is set by the generate_manifest module
-- name: Restore project origins
+- name: restore project origins
   command: git remote add origin {{ item.value }}
   changed_when: remote.rc == 0
   failed_when:
@@ -47,7 +47,7 @@
   tags:
     - skip_ansible_lint  # ANSIBLE0006,ANSIBLE0016
 
-- name: Fetch all remotes
+- name: fetch all remotes
   command: "git fetch --all"
   args:
     chdir: "{{ item.item.key }}"

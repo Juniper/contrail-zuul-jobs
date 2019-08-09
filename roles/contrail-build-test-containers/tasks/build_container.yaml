@@ -1,5 +1,5 @@
 ---
-- name: Build container contrail-test-test OpenStack-{{ item }}
+- name: build container contrail-test-test OpenStack-{{ item }}
   command: |
     ./build-container.sh test \
     --base-tag {{ contrail_container_tag }} \

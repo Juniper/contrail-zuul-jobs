@@ -1,10 +1,10 @@
 ---
-- name: Gather dmesg output
+- name: gather dmesg output
   command: dmesg
   register: dmesg
   no_log: true
 
-- name: Write host dmesg output
+- name: write host dmesg output
   delegate_to: localhost
   copy:
     content: "{{ dmesg.stdout }}"
