@@ -1,4 +1,4 @@
-- name: Test the configure-mirrors role
+- name: test the configure-mirrors role
   hosts: all
   roles:
     - role: install-pip-virtualenv
@@ -8,12 +8,12 @@
       pypi_mirror: "http://{{ mirror_fqdn }}/pypi/simple"
       wheel_mirror: "http://{{ mirror_fqdn }}/wheel/{{ ansible_distribution | lower }}-{{ ansible_distribution_version }}-{{ ansible_architecture | lower }}"
   post_tasks:
-    - name: Install apt package to sanity check the mirror configuration
+    - name: install apt package to sanity check the mirror configuration
       package:
         name: "emacs"
         state: "present"
       become: yes
-    - name: Install python package to sanity check pypi mirroring
+    - name: install python package to sanity check pypi mirroring
       pip:
         name: "pbr"
         state: "present"

@@ -1,20 +1,20 @@
 ---
 # This role gathers all available package targets and builds them
 
-- name: List all available packages
+- name: list all available packages
   command: 'make -f {{ rpm_dir }}/upstream/rpm/Makefile list'
   register: third_party_packages
 
-- name: Run preparation tasks
+- name: run preparation tasks
   command: 'make -f {{ rpm_dir }}/upstream/rpm/Makefile prep'
   args:
     creates: '{{ rpm_dir }}/../BUILD'
 
-- name: Build packages
+- name: build packages
   include: build_package.yaml
   with_items: '{{ third_party_packages.stdout.split(" ") }}'
 
-- name: List created packages
+- name: list created packages
   find:
     path: '{{ ansible_env.HOME }}/{{ rpm_dir }}/../RPMS'
     patterns: '*.rpm'

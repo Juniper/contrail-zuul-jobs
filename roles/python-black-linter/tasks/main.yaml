@@ -1,12 +1,12 @@
 ---
-- name: Download pip installation script
+- name: download pip installation script
   get_url:
     url: https://bootstrap.pypa.io/3.3/get-pip.py
     dest: '{{ ansible_env.HOME }}/get-pip.py'
     mode: 0755
   become: true
 
-- name: Install pip
+- name: install pip
   command: 'python3 {{ ansible_env.HOME }}/get-pip.py'
   become: true
 

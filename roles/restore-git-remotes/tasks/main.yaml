@@ -1,5 +1,5 @@
 ---
-- name: Add remotes pointing to checked-out sources
+- name: add remotes pointing to checked-out sources
   command: "git remote add origin https://{{ item.value.canonical_name }}"
   with_dict: "{{ zuul._projects }}"
   failed_when:
@@ -13,7 +13,7 @@
   tags:
     - skip_ansible_lint  # ANSIBLE0006
 
-- name: Fetch all remotes
+- name: fetch all remotes
   command: "git fetch --all"
   args:
     chdir: "{{ item.item.value.src_dir }}"

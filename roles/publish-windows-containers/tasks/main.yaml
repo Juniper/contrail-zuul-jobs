@@ -1,12 +1,12 @@
 ---
-- name: Download bazel installer
+- name: download bazel installer
   get_url:
     url: http://ci-repo.englab.juniper.net/static/bazel-0.19.2-installer-linux-x86_64.sh
     dest: "{{ ansible_env.HOME }}"
     mode: 0755
   register: installer
 
-- name: Install packages
+- name: install packages
   package:
     name: '{{ item }}'
     state: present
@@ -16,11 +16,11 @@
     - git
     - gcc
 
-- name: Install bazel
+- name: install bazel
   command: "bash {{ installer['dest'] }} --bin=/usr/bin"
   become: yes
 
-- name: Build tools using bazel
+- name: build tools using bazel
   command: "bazel build :{{ item }}"
   args:
     chdir: "{{ ansible_env.HOME }}/{{ workdir }}"
@@ -28,25 +28,25 @@
     - puller
     - pusher
 
-- name: Create directories for containers layers
+- name: create directories for containers layers
   file:
     path: "{{ ansible_env.HOME }}/{{ item }}"
     state: directory
     mode: 0775
   with_items: "{{ container_name }}"
 
-- name: Get containers from temporary registry
+- name: get containers from temporary registry
   command: "./puller --name {{ contrail_docker_registry }}/{{ item }}:{{ contrail_container_tag }} --directory {{ ansible_env.HOME }}/{{ item }} --stderrthreshold ERROR --protocol http"
   args:
     chdir: "{{ ansible_env.HOME }}/{{ workdir }}/bazel-bin"
   with_items: "{{ container_name }}"
 
-- name: Get list of layers
+- name: get list of layers
   shell: "for i in `ls {{ ansible_env.HOME }}/{{ item }}/*.tar.gz`; do echo -n --layer $i ''; done"
   with_items: "{{ container_name }}"
   register: layers
 
-- name: Get list of digest
+- name: get list of digest
   shell: "for i in `ls {{ ansible_env.HOME }}/{{ item }}/*.sha256`; do echo -n --digest $i ''; done"
   with_items: "{{ container_name }}"
   register: digest

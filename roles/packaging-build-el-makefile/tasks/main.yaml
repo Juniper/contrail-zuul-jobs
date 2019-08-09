@@ -1,6 +1,6 @@
 ---
 
-- name: Prepare packaging variables
+- name: prepare packaging variables
   contrail_packaging:
     zuul: "{{ zuul }}"
     release_type: "{{ release_type }}"
@@ -9,7 +9,7 @@
 - name: run OS specific tasks
   include: '{{ ansible_distribution|lower }}.yaml'
 
-- name: Get list of makefile targets
+- name: get list of makefile targets
   command: make -f tools/packages/Makefile list
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
@@ -17,7 +17,7 @@
   tags:
     - skip_ansible_lint
 
-- name: Check variables used by makefile
+- name: check variables used by makefile
   command: make -f tools/packages/Makefile info
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
@@ -27,7 +27,7 @@
     SKUTAG: ocata
     MANIFESTFILE: "{{ ansible_env.HOME }}/manifest.xml"
 
-- name: Install dependencies and build RPMs
+- name: install dependencies and build RPMs
   include: make_rpm.yaml
   with_items: "{{ rpm_list.stdout.split(' ') }}"
 

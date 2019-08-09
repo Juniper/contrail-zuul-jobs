@@ -1,5 +1,5 @@
 ---
-- name: Install Python 3
+- name: install Python 3
   apt:
     name: python3.6
     state: present

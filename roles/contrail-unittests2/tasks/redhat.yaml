@@ -1,5 +1,5 @@
 ---
-- name: Enable EPEL repository (RedHat)
+- name: enable EPEL repository (RedHat)
   command: yum-config-manager --enable epel
   become: True
 
@@ -12,17 +12,17 @@
     - yum clean all
 
 # XXX(kklimonda): workaround for yum-builddep force-enabling non-existing repo
-- name: Remove epel-source repository completely (RedHat)
+- name: remove epel-source repository completely (RedHat)
   command: sed -e '/\[epel-source\]/,+6 s/^/#/' -i /etc/yum.repos.d/epel.repo
   become: True
 
-- name: Install system build dependencies
+- name: install system build dependencies
   command: make dep
   args:
     chdir: "{{ packaging.target_dir }}/tools/packages"
   become: True
 
-- name: Fetch third-party dependencies
+- name: fetch third-party dependencies
   command: "./fetch_packages.py --site-mirror http://{{ zuul_site_mirror_fqdn }}"
   args:
     chdir: "{{ packaging.target_dir }}/third_party/"

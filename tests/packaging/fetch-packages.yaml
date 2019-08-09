@@ -1,6 +1,6 @@
 # Verify that we can collect all packages from workspace, and
 # they are all put into single directory on the executor.
-- name: Test the fetch-packages role
+- name: test the fetch-packages role
   hosts: all
   vars:
     debian_packages:
@@ -24,7 +24,7 @@
   # create a bunch of rpm/deb files all over the $HOME to see
   # if we can find them all and put into correct location.
   pre_tasks:
-    - name: Create directories for packages
+    - name: create directories for packages
       file:
         state: directory
         recurse: true
@@ -33,7 +33,7 @@
         - rpmbuild/RPMS/
         - contrail-master/RPMS/
         - contrail-master/tools/packaging/common/debian/
-    - name: Create dummy packages to search for
+    - name: create dummy packages to search for
       file:
         state: touch
         path: "{{ item }}"
@@ -46,7 +46,7 @@
   post_tasks:
     # Verify that, depending on the distribution, correct files have been
     # fetched and they are all in a single directory.
-    - name: Verify that packages have been fetched from the builder
+    - name: verify that packages have been fetched from the builder
       stat:
         path: "{{ zuul.executor.work_root }}/packages/{{ item|basename }}"
       with_items: "{{ vars[ansible_os_family|lower + '_packages'] }}"
@@ -58,7 +58,7 @@
       with_items: "{{ our_packages.results }}"
       when: item.stat.exists == False
 
-    - name: Verify that we don't touch packages for other distributions (deb)
+    - name: verify that we don't touch packages for other distributions (deb)
       stat:
         path: "{{ zuul.executor.work_root }}/packages/{{ item|basename }}"
       with_items: "{{ debian_packages }}"
@@ -74,7 +74,7 @@
         - not item|skipped
         - item.stat.exists == True
 
-    - name: Verify that we don't touch packages for other distributions (rpm)
+    - name: verify that we don't touch packages for other distributions (rpm)
       stat:
         path: "{{ zuul.executor.work_root }}/packages/{{ item|basename }}"
       with_items: "{{ redhat_packages }}"
@@ -90,7 +90,7 @@
         - not item|skipped
         - item.stat.exists == True
 
-    - name: Verify that we haven't downloaded anything random
+    - name: verify that we haven't downloaded anything random
       stat:
         path: "{{ zuul.executor.work_root }}/packages/{{ item|basename }}"
       with_items: "{{ fake_packages }}"
