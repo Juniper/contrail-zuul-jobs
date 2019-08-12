@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1824214f_063683a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-08-12T11:11:59Z",
+      "side": 1,
+      "message": "After the first line, please always put an empty line.\nOtherwise gerrit displays it as one huge title.\n\nThis is for future. This is approved already so don\u0027t update this changeset and don\u0027t add a new patchset.",
+      "revId": "21604969f919358f347adf4074c00ef5d36352c4",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
