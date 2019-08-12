@@ -55,18 +55,6 @@
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/controller"
 
-- name: "Build binary package for contrail-setup"
-  command: |
-    rpmbuild \
-      --define "_topdir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/" \
-      --define "_buildTag {{ packaging.version.distrib }}" \
-      --define "_srcVer {{ packaging.version.upstream }}" \
-      --define "_skuTag mitaka" \
-      --define "_builddir {{ ansible_env.HOME }}/{{ packaging.target_dir }}/controller" \
-      -bb {{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/common/rpm/contrail-setup.spec
-  args:
-    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/controller"
-
 - name: Build additional packages
   include: build_package.yaml
   with_items:
@@ -80,8 +68,6 @@
     - { name: 'contrail-heat' }
     - { name: 'contrail-vrouter-dpdk' }
     - { name: 'contrail-vrouter-dpdk-init' }
-#    - { name: 'contrail-test' }
-    - { name: 'fabric-utils' }
     - { name: 'neutron-plugin-contrail' }
 
 - name: Install nodejs 0.10.35
