@@ -3,15 +3,15 @@
 - name: test the ansible-lint ANSIBLE-J0003 rule for fails
   hosts: all
   pre_tasks:
-    - name: 'cleanup playbook directory'
+    - name: 'Cleanup playbook directory'
       file:
         dest: '{{ ansible_env.HOME }}/playbooks'
         state: 'absent'
-    - name: 'create directory for playbooks'
+    - name: 'Create directory for playbooks'
       file:
         dest: '{{ ansible_env.HOME }}/playbooks'
         state: 'directory'
-    - name: 'copy valid playbooks to working directory'
+    - name: 'Copy valid playbooks to working directory'
       copy:
         src: '{{ item }}'
         dest: '{{ ansible_env.HOME }}/playbooks/'

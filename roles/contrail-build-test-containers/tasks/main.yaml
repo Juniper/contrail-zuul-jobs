@@ -1,10 +1,10 @@
 ---
-- name: get list of repo files
+- name: Get list of repo files
   find:
     paths: "{{ rpm_repo_config_dir }}"
   register: repo_file_list
 
-- name: copy repo files to the container build context - contrail-test-test
+- name: Copy repo files to the container build context - contrail-test-test
   copy:
     src: "{{ item.path }}"
     dest: "{{ test_container_build_dir }}/docker/test/{{ item.path | basename }}"
@@ -12,7 +12,7 @@
   with_items:
     - "{{ repo_file_list.files }}"
 
-- name: copy repo files to the container build context - contrail-test-base
+- name: Copy repo files to the container build context - contrail-test-base
   copy:
     src: "{{ item.path }}"
     dest: "{{ test_container_build_dir }}/docker/base/{{ item.path | basename }}"
@@ -20,7 +20,7 @@
   with_items:
     - "{{ repo_file_list.files }}"
 
-- name: build container contrail-test-base
+- name: Build container contrail-test-base
   command: |
     ./build-container.sh base \
     --registry-server {{ contrail_docker_registry }} \
@@ -29,7 +29,7 @@
     chdir: "{{ test_container_build_dir }}"
   become: true
 
-- name: build test containers
+- name: Build test containers
   include: build_container.yaml
   with_items: "{{ openstack_version }}"
 

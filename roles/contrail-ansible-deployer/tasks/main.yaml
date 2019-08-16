@@ -1,6 +1,6 @@
 ---
 
-- name: configure AIO VM with configure_instances.yml playbook
+- name: Configure AIO VM with configure_instances.yml playbook
   command: ansible-playbook -i inventory/ playbooks/configure_instances.yml -v
   args:
     chdir: "{{ docker_provision_dir }}"
@@ -9,7 +9,7 @@
     ANSIBLE_STDOUT_CALLBACK: debug
   become: True
 
-- name: provision OpenStack with install_openstack.yml playbook
+- name: Provision OpenStack with install_openstack.yml playbook
   command: ansible-playbook -i inventory/ -e orchestrator=openstack playbooks/install_openstack.yml
   args:
     chdir: "{{ docker_provision_dir }}"
@@ -19,7 +19,7 @@
   become: True
   when: cloud_orchestrator == 'openstack'
 
-- name: provision k8s with install_k8s.yml playbook
+- name: Provision k8s with install_k8s.yml playbook
   command: ansible-playbook -i inventory/ -e orchestrator={{ cloud_orchestrator }} playbooks/install_k8s.yml
   args:
     chdir: "{{ docker_provision_dir }}"
@@ -29,7 +29,7 @@
   become: True
   when: cloud_orchestrator == 'kubernetes'
 
-- name: provision Contrail with install_contrail.yml playbook
+- name: Provision Contrail with install_contrail.yml playbook
   command: ansible-playbook -i inventory/ -e orchestrator={{ cloud_orchestrator }} playbooks/install_contrail.yml
   args:
     chdir: "{{ docker_provision_dir }}"

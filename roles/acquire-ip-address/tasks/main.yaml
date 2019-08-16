@@ -1,5 +1,5 @@
 ---
-- name: acquire IP address for interfaces that miss it
+- name: Acquire IP address for interfaces that miss it
   command: "dhclient {{ item }}"
   with_items:
     - "{{ hostvars[inventory_hostname]['ansible_interfaces'] }}"
@@ -8,6 +8,6 @@
     - not 'ipv4' in hostvars[inventory_hostname]['ansible_' + item]
   become: true
 
-- name: reload ansible facts
+- name: Reload ansible facts
   setup:
 

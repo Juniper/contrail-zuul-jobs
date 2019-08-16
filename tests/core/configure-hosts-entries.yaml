@@ -1,14 +1,14 @@
-- name: test the configure-mirrors role
+- name: Test the configure-mirrors role
   hosts: all
   roles:
     - role: configure-hosts-entries
   post_tasks:
-    - name: ensure that {{ zuul_site_mirror_fqdn }} is resolvable
+    - name: Ensure that {{ zuul_site_mirror_fqdn }} is resolvable
       wait_for:
         host: "{{ zuul_site_mirror_fqdn }}"
         port: 80
         state: started
-    - name: ensure that repo01-jnpr.opencontrail.org is resolvable
+    - name: Ensure that repo01-jnpr.opencontrail.org is resolvable
       wait_for:
         host: repo01-jnpr.opencontrail.org
         port: 80

@@ -1,4 +1,4 @@
-- name: test the install-docker-daemon role
+- name: Test the install-docker-daemon role
   hosts: all
   roles:
     - role: install-docker-daemon
