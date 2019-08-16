@@ -1,13 +1,13 @@
-- name: test the repo-sandbox-prepare role
+- name: Test the repo-sandbox-prepare role
   hosts: all
   pre_tasks:
-    - name: stub the contrail-vnc manifest XML file
+    - name: Stub the contrail-vnc manifest XML file
       copy:
         src: fixtures/manifest-stub.xml
         dest: "src/review.opencontrail.org/Juniper/contrail-vnc/default.xml"
     # contrail-common-libs can only be executed in a trusted context,
     # so we can't really test it fully right now.
-    - name: stub the packaging fact
+    - name: Stub the packaging fact
       set_fact:
         packaging:
           target_dir: "contrail-master"
@@ -21,12 +21,12 @@
     - fail:
         msg: "manifest.xml does not exist or link is broken"
       when: "not (manifest.stat.islnk is defined and manifest.stat.islnk)"
-    - name: ensure that the repositories has been properly placed
+    - name: Ensure that the repositories has been properly placed
       file:
         path: "{{ item.key }}/.git/HEAD"
         state: file
       with_dict: "{{ origins }}"
-    - name: ensure that all sandbox repositories have a working remote
+    - name: Ensure that all sandbox repositories have a working remote
       command: "git branch -r"
       args:
         chdir: "{{ item.key }}"

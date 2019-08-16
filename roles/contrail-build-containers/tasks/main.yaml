@@ -1,5 +1,5 @@
 ---
-- name: prepare build configuration - common.env
+- name: Prepare build configuration - common.env
   template:
     src: common.env.j2
     dest: "{{ item }}/common.env"
@@ -7,18 +7,18 @@
     - "{{ docker_build_dir }}"
     - "{{ deployers_build_dir }}"
 
-- name: send common.env to the executor
+- name: Send common.env to the executor
   synchronize:
     src: "{{ docker_build_dir }}/common.env"
     dest: "{{ zuul.executor.log_root }}/"
     mode: pull
   become: true
 
-- name: get list of repo files
+- name: Get list of repo files
   command: "ls {{ rpm_repo_config_dir }}"
   register: repo_list
 
-- name: copy the repo files to container build context
+- name: Copy the repo files to container build context
   copy:
     src: "{{ rpm_repo_config_dir }}/{{ item }}"
     dest: "{{ docker_build_dir }}/{{ item }}.template"
@@ -26,20 +26,20 @@
   with_items:
     - "{{ repo_list.stdout_lines | reject('equalto', 'epel.repo') | list }}"
 
-- name: template openstack repo file
+- name: Template openstack repo file
   template:
     src: "openstack.repo.j2"
     dest: "{{ docker_build_dir }}/openstack.repo.template"
   when: "ansible_distribution == 'CentOS'"
 
-- name: prepare container list
+- name: Prepare container list
   shell: ./build.sh list | grep -v INFO
   become: true
   register: docker_list
   args:
     chdir: "{{ docker_build_dir }}/containers"
 
-- name: prepare deployers container list
+- name: Prepare deployers container list
   shell: ./build.sh list | grep -v INFO
   become: true
   register: deployers_list
@@ -53,7 +53,7 @@
   ignore_errors: true
   become: true
 
-- name: build microservices
+- name: Build microservices
   include: build_container.yaml
   vars:
     build_dir: "{{ docker_build_dir }}"
@@ -61,7 +61,7 @@
 
 # copy with remote_src adn recursive works from ansible 2.8
 # https://github.com/ansible/ansible/issues/14131
-- name: copy local version repositories to kolla-ansible-deployer container
+- name: Copy local version repositories to kolla-ansible-deployer container
   command: "cp -fR {{ item | quote }} {{ deployers_build_dir + '/containers/kolla-ansible-deployer/src/' | quote }}"
   become: true
   with_items:
@@ -70,13 +70,13 @@
 
 # copy with remote_src adn recursive works from ansible 2.8
 # https://github.com/ansible/ansible/issues/14131
-- name: copy local version repositories to kolla-ansible-deployer container
+- name: Copy local version repositories to kolla-ansible-deployer container
   command: "cp -fR {{ openshift_ansible_dir | quote }} {{ deployers_build_dir + '/containers/openshift-ansible-deployer/src/' | quote }}"
   become: true
 
 # copy with remote_src adn recursive works from ansible 2.8
 # https://github.com/ansible/ansible/issues/14131
-- name: copy local version repositories to helm-deployer container
+- name: Copy local version repositories to helm-deployer container
   command: "cp -fR {{ item | quote }} {{ deployers_build_dir + '/containers/helm-deployer/src/' | quote }}"
   become: true
   with_items:
@@ -84,7 +84,7 @@
     - "{{ openstack_helm_dir }}"
     - "{{ openstack_helm_infra_dir }}"
 
-- name: build deployers
+- name: Build deployers
   include: build_container.yaml
   vars:
     build_dir: "{{ deployers_build_dir }}"
