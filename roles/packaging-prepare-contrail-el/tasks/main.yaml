@@ -1,17 +1,17 @@
 ---
-- name: prepare packaging variables
+- name: Prepare packaging variables
   contrail_packaging:
     zuul: "{{ zuul }}"
     release_type: "{{ release_type }}"
     build_number: "{{ build_number | default('unset_build_number') }}"
 
 # Needed while centos74 is not supported correctly
-- name: create missing directory
+- name: Create missing directory
   file:
     state: directory
     path: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/controller/build/"
 
-- name: create links for centos 74 specs
+- name: Create links for centos 74 specs
   file:
     path: "{{ item.path }}"
     src: "{{ item.source }}"

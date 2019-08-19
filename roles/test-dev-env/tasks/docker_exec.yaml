@@ -1,5 +1,5 @@
 ---
-- name: "run in dev-env: {{ item.name|default(item.command) }}"
+- name: "Run in dev-env: {{ item.name|default(item.command) }}"
   command: >
     docker exec contrail-developer-sandbox
     bash -c "cd {{ item.chdir|default('/root/contrail-dev-env') }}; {{ item.command }}"

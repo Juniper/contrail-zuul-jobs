@@ -1,29 +1,29 @@
-- name: test the fetch-artifacts role - should work when the artifacts dir is not created
+- name: Test the fetch-artifacts role - should work when the artifacts dir is not created
   hosts: all
   roles:
     - fetch-artifacts
   post_tasks:
-    - name: ensure that the artifactgs dir is missing
+    - name: Ensure that the artifactgs dir is missing
       stat:
         path: "{{ zuul.executor.work_root }}/artifacts"
       register: dest_dir
       failed_when: dest_dir.stat.exists is defined and dest_dir.stat.exists
 
-- name: test the fetch-artifacts role
+- name: Test the fetch-artifacts role
   hosts: all
   pre_tasks:
-    - name: create artifacts dir
+    - name: Create artifacts dir
       file:
         path: "{{ ansible_env.HOME }}/artifacts"
         state: directory
-    - name: create a file in the artifacts directory
+    - name: Create a file in the artifacts directory
       copy:
         dest: "{{ ansible_env.HOME }}/artifacts/test.txt"
         content: foo
   roles:
     - fetch-artifacts
   post_tasks:
-    - name: ensure that the file exists on the executor
+    - name: Ensure that the file exists on the executor
       stat:
         path: "{{ zuul.executor.work_root }}/artifacts/test.txt"
       register: test_file
