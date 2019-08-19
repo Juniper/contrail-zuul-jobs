@@ -1,21 +1,21 @@
 ---
 
-- name: install rpmlint
+- name: Install rpmlint
   package:
     name: 'rpmlint'
     state: 'installed'
   become: True
 
-- name: lint spec files
+- name: Lint spec files
   command: 'rpmlint {{ specs_dir }}'
   register: 'linter_out'
   ignore_errors: True
 
-- name: print summary of errors
+- name: Print summary of errors
   command: 'rpmlint -I {{ linter_out.stdout_lines | map("regex_search", "[EW]: ([%a-z-]+)") | map("regex_replace","[EW]: ", "") | unique | join(" -I ") }}'
   when: linter_out.rc != 0
 
-- name: fail on rpmlint errors
+- name: Fail on rpmlint errors
   fail:
     msg: "rpmlint failed! Please see error details above."
   when: linter_out.rc != 0

@@ -1,6 +1,6 @@
 ---
 
-- name: set up Contrail third-party yum repository
+- name: Set up Contrail third-party yum repository
   yum_repository:
     name: contrail-tpc
     description: Contrail third-party dependencies

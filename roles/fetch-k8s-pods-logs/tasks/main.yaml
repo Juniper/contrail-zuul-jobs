@@ -1,17 +1,17 @@
 ---
-- name: create the log directory on executor
+- name: Create the log directory on executor
   file:
     path: "{{ zuul.executor.log_root }}/pod-logs"
     state: directory
   delegate_to: localhost
 
-- name: create the k8s-objects description directory on executor
+- name: Create the k8s-objects description directory on executor
   file:
     path: "{{ zuul.executor.log_root }}/k8s-objects"
     state: directory
   delegate_to: localhost
 
-- name: get logs from all containers
+- name: Get logs from all containers
   shell: |-
     set -e
     PARALLELISM_FACTOR=2
@@ -42,7 +42,7 @@
     executable: /bin/bash
   ignore_errors: true
 
-- name: get descriptions for namespace scoped objects
+- name: Get descriptions for namespace scoped objects
   shell: |-
     set -e
     export OBJECT_TYPE=pods
@@ -82,13 +82,13 @@
     executable: /bin/bash
   ignore_errors: true
 
-- name: test for pod-logs dir
+- name: Test for pod-logs dir
   stat:
     path: "{{ ansible_env.HOME }}/pod-logs"
   register: pod_logdir
   become: true
 
-- name: fetch k8s pods containers logs to executor
+- name: Fetch k8s pods containers logs to executor
   synchronize:
     src: "{{ ansible_env.HOME }}/pod-logs/"
     dest: "{{ zuul.executor.log_root }}/pod-logs"
@@ -97,13 +97,13 @@
   when: pod_logdir.stat.isdir is defined and pod_logdir.stat.isdir
   become: true
 
-- name: test for k8s-objects descriptions dir
+- name: Test for k8s-objects descriptions dir
   stat:
     path: "{{ ansible_env.HOME }}/k8s-objects"
   register: objects_dir
   become: true
 
-- name: fetch descriptions to executor
+- name: Fetch descriptions to executor
   synchronize:
     src: "{{ ansible_env.HOME }}/k8s-objects/"
     dest: "{{ zuul.executor.log_root }}/k8s-objects"
