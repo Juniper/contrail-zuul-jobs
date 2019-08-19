@@ -1,33 +1,33 @@
 ---
-- name: copy zuulstentacle.py script
+- name: Copy zuulstentacle.py script
   copy:
     src: zuulstentacle.py
     dest: '{{ ansible_env.HOME }}/zuulstentacle.py'
     mode: u+rwx
 
-- name: install Python 3
+- name: Install Python 3
   package:
     name: python3
     state: present
 
-- name: download pip installation script
+- name: Download pip installation script
   get_url:
     url: https://bootstrap.pypa.io/3.3/get-pip.py
     dest: '{{ ansible_env.HOME }}/get-pip.py'
     mode: 0755
 
-- name: install pip
+- name: Install pip
   command: 'python3 {{ ansible_env.HOME }}/get-pip.py '
   become: True
 
-- name: install Jenkins API for Python 3
+- name: Install Jenkins API for Python 3
   pip:
     name: jenkinsapi
     executable: pip3
   become: True
   become_user: root
 
-- name: set Zuul's Tentacle command
+- name: Set Zuul's Tentacle command
   set_fact:
     tentacle_command: >
       ./zuulstentacle.py
@@ -44,22 +44,22 @@
       --branch {{ zuul.branch }}
       --zuul_log_path "/var/www/logs/{{ zuul_log_path }}"
 
-- name: append docker_container_tag to Zuul's Tentacle command
+- name: Append docker_container_tag to Zuul's Tentacle command
   set_fact:
     tentacle_command: "{{ tentacle_command }} --docker_container_tag {{ docker_container_tag }}"
   when: docker_container_tag is defined
 
-- name: append windows_version to Zuul's Tentacle command
+- name: Append windows_version to Zuul's Tentacle command
   set_fact:
     tentacle_command: "{{ tentacle_command }} --windows_version {{ windows_version }}"
   when: windows_version is defined
 
-- name: append test_level to Zuul's Tentacle command
+- name: Append test_level to Zuul's Tentacle command
   set_fact:
     tentacle_command: "{{ tentacle_command }} --test_level {{ test_level }}"
   when: test_level is defined
 
-- name: reach Jenkins by Zuul's Tentacle
+- name: Reach Jenkins by Zuul's Tentacle
   no_log: true
   args:
     chdir: '{{ ansible_env.HOME }}'

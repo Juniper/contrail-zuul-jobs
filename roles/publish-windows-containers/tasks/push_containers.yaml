@@ -1,5 +1,5 @@
 ---
-- name: push containers to registry with build number
+- name: Push containers to registry with build number
   when: "zuul.branch == 'master'"
   command: "./pusher --config {{ ansible_env.HOME }}/{{ item.1 }}/config.json --protocol {{ reg.protocol }} --name {{ reg.host }}/{{ item.1 }}:{{ contrail_container_tag }} {{ layers.results[item.0].stdout }} {{ digest.results[item.0].stdout }}"
   args:
@@ -7,7 +7,7 @@
   with_indexed_items: "{{ container_name }}"
   become: true
 
-- name: push containers to registry with latest tag
+- name: Push containers to registry with latest tag
   when: "zuul.branch == 'master'"
   command: "./pusher --config {{ ansible_env.HOME }}/{{ item.1 }}/config.json --protocol {{ reg.protocol }} --name {{ reg.host }}/{{ item.1 }}:latest {{ layers.results[item.0].stdout }} {{ digest.results[item.0].stdout }}"
   args:
@@ -15,7 +15,7 @@
   with_indexed_items: "{{ container_name }}"
   become: true
 
-- name: push containers to internal registry from branches different from master
+- name: Push containers to internal registry from branches different from master
   when: "zuul.branch != 'master'"
   command: "./pusher --config {{ ansible_env.HOME }}/{{ item.1 }}/config.json --protocol http --name 10.84.5.81:5000/{{ item.1 }}:{{ contrail_container_tag }} {{ layers.results[item.0].stdout }} {{ digest.results[item.0].stdout }}"
   args:

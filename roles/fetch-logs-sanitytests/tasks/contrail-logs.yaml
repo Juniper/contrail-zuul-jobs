@@ -1,6 +1,6 @@
 ---
 
-- name: check whether contrail log dir exists
+- name: Check whether contrail log dir exists
   stat:
     path: '{{ contrail_log_dir }}'
   register: contrail_logdir
