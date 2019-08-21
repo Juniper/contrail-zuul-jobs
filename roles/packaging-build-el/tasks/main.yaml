@@ -30,6 +30,12 @@
   tags:
     - skip_ansible_lint  # ANSIBLE0006
 
+- name: Check weather contrail-setup rpm spec exists
+  stat:
+      path: '{{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/common/rpm/contrail-setup.spec'
+  register: contrail_setup_spec
+  become: true
+
 - name: Build binary & source packages for contrail-vnc
   command: |
     rpmbuild \
@@ -66,6 +72,7 @@
       -bb {{ ansible_env.HOME }}/{{ packaging.target_dir }}/tools/packaging/common/rpm/contrail-setup.spec
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}/controller"
+  when: contrail_setup_spec.stat.exists is defined and contrail_setup_spec.stat.exists
 
 - name: Build additional packages
   include: build_package.yaml
