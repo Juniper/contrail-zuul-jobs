@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d41d474_18ec8fc3",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2019-08-22T09:55:11Z",
+      "side": 1,
+      "message": "please move it to infra-jobs.yaml",
+      "revId": "b371387022fe0985e18770e5d336979eb4a40072",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
