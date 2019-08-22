@@ -1,0 +1,24 @@
+---
+
+- name: find files to lint
+  find:
+    path: '{{ ansible_env.HOME }}/{{ zuul.project.src_dir }}/playbooks/'
+  register: files_to_lint
+
+- name: 'lint ill-formated YAML files'
+  command: 'ansible-lint -r {{ ansible_env.HOME }}/ansible-lint-rules {{ item.path }}'
+  changed_when: false
+  failed_when: false
+  with_items: '{{ files_to_lint.files }}'
+  register: linted_files
+
+- name: 'filter correct files'
+  vars:
+    query: "results[?rc=`2`]"
+  set_fact:
+    failed_files: "{{ linted_files | json_query(query) }}"
+
+- name: 'fail when there are failing files'
+  fail:
+    msg: "Linters failed for the following files: {{ failed_files | json_query('[*].item.path') | join(',') }}"
+  when: failed_files | length > 0
