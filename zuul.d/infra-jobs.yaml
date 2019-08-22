@@ -198,3 +198,18 @@
       - ^roles/publish-rpm-nexus/.*
       - ^roles/build-third-party-rpms/.*
     nodeset: builder-centos-7
+
+- job:
+    name: check-linter-rules
+    description: |
+      Check linter rules on all dependent projects
+    run: tests/linter-rules-test/run.yaml
+    required-projects:
+      - Juniper/contrail-third-party-packages
+      - Juniper/contrail-vnc
+      - Juniper/contrail-helm-deployer
+      - Juniper/contrail-infra-doc
+    # - "{{ item.name }}"
+    # with_items: "{{ zuul.projects.values() | list }}"
+    # files
+    # - ^tests/.*
