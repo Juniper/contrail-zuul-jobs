@@ -10,7 +10,7 @@
       A base job that prepares Contrail VNC sandbox using Android repo,
       as opposed to the contrail-src-base job that copies the sources directly.
     required-projects:
-      - Juniper/contrail-analytics
+      - tungstenfabric/analytics
       - Juniper/contrail-ansible-deployer
       - Juniper/contrail-api-client
       - Juniper/contrail-build
@@ -55,7 +55,7 @@
       A base job that prepares Contrail VNC sandbox using Android repo,
       as opposed to the contrail-src-base job that copies the sources directly.
     required-projects:
-      - Juniper/contrail-analytics
+      - tungstenfabric/analytics
       - Juniper/contrail-api-client
       - Juniper/contrail-build
       - Juniper/contrail-common
