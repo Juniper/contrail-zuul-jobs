@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2532929_550a64e5",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2019-08-26T09:09:37Z",
+      "side": 1,
+      "message": "it better to place it into contrail-jobs.yaml\n\ninfra-jobs contains jobs for zuul-jobs repo itself",
+      "revId": "6a61674388d708ab6d8170a032fcb6de8c5676fc",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
