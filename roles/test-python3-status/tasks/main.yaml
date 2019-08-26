@@ -1,0 +1,15 @@
+---
+- name: copy and change permission of files
+  copy:
+    src: "{{ item }}"
+    dest: "."
+  with_items:
+    - python3-status-check.sh
+    - requirements.txt
+
+- name: run python3 status check script
+  shell: |
+    virtualenv .venv
+    source .venv/bin/activate
+    python3 -m pip install -r requirements.txt
+    ./python3-status-check.sh
