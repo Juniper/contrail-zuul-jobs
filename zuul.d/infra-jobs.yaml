@@ -198,3 +198,15 @@
       - ^roles/publish-rpm-nexus/.*
       - ^roles/build-third-party-rpms/.*
     nodeset: builder-centos-7
+
+
+- job:
+    name: test-python3-status
+    parent: contrail-base2
+    description: |
+      This job checks for python3 compliance for all repos
+    required-projects:
+      - Juniper/contrail-controller
+    irrelevant-files:
+      - specs/.*
+    run: playbooks/test-python3-status/main.yaml
