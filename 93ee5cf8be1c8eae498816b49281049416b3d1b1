@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1462352_b76eecee",
+        "filename": "roles/test-python3-status/files/python3-status-check.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2019-08-26T09:07:50Z",
+      "side": 1,
+      "message": "please set mode 0755 for this file and add it to commit again",
+      "revId": "93ee5cf8be1c8eae498816b49281049416b3d1b1",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
