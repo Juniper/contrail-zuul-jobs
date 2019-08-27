@@ -4,13 +4,13 @@
   copy:
     src: "{{ item }}"
     dest: "."
+    mode: '0755'
   with_items:
     - python3-status-check.sh
     - requirements.txt
 
 - name: run python3 status check script
-  shell: |
-    virtualenv .venv
-    source .venv/bin/activate
-    python3 -m pip install -r requirements.txt
-    ./python3-status-check.sh
+  command: |
+     export TERMINFO=/usr/lib/terminfo
+     bash python3-status-check.sh
+  become: true
