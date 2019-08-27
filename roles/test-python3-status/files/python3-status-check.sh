@@ -13,16 +13,17 @@ trap 'pkill $PPID' INT ERR
 script_name="$(basename "$0")"
 script_dir="$(readlink -m "$(dirname "$0")")"
 # Directory where the repos are
-base_dir="$(readlink -m "$script_dir/../../contrail")"
+base_dir="."
 # Log base directory
 log_base_dir=/var/tmp
+
+# Report usage
+help() {
 
 # For formatting
 bold=$(tput bold)
 normal=$(tput sgr0)
 
-# Report usage
-help() {
 cat <<EOF
 
 ${bold}NAME
