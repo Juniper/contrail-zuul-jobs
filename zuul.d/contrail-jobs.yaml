@@ -66,7 +66,7 @@
 
 - job:
     name: contrail-sanity-centos7-kolla-rocky
-    branches: ^(R1907|R1908|R1909|R5.1|master|contrail\/rocky)$
+    branches: ^(R190[89]|R19[1-9][0-9]|R200[0-9]|R201[0-2]|R5.1|master|contrail\/rocky)$
     parent: contrail-sanity-kolla-base
     required-projects:
       - name: Juniper/contrail-kolla-ansible
@@ -331,7 +331,7 @@
 
 - job:
     name: contrail-build-containers-centos7-rocky
-    branches: ^(R1907|R1908|R1909|R5.1|master|contrail\/rocky)$
+    branches: ^(R190[89]|R19[1-9][0-9]|R200[0-9]|R201[0-2]|R5.1|master|contrail\/rocky)$
     parent: contrail-build-containers-base
     nodeset: builder-centos-7
     vars:
