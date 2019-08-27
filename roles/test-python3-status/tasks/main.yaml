@@ -8,9 +8,38 @@
     - python3-status-check.sh
     - requirements.txt
 
+- name: Install a list of packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - createrepo
+      - docker
+      - docker-python
+      - gcc
+      - gdb
+      - git
+      - make
+      - python-devel
+      - python-pip
+      - python36-devel
+      - python36-pip
+      - rpm-build
+      - vim
+      - wget
+      - yum-utils
+      - bash-completion
+      - bash-completion-extras
+      - ShellCheck
+      - man-pages
+      - man-db
+    state: present
+
+
+
 - name: run python3 status check script
   shell: |
     virtualenv .venv
-    source .venv/bin/activate
-    python3 -m pip install -r requirements.txt
-    ./python3-status-check.sh
+    . .venv/bin/activate
+    pip3 install --upgrade caniusepython3 future tox geventhttpclient
+    bash python3-status-check.sh
