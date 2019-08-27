@@ -4,13 +4,44 @@
   copy:
     src: "{{ item }}"
     dest: "."
+    mode: '0755'
   with_items:
     - python3-status-check.sh
     - requirements.txt
 
-- name: run python3 status check script
+- name: Download repo binary
+  get_url:
+    url: https://storage.googleapis.com/git-repo-downloads/repo
+    dest: /usr/bin/repo
+    mode: '0755'
+  become: true
+
+- name: repo sync controller
   shell: |
-    virtualenv .venv
-    source .venv/bin/activate
-    python3 -m pip install -r requirements.txt
-    ./python3-status-check.sh
+    repo init --no-clone-bundle -q -u https://github.com/Juniper/contrail-vnc -b {{ zuul.branch }}
+    repo sync --no-clone-bundle -q contrail-controller
+  become: true
+
+- name: Create a directory if it does not exist
+  file:
+    path: artifacts
+    state: directory
+    mode: '0755'
+
+- name: run python3 status check script
+  command: "bash python3-status-check.sh --report artifacts/python3-status-report.xml || true "
+  become: true
+  ignore_errors: yes
+
+- name: Check artifacts directory exists
+  stat:
+    path: 'artifacts'
+  register: artifacts_logdir
+  become: true
+
+- name: Fetch xml report files
+  synchronize:
+    src: artifacts/python3-status-report.xml
+    dest: '{{ zuul.executor.log_root }}/python3-status-report.xml'
+    mode: 'pull'
+  become: true
