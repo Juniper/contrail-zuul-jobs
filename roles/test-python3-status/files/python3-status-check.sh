@@ -17,12 +17,13 @@ base_dir="$(readlink -m "$script_dir/../../contrail")"
 # Log base directory
 log_base_dir=/var/tmp
 
+# Report usage
+help() {
+
 # For formatting
 bold=$(tput bold)
 normal=$(tput sgr0)
 
-# Report usage
-help() {
 cat <<EOF
 
 ${bold}NAME

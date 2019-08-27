@@ -4,13 +4,23 @@
   copy:
     src: "{{ item }}"
     dest: "."
+    mode: '0755'
   with_items:
     - python3-status-check.sh
     - requirements.txt
 
+- name: install repo 
+  shell: |
+     curl -s https://storage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo &&  chmod a+x /usr/bin/repo
+  become:true
+
+- name: repo sync controller 
+  shell: |
+    repo init --no-clone-bundle -q -u https://github.com/Juniper/contrail-vnc -b master
+    repo sync --no-clone-bundle -q contrail-controller
+  become:true
+
 - name: run python3 status check script
   shell: |
-    virtualenv .venv
-    source .venv/bin/activate
-    python3 -m pip install -r requirements.txt
-    ./python3-status-check.sh
+    bash python3-status-check.sh
+  become: true
