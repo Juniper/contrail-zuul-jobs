@@ -391,3 +391,7 @@
     irrelevant-files:
       - specs/.*
     run: playbooks/test-python3-status/main.yaml
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7-4-builder
