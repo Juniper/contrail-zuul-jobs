@@ -13,7 +13,8 @@ trap 'pkill $PPID' INT ERR
 script_name="$(basename "$0")"
 script_dir="$(readlink -m "$(dirname "$0")")"
 # Directory where the repos are
-base_dir="$(readlink -m "$script_dir/../../contrail")"
+#base_dir="$(readlink -m "$script_dir/../../contrail")"
+base_dir="."
 # Log base directory
 log_base_dir=/var/tmp
 
@@ -21,99 +22,7 @@ log_base_dir=/var/tmp
 bold=$(tput bold)
 normal=$(tput sgr0)
 
-# Report usage
-help() {
-cat <<EOF
 
-${bold}NAME
-    $script_name${normal} -- Python 3 compatibility check
-
-${bold}SYNOPSIS
-    $script_name [--chdir=dir] [--repos="path1,path2,..."] [--report=file]
-
-DESCRIPTION${normal}
-    Report if python modules in a "repo"-tool-supported path can support 
-    Python 3.  The checking is done in two ways:
-    
-    1. Checking for classifier 'Programming Language :: Python :: 3' in 
-       setup.py).  Any dependencies that may block conversion are reported.
-    
-    2. Running the tool caniusepython3 to see if there are any blocking 
-       external dependencies.
-
-    The results are reported as an XML document. By default, report is written
-    to $default_report.
-
-    Logs are written to $log_base_dir/[repo].caniusepython3.log
-
-    ${bold}--chdir${normal}     Directory containing .repo/manifest.xml with list of projects.
-                Default is $base_dir
-    ${bold}--repos${normal}     One or more comma-separated repo locations.
-                e.g.-- "contrail-web-controller,openstack/contrail-heat"
-                Default is "all", meaning scan all repos.
-    ${bold}--report${normal}    Path to XML report file.
-                Default is $default_report.
-    ${bold}--help|-h${normal}   Display this help.
-
-${bold}EXAMPLE
-    ${normal}$script_name --repos=src/contrail-api-client
-
-${bold}EXIT STATUS
-    ${normal}Only returns 0 if all components analyzed support Python3.
-
-${bold}REPORT
-    ${normal}Report format is in XML.  The document schema is as follows:
-
-        <xml version="1.0">
-            <repo name="contrail-api-client" path="src/contrail-api-client">
-                <module name="contrail-api-client" 
-                        path="src/contrail-api-client/api-lib" 
-                        python3-support="no">
-                    <blocker module="junitxml"/>
-                </module>
-            </repo>
-        </xml> 
-
-    There is a ${bold}<repo/>${normal} per repo that is scanned.  It has attributes
-    for the repo ${bold}name${normal} and ${bold}path${normal}.  Within each of these, there may be 
-    child <module/> for dependencies.
-
-    The ${bold}<module/>${normal} has attributes for Python module ${bold}name${normal}, ${bold}path${normal} and 
-    ${bold}python3-support${normal}  The ${bold}python3-support${normal} attribute can be "yes" or "no".
-    Each Python module may have blocking dependencies reported with a child
-    <blocker/>.
-
-    The ${bold}<blocker/>${normal} only contains the attribute ${bold}module${normal} which is the name of 
-    the module dependency that will block conversion.
-
-${bold}LIMITATIONS${normal}
-    1.) We are relying a developer to have correctly set the classifier for 
-        'Programming Language :: Python :: 3'.  This must be actually tested by
-        importing the module and running all necessary tests.
-
-    2.) The 'caniusepython3' tool only verifies that the dependencies can 
-        support Python 3.  It does not verify which version of the tool is 
-        actually in use.  If we are revision-locked to an older version of
-        a tool that version may not be compatible with Python 3.
-
-    3.) This script intentionally ignores warnings that caniusepython3 reports
-        specifically for missing dependencies.  The intended design is to only
-        ignore warnings and errors related to missing references to internal 
-        components.  It is possible to ignore an error or warning that should 
-        not be.
-
-${bold}FUTURE${normal}
-    It would be best to incorporate the caniusepython3 check into each of the 
-    individual module tests directly.  This would remove the problem of having
-    to ignore warnings and errors emited by caniusepython3 since at build time
-    all dependencies will be available.  This is very easy to do.  
-    
-    Information on how to do this can be found here: 
-    
-        ${bold}https://pypi.org/project/caniusepython3/${normal}
-
-EOF
-}
 
 
 # Parse arguments
