@@ -1,4 +1,3 @@
-createrepo
 docker
 docker-python
 gcc
