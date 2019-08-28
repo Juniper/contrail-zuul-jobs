@@ -1,0 +1,14 @@
+---
+- hosts: all
+  vars:
+    image_name: developer-sandbox
+  roles:
+    - zuul-include-vars
+    - add-insecure-registry
+      new_registry: "{{ 10.84.5.81:5000 }}"
+    - publish-container-images
+      registry: "10.84.5.81:5000"
+      tag: "{{ packaging.docker_version }}"
+      images:
+        - name: "{{ image_name }}"
+          tag: "{{ packaging.docker_version }}"
