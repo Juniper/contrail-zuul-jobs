@@ -14,6 +14,9 @@
     mode: pull
   become: true
 
+- name: Pull pre-built contrail-general-base
+  include: "{{ ansible_distribution|lower }}.yaml"
+
 - name: Get list of repo files
   command: "ls {{ rpm_repo_config_dir }}"
   register: repo_list
@@ -33,7 +36,7 @@
   when: "ansible_distribution == 'CentOS'"
 
 - name: Prepare container list
-  shell: ./build.sh list | grep -v INFO
+  shell: ./build.sh list | grep -v INFO | grep -v general-base
   become: true
   register: docker_list
   args:

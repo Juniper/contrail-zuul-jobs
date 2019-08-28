@@ -1,0 +1,19 @@
+- name: Pull branch contrail-general-base
+  command: docker pull "{{ contrail_base_container_registry }}"/contrail-general-base:{{ contrail_packaging.version.public }}-latest
+  become: true
+  register: pull
+  retries: 5
+  delay: 5
+  until: pull.rc == 0
+
+- name: Re-tag branch contrail-general-base
+  command: docker tag "{{ contrail_base_container_registry }}"/contrail-general-base:{{ contrail_packaging.version.public }}-latest {{ contrail_docker_registry }}/contrail-general-base:{{ contrail_packaging.repo_name }}
+  become: true
+
+- name: Push contrail-general-base to local registry
+  command: docker push  {{ contrail_docker_registry }}/contrail-general-base:{{ contrail_packaging.repo_name }}
+  become: true
+  register: push
+  retries: 5
+  delay: 5
+  until: push.rc == 0
