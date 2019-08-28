@@ -14,6 +14,26 @@
     mode: pull
   become: true
 
+- name: Pull branch contrail-general-base 
+  command: docker pull ci.repo.englab.juniper.net:5010/contrail-general-base:{{ contrail_packaging.version.public }}-latest
+  become: true
+  register: pull
+  retries: 5
+  delay: 5
+  until: pull.rc == 0
+
+- name: Re-tag branch contrail-general-base 
+  command: docker tag ci.repo.englab.juniper.net:5010/contrail-general-base:{{ contrail_packaging.version.public }}-latest {{ contrail_docker_registry }}/contrail-general-base:{{ contrail_packaging.repo_name }}
+  become: true
+
+- name: Push contrail-general-base to local registry
+  command: docker push  {{ contrail_docker_registry }}/contrail-general-base:{{ contrail_packaging.repo_name }}
+  become: true
+  register: push
+  retries: 5
+  delay: 5
+  until: push.rc == 0
+
 - name: Get list of repo files
   command: "ls {{ rpm_repo_config_dir }}"
   register: repo_list
@@ -33,7 +53,7 @@
   when: "ansible_distribution == 'CentOS'"
 
 - name: Prepare container list
-  shell: ./build.sh list | grep -v INFO
+  shell: ./build.sh list | grep -v INFO | grep -v contrail-general-base
   become: true
   register: docker_list
   args:
