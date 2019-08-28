@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72377476_dfeb5295",
+        "filename": "roles/contrail-build-containers/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2019-08-28T17:39:43Z",
+      "side": 1,
+      "message": "it would be good to use previously defined variables for these params",
+      "range": {
+        "startLine": 18,
+        "startChar": 23,
+        "endLine": 18,
+        "endChar": 54
+      },
+      "revId": "61274cbb18f238a4e5b2ff86000bd8a065f558be",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d129d84_7d4e5184",
+        "filename": "roles/contrail-build-containers/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2019-08-28T17:39:43Z",
+      "side": 1,
+      "message": "in general this container may not be pushed. clients don\u0027t use it directly. but this layer will be pushed anyway with first built container (but without explicit tag)",
+      "revId": "61274cbb18f238a4e5b2ff86000bd8a065f558be",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
