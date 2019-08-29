@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "f66742a9_38bb5fd6",
+        "filename": "roles/contrail-build-containers/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2019-08-29T05:47:41Z",
+      "side": 1,
+      "message": "exactly.",
+      "parentUuid": "79d91564_9964a6c6",
+      "range": {
+        "startLine": 18,
+        "startChar": 23,
+        "endLine": 18,
+        "endChar": 54
+      },
+      "revId": "61274cbb18f238a4e5b2ff86000bd8a065f558be",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3d129d84_7d4e5184",
         "filename": "roles/contrail-build-containers/tasks/main.yaml",
         "patchSetId": 2
@@ -78,6 +102,24 @@
       "side": 1,
       "message": "Could you please explain bit more on this ?",
       "parentUuid": "3d129d84_7d4e5184",
+      "revId": "61274cbb18f238a4e5b2ff86000bd8a065f558be",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fddba850_fdf4f5c5",
+        "filename": "roles/contrail-build-containers/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2019-08-29T05:47:41Z",
+      "side": 1,
+      "message": "The push operation is needed to assign some name/tag to some docker layer to let user find it and use from external repo. If user doesn\u0027t use general-base directly then we can skip push operation. But if this container will be as a base layer then we need to push.\n\nMost other containers are inherited from general-base and all its data will pushed to remote registry anyway .",
+      "parentUuid": "fb7edfce_0385be21",
       "revId": "61274cbb18f238a4e5b2ff86000bd8a065f558be",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": true
