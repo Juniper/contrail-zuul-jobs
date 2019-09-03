@@ -12,6 +12,9 @@
     name: 'docker-py'
     state: 'present'
 
+- name: FAIL the playbook purposely
+  command: false
+
 - name: pull the testrunner image
   docker_image:
     name: '{{ testrunner_image }}'
