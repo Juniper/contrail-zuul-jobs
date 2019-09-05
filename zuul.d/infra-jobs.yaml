@@ -127,7 +127,7 @@
     description: |
       This job runs against contrail-project-config and zuul-jobs, to lint
       ansible playbooks and roles.
-    pre-run: playbooks/zuul-jobs-linters/pre.yaml
+    run: playbooks/zuul-jobs-linters/pre.yaml
     required-projects:
       - Juniper/contrail-project-config
       - Juniper/zuul-jobs
@@ -198,3 +198,12 @@
       - ^roles/publish-rpm-nexus/.*
       - ^roles/build-third-party-rpms/.*
     nodeset: builder-centos-7
+
+- job: 
+    name: test-zuul-linters
+    parent: contrail-base2
+    description: |
+      This job tests all projects on linter compliance
+    required-projects:
+      - Juniper/contrail-third-party-packages
+    run: playbooks/check-project-compliance/main.yaml
