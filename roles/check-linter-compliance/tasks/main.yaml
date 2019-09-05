@@ -1,0 +1,22 @@
+---
+
+- name: find files to lint
+  hosts: all
+  command: 'find {{ item.src_dir }}/roles/ -type f -name \*.yaml'
+  register: files_to_lint
+  with_items: "{{ zuul.projects | list }}"
+  # find:
+  #   path: '{{ item.src_dir }}/roles/'
+# - set_fact:
+#     file_to_lint: "{{ files_to_lint.stdout_lines }}"
+
+  # register: files_to_lint
+  # debug: " {{ files_to_lint.stdout_lines }} "
+  
+
+
+- name: lint all files in the project/Ignore upcoming errors to check
+  command: 'ansible-lint -r {{ zuul.project.src_dir }}/ansible-lint-rules {{ item }}'
+  with_items: "{{ file_to_lint.stdout_lines }}"
+  ignore_errors: yes
+
