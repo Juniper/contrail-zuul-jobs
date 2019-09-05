@@ -15,7 +15,15 @@
         - ci-test-publish-infra-doc
         - ci-test-publish-infra-doc-unit
         - ci-test-publish-rpm-nexus
-        - zuul-jobs-linters
+        - zuul-jobs-linters:
+            dependencies:
+              - contrail-vnc-build-package-centos74     
+              - contrail-build-containers-centos7-ocata 
+              - contrail-go-docker  
+              - contrail-vnc-build-package-rhel7-queens   
+              - contrail-build-containers-rhel7-queens  
+              - contrail-go-docker-rhel7
+              
         - noop:
             irrelevant-files:
               - ^roles/.*
@@ -38,6 +46,7 @@
         - ci-test-publish-infra-doc-unit
         - ci-test-publish-rpm-nexus
         - zuul-jobs-linters
+            
         - noop:
             irrelevant-files:
               - ^roles/.*
