@@ -1,0 +1,12 @@
+---
+
+- name: find files to lint
+  hosts: all
+  find:
+    path: '{{ ansible_env.HOME }}/playbooks/'
+  register: files_to_lint
+
+- name: lint all files in the project/Ignore upcoming errors to check
+  command: ansible-lint -r {{ ansible_env.HOME }}/ansible-lint-rules {{ item.path }}'
+  ignore_errors: yes
+
