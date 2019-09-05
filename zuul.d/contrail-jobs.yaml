@@ -391,3 +391,13 @@
     irrelevant-files:
       - specs/.*
     run: playbooks/test-python3-status/main.yaml
+
+- job: 
+    name: test-zuul-linters
+    parent: contrail-base2
+    description: |
+      This job tests all projects on linter compliance
+    required-projects:
+      - Juniper/contrail-third-party-packages
+    run: roles/check-linter-compliance/main.yaml
+    
