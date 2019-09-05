@@ -1,0 +1,71 @@
+---
+
+- name: find files to lint
+  hosts: all
+  command: 'find {{ item.src_dir }}/roles/ -type f -name \*.yaml'
+  with_items: "{{ zuul.projects | list }}"
+  register: files_to_lint
+
+- set_fact:
+    stdout_lines: []
+- set_fact:
+    stdout_lines: "{{ stdout_lines + item.stdout_lines }}"
+    with_items: " {{ files_to_lint.results }} "
+- debug:
+    msg: " {{ item }}"
+  with_items: "{{ stdout_lines }}"
+
+  # find:
+  #   path: '{{ item.src_dir }}/roles/'
+# - set_fact:
+#     file_to_lint: "{{ files_to_lint.stdout_lines }}"
+
+  # register: files_to_lint
+  # debug: " {{ files_to_lint.stdout_lines }} "
+  
+- name: lint all files in the project/Ignore upcoming errors to check
+  command: 'ansible-lint -r {{ zuul.project.src_dir }}/ansible-lint-rules {{ item }}'
+  with_items: "{{ stdout_lines }}"
+  ignore_errors: yes
+# - name: find files to lint
+#   hosts: localhost
+#   tasks:
+#     - name: find files to l
+#       shell: 'find ~/Documents/tes/contrail-zuul-jobs/roles/ -type f -name \*.yaml'
+#       register: files_to_lint
+
+#     - set_fact:
+#         stdout_lines: []
+#     - set_fact:
+#         stdout_lines: "{{ stdout_lines + item.stdout_lines }}"
+#       with_items: " {{ files_to_lint.results }} "
+#     - debug:
+#         msg: " {{ item }}"
+#       with_items: "{{ stdout_line }}"
+
+# - name: lint all files in the project/Ignore upcoming errors to check
+#   tasks:
+#     shell: "ansible-lint -r ~/Documents/tes/contrail-zuul-jobs/ansible-lint-rules/ {{ item }}"
+#     with_items: " {{ stdout_lines }} "
+
+#     loop: "{{ saved_files }}"
+    # with_items: "{{ files_to_lint | map(attribute='stdout_lines') | list }}"
+  # tasks:
+  #   shell: 'find ~/Documents/tes/contrail-zuul-jobs/roles/ -type f -name \*.yaml'
+    # register: files_to_lint
+  # with_items: "{{ zuul.projects | list }}"
+  # find:
+  #   path: '{{ item.src_dir }}/roles/'
+# - set_fact:
+#     file_to_lint: "{{ files_to_lint.stdout_lines }}"
+
+  # register: files_to_lint
+  # debug: " {{ files_to_lint.stdout_lines }} "
+  
+
+
+# - name: lint all files in the project/Ignore upcoming errors to check
+#   tasks:
+#     command: 'ansible-lint -r ~/Documents/tes/contrail-zuul-jobs/ansible-lint-rules/ {{ item }}'
+#     with_items: "{{ files_to_lint.stdout | list }}"
+#   ignore_errors: yes
