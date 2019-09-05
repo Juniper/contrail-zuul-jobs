@@ -2,7 +2,5 @@
 - hosts: all
   roles:
     - zuul-include-vars
-    - role: add-insecure-registry
-      new_registry: "10.84.5.81:5010"
     - contrail-build-containers
 
