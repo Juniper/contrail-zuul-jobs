@@ -1,0 +1,17 @@
+---
+
+- name: find files to lint
+  hosts: all
+  command: 'find {{ item.src_dir }}/roles/ -type f -name \*.yaml'
+  # find:
+  #   path: '{{ item.src_dir }}/roles/'
+  register: files_to_lint
+  with_items: "{{ zuul.projects | list }}"
+  
+
+
+- name: lint all files in the project/Ignore upcoming errors to check
+  command: 'ansible-lint -r {{ zuul.project.src_dir }}/ansible-lint-rules {{ item }}'
+  with_items: "{{ files_to_lint | list }}"
+  ignore_errors: yes
+
