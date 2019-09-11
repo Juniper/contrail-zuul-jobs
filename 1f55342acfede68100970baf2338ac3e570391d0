@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7eb5f0b1_33627016",
+        "filename": "roles/test-python3-status/files/python3-status-check.sh",
+        "patchSetId": 51
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-09-11T10:54:44Z",
+      "side": 1,
+      "message": "Just get rid of the whitespaces.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 4
+      },
+      "revId": "1f55342acfede68100970baf2338ac3e570391d0",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
