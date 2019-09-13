@@ -39,9 +39,7 @@ def get_project(projects, short_name):
     for project, data in projects.items():
         if data['short_name'] == short_name:
             return data
-    msg = "Zuul does not know about project {}.\n".format(short_name)
-    msg += "Make sure it is defined in ``required-projects'' for this job."
-    raise RuntimeError(msg)
+    return None
 
 
 def convert_to_valid_git_id(dirname):
@@ -84,6 +82,9 @@ def translate(zuul_projects, sandbox_root, manifest_path):
     for project in manifest.xpath('//project'):
         name = project.attrib['name']
         zuul_project = get_project(zuul_projects, name)
+        if not zuul_project:
+            project.getparent().remove(project)
+            continue
         remote_name = convert_to_valid_git_id(os.path.dirname(zuul_project['src_dir']))
         project.attrib['remote'] = remote_name
         head = get_head_branch(
@@ -111,6 +112,8 @@ def snapshot(projects, manifest_path):
     for project in manifest.xpath('//project'):
         name = project.attrib['name']
         zuul_project = get_project(projects, name)
+        if not zuul_project:
+            continue
         sha = get_head_commit_sha(
             os.path.join(
                 os.environ['HOME'],
