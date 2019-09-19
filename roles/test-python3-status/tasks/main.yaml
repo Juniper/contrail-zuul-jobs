@@ -18,7 +18,7 @@
 - name: repo sync controller
   shell: |
     repo init --no-clone-bundle -q -u https://github.com/Juniper/contrail-vnc -b {{ zuul.branch }}
-    repo sync --no-clone-bundle -q contrail-controller
+    repo sync
   become: true
 
 - name: run python3 status check script
