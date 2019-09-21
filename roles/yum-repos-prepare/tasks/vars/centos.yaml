@@ -6,10 +6,10 @@ repos_remove:
     - { name: epel, file: epel }
     - { name: epel-source, file: epel }
 repos_file: CentOS-Base
-repos_baseurl: http://{{ docker_registry.fqdn }}/pulp/repos
+repos_baseurl: http://{{ docker_registry.fqdn }}/pulp/repos/{{ contrail_packaging.version.public }}
 repos_add:
-    - { name: updates-mirror, repo: centos74-updates, description: CentOS updates mirror }
-    - { name: extras-mirror, repo: centos74-extras, description: CentOS extras mirror }
-    - { name: base-mirror, repo: centos74, description: CentOS base mirror }
+    - { name: updates-mirror, repo: centos77-updates, description: CentOS updates mirror }
+    - { name: extras-mirror, repo: centos77-extra, description: CentOS extras mirror }
+    - { name: base-mirror, repo: centos77-os, description: CentOS base mirror }
 use_epel: yes
 
