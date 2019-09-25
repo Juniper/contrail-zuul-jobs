@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "eb16061f_f8e3aeda",
+        "filename": "roles/yum-repos-prepare/tasks/vars/default.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 79
+      },
+      "writtenOn": "2019-09-25T13:38:46Z",
+      "side": 1,
+      "message": "This is needed for https://contrail-jws.atlassian.net/browse/CEM-9132. As of now, nightly build fails if only 1032 kernel is provided. Once that is resolved, we can remove this mirror.",
+      "parentUuid": "368f4bd6_861691ab",
+      "revId": "cd9ba8198ab5dc49cb0b158edfce0e6708bf9915",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a550ad9f_8b393d53",
         "filename": "roles/yum-repos-prepare/tasks/vars/redhat.yaml",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "379184bb_77905452",
+        "filename": "roles/yum-repos-prepare/tasks/vars/redhat.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 79
+      },
+      "writtenOn": "2019-09-25T13:38:46Z",
+      "side": 1,
+      "message": "This is my mistake. I generated pulp mirrors (there were too many of), and missed those in the script. There is no specific reason.\n\nBut I agree it good to have same names as RHEL. I\u0027ll raise a ticket to fix that before R1911.",
+      "parentUuid": "a550ad9f_8b393d53",
+      "revId": "cd9ba8198ab5dc49cb0b158edfce0e6708bf9915",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21ca5df4_f692f054",
         "filename": "roles/yum-repos-prepare/tasks/vars/redhat.yaml",
         "patchSetId": 3
@@ -50,6 +86,24 @@
       "revId": "cd9ba8198ab5dc49cb0b158edfce0e6708bf9915",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75ca5a63_98f012c9",
+        "filename": "roles/yum-repos-prepare/tasks/vars/redhat.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 79
+      },
+      "writtenOn": "2019-09-25T13:38:46Z",
+      "side": 1,
+      "message": "This is my mistake. I generated pulp mirrors (there were too many of), and missed those in the script. There is no specific reason.\n\nBut I agree it good to have same names as RHEL. I\u0027ll raise a ticket to fix that before R1911.",
+      "parentUuid": "21ca5df4_f692f054",
+      "revId": "cd9ba8198ab5dc49cb0b158edfce0e6708bf9915",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
     }
   ]
 }
