@@ -84,9 +84,9 @@
     - { name: 'fabric-utils' }
     - { name: 'neutron-plugin-contrail' }
 
-- name: Install nodejs 0.10.35
+- name: Install nodejs 0.10.48
   yum:
-    name: nodejs-0.10.35-1contrail.el7
+    name: nodejs-0.10.48-1contrail.el7
   become: true
   become_user: root
 
