@@ -4,7 +4,7 @@
 # this will use TPC repo from the master branch by default
 tpc_branch: "{{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, 'master') }}"
 enable_tpc_repo: true
-openstack_version: ocata
+openstack_version: queens
 cloud_orchestrator: 'openstack'
 openshift_version: '3.9'
 nexus_rpm_repo: '{{ nexus.repos.yum_tpc }}'
