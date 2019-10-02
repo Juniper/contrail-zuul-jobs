@@ -22,6 +22,19 @@
     state: installed
   become: true
 
+- name: install epel-release
+  yum:
+    name: epel-release
+    state: present
+  become: true
+
+- name: install sphinx
+  yum:
+    name: python3-sphinx
+    state: latest
+    update_cache: yes
+  become: true
+
 - name: install/upgrade utilities
   become: true
   command: "python3 -m pip install --upgrade {{ item }}"
@@ -29,5 +42,4 @@
     - virtualenv
     - scons
     - lxml
-    - sphinx
     - requests
