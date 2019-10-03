@@ -30,3 +30,4 @@
     - scons
     - lxml
     - requests
+    - sphinx
