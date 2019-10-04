@@ -31,3 +31,4 @@
     - virtualenv
     - scons
     - pydot
+    - future
