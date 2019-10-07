@@ -18,6 +18,10 @@
     state: 'installed'
   become: true
 
+- name: install python2 future
+  command: "pip install future"
+  become: true
+
 - name: install python3
   package:
     name: python3

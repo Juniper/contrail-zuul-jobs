@@ -12,6 +12,10 @@
     state: installed
   become: true
 
+- name: install python2 future
+  command: "pip install future"
+  become: true
+
 - name: install tox
   package:
     name: python-tox
