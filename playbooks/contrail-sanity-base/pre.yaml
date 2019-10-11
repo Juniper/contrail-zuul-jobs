@@ -28,6 +28,7 @@
   roles:
     - self-ssh-key
     - install-ansible
+    - install-python3
 
 - hosts: all
   tasks:

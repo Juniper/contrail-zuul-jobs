@@ -4,7 +4,7 @@
 
 - name: Download pip installation script
   get_url:
-    url: https://bootstrap.pypa.io/3.3/get-pip.py
+    url: https://bootstrap.pypa.io/get-pip.py
     dest: '{{ ansible_env.HOME }}/get-pip.py'
     mode: 0755
 
@@ -16,5 +16,4 @@
   command: "python3 -m pip install --upgrade {{ item }}"
   with_items:
     - pip
-    - pipenv
     - virtualenv
