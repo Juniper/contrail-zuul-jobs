@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67ca492e_de81677e",
+        "filename": "roles/install-python3/tasks/centos.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 437
+      },
+      "writtenOn": "2019-10-11T13:49:05Z",
+      "side": 1,
+      "message": "remove spaces",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 17
+      },
+      "revId": "209b334902428512f648e96ddc013c05d9f2468c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9674cf3d_753abc6a",
+        "filename": "roles/install-python3/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 437
+      },
+      "writtenOn": "2019-10-11T13:49:05Z",
+      "side": 1,
+      "message": "remove spaces",
+      "range": {
+        "startLine": 18,
+        "startChar": 10,
+        "endLine": 18,
+        "endChar": 14
+      },
+      "revId": "209b334902428512f648e96ddc013c05d9f2468c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f3c13cb_4cc74ab1",
+        "filename": "roles/install-python3/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 437
+      },
+      "writtenOn": "2019-10-11T13:49:05Z",
+      "side": 1,
+      "message": "rename pip",
+      "range": {
+        "startLine": 18,
+        "startChar": 6,
+        "endLine": 18,
+        "endChar": 10
+      },
+      "revId": "209b334902428512f648e96ddc013c05d9f2468c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
