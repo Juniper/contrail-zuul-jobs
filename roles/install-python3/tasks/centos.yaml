@@ -5,5 +5,4 @@
     state: present
   become: true
   with_items:
-    - epel-release
-    - python36
+    - python3
