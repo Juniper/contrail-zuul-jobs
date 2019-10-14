@@ -13,7 +13,7 @@
 
 - name: get a list of package files
   find:
-    paths: '{{ pkg_src_dir }}'
+    paths: '{{ pkg_src_dr }}'
     recurse: yes
     patterns:
       - '*.rpm'
