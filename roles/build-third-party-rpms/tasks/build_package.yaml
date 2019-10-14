@@ -1,7 +1,7 @@
 ---
 
 - name: Build package {{ item }}
-  command: 'make {{ item }}'
+  command: 'make dummy'
   args:
     chdir: '{{ ansible_env.HOME }}/{{ rpm_dir }}/upstream/rpm'
   become: true
