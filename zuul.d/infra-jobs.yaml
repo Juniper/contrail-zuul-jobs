@@ -198,3 +198,10 @@
       - ^roles/publish-rpm-nexus/.*
       - ^roles/build-third-party-rpms/.*
     nodeset: builder-centos-7
+
+- job:
+    name: pep8-check
+    parent: contrail-vnc-base
+    run: playbooks/pep8-check/main.yaml
+    nodeset: builder-centos-7
+    voting: False
