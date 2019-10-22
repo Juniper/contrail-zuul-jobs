@@ -1,0 +1,10 @@
+---
+- name: run pep8 checks
+  command: "find . -name '*.ini' -print0 | xargs  -0  grep 'testenv:pep8'  | cut -d ':' -f 1 |xargs tox -epep8 >> pep8-check.log"
+
+- name: copy pep8 log repot to logdir
+  synchronize:
+    src: pep8-check.log
+    dest: '{{ zuul.executor.log_root }}/pep8-check.log'
+    mode: 'pull'
+  become: true
