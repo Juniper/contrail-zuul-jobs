@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b52106ed_023ffb62",
+        "filename": "roles/pep8-check/tasks/main.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2019-10-22T09:28:25Z",
+      "side": 1,
+      "message": "1) it would be good to split this into several commands to be able to analyze this.\n2) it would be good to not redirect this to one huge log.",
+      "revId": "63f3fed0603edfede736f68bafa332764afdb628",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60f53c18_d8aaf207",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2019-10-22T09:28:25Z",
+      "side": 1,
+      "message": "infra-jobs.yaml is for internal zuul jobs. contrail specific jobs must be in another file.",
+      "revId": "63f3fed0603edfede736f68bafa332764afdb628",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6162bb0_53578295",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2019-10-22T09:28:25Z",
+      "side": 1,
+      "message": "linter\u0027s job must use smaller VM.",
+      "revId": "63f3fed0603edfede736f68bafa332764afdb628",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
