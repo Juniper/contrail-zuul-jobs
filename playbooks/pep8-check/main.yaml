@@ -1,0 +1,4 @@
+---
+- hosts: all
+  roles:
+    - role: pep8-check
