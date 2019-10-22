@@ -1,0 +1,20 @@
+---
+- name: run pep8 checks
+  command: tox -epep8 -vv  {{ item }}
+  with_items:
+    - tools/contrail-kolla-ansible/tox.ini
+    - src/contrail-api-client/api-lib/tox.ini
+    - openstack/nova_contrail_vif/tox.ini
+    - openstack/neutron_plugin/tox.ini
+    - controller/src/config/fabric-ansible/tox.ini
+    - controller/src/config/api-server/tox.ini
+    - controller/src/config/schema-transformer/tox.ini
+    - controller/src/config/device-manager/tox.ini
+    - controller/src/config/common/tox.ini
+
+- name: copy pep8 log repot to logdir
+  synchronize:
+    src: tox/pep8/log/
+    dest: '{{ zuul.executor.log_root }}/pep8/log/'
+    mode: 'pull'
+  become: true
