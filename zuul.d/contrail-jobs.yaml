@@ -395,3 +395,11 @@
       nodes:
         - name: builder
           label: centos-7-4-builder
+
+
+- job:
+    name: pep8-check
+    parent: contrail-vnc-base
+    run: playbooks/pep8-check/main.yaml
+    nodeset: ubuntu-xenial-c
+    voting: False
