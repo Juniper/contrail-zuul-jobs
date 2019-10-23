@@ -61,7 +61,7 @@
     name: epel-mirror
     description: CentOS epel mirror
     file: epel
-    baseurl: "http://{{ docker_registry.fqdn }}/pulp/repos/master/epel77"
+    baseurl: "http://{{ docker_registry.fqdn }}/pulp/repos/master/epel-77"
     enabled: "{{ use_epel }}"
     gpgcheck: no
   become: yes
