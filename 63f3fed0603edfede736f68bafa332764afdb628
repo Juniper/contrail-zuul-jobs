@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "43ffcd5a_ec619d97",
+        "filename": "roles/pep8-check/tasks/main.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 351
+      },
+      "writtenOn": "2019-11-04T07:24:34Z",
+      "side": 1,
+      "message": "I have already discussed these things with Edouard.\n1\u003e I plan on splitting the commands later. Due to urgency i had to do this. The project config changes need to be merged first so that i can play with zuul jobs changes later.\n2\u003e The log is not huge, for each file it will just output success or failure.",
+      "parentUuid": "b52106ed_023ffb62",
+      "revId": "63f3fed0603edfede736f68bafa332764afdb628",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "60f53c18_d8aaf207",
         "filename": "zuul.d/infra-jobs.yaml",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "83be563f_637896af",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 351
+      },
+      "writtenOn": "2019-11-04T07:24:34Z",
+      "side": 1,
+      "message": "moving to contrail-jobs.yaml",
+      "parentUuid": "60f53c18_d8aaf207",
+      "revId": "63f3fed0603edfede736f68bafa332764afdb628",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6162bb0_53578295",
         "filename": "zuul.d/infra-jobs.yaml",
         "patchSetId": 4
@@ -47,6 +83,24 @@
       "writtenOn": "2019-10-22T09:28:25Z",
       "side": 1,
       "message": "linter\u0027s job must use smaller VM.",
+      "revId": "63f3fed0603edfede736f68bafa332764afdb628",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca998fb8_87c45f3f",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 351
+      },
+      "writtenOn": "2019-11-04T07:24:34Z",
+      "side": 1,
+      "message": "I will use ubuntu-xenial-c which is used for other lint jobs",
+      "parentUuid": "d6162bb0_53578295",
       "revId": "63f3fed0603edfede736f68bafa332764afdb628",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": true
