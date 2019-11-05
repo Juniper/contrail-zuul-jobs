@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e68c5b80_d5a8e282",
+        "filename": "roles/pep8-check/tasks/main.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2019-11-05T11:09:20Z",
+      "side": 1,
+      "message": "why two same tasks are required?",
+      "revId": "55bfcea7cb40802781f8cec81b77b2e31ba0e261",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0358e07f_7c5308dd",
+        "filename": "zuul.d/contrail-jobs.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2019-11-05T11:09:20Z",
+      "side": 1,
+      "message": "why so big VM for linting?",
+      "revId": "55bfcea7cb40802781f8cec81b77b2e31ba0e261",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
