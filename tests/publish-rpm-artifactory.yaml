@@ -1,0 +1,14 @@
+---
+- hosts: builder
+  roles:
+    - fetch-packages
+
+- hosts: builder
+  roles:
+    - role: publish-rpm-artifactory
+      remote_repo_path: 'yum-tpc-test'
+      pkg_src_dir: '{{ ansible_env.HOME }}/'
+      nexus_creds_path: '{{ ansible_env.HOME }}/artifactory-creds'
+      nexus_credentials:
+        user: 'ci-test'
+        password: 'contrail-ci-test'
