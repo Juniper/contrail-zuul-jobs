@@ -1,0 +1,6 @@
+---
+pkg_src_dir: '{{ zuul.executor.work_root }}/packages'
+artifactory_creds_path: '{{ zuul.executor.work_root }}/artifactory-creds'
+remote_path_source: '{{ yum_tpc.put_url }}/{{ zuul.branch }}/source'
+remote_path_ctpp: '{{ yum_tpc.put_url }}/{{ zuul.change }}-{{ zuul.patchset }}-ctpp'
+remote_repo_path: '{{ remote_path_source if zuul.pipeline == "post-merge" else remote_path_ctpp }}'
