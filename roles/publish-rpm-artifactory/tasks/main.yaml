@@ -1,0 +1,47 @@
+---
+
+- name: set repository url
+  set_fact:
+    artifactory_repo_url: '{{ remote_repo_path }}'
+
+- name: return repository location back to zuul for children jobs
+  zuul_return:
+    data:
+      contrail_package_repository: '{{ artifactory_repo_url }}'
+  delegate_to: localhost
+  when: zuul_execution_trusted
+
+- name: get a list of package files
+  find:
+    paths: '{{ pkg_src_dir }}'
+    recurse: yes
+    patterns:
+      - '*.rpm'
+  register: package_list
+
+- name: upload rpms
+  when: package_list.matched|int != 0
+  block:
+
+    - name: create a credentials file
+      copy:
+        content: '--user {{ artifactory_credentials.user }}:{{ artifactory_credentials.password }}'
+        dest: '{{ artifactory_creds_path }}'
+      no_log: true
+
+    - name: upload rpm to artifactory
+      command: >
+        curl -u {{ artifactory_creds_path }}
+          --upload-file {{ item }} {{ remote_repo_path }}/{{ item | basename }}
+      with_items: "{{ package_list | json_query('files[*].path') }}"
+      tags:
+        # ANSIBLE0006 - cannot use either get_url or uri modules for this task
+        # as they don't support uploads (uri does since Ansible 2.6)
+        - skip_ansible_lint
+
+  always:
+    - name: remove credentials file
+      file:
+        path: '{{ artifactory_creds_path }}'
+        state: 'absent'
+      no_log: true
