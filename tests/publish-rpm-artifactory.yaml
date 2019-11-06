@@ -1,0 +1,14 @@
+---
+- hosts: builder
+  roles:
+    - fetch-packages
+
+- hosts: builder
+  roles:
+    - role: publish-rpm-artifactory
+      remote_repo_path: 'http://{{ contrail_yum_tpc_test }}/{{ zuul.branch }}/source'
+      pkg_src_dir: '{{ ansible_env.HOME }}/'
+      artifactory_creds_path: '{{ ansible_env.HOME }}/artifactory-creds'
+      artifactory_credentials:
+        user: 'ci-test'
+        password: 'AP286TnE2en8v1VquG3as3Rm7Mu4Nd9Qd5pELV'
