@@ -8,9 +8,9 @@
         host: "{{ zuul_site_mirror_fqdn }}"
         port: 80
         state: started
-    - name: Ensure that repo01-jnpr.opencontrail.org is resolvable
+    - name: Ensure that repo01-dev.opencontrail.org is resolvable
       wait_for:
-        host: repo01-jnpr.opencontrail.org
+        host: repo01-dev.opencontrail.org
         port: 80
         state: started
 
