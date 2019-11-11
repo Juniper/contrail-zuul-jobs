@@ -1,6 +1,6 @@
 ---
 - name: run pep8 checks
-  command: tox -epep8 -vv  {{ item }}
+  command: tox -epep8 -vv  {{ zuul.executor.work_root }}/{{ item }}
   with_items:
     - tools/contrail-kolla-ansible/tox.ini
     - src/contrail-api-client/api-lib/tox.ini
