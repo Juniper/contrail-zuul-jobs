@@ -4,10 +4,34 @@
     path: '{{ docs_dir }}'
   register: docs_dir_stat
   delegate_to: localhost
-- name: upload doc to docs server
-  when: docs_dir_stat.stat.exists and docs_dir_stat.stat.readable
+- name: create a subdir for docs created during check pipeline execution
+  when: '{{ zuul.pipeline }}' == 'check'
+  file:
+    path: '{{ zuul_docserver_root }}/{{ zuul.change }}'
+    state: directory
+- name: check if subdir for docs created during check pipeline execution was created
+  when: '{{ zuul.pipeline }}' == 'check'
+  stat:
+    path: '{{ zuul_docserver_root }}/{{ zuul.change }}'
+  register: check_stat
+- name: upload docs created in the check pipeline to change subdir
+  when:
+    - '{{ zuul.pipeline }}' == 'check'
+    - check_stat.stat.exists and check_stat.stat.readable
+  synchronize:
+    src: '{{ docs_dir }}'
+    dest: '{{ zuul_docserver_root }}/{{ zuul.change }}'
+    mode: push
+- name: cleanup the docs uploaded to the change subdir if running gate pipeline
+  when: '{{ zuul.pipeline }}' == 'gate'
+  file:
+    path: '{{ zuul_docserver_root }}/{{ zuul.change }}'
+    state: absent
+- name: upload doc to docs server if running post-merge pipeline
+  when:
+    - '{{ zuul.pipeline }}' == 'post-merge'
+    - docs_dir_stat.stat.exists and docs_dir_stat.stat.readable
   synchronize:
     src: '{{ docs_dir }}'
     dest: '{{ zuul_docserver_root }}/'
     mode: push
-
