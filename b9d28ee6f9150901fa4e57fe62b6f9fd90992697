@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5bc1557_6c4f58a7",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-11-19T12:08:11Z",
+      "side": 1,
+      "message": "I know your job cannot see zuul\u0027s secrets now, because it\u0027s deemed \"untrusted\" code by zuul. But if you include the existing `secret:` here now, it will be soon able to use it. (The secret will become visible on `gate` pipeline and after the code is merged).",
+      "revId": "b9d28ee6f9150901fa4e57fe62b6f9fd90992697",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}

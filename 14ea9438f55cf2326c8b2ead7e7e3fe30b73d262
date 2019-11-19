@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1399238a_4351325e",
+        "filename": "tests/core/configure-hosts-entries.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-11-19T12:08:11Z",
+      "side": 0,
+      "message": "This change will conflict with https://review.opencontrail.org/c/Juniper/contrail-zuul-jobs/+/55327. Maybe better to not do this here and instead add Depends-On id_of_55327",
+      "revId": "14ea9438f55cf2326c8b2ead7e7e3fe30b73d262",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
