@@ -16,13 +16,26 @@
       zuul_docserver_root: '/tmp/www/static/infra-doc'
       docs_dir: '{{ zuul.executor.work_root }}/build/html/'
   post_tasks:
-    - name: list files
+    - name: list files if running post-merge pipeline
+      when: 'zuul.pipeline == "post-merge"'
       command: ls
       args:
         chdir: '/tmp/www/static/infra-doc/'
-    - name: check if files were uploaded correctly
+    - name: list files if running in check or gate pipeline
+      when: 'zuul.pipeline == "check"' or 'zuul.pipeline == "gate"'
+      command: ls
+      args:
+        chdir: '/tmp/www/static/infra-doc/{{ zuul.change }}'
+    - name: check if files were uploaded correctly in post-merge pipeline
+      when: 'zuul.pipeline == "post-merge"'
       stat:
         path: '/tmp/www/static/infra-doc/index.html'
+      register: docs_dir_stat
+      failed_when: not docs_dir_stat.stat.exists
+    - name: check if files were uploaded correctly in check or gate pipeline
+      when: 'zuul.pipeline == "check"' or 'zuul.pipeline == "gate"'
+      stat:
+        path: '/tmp/www/static/infra-doc/{{ zuul.change }}/index.html'
       register: docs_dir_stat
       failed_when: not docs_dir_stat.stat.exists
     - name: clean up data
