@@ -22,6 +22,23 @@
       "revId": "e2e5ea9323c4b0cbdb65e0610a0d08e3561a73cd",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c14ce79_0eced78e",
+        "filename": "tests/publish-infra-doc.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-11-20T15:50:26Z",
+      "side": 1,
+      "message": "nitpick: You have two tasks with the same `when:`. I think they would be more readable if you use ansible feature `block:` and this way they are visually grouped together. It\u0027s far more readable this way, which is A Good Thing™.\n\n\"Nitpick\" means that the remark is optional/educational but recommended for future work of yours.",
+      "revId": "e2e5ea9323c4b0cbdb65e0610a0d08e3561a73cd",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
     }
   ]
 }
