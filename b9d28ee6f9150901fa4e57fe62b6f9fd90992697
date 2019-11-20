@@ -16,6 +16,24 @@
       "revId": "b9d28ee6f9150901fa4e57fe62b6f9fd90992697",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29f91293_3e980124",
+        "filename": "zuul.d/infra-jobs.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-11-20T13:34:22Z",
+      "side": 1,
+      "message": "Ugh my bad. It worked like that for c-p-c jobs that used c-p-c projects. Secrets need to be from the same project.",
+      "parentUuid": "f5bc1557_6c4f58a7",
+      "revId": "b9d28ee6f9150901fa4e57fe62b6f9fd90992697",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
     }
   ]
 }
