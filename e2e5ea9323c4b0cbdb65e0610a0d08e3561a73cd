@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed1aa287_f5fccd5d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-11-20T12:31:48Z",
+      "side": 1,
+      "message": "Please keep the git commit title \u003c\u003d50 characters.\n\nAlso, since each of your patchsets overwrites the previous one (this is what git commit --amend does), it\u0027s not necessary to mention the previous one. The previous only stays on gerrit side and will never go to git side. That\u0027s ok.",
+      "range": {
+        "startLine": 7,
+        "startChar": 55,
+        "endLine": 7,
+        "endChar": 90
+      },
+      "revId": "e2e5ea9323c4b0cbdb65e0610a0d08e3561a73cd",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
