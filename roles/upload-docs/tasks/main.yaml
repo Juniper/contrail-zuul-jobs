@@ -1,13 +1,32 @@
 ---
+
 - name: check if the docs source dir is created on executor
   stat:
     path: '{{ docs_dir }}'
   register: docs_dir_stat
   delegate_to: localhost
-- name: upload doc to docs server
-  when: docs_dir_stat.stat.exists and docs_dir_stat.stat.readable
+- name: upload docs to docs server if running post-merge pipeline
+  when:
+    - zuul.pipeline == "post-merge"
+    - docs_dir_stat.stat.exists and docs_dir_stat.stat.readable
   synchronize:
     src: '{{ docs_dir }}'
     dest: '{{ zuul_docserver_root }}/'
     mode: push
-
+- name: upload docs to docs server if running check or gate pipeline
+  when: zuul.pipeline == "check" or zuul.pipeline == "gate"
+  block:
+    - name: create a target subdir
+      file:
+        path: '{{ zuul_docserver_root }}/'
+        state: directory
+    - name: check if the target subdir has been created
+      stat:
+        path: '{{ zuul_docserver_root }}/'
+      register: target_stat
+    - name: upload docs to target subdir
+      when: target_stat.stat.exists and target_stat.stat.readable
+      synchronize:
+        src: '{{ docs_dir }}'
+        dest: '{{ zuul_docserver_root }}/'
+        mode: push
