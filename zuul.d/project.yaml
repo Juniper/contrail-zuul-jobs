@@ -11,6 +11,7 @@
         - ci-test-publish-infra-doc
         - ci-test-publish-infra-doc-unit
         - ci-test-publish-rpm-nexus
+        - ci-test-publish-rpm-artifactory
         - zuul-jobs-linters
         - noop:
             irrelevant-files:
@@ -29,6 +30,7 @@
         - ci-test-publish-infra-doc
         - ci-test-publish-infra-doc-unit
         - ci-test-publish-rpm-nexus
+        - ci-test-publish-rpm-artifactory
         - zuul-jobs-linters
         - noop:
             irrelevant-files:
