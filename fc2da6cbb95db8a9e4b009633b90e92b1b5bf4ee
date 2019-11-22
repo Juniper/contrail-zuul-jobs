@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08e614ba_1d38be8a",
+        "filename": "roles/upload-docs/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-11-22T09:20:43Z",
+      "side": 1,
+      "message": "leave one line under marker",
+      "revId": "fc2da6cbb95db8a9e4b009633b90e92b1b5bf4ee",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c783af7_ad0ed69f",
+        "filename": "roles/upload-docs/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-11-22T09:20:43Z",
+      "side": 1,
+      "message": "and one line under code :)",
+      "revId": "fc2da6cbb95db8a9e4b009633b90e92b1b5bf4ee",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
