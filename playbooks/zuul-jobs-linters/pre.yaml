@@ -15,3 +15,5 @@
         dest: '{{ ansible_env.HOME }}/{{ zuul.project.src_dir }}/.ansible-lint'
         mode: 0644
 
+    - name: pause for 1h
+      command: 'sleep 3600'
