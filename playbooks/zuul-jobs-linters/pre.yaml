@@ -14,4 +14,3 @@
           use_default_rules: true
         dest: '{{ ansible_env.HOME }}/{{ zuul.project.src_dir }}/.ansible-lint'
         mode: 0644
-
