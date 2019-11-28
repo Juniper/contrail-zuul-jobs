@@ -6,7 +6,7 @@
 - hosts: builder
   roles:
     - role: publish-rpm-artifactory
-      remote_repo_path: 'http://svl-artifactory.juniper.net/artifactory/contrail-tpc-test/{{ zuul.branch }}/source'
+      remote_repo_path: 'http://{{ nexus.fqdn }}/{{ zuul.branch }}/source'
       pkg_src_dir: '{{ ansible_env.HOME }}/'
       artifactory_creds_path: '{{ ansible_env.HOME }}/artifactory-creds'
       artifactory_credentials:
