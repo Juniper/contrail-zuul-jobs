@@ -5,8 +5,14 @@
     path: '{{ ansible_env.HOME }}/.m2'
     state: 'directory'
 
-- name: configure user to use Nexus maven proxy
+- name: configure user to use Artifactory maven proxy
   template:
     src: 'settings.xml.j2'
     dest: '{{ ansible_env.HOME }}/.m2/settings.xml'
+
+- name: Get list of repo files
+  find:
+    paths: "{{ zuul_site_mirror_fqdn }}"
+  register: repo_file_list
+  
 
