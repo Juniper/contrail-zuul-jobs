@@ -15,6 +15,16 @@
         dest: '{{ src_path }}/test.txt'
         content: foo
       delegate_to: builder
+    - name: Ensure that {{ zuul_site_mirror_fqdn }} is resolvable
+      wait_for:
+        host: "{{ zuul_site_mirror_fqdn }}"
+        port: 80
+        state: started
+    - name: Ensure that {{ contrail_yum_tpc }} is resolvable
+      wait_for:
+        host: "{{ contrail_yum_tpc }}"
+        port: 80
+        state: started
   roles:
     - role: fetch-docs
       fetch_src_path: '{{ src_path }}'
