@@ -2,15 +2,15 @@
     name: Juniper/contrail-zuul-jobs
     check:
       jobs:
-        - ci-test-core-centos-7
-        - ci-test-contrail-core-centos-7
-        - ci-test-packaging-centos-7
-        - ci-test-containers-centos-7
-        - ci-test-lint-rpm-specs-centos-7
-        - ci-test-ansible-lint-centos-7
-        - ci-test-publish-infra-doc
-        - ci-test-publish-infra-doc-unit
-        - ci-test-publish-rpm-nexus
+        # - ci-test-core-centos-7
+        # - ci-test-contrail-core-centos-7
+        # - ci-test-packaging-centos-7
+        # - ci-test-containers-centos-7
+        # - ci-test-lint-rpm-specs-centos-7
+        # - ci-test-ansible-lint-centos-7
+        # - ci-test-publish-infra-doc
+        # - ci-test-publish-infra-doc-unit
+        # - ci-test-publish-rpm-nexus
         - ci-test-publish-rpm-artifactory
         - zuul-jobs-linters
         - noop:
