@@ -5,7 +5,7 @@
       when: ansible_os_family == 'RedHat'
     - role: configure-mirrors
       mirror_fqdn: "{{ zuul_site_mirror_fqdn|default(omit) }}"
-      pypi_mirror: "http://{{ mirror_fqdn }}/pypi/simple"
+      pypi_mirror: "https://svl-artifactory.juniper.net/artifactory/api/pypi/contrail-pypi/simple"
       wheel_mirror: "http://{{ mirror_fqdn }}/wheel/{{ ansible_distribution | lower }}-{{ ansible_distribution_version }}-{{ ansible_architecture | lower }}"
   post_tasks:
     - name: Install apt package to sanity check the mirror configuration
@@ -16,5 +16,5 @@
     - name: Install python package to sanity check pypi mirroring
       pip:
         name: "pbr"
-        state: "present"
+        state: "latest"
       become: yes
