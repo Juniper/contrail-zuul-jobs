@@ -1,3 +1,0 @@
----
-tpc_branch: "{{ zuul.branch | match('^R\\d(\\.\\d+)+$') | ternary(zuul.branch, 'master') }}"
-
