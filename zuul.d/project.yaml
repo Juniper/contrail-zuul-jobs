@@ -2,6 +2,11 @@
     name: Juniper/contrail-zuul-jobs
     check:
       jobs:
+        - contrail-vnc-unittest-centos7-tntestr
+        - contrail-vnc-unittest-centos7-tntestr:
+            voting: False
+            vars:
+                scons_extra_flags: '--cpp=c++11'
         - ci-test-core-centos-7
         - ci-test-contrail-core-centos-7
         - ci-test-packaging-centos-7

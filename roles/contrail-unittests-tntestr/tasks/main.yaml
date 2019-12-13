@@ -34,7 +34,7 @@
     - repo
 
 - name: run a full Contrail VNC build
-  command: 'scons -j {{ ansible_processor_vcpus }}'
+  command: scons -j {{ ansible_processor_vcpus }} {{ scons_extra_flags | default('') }}
   args:
     chdir: '{{ packaging.target_dir }}'
   environment:
@@ -80,7 +80,7 @@
   when: unittest_target.stdout_lines[-1] != ''
   block:
   - name: gather list of unit test to be run for changeset
-    command: 'scons -Q --warn=no-all --describe-tests {{ unittest_target.stdout_lines[-1] }}'
+    command: scons -Q --warn=no-all --describe-tests {{ unittest_target.stdout_lines[-1] }}
     args:
       chdir: '{{ packaging.target_dir }}'
     register: scons_describe
