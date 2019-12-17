@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a7a60d7c_56961dad",
+        "filename": "roles/contrail-build-test-containers/tasks/build_container.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-12-17T11:15:50Z",
+      "side": 1,
+      "message": "Will soon break on any future openstack release. Use item not in (specified list) here.\nUse item in (specified list of ocata etc) above.\n\nCan we run another test CI for it on ocata in any way? Or do we wait until it\u0027s actually required?",
+      "revId": "3550bc22c666b312a3ce4d8f3ec0f9ba8cf0100a",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
