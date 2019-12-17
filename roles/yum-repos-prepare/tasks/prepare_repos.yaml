@@ -67,12 +67,12 @@
   become: yes
   become_user: root
 
-- name: prepare third party cache yum Nexus repo
+- name: prepare third party cache yum Artifactory repo
   yum_repository:
     name: tpc-{{ item }}
     description: Contrail third-party dependencies
     file: tpc-{{ item }}
-    baseurl: "http://{{ nexus.fqdn }}/repository/{{ nexus_rpm_repo }}/{{ tpc_branch }}/{{ item }}/"
+    baseurl: "http://svl-artifactory.juniper.net/artifactory/contrail-tpc/{{ tpc_branch }}/{{ item }}/"
     enabled: yes
     gpgcheck: no
   with_items:
