@@ -168,7 +168,7 @@
     name: ci-test-publish-rpm-artifactory
     description: |
       Untrusted mock of publish-third-party-packages. This job is testing
-      fetching and uploading rpm builds to the test Nexus repository.
+      fetching and uploading rpm builds to the test Artifactory repository.
     parent: build-third-party-rpms-base
     post-run: tests/publish-rpm-artifactory.yaml
     required-projects:
