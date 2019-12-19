@@ -6,29 +6,37 @@
     - '{{ ansible_os_family|lower }}.yaml'
     - 'default.yaml'
 
-- name: template statistics sink configuration
-  template:
-    src: 'config.ini.j2'
-    dest: '{{ ansible_env.HOME }}/{{ script_dir }}/config.ini'
+- name: look for the convert_target_list output json file
+  stat:
+    path: '{{ ansible_env.HOME }}/unittest_output/unittest_targets.json'
+  register: unittest_stat
 
-- name: install yum dependencies
-  yum:
-    name: 'mysql-devel'
-    state: 'present'
-  become: true
+- name: check whether the json file exists
+  when: unittest_stat.stat.exists
+  block:
+    - name: template statistics sink configuration
+      template:
+        src: 'config.ini.j2'
+        dest: '{{ ansible_env.HOME }}/{{ script_dir }}/config.ini'
 
-- name: install requirements
-  pip:
-    requirements: '{{ ansible_env.HOME }}/{{ script_dir }}/requirements.txt'
-    virtualenv_python: '{{ python_version }}'
-    virtualenv: '{{ venv_dir }}'
+    - name: install yum dependencies
+      yum:
+        name: 'mysql-devel'
+        state: 'present'
+      become: true
 
-- name: gather unit test statistics
-  command: >
-    {{ venv_dir }}/bin/python test-analyzer.py
-      --change {{ zuul.change }}
-      --patchset {{ zuul.patchset }}
-      --xml_reports_root_dir {{ ansible_env.HOME }}/unittest_output
-      {{ ansible_env.HOME }}/unittest_output/unittest_targets.json
-  args:
-    chdir: '{{ ansible_env.HOME }}/{{ script_dir }}'
+    - name: install requirements
+      pip:
+        requirements: '{{ ansible_env.HOME }}/{{ script_dir }}/requirements.txt'
+        virtualenv_python: '{{ python_version }}'
+        virtualenv: '{{ venv_dir }}'
+
+    - name: gather unit test statistics
+      command: >
+        {{ venv_dir }}/bin/python test-analyzer.py
+          --change {{ zuul.change }}
+          --patchset {{ zuul.patchset }}
+          --xml_reports_root_dir {{ ansible_env.HOME }}/unittest_output
+          {{ ansible_env.HOME }}/unittest_output/unittest_targets.json
+      args:
+        chdir: '{{ ansible_env.HOME }}/{{ script_dir }}'
