@@ -1,4 +1,15 @@
 ---
+
+- name: set_variable for {{ item }}
+  set_fact:
+    openstack_repo_url: http://svl-artifactory.juniper.net/artifactory/contrail-yum-centos/7/cloud/x86_64/openstack-rocky
+  when: item == "rocky"
+
+- name: set_variable for {{ item }}
+  set_fact:
+    openstack_repo_url: http://svl-artifactory.juniper.net/artifactory/contrail-ci-centos-vault/7.4.1708/cloud/x86_64/openstack-{{ item }}
+  when: item == "ocata" or item == "newton" or item == "queens"
+
 - name: Build container contrail-test-test OpenStack-{{ item }}
   command: |
     ./build-container.sh test \
@@ -7,9 +18,8 @@
     --registry-server {{ contrail_docker_registry }} \
     --sku {{ item }} \
     --contrail-repo {{ contrail_package_repository }} \
-    --openstack-repo http://ci-repo.englab.juniper.net/mirrors/rpm/centos/7.4.1708/cloud/x86_64/openstack-{{ item }} \
+    --openstack-repo {{ openstack_repo_url }} \
     --post
   args:
     chdir: "{{ test_container_build_dir }}"
   become: true
-
