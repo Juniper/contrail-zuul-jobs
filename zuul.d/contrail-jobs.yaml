@@ -412,7 +412,7 @@
       - Juniper/contrail-vrouter
       - Juniper/contrail-nova-vif-driver
       - Juniper/contrail-common
-      - Juniper/contrail-analytics
+      - tungstenfabric/tf-analytics
     run: playbooks/pep8-check/main.yaml
     nodeset: builder-centos-7
     voting: False
