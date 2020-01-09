@@ -30,6 +30,7 @@
       - Juniper/contrail-specs
       - Juniper/contrail-test
       - Juniper/contrail-third-party
+      - Juniper/contrail-third-party-packages
       - Juniper/contrail-tripleo-puppet
       - Juniper/contrail-vcenter-manager
       - Juniper/contrail-vcenter-plugin
@@ -74,6 +75,7 @@
       - Juniper/contrail-specs
       - Juniper/contrail-test
       - Juniper/contrail-third-party
+      - Juniper/contrail-third-party-packages
       - Juniper/contrail-tripleo-puppet
       - Juniper/contrail-vcenter-manager
       - Juniper/contrail-vcenter-plugin
