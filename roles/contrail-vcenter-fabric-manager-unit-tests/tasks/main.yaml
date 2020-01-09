@@ -1,15 +1,37 @@
 ---
-- name: Manually create the initial virtualenv
-  command: "virtualenv '{{ ansible_env.HOME }}/{{ zuul_project_dir }}/venv' -p python2 creates='{{ ansible_env.HOME }}/{{ zuul_project_dir }}/venv' --system-site-packages"
+- name: install basic packages
+  yum:
+    name:
+      - flex
+      - bison
+      - epel-release
+      - createrepo
+      - gcc
+      - gcc-c++
+      - gdb
+      - git
+      - kernel
+      - make
+      - python-devel
+      - python-pip
+      - python36
+      - python3-pip
+      - rpm-build
+      - wget
+      - yum-utils
+    state: present
+  become: true
 
-- name: install requirements
+- name: upgrade pip packages
   pip:
-    requirements: "{{ ansible_env.HOME }}/{{ zuul_project_dir }}/requirements_dev.txt"
-    virtualenv: "{{ ansible_env.HOME }}/{{ zuul_project_dir }}/venv"
-    virtualenv_python: python2
+    name:
+      - "pip"
+      - "tox"
   become: true
 
 - name: run unit tests
-  command: "{{ ansible_env.HOME }}/{{ zuul_project_dir }}/venv/bin/python -m pytest {{ ansible_env.HOME }}/{{ zuul_project_dir }}/tests/unit"
+  command: "scons vcenter-fabric-manager:test"
+  args:
+    chdir: '{{ packaging.target_dir }}'
   register: result
   failed_when: result.rc  != 0
