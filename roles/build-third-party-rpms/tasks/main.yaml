@@ -1,6 +1,10 @@
 ---
 # This role gathers all available package targets and builds them
 
+- name: install ntp
+  include_role:
+    name: install-ntp
+
 - name: List all available packages
   command: 'make -f {{ rpm_dir }}/upstream/rpm/Makefile list'
   register: third_party_packages
