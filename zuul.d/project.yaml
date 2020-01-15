@@ -2,6 +2,9 @@
     name: Juniper/contrail-zuul-jobs
     check:
       jobs:
+        - contrail-vnc-unittest-centos7-tntestr
+            irrelevant-files:
+              - ^tests/.*
         - ci-test-core-centos-7
         - ci-test-contrail-core-centos-7
         - ci-test-packaging-centos-7
@@ -20,6 +23,9 @@
     gate:
       queue: contrail-ci
       jobs:
+        - contrail-vnc-unittest-centos7-tntestr
+            irrelevant-files:
+              - ^tests/.*
         - ci-test-core-centos-7
         - ci-test-contrail-core-centos-7
         - ci-test-packaging-centos-7
