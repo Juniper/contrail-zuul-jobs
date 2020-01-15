@@ -19,9 +19,13 @@ project = "vrouter" if ENV["ZUUL_PROJECT"] =~ /contrail-vrouter/
 project = "src/contrail-common" if ENV["ZUUL_PROJECT"] =~ /contrail-common/
 project = "src/contrail-analytics" if ENV["ZUUL_PROJECT"] =~ /contrail-analytics/
 project = "src/contrail-api-client" if ENV["ZUUL_PROJECT"] =~ /contrail-api-client/
+project = "contrail-vcenter-manager" if ENV["ZUUL_PROJECT"] =~ /contrail-vcenter-manager/
+project = "contrail-vcenter-fabric-manager" if ENV["ZUUL_PROJECT"] =~ /contrail-vcenter-fabric-manager/   # TODO: generalize it
+
+project = "contrail-zuul-jobs" if ENV["ZUUL_PROJECT"] =~ /contrail-zuul-jobs/  # temporary, delete it
 
 STDERR.puts "contrail-unittest-gather.rb: Review for project #{ENV["ZUUL_PROJECT"]}\n"
-STDERR.puts "contrail-unittest-gather.rb: Check for commits for #{project}\n"
+STDERR.puts "contrail-unittest-gather.rb: Filter commits for directory tree #{project}\n"
 
 Dir.chdir("#{contrail_sources}/#{project}")
 
@@ -100,3 +104,5 @@ STDERR.puts "contrail-unittest-gather.rb: SCons targets to run:\n"
 }
 
 puts @tests.sort.uniq.join(" ") unless @tests.empty?
+
+exit(22)   # fail purposely
