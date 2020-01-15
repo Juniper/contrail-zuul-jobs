@@ -2,6 +2,7 @@
     name: Juniper/contrail-zuul-jobs
     check:
       jobs:
+        - contrail-vnc-unittest-centos7-tntestr
         - ci-test-core-centos-7
         - ci-test-contrail-core-centos-7
         - ci-test-packaging-centos-7
