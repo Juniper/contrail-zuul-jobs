@@ -3,88 +3,102 @@
 require 'rubygems'
 require 'json'
 
-exit(0) if ENV["ZUUL_CHANGES"] !~ /refs\/changes\/([^^]*)$/
-change_set = $1
+if ENV["ZUUL_CHANGES"] !~ /refs\/changes\/([^^]*)$/ then
+    STDERR.puts "contrail-unittest-gather.rb: ignoring because of invalid ZUUL_CHANGES env variable\n"
+    exit(0)
+end
 
-STDERR.puts "contrail-unittest-gather.rb: Choosing tests to execute\n"
 contrail_sources = "#{ENV["WORKSPACE"]}/contrail-#{ENV["UPSTREAM_VERSION"]}"
 
 json_file = "#{contrail_sources}/controller/ci_unittests.json"
-exit(0) unless File.file?(json_file)
-
-project = "controller"
-project = "tools/sandesh" if ENV["ZUUL_PROJECT"] =~ /contrail-sandesh/
-project = "tools/generateds" if ENV["ZUUL_PROJECT"] =~ /contrail-generateDS/
-project = "vrouter" if ENV["ZUUL_PROJECT"] =~ /contrail-vrouter/
-project = "src/contrail-common" if ENV["ZUUL_PROJECT"] =~ /contrail-common/
-project = "src/contrail-analytics" if ENV["ZUUL_PROJECT"] =~ /contrail-analytics/
-project = "src/contrail-api-client" if ENV["ZUUL_PROJECT"] =~ /contrail-api-client/
-project = "vcenter-manager" if ENV["ZUUL_PROJECT"] =~ /contrail-vcenter-manager/
-project = "vcenter-fabric-manager" if ENV["ZUUL_PROJECT"] =~ /contrail-vcenter-fabric-manager/
-
-STDERR.puts "contrail-unittest-gather.rb: Review is for remote project #{ENV["ZUUL_PROJECT"]}\n"   # TODO: wrong, parse the ZUUL_CHANGES list to get the proper project
-STDERR.puts "contrail-unittest-gather.rb: Review is for local directory #{project}\n"
-
-Dir.chdir("#{contrail_sources}/#{project}")
-
-# Get the files changes in this change-set.
-cmd = %{git ls-remote origin 2>/dev/null | \grep #{change_set} | \grep refs | awk '{print $1}'}
-
-@dirs = { }
-`#{cmd}`.split.each { |cid|
-    next if cmd.to_s.empty?
-    STDERR.puts "contrail-unittest-gather.rb: Parse SHA #{cid}\n"
-    get_file = %{git show --pretty="format:" --name-only #{cid}}
-    `#{get_file}`.split.each { |file|
-        next if file.to_s.empty?
-        STDERR.puts "contrail-unittest-gather.rb: Files parsed:\n #{file}\n"
-        next if "#{project}/#{file}" !~ /(.*)\//
-        @dirs[$1] = true
-    }
-}
-STDERR.puts "contrail-unittest-gather.rb: List of directories changed:\n"
-@dirs.each_key { |dir|
-    STDERR.puts "contrail-unittest-gather.rb:\t#{dir}\n"
-}
-
-# Always test for changes to generateds and vrouter projects.
-@dirs["tools/generateds"] = true if project == "tools/generateds"
-@dirs["vrouter"] = true if project == "vrouter"
+unless File.file?(json_file) then
+    STDERR.puts "contrail-unittest-gather.rb: ignoring because file not found: #{json_file}\n"
+    exit(0)
+end
 
 # Load unit-tests configuration
 json = JSON.parse(File.read(json_file))
 
-# Find all applicable scons test targets
+STDERR.puts "contrail-unittest-gather.rb: Choosing tests to execute\n"
+
 @tests = [ ]
 @all_tests = [ ]
-json.each_pair { |module_name, module_data|
-    @all_tests += module_data["scons_test_targets"]
-    if module_data.key?("misc_test_targets")
-        module_data["misc_test_targets"].each { |m|
-            @all_tests += json[m]["scons_test_targets"]
-        }
-    end
 
-    @want_dirs = module_data["source_directories"]
-    skip = true
-    @dirs.each_key { |dir|
-        next if @want_dirs.nil?
-        @want_dirs.each { |want_dir|
-            if "#{dir}/" =~ /^#{want_dir}\// then
-                STDERR.puts "contrail-unittest-gather.rb: path #{dir} matches #{want_dir} specified for #{module_name}\n"
-                skip = false
-                break
-            end
+ENV["ZUUL_CHANGES"].split(',').each { |zc|
+    zc =~ /(.*)\^refs\/changes\/(.*)$/
+    project = $1
+    patchset = $2
+
+    STDERR.puts "contrail-unittest-gather.rb: Patchset #{patchset} for repo #{project}\n"
+
+    project = "controller" if project =~ /contrail-controller$/
+    project = "tools/sandesh" if project =~ /contrail-sandesh$/
+    project = "tools/generateds" if project =~ /contrail-generateDS$/
+    project = "vrouter" if project =~ /contrail-vrouter$/
+    project = "src/contrail-common" if project =~ /contrail-common$/
+    project = "src/contrail-analytics" if project =~ /contrail-analytics$/
+    project = "src/contrail-api-client" if project =~ /contrail-api-client$/
+    project = "vcenter-manager" if project =~ /contrail-vcenter-manager$/
+    project = "vcenter-fabric-manager" if project =~ /contrail-vcenter-fabric-manager$/
+
+    next unless File.directory?("#{contrail_sources}/#{project}")
+    STDERR.puts "contrail-unittest-gather.rb: Repo is in local directory #{project}\n"
+    Dir.chdir("#{contrail_sources}/#{project}")
+
+    @dirs = { }
+    cmd = %{git ls-remote origin 2>/dev/null}
+    `#{cmd}`.split('\n').each { |l|
+        next if l !~ /^\s*(\S+)\s.*refs.*#{patchset}/
+	cid = $1
+        STDERR.puts "contrail-unittest-gather.rb: Found commit #{cid}\n"
+        get_file = %{git show --pretty="format:" --name-only "#{cid}"}
+        `#{get_file}`.split.each { |file|
+            next if file.to_s.empty?
+            STDERR.puts "contrail-unittest-gather.rb: Found committed file:\n #{file}\n"
+            next if "#{project}/#{file}" !~ /(.*)\//
+            @dirs[$1] = true
         }
     }
-    next if skip
+    STDERR.puts "contrail-unittest-gather.rb: List of directories changed:\n"
+    @dirs.each_key { |dir|
+        STDERR.puts "contrail-unittest-gather.rb:\t#{dir}\n"
+    }
 
-    @tests += module_data["scons_test_targets"]
-    if module_data.key?("misc_test_targets")
-        module_data["misc_test_targets"].each { |m|
-            @tests += json[m]["scons_test_targets"]
+    # Always test for changes to generateds and vrouter projects.
+    @dirs["tools/generateds"] = true if project == "tools/generateds"
+    @dirs["vrouter"] = true if project == "vrouter"
+
+    # Find all applicable scons test targets
+    json.each_pair { |module_name, module_data|
+        @all_tests += module_data["scons_test_targets"]
+        if module_data.key?("misc_test_targets")
+            module_data["misc_test_targets"].each { |m|
+                @all_tests += json[m]["scons_test_targets"]
+            }
+        end
+
+        @want_dirs = module_data["source_directories"]
+        skip = true
+        @dirs.each_key { |dir|
+            next if @want_dirs.nil?
+            @want_dirs.each { |want_dir|
+                if "#{dir}/" =~ /^#{want_dir}\// then
+                    # We need to run associated tests as the path matches.
+                    STDERR.puts "contrail-unittest-gather.rb: path #{dir} matches #{want_dir} specified for #{module_name}\n"
+                    skip = false
+                    break
+                end
+            }
         }
-    end
+        next if skip
+
+        @tests += module_data["scons_test_targets"]
+        if module_data.key?("misc_test_targets")
+            module_data["misc_test_targets"].each { |m|
+                @tests += json[m]["scons_test_targets"]
+            }
+        end
+    }
 }
 
 # couldn't find changes in any specific project, so
@@ -106,4 +120,3 @@ STDERR.puts "contrail-unittest-gather.rb: SCons targets to run:\n"
 }
 
 puts @tests.sort.uniq.join(" ") unless @tests.empty?
-
