@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
-from ansible.module_utils.basic import *
 import json
+import re
 from os import path
+from ansible.module_utils.basic import *
 
 
 DOCUMENTATION = '''
@@ -85,13 +86,18 @@ def uniquify_ut_list(ut_list):
     return [dict(t) for t in unique_ut_tuples]
 
 
+R = re.compile(r'^\s*{\s*"')
+
 def load_unittests(descr_file):
     '''
         Function loads list of UT dictionaries fom file
     '''
     with open(descr_file, 'r') as fh:
-        ut_list = [json.loads(line.rstrip()) for line in fh]
-    return ut_list
+        return [
+            json.loads(line.rstrip())
+            for line in fh
+            if R.match(line)
+        ]
 
 
 def dump_targets(target_list, target_file):
