@@ -2,7 +2,7 @@
 
 from ansible.module_utils.basic import *
 import json
-from os import path
+from os import path, system
 
 
 DOCUMENTATION = '''
@@ -112,6 +112,8 @@ def run_module():
     }
 
     module = AnsibleModule(argument_spec=args)
+    system("cat "+module.params['description_file'])  # FIXME: rm this line
+    system("hexdump -c "+module.params['description_file'])  # FIXME: rm this line
     descr_dicts = load_unittests(module.params['description_file'])
     has_changed, descr_dicts = convert_ut_dicts(descr_dicts, module.params['strip_prefix'])
     dump_targets(descr_dicts, module.params['target_file'])
