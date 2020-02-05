@@ -105,7 +105,6 @@
       - Juniper/contrail-webui-third-party
       - tungstenfabric/tf-webui-third-party
       - Juniper/vijava
-      - tungstenfabric/vijava
     irrelevant-files:
       - specs/.*
     pre-run: playbooks/contrail-vnc-base2/pre.yaml
