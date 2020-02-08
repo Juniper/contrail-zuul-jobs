@@ -373,7 +373,7 @@
       - Juniper/contrail-provisioning
       - Juniper/contrail-sandesh
       - Juniper/contrail-vrouter
-      - Juniper/contrail-nova-vif-driver
+      - tungstenfabric/tf-nova-vif-driver
       - tungstenfabric/tf-nova-vif-driver
       - Juniper/contrail-common
       - Juniper/contrail-analytics
