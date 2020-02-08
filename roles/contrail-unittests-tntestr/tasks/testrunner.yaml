@@ -1,7 +1,12 @@
 ---
 
 - name: 'running target {{ item }}'
-  shell: "timeout 28800s bash -eo pipefail -c '{{ venv_dir}}/bin/tntestr --debug --less-strict {{ item }} | tee -a {{ tntestr_output }}'"
+  shell: |
+    # workaround for failed sandesh tests
+    jobs=8
+    if [[ '{{ item }}' == 'sandesh:test' ]]; then jobs=1 ; fi
+    set -eo pipefail
+    timeout 7200s {{ venv_dir}}/bin/tntestr --debug --less-strict -j $jobs {{ item }} | tee -a {{ tntestr_output }}
   args:
     executable: '/bin/bash'
     chdir: '{{ packaging.target_dir }}'
