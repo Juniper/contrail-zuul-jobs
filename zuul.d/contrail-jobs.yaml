@@ -388,7 +388,7 @@
       Job that builds vro-plugin project.
     parent: contrail-vnc-base2
     required-projects:
-      - Juniper/contrail-vro-plugin
+      - tungstenfabric/tf-vro-plugin
       - tungstenfabric/tf-vro-plugin
     run: playbooks/contrail-build-vro-plugin/run.yaml
     nodeset:
