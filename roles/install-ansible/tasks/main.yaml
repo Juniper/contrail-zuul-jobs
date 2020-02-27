@@ -13,3 +13,8 @@
     name: 'netaddr'
     state: 'present'
 
+- name: reinstall enum34
+  pip:
+    name: enum34
+    version: "1.1.6"
+
