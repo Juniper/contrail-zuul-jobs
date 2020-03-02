@@ -48,7 +48,8 @@
     - skip_ansible_lint  # ANSIBLE0006,ANSIBLE0016
 
 - name: Fetch all remotes
-  command: "git fetch --all"
+  # workaround for existing network timeouts, try again and again
+  command: "git fetch --all || git fetch --all || git fetch --all"
   args:
     chdir: "{{ item.item.key }}"
   with_items:
