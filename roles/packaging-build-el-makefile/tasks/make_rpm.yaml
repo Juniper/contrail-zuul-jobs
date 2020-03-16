@@ -22,4 +22,7 @@
     ENABLEMLX: 'TRUE'
   tags:
     - skip_ansible_lint
-
+  retries: 4
+  delay: 2
+  register: make_rpm_result
+  until: make_rpm_result.rc == 0
