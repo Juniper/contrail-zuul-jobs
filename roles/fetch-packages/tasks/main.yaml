@@ -21,4 +21,8 @@
     dest: "{{ zuul.executor.work_root }}/packages/{{ item.path|basename }}"
     mode: pull
   with_items: "{{ packages.files }}"
+  retries: 4
+  delay: 2
+  register: rsync_result
+  until: rsync_result.rc == 0
 
