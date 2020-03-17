@@ -39,6 +39,7 @@
 - job:
     name: ci-test-contrail-core-centos-7
     parent: ci-test-contrail-core-base
+    voting: False
     nodeset: centos-7
 
 - job:
@@ -57,6 +58,7 @@
 - job:
     name: ci-test-packaging-centos-7
     parent: ci-test-packaging-base
+    voting: False
     nodeset: builder-centos-7
 
 - job:
@@ -76,6 +78,7 @@
 - job:
     name: ci-test-containers-centos-7
     parent: ci-test-containers-base
+    voting: False
     nodeset: builder-centos-7
 
 - job:
@@ -83,6 +86,7 @@
     description: |
       Run roles that are used for lint rpm jobs to prevent regressions.
     parent: ci-test-base
+    voting: False
     run: tests/lint-rpm-specs.yaml
     files:
       - ^roles/lint-rpm-specs/.*
@@ -94,6 +98,7 @@
     description: |
       Run custom ansible linter rules tests to prevent regressions.
     parent: ci-test-base
+    voting: False
     run: tests/ansible-lint.yaml
     files:
       - ^ansible-lint-rules/.*
@@ -135,6 +140,7 @@
     description: |
       This job is running roles tests for production environment for infra-doc.
     parent: build-infra-doc
+    voting: False 
     required-projects:
       - Juniper/contrail-infra-doc
     post-run: tests/publish-infra-doc.yaml
@@ -170,6 +176,7 @@
       Untrusted mock of publish-third-party-packages. This job is testing
       fetching and uploading rpm builds to the test Artifactory repository.
     parent: build-third-party-rpms-base
+    voting: False
     post-run: tests/publish-rpm-artifactory.yaml
     required-projects:
       - Juniper/contrail-third-party-packages
