@@ -18,6 +18,10 @@
     ANSIBLE_STDOUT_CALLBACK: debug
   become: True
   when: cloud_orchestrator == 'openstack'
+  retries: 4
+  delay: 2
+  register: openstack_result
+  until: openstack_result.rc == 0
 
 - name: Provision k8s with install_k8s.yml playbook
   command: ansible-playbook -i inventory/ -e orchestrator={{ cloud_orchestrator }} playbooks/install_k8s.yml
