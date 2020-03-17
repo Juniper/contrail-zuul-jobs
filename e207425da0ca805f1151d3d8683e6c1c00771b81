@@ -16,6 +16,24 @@
       "revId": "e207425da0ca805f1151d3d8683e6c1c00771b81",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2930da9a_837bdb9f",
+        "filename": "roles/fetch-packages/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 851
+      },
+      "writtenOn": "2020-03-17T20:02:22Z",
+      "side": 1,
+      "message": "Yes this retries on every rsync failure for 4 times",
+      "parentUuid": "dda7ddf7_2a272e28",
+      "revId": "e207425da0ca805f1151d3d8683e6c1c00771b81",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
     }
   ]
 }
