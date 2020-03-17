@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dda7ddf7_2a272e28",
+        "filename": "roles/fetch-packages/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-03-17T19:54:17Z",
+      "side": 1,
+      "message": "Does this retry every rsync on failure or only the ones that failed?\n\nI guess even if it retries them all rsync would find no differences and be done.",
+      "revId": "e207425da0ca805f1151d3d8683e6c1c00771b81",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
