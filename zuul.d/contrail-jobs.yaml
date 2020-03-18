@@ -89,7 +89,7 @@
       A job that first deploys Contrail containers and a Kubernetes cluster
       using contrail-ansible-deployer and runs sanity test suite on setup CI.
     required-projects:
-      - Juniper/contrail-ansible-deployer
+      - tungstenfabric/tf-ansible-deployer
       - Juniper/contrail-test
     vars:
       openstack_version: ocata
@@ -107,7 +107,7 @@
       and runs sanity test suite on setup CI.
     required-projects:
       - Juniper/contrail
-      - Juniper/contrail-ansible-deployer
+      - tungstenfabric/tf-ansible-deployer
       - Juniper/contrail-test
     vars:
       cloud_orchestrator: kubernetes
@@ -124,7 +124,7 @@
       and switch Configuration Node components to contrail-go on setup CI.
     required-projects:
       - Juniper/contrail
-      - Juniper/contrail-ansible-deployer
+      - tungstenfabric/tf-ansible-deployer
       - name: Juniper/contrail-kolla-ansible
         override-checkout: contrail/ocata
       - Juniper/contrail-test
