@@ -22,6 +22,16 @@ project = "src/contrail-api-client" if ENV["ZUUL_PROJECT"] =~ /contrail-api-clie
 project = "vcenter-manager" if ENV["ZUUL_PROJECT"] =~ /contrail-vcenter-manager/
 project = "vcenter-fabric-manager" if ENV["ZUUL_PROJECT"] =~ /contrail-vcenter-fabric-manager/
 
+# TF migration
+project = "tools/sandesh" if ENV["ZUUL_PROJECT"] =~ /tf-sandesh/
+project = "tools/generateds" if ENV["ZUUL_PROJECT"] =~ /tf-generateDS/
+project = "vrouter" if ENV["ZUUL_PROJECT"] =~ /tf-vrouter/
+project = "src/contrail-common" if ENV["ZUUL_PROJECT"] =~ /tf-common/
+project = "src/contrail-analytics" if ENV["ZUUL_PROJECT"] =~ /tf-analytics/
+project = "src/contrail-api-client" if ENV["ZUUL_PROJECT"] =~ /tf-api-client/
+project = "vcenter-manager" if ENV["ZUUL_PROJECT"] =~ /tf-vcenter-manager/
+project = "vcenter-fabric-manager" if ENV["ZUUL_PROJECT"] =~ /tf-vcenter-fabric-manager/
+
 STDERR.puts "contrail-unittest-gather.rb: Review is for remote project #{ENV["ZUUL_PROJECT"]}\n"   # TODO: wrong, parse the ZUUL_CHANGES list to get the proper project
 STDERR.puts "contrail-unittest-gather.rb: Review is for local directory #{project}\n"
 
