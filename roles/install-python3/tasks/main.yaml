@@ -7,10 +7,6 @@
     url: https://bootstrap.pypa.io/get-pip.py
     dest: '{{ ansible_env.HOME }}/get-pip.py'
     mode: 0755
-  retries: 4
-  delay: 2
-  register: pip_install_result
-  until: pip_install_result.rc == 0
 
 - name: Install pip
   command: 'python3 {{ ansible_env.HOME }}/get-pip.py'
