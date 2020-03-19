@@ -179,6 +179,7 @@
     post-run: tests/publish-rpm-artifactory.yaml
     required-projects:
       - Juniper/contrail-third-party-packages
+      - tungstenfabric/tf-third-party-packages
     files:
       - ^tests/.*
       - ^roles/publish-rpm-artifactory/.*

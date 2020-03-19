@@ -30,6 +30,8 @@
     required-projects:
       - name: Juniper/contrail-kolla-ansible
         override-checkout: contrail/ocata
+      - name: tungstenfabric/tf-kolla-ansible
+        override-checkout: contrail/ocata
     vars:
       openstack_version: ocata
       kolla_version: ocata
@@ -41,6 +43,8 @@
     required-projects:
       - name: Juniper/contrail-kolla-ansible
         override-checkout: contrail/queens
+      - name: tungstenfabric/tf-kolla-ansible
+        override-checkout: contrail/queens
     vars:
       openstack_version: queens
       kolla_version: queens
@@ -51,6 +55,8 @@
     parent: contrail-sanity-kolla-base
     required-projects:
       - name: Juniper/contrail-kolla-ansible
+        override-checkout: contrail/queens
+      - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/queens
     vars:
       openstack_version: queens
@@ -64,6 +70,8 @@
     required-projects:
       - name: Juniper/contrail-kolla-ansible
         override-checkout: contrail/rocky
+      - name: tungstenfabric/tf-kolla-ansible
+        override-checkout: contrail/rocky
     vars:
       openstack_version: rocky
       kolla_version: rocky
@@ -75,6 +83,8 @@
     pre-run: playbooks/contrail-sanity-kolla-base/redhat-pre.yaml
     required-projects:
       - name: Juniper/contrail-kolla-ansible
+        override-checkout: contrail/queens
+      - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/queens
     vars:
       openstack_version: queens
@@ -90,6 +100,7 @@
       using contrail-ansible-deployer and runs sanity test suite on setup CI.
     required-projects:
       - Juniper/contrail-ansible-deployer
+      - tungstenfabric/tf-ansible-deployer
       - Juniper/contrail-test
     vars:
       openstack_version: ocata
@@ -108,6 +119,7 @@
     required-projects:
       - Juniper/contrail
       - Juniper/contrail-ansible-deployer
+      - tungstenfabric/tf-ansible-deployer
       - Juniper/contrail-test
     vars:
       cloud_orchestrator: kubernetes
@@ -125,7 +137,10 @@
     required-projects:
       - Juniper/contrail
       - Juniper/contrail-ansible-deployer
+      - tungstenfabric/tf-ansible-deployer
       - name: Juniper/contrail-kolla-ansible
+        override-checkout: contrail/ocata
+      - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/ocata
       - Juniper/contrail-test
     vars:
