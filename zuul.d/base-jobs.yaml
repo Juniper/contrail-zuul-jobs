@@ -59,11 +59,13 @@
       - tungstenfabric/tf-analytics
       - Juniper/contrail-api-client
       - Juniper/contrail-build
+      - tungstenfabric/tf-build
       - Juniper/contrail-common
       - Juniper/contrail-controller
       - name: Juniper/contrail-dpdk
         override-checkout: contrail_dpdk_18_05_1
       - Juniper/contrail-fabric-utils
+      - tungstenfabric/tf-fabric-utils
       - Juniper/contrail-generateDS
       - Juniper/contrail-java-api
       - tungstenfabric/tf-java-api
@@ -74,9 +76,11 @@
       - Juniper/contrail-nova-vif-driver
       - tungstenfabric/tf-nova-vif-driver
       - Juniper/contrail-packages
+      - tungstenfabric/tf-packages
       - Juniper/contrail-provisioning
       - Juniper/contrail-sandesh
       - Juniper/contrail-specs
+      - tungstenfabric/tf-specs
       - Juniper/contrail-test
       - Juniper/contrail-third-party
       - tungstenfabric/tf-third-party

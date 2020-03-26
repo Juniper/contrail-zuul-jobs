@@ -378,6 +378,7 @@
     required-projects:
       - Juniper/contrail-api-client
       - Juniper/contrail-build
+      - tungstenfabric/tf-build
       - Juniper/contrail-controller
       - name: Juniper/contrail-dpdk
         override-checkout: contrail_dpdk_17_11
@@ -385,6 +386,7 @@
       - Juniper/contrail-third-party
       - tungstenfabric/tf-third-party
       - Juniper/contrail-packages
+      - tungstenfabric/tf-packages
       - Juniper/contrail-provisioning
       - Juniper/contrail-sandesh
       - Juniper/contrail-vrouter
