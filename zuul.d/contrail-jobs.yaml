@@ -276,6 +276,70 @@
     run: playbooks/contrail-build-test-containers/run.yaml
     required-projects:
       - Juniper/contrail-test
+      - Juniper/contrail-analytics
+      - tungstenfabric/tf-analytics
+      - Juniper/contrail-ansible-deployer
+      - tungstenfabric/tf-ansible-deployer
+      - Juniper/contrail-api-client
+      - Juniper/contrail-build
+      - Juniper/contrail-common
+      - Juniper/contrail-container-builder
+      - tungstenfabric/tf-charms
+      - tungstenfabric/tf-container-builder
+      - Juniper/contrail-controller
+      - Juniper/contrail-deployers-containers
+      - Juniper/contrail-fabric-utils
+      - name: Juniper/contrail-dpdk
+        override-checkout: contrail_dpdk_18_05_1
+      - Juniper/contrail-generateDS
+      - Juniper/contrail-heat
+      - tungstenfabric/tf-heat-plugin
+      - Juniper/contrail-helm-deployer
+      - tungstenfabric/tf-helm-deployer
+      - Juniper/contrail-java-api
+      - tungstenfabric/tf-java-api
+      - Juniper/contrail-kolla-ansible
+      - tungstenfabric/tf-kolla-ansible
+      - Juniper/contrail-neutron-plugin
+      - tungstenfabric/tf-neutron-plugin
+      - Juniper/contrail-nova-vif-driver
+      - tungstenfabric/tf-nova-vif-driver
+      - Juniper/contrail-packages
+      - Juniper/contrail-provisioning
+      - Juniper/contrail-sandesh
+      - Juniper/contrail-specs
+      - Juniper/contrail-third-party
+      - tungstenfabric/tf-third-party
+      - Juniper/contrail-third-party-packages
+      - tungstenfabric/tf-third-party-packages
+      - Juniper/contrail-tripleo-heat-templates
+      - Juniper/contrail-tripleo-puppet
+      - tungstenfabric/tf-tripleo-puppet
+      - Juniper/contrail-vcenter-plugin
+      - tungstenfabric/tf-vcenter-plugin
+      - Juniper/contrail-vcenter-manager
+      - tungstenfabric/tf-vcenter-manager
+      - Juniper/contrail-vcenter-fabric-manager
+      - tungstenfabric/tf-vcenter-fabric-manager
+      - Juniper/contrail-vnc
+      - Juniper/contrail-vrouter
+      - Juniper/contrail-vrouter-java-api
+      - tungstenfabric/tf-vrouter-java-api
+      - Juniper/contrail-vro-plugin
+      - tungstenfabric/tf-vro-plugin
+      - Juniper/contrail-web-controller
+      - tungstenfabric/tf-web-controller
+      - Juniper/contrail-web-core
+      - tungstenfabric/tf-web-core
+      - Juniper/contrail-web-server-manager
+      - Juniper/contrail-web-storage
+      - Juniper/contrail-webui-third-party
+      - tungstenfabric/tf-webui-third-party
+      - Juniper/openshift-ansible
+      - Juniper/openstack-helm
+      - Juniper/openstack-helm-infra
+      - Juniper/vijava
+      - tungstenfabric/tf-vijava
     nodeset: builder-centos-7
 
 - job:
@@ -288,6 +352,70 @@
     run: playbooks/contrail-build-test-containers/run.yaml
     required-projects:
       - Juniper/contrail-test
+      - Juniper/contrail-analytics
+      - tungstenfabric/tf-analytics
+      - Juniper/contrail-ansible-deployer
+      - tungstenfabric/tf-ansible-deployer
+      - Juniper/contrail-api-client
+      - Juniper/contrail-build
+      - Juniper/contrail-common
+      - Juniper/contrail-container-builder
+      - tungstenfabric/tf-charms
+      - tungstenfabric/tf-container-builder
+      - Juniper/contrail-controller
+      - Juniper/contrail-deployers-containers
+      - Juniper/contrail-fabric-utils
+      - name: Juniper/contrail-dpdk
+        override-checkout: contrail_dpdk_18_05_1
+      - Juniper/contrail-generateDS
+      - Juniper/contrail-heat
+      - tungstenfabric/tf-heat-plugin
+      - Juniper/contrail-helm-deployer
+      - tungstenfabric/tf-helm-deployer
+      - Juniper/contrail-java-api
+      - tungstenfabric/tf-java-api
+      - Juniper/contrail-kolla-ansible
+      - tungstenfabric/tf-kolla-ansible
+      - Juniper/contrail-neutron-plugin
+      - tungstenfabric/tf-neutron-plugin
+      - Juniper/contrail-nova-vif-driver
+      - tungstenfabric/tf-nova-vif-driver
+      - Juniper/contrail-packages
+      - Juniper/contrail-provisioning
+      - Juniper/contrail-sandesh
+      - Juniper/contrail-specs
+      - Juniper/contrail-third-party
+      - tungstenfabric/tf-third-party
+      - Juniper/contrail-third-party-packages
+      - tungstenfabric/tf-third-party-packages
+      - Juniper/contrail-tripleo-heat-templates
+      - Juniper/contrail-tripleo-puppet
+      - tungstenfabric/tf-tripleo-puppet
+      - Juniper/contrail-vcenter-plugin
+      - tungstenfabric/tf-vcenter-plugin
+      - Juniper/contrail-vcenter-manager
+      - tungstenfabric/tf-vcenter-manager
+      - Juniper/contrail-vcenter-fabric-manager
+      - tungstenfabric/tf-vcenter-fabric-manager
+      - Juniper/contrail-vnc
+      - Juniper/contrail-vrouter
+      - Juniper/contrail-vrouter-java-api
+      - tungstenfabric/tf-vrouter-java-api
+      - Juniper/contrail-vro-plugin
+      - tungstenfabric/tf-vro-plugin
+      - Juniper/contrail-web-controller
+      - tungstenfabric/tf-web-controller
+      - Juniper/contrail-web-core
+      - tungstenfabric/tf-web-core
+      - Juniper/contrail-web-server-manager
+      - Juniper/contrail-web-storage
+      - Juniper/contrail-webui-third-party
+      - tungstenfabric/tf-webui-third-party
+      - Juniper/openshift-ansible
+      - Juniper/openstack-helm
+      - Juniper/openstack-helm-infra
+      - Juniper/vijava
+      - tungstenfabric/tf-vijava
     nodeset: builder-centos-7
 
 - job:
