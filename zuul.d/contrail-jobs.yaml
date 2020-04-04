@@ -385,7 +385,7 @@
       - Juniper/contrail-generateDS
       - Juniper/contrail-third-party
       - tungstenfabric/tf-third-party
-      - Juniper/contrail-packages
+      - tungstenfabric/tf-packages
       - tungstenfabric/tf-packages
       - Juniper/contrail-provisioning
       - Juniper/contrail-sandesh
