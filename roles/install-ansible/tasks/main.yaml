@@ -1,5 +1,12 @@
 ---
 
+- name: install ansible old packages
+  command: "pip install {{ item }}"
+  become: true
+  become_user: root
+  with_items:
+    - 'cryptography<2.9.1'
+
 - name: install ansible
   become: true
   pip:
