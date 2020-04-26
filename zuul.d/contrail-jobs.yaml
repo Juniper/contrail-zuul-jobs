@@ -377,7 +377,7 @@
     name: pep8-check
     required-projects:
       - Juniper/contrail-api-client
-      - Juniper/contrail-build
+      - tungstenfabric/tf-build
       - tungstenfabric/tf-build
       - Juniper/contrail-controller
       - name: Juniper/contrail-dpdk
