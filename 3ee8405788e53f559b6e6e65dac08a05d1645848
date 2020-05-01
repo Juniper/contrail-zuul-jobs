@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7481cf3_c4806b4b",
+        "filename": "roles/contrail-build-containers/defaults/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 79
+      },
+      "writtenOn": "2020-05-01T17:06:15Z",
+      "side": 1,
+      "message": "What this value come from ?",
+      "revId": "3ee8405788e53f559b6e6e65dac08a05d1645848",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
