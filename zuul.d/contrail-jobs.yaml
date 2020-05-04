@@ -392,7 +392,7 @@
       - Juniper/contrail-vrouter
       - Juniper/contrail-nova-vif-driver
       - tungstenfabric/tf-nova-vif-driver
-      - Juniper/contrail-common
+      - tungstenfabric/tf-common
       - Juniper/contrail-analytics
       - tungstenfabric/tf-analytics
     run: playbooks/pep8-check/main.yaml
