@@ -61,6 +61,7 @@
       - Juniper/contrail-build
       - tungstenfabric/tf-build
       - Juniper/contrail-common
+      - tungstenfabric/tf-common
       - Juniper/contrail-controller
       - name: Juniper/contrail-dpdk
         override-checkout: contrail_dpdk_18_05_1
@@ -252,6 +253,7 @@
       - Juniper/contrail-ansible-deployer
       - tungstenfabric/tf-ansible-deployer
       - Juniper/contrail-deployers-containers
+      - tungstenfabric/tf-deployers-containers
       - Juniper/contrail-kolla-ansible
       - tungstenfabric/tf-kolla-ansible
       - name: Juniper/openshift-ansible
