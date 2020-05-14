@@ -1,3 +1,2 @@
 ---
-rpm_dir: "{{ zuul.projects | selectattr('short_name', 'equalto', 'contrail-third-party-packages') | map(attribute='src_dir') | list | first }}"
-
+rpm_dir: "src/review.opencontrail.org/Juniper/contrail-third-party-packages"
