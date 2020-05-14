@@ -6,13 +6,13 @@
     name: install-ntp
 
 - name: List all available packages
-  command: 'make -f {{ rpm_dir }}/upstream/rpm/Makefile list'
+  command: 'make -f {{ zuul.projects }}/upstream/rpm/Makefile list'
   register: third_party_packages
 
 - name: Run preparation tasks
-  command: 'make -f {{ rpm_dir }}/upstream/rpm/Makefile prep'
+  command: 'make -f {{ zuul.projects }}/upstream/rpm/Makefile prep'
   args:
-    creates: '{{ rpm_dir }}/../BUILD'
+    creates: '{{ zuul.projects }}/../BUILD'
 
 - name: Build packages
   include: build_package.yaml
@@ -20,6 +20,6 @@
 
 - name: List created packages
   find:
-    path: '{{ ansible_env.HOME }}/{{ rpm_dir }}/../RPMS'
+    path: '{{ ansible_env.HOME }}/{{ zuul.projects }}/../RPMS'
     patterns: '*.rpm'
 
