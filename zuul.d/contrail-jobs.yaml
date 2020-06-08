@@ -101,7 +101,7 @@
     required-projects:
       - Juniper/contrail-ansible-deployer
       - tungstenfabric/tf-ansible-deployer
-      - Juniper/contrail-test
+      - tungstenfabric/tf-test
     vars:
       openstack_version: ocata
       cloud_orchestrator: kubernetes
@@ -120,7 +120,7 @@
       - Juniper/contrail
       - Juniper/contrail-ansible-deployer
       - tungstenfabric/tf-ansible-deployer
-      - Juniper/contrail-test
+      - tungstenfabric/tf-test
     vars:
       cloud_orchestrator: kubernetes
       test_target: ci_contrail_go_k8s_sanity
@@ -142,7 +142,7 @@
         override-checkout: contrail/ocata
       - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/ocata
-      - Juniper/contrail-test
+      - tungstenfabric/tf-test
     vars:
       cloud_orchestrator: openstack
       openstack_version: ocata
@@ -275,7 +275,7 @@
     branches: ^(?!(R5\.0|release-3\.9-contrail)).*$
     run: playbooks/contrail-build-test-containers/run.yaml
     required-projects:
-      - Juniper/contrail-test
+      - tungstenfabric/tf-test
     nodeset: builder-centos-7
 
 - job:
@@ -287,7 +287,7 @@
     override-checkout: R5.0
     run: playbooks/contrail-build-test-containers/run.yaml
     required-projects:
-      - Juniper/contrail-test
+      - tungstenfabric/tf-test
     nodeset: builder-centos-7
 
 - job:
