@@ -58,6 +58,7 @@
       - Juniper/contrail-analytics
       - tungstenfabric/tf-analytics
       - Juniper/contrail-api-client
+      - tungstenfabric/tf-api-client
       - Juniper/contrail-build
       - tungstenfabric/tf-build
       - Juniper/contrail-common
@@ -83,6 +84,7 @@
       - Juniper/contrail-specs
       - tungstenfabric/tf-specs
       - Juniper/contrail-test
+      - tungstenfabric/tf-test
       - Juniper/contrail-third-party
       - tungstenfabric/tf-third-party
       - Juniper/contrail-third-party-packages
@@ -97,6 +99,7 @@
       - tungstenfabric/tf-vcenter-plugin
       - Juniper/contrail-vnc
       - Juniper/contrail-vrouter
+      - tungstenfabric/tf-vrouter
       - Juniper/contrail-vrouter-java-api
       - tungstenfabric/tf-vrouter-java-api
       - Juniper/contrail-vro-plugin
@@ -142,6 +145,7 @@
       - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/ocata
       - Juniper/contrail-test
+      - tungstenfabric/tf-test
     vars:
       cloud_orchestrator: openstack
       kolla_docker_distro: centos
@@ -160,7 +164,10 @@
     required-projects:
       - name: Juniper/openshift-ansible
         override-checkout: release-3.9-contrail
+      - name: tungstenfabric/tf-openshift-ansible
+        override-checkout: release-3.9-contrail
       - Juniper/contrail-test
+      - tungstenfabric/tf-test
     roles:
       - zuul: Juniper/openshift-ansible
 
@@ -175,6 +182,7 @@
       - Juniper/contrail-helm-deployer
       - Juniper/openstack-helm-infra
       - Juniper/contrail-test
+      - tungstenfabric/tf-test
     vars:
       cloud_orchestrator: openstack
       contrail_deployer: helm
@@ -257,6 +265,8 @@
       - Juniper/contrail-kolla-ansible
       - tungstenfabric/tf-kolla-ansible
       - name: Juniper/openshift-ansible
+        override-checkout: release-3.11-contrail
+      - name: tungstenfabric/tf-openshift-ansible
         override-checkout: release-3.11-contrail
       - Juniper/contrail-helm-deployer
       - Juniper/openstack-helm
