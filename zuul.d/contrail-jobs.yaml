@@ -28,7 +28,7 @@
     name: contrail-sanity-centos7-kolla-ocata
     parent: contrail-sanity-kolla-base
     required-projects:
-      - name: Juniper/contrail-kolla-ansible
+      - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/ocata
       - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/ocata
@@ -41,7 +41,7 @@
     name: contrail-sanity-centos7-kolla-queens
     parent: contrail-sanity-kolla-base
     required-projects:
-      - name: Juniper/contrail-kolla-ansible
+      - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/queens
       - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/queens
@@ -54,7 +54,7 @@
     name: contrail-sanity-centos7-kolla-queens-multinode
     parent: contrail-sanity-kolla-base
     required-projects:
-      - name: Juniper/contrail-kolla-ansible
+      - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/queens
       - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/queens
@@ -68,7 +68,7 @@
     branches: ^(R190[89]|R19[1-9][0-9]|R200[0-9]|R201[0-2]|R5.1|master|contrail\/rocky)$
     parent: contrail-sanity-kolla-base
     required-projects:
-      - name: Juniper/contrail-kolla-ansible
+      - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/rocky
       - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/rocky
@@ -82,7 +82,7 @@
     parent: contrail-sanity-kolla-base
     pre-run: playbooks/contrail-sanity-kolla-base/redhat-pre.yaml
     required-projects:
-      - name: Juniper/contrail-kolla-ansible
+      - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/queens
       - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/queens
@@ -138,7 +138,7 @@
       - Juniper/contrail
       - Juniper/contrail-ansible-deployer
       - tungstenfabric/tf-ansible-deployer
-      - name: Juniper/contrail-kolla-ansible
+      - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/ocata
       - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/ocata
