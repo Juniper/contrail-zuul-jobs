@@ -55,64 +55,34 @@
       A base job that prepares Contrail VNC sandbox using Android repo,
       as opposed to the contrail-src-base job that copies the sources directly.
     required-projects:
-      - Juniper/contrail-analytics
       - tungstenfabric/tf-analytics
-      - Juniper/contrail-api-client
       - tungstenfabric/tf-api-client
-      - Juniper/contrail-build
       - tungstenfabric/tf-build
-      - Juniper/contrail-common
       - tungstenfabric/tf-common
       - Juniper/contrail-controller
       - name: Juniper/contrail-dpdk
         override-checkout: contrail_dpdk_18_05_1
-      - Juniper/contrail-fabric-utils
       - tungstenfabric/tf-fabric-utils
-      - Juniper/contrail-generateDS
-      - Juniper/contrail-java-api
       - tungstenfabric/tf-java-api
-      - Juniper/contrail-heat
       - tungstenfabric/tf-heat-plugin
-      - Juniper/contrail-neutron-plugin
       - tungstenfabric/tf-neutron-plugin
-      - Juniper/contrail-nova-vif-driver
       - tungstenfabric/tf-nova-vif-driver
-      - Juniper/contrail-packages
       - tungstenfabric/tf-packages
-      - Juniper/contrail-provisioning
-      - Juniper/contrail-sandesh
-      - Juniper/contrail-specs
       - tungstenfabric/tf-specs
-      - Juniper/contrail-test
       - tungstenfabric/tf-test
-      - Juniper/contrail-third-party
       - tungstenfabric/tf-third-party
-      - Juniper/contrail-third-party-packages
       - tungstenfabric/tf-third-party-packages
-      - Juniper/contrail-tripleo-puppet
       - tungstenfabric/tf-tripleo-puppet
-      - Juniper/contrail-vcenter-fabric-manager
       - tungstenfabric/tf-vcenter-fabric-manager
-      - Juniper/contrail-vcenter-manager
       - tungstenfabric/tf-vcenter-manager
-      - Juniper/contrail-vcenter-plugin
       - tungstenfabric/tf-vcenter-plugin
       - Juniper/contrail-vnc
-      - Juniper/contrail-vrouter
       - tungstenfabric/tf-vrouter
-      - Juniper/contrail-vrouter-java-api
       - tungstenfabric/tf-vrouter-java-api
-      - Juniper/contrail-vro-plugin
       - tungstenfabric/tf-vro-plugin
-      - Juniper/contrail-web-controller
       - tungstenfabric/tf-web-controller
-      - Juniper/contrail-web-core
       - tungstenfabric/tf-web-core
-      - Juniper/contrail-web-server-manager
-      - Juniper/contrail-web-storage
-      - Juniper/contrail-webui-third-party
       - tungstenfabric/tf-webui-third-party
-      - Juniper/vijava
       - tungstenfabric/tf-vijava
     irrelevant-files:
       - specs/.*
@@ -138,13 +108,9 @@
     pre-run: playbooks/contrail-sanity-kolla-base/pre.yaml
     run: playbooks/contrail-sanity-kolla-base/run.yaml
     required-projects:
-      - Juniper/contrail-ansible-deployer
       - tungstenfabric/tf-ansible-deployer
-      - name: Juniper/contrail-kolla-ansible
-        override-checkout: contrail/ocata
       - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/ocata
-      - Juniper/contrail-test
       - tungstenfabric/tf-test
     vars:
       cloud_orchestrator: openstack
@@ -164,9 +130,6 @@
     required-projects:
       - name: Juniper/openshift-ansible
         override-checkout: release-3.9-contrail
-      - name: tungstenfabric/tf-openshift-ansible
-        override-checkout: release-3.9-contrail
-      - Juniper/contrail-test
       - tungstenfabric/tf-test
     roles:
       - zuul: Juniper/openshift-ansible
@@ -181,7 +144,6 @@
       - Juniper/openstack-helm
       - Juniper/contrail-helm-deployer
       - Juniper/openstack-helm-infra
-      - Juniper/contrail-test
       - tungstenfabric/tf-test
     vars:
       cloud_orchestrator: openstack
@@ -201,7 +163,6 @@
       on Red Hat-based operating systems. This is a base job,
       nodeset has to be assigned to build for a specific target.
     required-projects:
-      - Juniper/contrail-third-party-packages
       - tungstenfabric/tf-third-party-packages
     voting: True
     run: playbooks/build-third-party-rpms-base/run.yaml
@@ -239,11 +200,9 @@
     run: playbooks/contrail-build-containers-base/run.yaml
     required-projects:
       - Juniper/contrail-container-builder
-      - tungstenfabric/tf-container-builder
       - Juniper/contrail-ansible-deployer
       - Juniper/contrail-deployers-containers
       - Juniper/contrail-kolla-ansible
-      - tungstenfabric/tf-kolla-ansible
       - name: Juniper/openshift-ansible
         override-checkout: release-3.9-contrail
       - Juniper/contrail-helm-deployer
@@ -259,21 +218,12 @@
       Requires nodeset and openstack_version.
     run: playbooks/contrail-build-containers-base/run.yaml
     required-projects:
-      - Juniper/contrail-container-builder
       - tungstenfabric/tf-container-builder
-      - Juniper/contrail-ansible-deployer
       - tungstenfabric/tf-ansible-deployer
-      - Juniper/contrail-deployers-containers
       - tungstenfabric/tf-deployers-containers
-      - Juniper/contrail-kolla-ansible
       - tungstenfabric/tf-kolla-ansible
-      - name: Juniper/openshift-ansible
-        override-checkout: release-3.11-contrail
       - name: tungstenfabric/tf-openshift-ansible
         override-checkout: release-3.11-contrail
-      - Juniper/contrail-helm-deployer
-      - Juniper/openstack-helm
-      - Juniper/openstack-helm-infra
 
 - job:
     name: contrail-vnc-unittest-tntestr-base
