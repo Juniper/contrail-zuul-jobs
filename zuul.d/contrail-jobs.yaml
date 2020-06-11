@@ -30,8 +30,6 @@
     required-projects:
       - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/ocata
-      - name: tungstenfabric/tf-kolla-ansible
-        override-checkout: contrail/ocata
     vars:
       openstack_version: ocata
       kolla_version: ocata
@@ -43,8 +41,6 @@
     required-projects:
       - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/queens
-      - name: tungstenfabric/tf-kolla-ansible
-        override-checkout: contrail/queens
     vars:
       openstack_version: queens
       kolla_version: queens
@@ -54,8 +50,6 @@
     name: contrail-sanity-centos7-kolla-queens-multinode
     parent: contrail-sanity-kolla-base
     required-projects:
-      - name: tungstenfabric/tf-kolla-ansible
-        override-checkout: contrail/queens
       - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/queens
     vars:
@@ -70,8 +64,6 @@
     required-projects:
       - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/rocky
-      - name: tungstenfabric/tf-kolla-ansible
-        override-checkout: contrail/rocky
     vars:
       openstack_version: rocky
       kolla_version: rocky
@@ -82,8 +74,6 @@
     parent: contrail-sanity-kolla-base
     pre-run: playbooks/contrail-sanity-kolla-base/redhat-pre.yaml
     required-projects:
-      - name: tungstenfabric/tf-kolla-ansible
-        override-checkout: contrail/queens
       - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/queens
     vars:
@@ -99,7 +89,6 @@
       A job that first deploys Contrail containers and a Kubernetes cluster
       using contrail-ansible-deployer and runs sanity test suite on setup CI.
     required-projects:
-      - Juniper/contrail-ansible-deployer
       - tungstenfabric/tf-ansible-deployer
       - tungstenfabric/tf-test
     vars:
@@ -118,7 +107,6 @@
       and runs sanity test suite on setup CI.
     required-projects:
       - Juniper/contrail
-      - Juniper/contrail-ansible-deployer
       - tungstenfabric/tf-ansible-deployer
       - tungstenfabric/tf-test
     vars:
@@ -136,10 +124,7 @@
       and switch Configuration Node components to contrail-go on setup CI.
     required-projects:
       - Juniper/contrail
-      - Juniper/contrail-ansible-deployer
       - tungstenfabric/tf-ansible-deployer
-      - name: tungstenfabric/tf-kolla-ansible
-        override-checkout: contrail/ocata
       - name: tungstenfabric/tf-kolla-ansible
         override-checkout: contrail/ocata
       - tungstenfabric/tf-test
@@ -378,23 +363,14 @@
     required-projects:
       - tungstenfabric/tf-api-client
       - tungstenfabric/tf-build
-      - tungstenfabric/tf-build
       - Juniper/contrail-controller
       - name: Juniper/contrail-dpdk
         override-checkout: contrail_dpdk_17_11
-      - Juniper/contrail-generateDS
-      - Juniper/contrail-third-party
       - tungstenfabric/tf-third-party
       - tungstenfabric/tf-packages
-      - tungstenfabric/tf-packages
-      - Juniper/contrail-provisioning
-      - Juniper/contrail-sandesh
       - tungstenfabric/tf-vrouter
-      - Juniper/contrail-nova-vif-driver
       - tungstenfabric/tf-nova-vif-driver
-      - Juniper/contrail-common
       - tungstenfabric/tf-common
-      - Juniper/contrail-analytics
       - tungstenfabric/tf-analytics
     run: playbooks/pep8-check/main.yaml
     nodeset: builder-centos-7
@@ -406,7 +382,6 @@
       Job that builds vro-plugin project.
     parent: contrail-vnc-base2
     required-projects:
-      - Juniper/contrail-vro-plugin
       - tungstenfabric/tf-vro-plugin
     run: playbooks/contrail-build-vro-plugin/run.yaml
     nodeset:
