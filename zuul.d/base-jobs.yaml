@@ -68,7 +68,6 @@
         override-checkout: contrail_dpdk_18_05_1
       - Juniper/contrail-fabric-utils
       - tungstenfabric/tf-fabric-utils
-      - Juniper/contrail-generateDS
       - Juniper/contrail-java-api
       - tungstenfabric/tf-java-api
       - Juniper/contrail-heat
@@ -79,8 +78,6 @@
       - tungstenfabric/tf-nova-vif-driver
       - Juniper/contrail-packages
       - tungstenfabric/tf-packages
-      - Juniper/contrail-provisioning
-      - Juniper/contrail-sandesh
       - Juniper/contrail-specs
       - tungstenfabric/tf-specs
       - Juniper/contrail-test
@@ -108,8 +105,6 @@
       - tungstenfabric/tf-web-controller
       - Juniper/contrail-web-core
       - tungstenfabric/tf-web-core
-      - Juniper/contrail-web-server-manager
-      - Juniper/contrail-web-storage
       - Juniper/contrail-webui-third-party
       - tungstenfabric/tf-webui-third-party
       - Juniper/vijava
