@@ -195,6 +195,9 @@
       This job builds packages from third-party-packages repo
       on Red Hat-based operating systems. This is a base job,
       nodeset has to be assigned to build for a specific target.
+    required-projects:
+      - Juniper/contrail-third-party-packages
+      - tungstenfabric/tf-third-party-packages
     voting: True
     run: playbooks/build-third-party-rpms-base/run.yaml
 
