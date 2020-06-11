@@ -165,10 +165,10 @@
       openshift_deployment_type: openshift-enterprise
       contrail_image_os: rhel
     required-projects:
-      - name: Juniper/openshift-ansible
+      - name: tungstenfabric/tf-openshift-ansible
         override-checkout: release-3.9-contrail
     roles:
-      - zuul: Juniper/openshift-ansible
+      - zuul: tungstenfabric/tf-openshift-ansible
     nodeset:
       nodes:
         - name: openshift-master
@@ -192,7 +192,7 @@
       openshift_deployment_type: openshift-enterprise
       contrail_image_os: rhel
     required-projects:
-      - name: Juniper/openshift-ansible
+      - name: tungstenfabric/tf-openshift-ansible
         override-checkout: release-3.9-contrail
     nodeset:
       nodes:
