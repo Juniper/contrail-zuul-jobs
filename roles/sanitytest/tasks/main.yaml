@@ -1,7 +1,7 @@
 ---
 - name: set facts
   vars:
-    src_dir: '{{ zuul.projects | selectattr("short_name", "equalto", "contrail-test") | map(attribute="src_dir") | list | first }}'
+    src_dir: '{{ zuul.projects | selectattr("short_name", "equalto", "tf-test") | map(attribute="src_dir") | list | first }}'
   set_fact:
     testrunner_image: '{{ contrail_docker_registry }}/contrail-test-test:{{ openstack_version }}-{{ contrail_version }}'
     testrunner_script: '{{ ansible_env.HOME }}/{{ src_dir }}/testrunner.sh'
