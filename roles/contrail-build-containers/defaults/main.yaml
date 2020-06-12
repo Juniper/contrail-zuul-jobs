@@ -3,7 +3,7 @@ contrail_package_repository: "http://svl-artifactory.juniper.net/artifactory/yum
 contrail_version: "{{ contrail_container_tag }}"
 openstack_version: ''
 rpm_repo_config_dir: /etc/yum.repos.d/
-docker_build_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-container-builder"
+docker_build_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/tungstenfabric/tf-container-builder"
 deployers_build_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/tungstenfabric/tf-deployers-containers"
 ansible_deployer_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/tungstenfabric/tf-ansible-deployer"
 kolla_ansible_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/tungstenfabric/tf-kolla-ansible"
