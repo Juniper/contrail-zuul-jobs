@@ -4,6 +4,7 @@
       jobs:
         - contrail-vnc-unittest-centos7-tntestr
         - ci-test-core-centos-7
+            voting: False
         - ci-test-contrail-core-centos-7
         - ci-test-packaging-centos-7
         - ci-test-containers-centos-7
@@ -13,6 +14,7 @@
         - ci-test-publish-infra-doc-unit
         - ci-test-publish-rpm-artifactory
         - zuul-jobs-linters
+            voting: False
         - noop:
             irrelevant-files:
               - ^roles/.*
@@ -22,6 +24,7 @@
       queue: contrail-ci
       jobs:
         - ci-test-core-centos-7
+            voting: False
         - ci-test-contrail-core-centos-7
         - ci-test-packaging-centos-7
         - ci-test-containers-centos-7
@@ -31,6 +34,7 @@
         - ci-test-publish-infra-doc-unit
         - ci-test-publish-rpm-artifactory
         - zuul-jobs-linters
+            voting: False
         - noop:
             irrelevant-files:
               - ^roles/.*
