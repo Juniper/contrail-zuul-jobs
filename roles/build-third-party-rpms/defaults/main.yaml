@@ -1,2 +1,2 @@
 ---
-rpm_dir: "src/review.opencontrail.org/Juniper/contrail-third-party-packages"
+rpm_dir: "src/review.opencontrail.org/tungstenfabric/tf-third-party-packages"
