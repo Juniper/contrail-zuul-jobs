@@ -376,7 +376,7 @@
 - job:
     name: pep8-check
     required-projects:
-      - Juniper/contrail-api-client
+      - tungstenfabric/tf-api-client
       - tungstenfabric/tf-build
       - tungstenfabric/tf-build
       - Juniper/contrail-controller
