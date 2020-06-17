@@ -60,6 +60,7 @@
       - tungstenfabric/tf-build
       - tungstenfabric/tf-common
       - Juniper/contrail-controller
+      - tungstenfabric/tf-controller
       - name: Juniper/contrail-dpdk
         override-checkout: contrail_dpdk_18_05_1
       - tungstenfabric/tf-fabric-utils
@@ -77,6 +78,7 @@
       - tungstenfabric/tf-vcenter-manager
       - tungstenfabric/tf-vcenter-plugin
       - Juniper/contrail-vnc
+      - tungstenfabric/tf-vnc
       - tungstenfabric/tf-vrouter
       - tungstenfabric/tf-vrouter-java-api
       - tungstenfabric/tf-vro-plugin
