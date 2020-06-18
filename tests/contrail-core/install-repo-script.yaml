@@ -6,5 +6,5 @@
     - name: Run repo init on contrail-vnc to verify it's working
       shell: |
         DIR=$(mktemp -d)
-        cd $DIR && repo init -u {{ ansible_env.HOME }}/{{ zuul._projects['review.opencontrail.org/Juniper/contrail-vnc'].src_dir }}
+        cd $DIR && repo init -u {{ ansible_env.HOME }}/{{ zuul._projects['review.opencontrail.org/tungstenfabric/tf-vnc'].src_dir }}
 

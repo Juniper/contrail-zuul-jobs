@@ -30,7 +30,7 @@
     roles:
       - zuul: Juniper/zuul-jobs
     required-projects:
-      - Juniper/contrail-vnc
+      - tungstenfabric/tf-vnc
     run: tests/contrail-core.yaml
     files:
       - ^roles/zuul-include-vars/.*
@@ -49,7 +49,7 @@
     parent: ci-test-base
     # Required to test repo-sandbox-prepare role
     required-projects:
-      - Juniper/contrail-vnc
+      - tungstenfabric/tf-vnc
     run: tests/packaging.yaml
     files:
       - ^roles/fetch-packages/.*
@@ -69,7 +69,7 @@
     parent: ci-test-base
     # Required to test repo-sandbox-prepare role
     required-projects:
-      - Juniper/contrail-vnc
+      - tungstenfabric/tf-vnc
     run: tests/containers.yaml
     files:
       - ^roles/publish-container-images/.*
