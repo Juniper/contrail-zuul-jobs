@@ -73,7 +73,8 @@
       - tungstenfabric/tf-test
       - tungstenfabric/tf-third-party
       - tungstenfabric/tf-third-party-packages
-      - tungstenfabric/tf-tripleo-puppet
+      - name: tungstenfabric/tf-tripleo-puppet
+	override-checkout: stable/train
       - tungstenfabric/tf-vcenter-fabric-manager
       - tungstenfabric/tf-vcenter-manager
       - tungstenfabric/tf-vcenter-plugin
