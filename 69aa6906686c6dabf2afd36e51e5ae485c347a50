@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3be22a7_c2dcace8",
+        "filename": "zuul.d/base-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 382
+      },
+      "writtenOn": "2020-06-19T12:50:06Z",
+      "side": 1,
+      "message": "please don\u0027t use tabs here.",
+      "revId": "69aa6906686c6dabf2afd36e51e5ae485c347a50",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
