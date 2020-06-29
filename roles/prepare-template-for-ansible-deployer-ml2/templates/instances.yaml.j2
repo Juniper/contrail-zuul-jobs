@@ -1,0 +1,42 @@
+#jinja2: trim_blocks:False
+provider_config:
+  bms:
+    ssh_user: root
+    ssh_private_key: /root/.ssh/id_rsa
+    domainsuffix: novalocal
+
+docker_mirror_url: http://{{ docker_registry.fqdn }}/mirrors/rpm/centos/7/docker-ce-stable/
+
+instances:
+  {%- for host in (groups['control-plane'] + groups['data-plane']) | unique -%}
+  {% set control_plane_roles = control_plane_common_roles + control_plane_specific_roles[cloud_orchestrator] -%}
+  {% set data_plane_roles = data_plane_common_roles + data_plane_specific_roles[cloud_orchestrator] -%}
+  {% set host_roles = [] -%}
+  {% if host in groups['control-plane'] -%}
+  {% set host_roles = host_roles + control_plane_roles -%}
+  {% endif -%}
+  {% if host in groups['data-plane'] -%}
+  {% set host_roles = host_roles + data_plane_roles -%}
+  {% endif %}
+  {{ hostvars[host].inventory_hostname }}:
+    provider: bms
+    ip: '{{ hostvars[host].ansible_default_ipv4.address }}'
+    roles:
+      {% for role in host_roles -%}
+      {{ role }}:
+      {% endfor -%}
+  {% endfor %}
+
+
+global_configuration:
+  CONTAINER_REGISTRY: "{{ contrail_docker_registry }}"
+  REGISTRY_PRIVATE_INSECURE: True
+
+{% include cloud_orchestrator + '_config.yaml.j2' %}
+
+deployment:
+    orchestrator: {{ cloud_orchestrator }}
+
+test_configuration:
+    image_web_server: 10.84.5.120
+    use_project_scoped_token: True
