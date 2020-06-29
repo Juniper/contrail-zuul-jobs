@@ -1,0 +1,6 @@
+---
+
+- hosts: control-plane
+  roles:
+    - install-ansible
+
