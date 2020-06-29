@@ -1,0 +1,28 @@
+---
+- name: create directory to clone tests
+  command : |
+    mkdir '{{ ansible_env.HOME }}'/networking-opencontrail
+  ignore_errors: yes
+
+- name: clone tests repository
+  command: |
+    git clone -b stable/queens https://opendev.org/x/networking-opencontrail.git '{{ ansible_env.HOME }}'/networking-opencontrail
+  ignore_errors: yes
+
+- name: copy template for stackrc
+  template:
+    src: "stackrc.j2"
+    dest: "{{ ansible_env.HOME }}/networking-opencontrail/stackrc"
+
+- name: install stestr package to run tests
+  pip:
+    name: stestr
+    state: 'present'
+  become: true
+
+- name: run the sanity test
+  args:
+    chdir: "{{ ansible_env.HOME }}/networking-opencontrail"
+  command: |
+    stestr -c networking_opencontrail/tests/integration/.stestr.conf run --concurrency=1
+  become: true
