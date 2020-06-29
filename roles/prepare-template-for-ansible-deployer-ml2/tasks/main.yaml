@@ -1,0 +1,32 @@
+---
+
+- name: include OS-specific variables
+  include_vars: '{{ item }}'
+  with_first_found:
+    - '{{ ansible_os_family | lower }}.yaml'
+    - default.yaml
+
+- name: install dependencies for install_kolla_dependencies role in c-a-d
+  package:
+    name: '{{ item }}'
+    state: 'present'
+  become: true
+  with_items: '{{ package_dependecies }}'
+
+- name: Copy template for testrunner
+  template:
+    src: "instances.yaml.j2"
+    dest: "{{ ansible_env.HOME }}/contrail_test_input.yaml"
+
+- name: Copy config to contrail-ansible-deployer config dir
+  copy:
+    src: "{{ ansible_env.HOME }}/contrail_test_input.yaml"
+    dest: "{{ docker_provision_dir }}/config/instances.yaml"
+    remote_src: yes
+
+- name: Fetch instances.yaml to executor
+  synchronize:
+    src: "{{ docker_provision_dir }}/config/instances.yaml"
+    dest: "{{ zuul.executor.log_root }}/"
+    mode: pull
+
