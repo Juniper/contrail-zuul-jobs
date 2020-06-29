@@ -119,6 +119,24 @@
       kolla_docker_distro: centos
 
 - job:
+    name: contrail-sanity-kolla-base-ml2
+    parent: contrail-sanity-base
+    description: |
+      Runs kolla-based sanity suite.
+      Requires nodeset, openstack_version and kolla_version.
+    pre-run: playbooks/contrail-sanity-kolla-base-ml2/pre.yaml
+    run: playbooks/contrail-sanity-kolla-base-ml2/run.yaml
+    required-projects:
+      - tungstenfabric/tf-ansible-deployer
+      - name: tungstenfabric/tf-kolla-ansible
+        override-checkout: contrail/ocata
+      - tungstenfabric/tf-test
+    vars:
+      cloud_orchestrator: openstack
+      kolla_docker_distro: centos
+
+
+- job:
     name: contrail-sanity-openshift-base
     parent: contrail-sanity-base
     description: |
