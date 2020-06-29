@@ -1,0 +1,5 @@
+---
+
+package_dependecies:
+  - python-devel
+
