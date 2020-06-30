@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3e2c7649_5c01e27f",
+        "filename": "roles/prepare-template-for-ansible-deployer-ml2/defaults/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 851
+      },
+      "writtenOn": "2020-06-30T00:15:14Z",
+      "side": 1,
+      "message": "ok removed vrouter from common_roles",
+      "parentUuid": "632c1f47_f2f56908",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 11
+      },
+      "revId": "8cac88647d8c3931868ad2ab1d11d11d8a9c2e4c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44b84762_233d03ca",
         "filename": "roles/prepare-template-for-ansible-deployer-ml2/defaults/main.yaml",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2020-06-29T15:22:54Z",
       "side": 1,
       "message": "for ml2 plugin there is no k8s. ml2 is only for openstack.",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 14
+      },
+      "revId": "8cac88647d8c3931868ad2ab1d11d11d8a9c2e4c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d82dbae_6ffefff7",
+        "filename": "roles/prepare-template-for-ansible-deployer-ml2/defaults/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 851
+      },
+      "writtenOn": "2020-06-30T00:15:14Z",
+      "side": 1,
+      "message": "This roles are based on the cloud_orchestration variable , current job only considers openstack so k8s roles will not be added part of instances.yaml preparation.",
+      "parentUuid": "44b84762_233d03ca",
       "range": {
         "startLine": 31,
         "startChar": 6,
