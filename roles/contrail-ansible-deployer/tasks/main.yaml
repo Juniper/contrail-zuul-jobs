@@ -9,6 +9,10 @@
     ANSIBLE_STDOUT_CALLBACK: debug
   become: True
 
+- name: Hack install requests module
+  command: pip install "requests==2.23.0" 
+  become: True
+
 - name: Provision OpenStack with install_openstack.yml playbook
   command: ansible-playbook -i inventory/ -e orchestrator=openstack playbooks/install_openstack.yml
   args:
