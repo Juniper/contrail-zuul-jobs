@@ -33,5 +33,5 @@
   command: "python3 -m pip install --upgrade {{ item }}"
   with_items:
     - virtualenv
-    - scons
+    - "scons<4.0.0"
     - future
