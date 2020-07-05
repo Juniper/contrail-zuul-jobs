@@ -22,6 +22,7 @@
 - job:
     name: ci-test-core-centos-7
     parent: ci-test-core-base
+    voting: False
     nodeset: centos-7
 
 - job:
@@ -109,6 +110,7 @@
 - job:
     name: zuul-jobs-linters
     parent: tox
+    voting: False
     description: |
       This job runs against contrail-project-config and zuul-jobs, to lint
       ansible playbooks and roles.
