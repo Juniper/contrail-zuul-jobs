@@ -191,7 +191,7 @@
       This job builds packages from third-party-packages repo
       on Red Hat-based operating systems. This is a base job,
       nodeset has to be assigned to build for a specific target.
-    voting: True
+    voting: False
     run: playbooks/build-third-party-rpms-base/run.yaml
 
 - job:
