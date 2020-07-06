@@ -1,5 +1,4 @@
 ---
-
 - name: include OS-specific variables
   include_vars: "{{ item }}"
   with_first_found:
@@ -28,13 +27,7 @@
     - name: add OpenShift repos to repos_add
       set_fact:
         repos_add: '{{ repos_add }} + {{ openshift_repos_add }}'
-
-- name: disable subscription-manager on RHEL
-  command: subscription-manager config --rhsm.manage_repos=0
-  become: yes
-  become_user: root
-  when: 'ansible_distribution == "RedHat"'
-
+           
 - name: remove the upstream yum repos
   yum_repository:
     name: "{{ item.name }}"
@@ -43,6 +36,18 @@
   with_items: "{{ repos_remove }}"
   become: yes
   become_user: root
+  
+- name: Install katello-ca-consumer
+  command: yum -y install http://engprod-svlsat2.contrail.juniper.net/pub/katello-ca-consumer-latest.noarch.rpm
+  become: yes
+  become_user: root
+  when: 'ansible_distribution == "RedHat"'
+
+- name: Register into satellite
+  command: subscription-manager register --org="engprod" --activationkey="ci-jobs"
+  become: yes
+  become_user: root
+  when: 'ansible_distribution == "RedHat"'
 
 - name: prepare local base yum mirror repo file
   yum_repository:
@@ -55,6 +60,7 @@
   with_items: "{{ repos_add }}"
   become: yes
   become_user: root
+  when: 'ansible_distribution == "CentOS"'
 
 - name: prepare epel mirror repo file
   yum_repository:
@@ -66,6 +72,7 @@
     gpgcheck: no
   become: yes
   become_user: root
+  when: 'ansible_distribution == "CentOS"'
 
 - name: prepare third party cache yum Artifactory repo
   yum_repository:
@@ -80,4 +87,4 @@
     - binary
   become: yes
   become_user: root
-  when: enable_tpc_repo
+  when: enable_tpc_repo or ansible_distribution == "CentOS"
