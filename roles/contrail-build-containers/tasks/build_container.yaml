@@ -1,4 +1,20 @@
 ---
+- name: "Remove redhat.repo file for vrouter/kernel-build-init"
+  command: "rm -f vrouter/kernel-build-init/redhat*"
+  args:
+    chdir: "{{ build_dir }}/containers"
+  become: true
+  when:
+    - 'ansible_distribution == "RedHat"'
+    - '{{ item }} == "vrouter-kernel-build-init"'
+  
+- name: "Rename redhat.copy.template to avoid copy to kernel-buikld-init dir"
+  command: "mv {{ docker_build_dir }}/redhat.repo.template {{ docker_build_dir }}/redhat.donotocopy"
+  become: true
+  when:
+    - 'ansible_distribution == "RedHat"'
+    - '{{ item }} == "vrouter-kernel-build-init"'
+  
 - name: "Build container {{ item|replace('/','-') }}"
   command: "./build.sh {{ item }}"
   args:
@@ -9,3 +25,9 @@
   delay: 30
   until: container_build.rc == 0
 
+- name: "Rename back redhat.repo file"
+  command: "mv {{ docker_build_dir }}/redhat.donotocopy {{ docker_build_dir }}/redhat.repo.template"
+  become: true
+  when:
+    - 'ansible_distribution == "RedHat"'
+    - '{{ item }} == "vrouter-kernel-build-init"'
