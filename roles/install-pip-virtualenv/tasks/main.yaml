@@ -1,5 +1,44 @@
 ---
 
+# NOTE: Do not use easy_install for RedHat. There is a bug that might cause
+# easy_install to hang:
+# https://github.com/ansible/ansible/issues/15769
+# https://bugzilla.redhat.com/show_bug.cgi?id=1702797
+# Use shell to intall pip for RedHat to work around the bug
+
+- name: check if pip present
+  shell: pip2 --version
+  ignore_errors: true
+  register: pip_check
+
+- name: Install pip
+  block:
+    - name: Download pip
+      get_url:
+        url: "{{ get_pip_url }}"
+        dest: /tmp/get-pip.py
+        mode: 0400
+    - name: Install pip
+      shell: "python /tmp/get-pip.py - 'pip==20.1'"
+      become: yes
+  when:
+    - pip_check.rc != 0
+
+# if pip was already there then it should be updated if it's version is less than 10.0
+# (it doesn't support python2/3 metadata)
+- name: upgrade pip
+  pip:
+    name: pip>10,<=20.1
+  become: yes
+
+- name: install virtualenv, future
+  pip:
+    name: "{{ item }}"
+  become: yes
+  with_items:
+    - virtualenv
+    - future
+
 - include: '{{ ansible_distribution | lower }}.yaml'
 
 - name: upgrade tox

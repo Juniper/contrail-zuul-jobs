@@ -2,3 +2,4 @@
 
 upgrade_tox: false
 tox_version: '3.7.0'
+get_pip_url: "https://bootstrap.pypa.io/get-pip.py"
