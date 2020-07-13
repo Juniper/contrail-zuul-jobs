@@ -1,25 +1,5 @@
 ---
 
-- name: install setuptools
-  package:
-    name: python-setuptools
-    state: installed
-  become: true
-
-- name: install pip
-  command: easy_install pip
-  become: true
-
-- name: install virtualenv
-  package:
-    name: python-virtualenv
-    state: installed
-  become: true
-
-- name: install python2 future
-  command: "pip install future"
-  become: true
-
 - name: install python3
   package:
     name: python3
