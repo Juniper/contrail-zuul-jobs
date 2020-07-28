@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3cdf6bfd_378c0d8b",
+        "filename": "playbooks/contrail-sanity-kolla-base-ml2/run.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-07-28T14:51:41Z",
+      "side": 1,
+      "message": "What about this code?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 17
+      },
+      "revId": "26ff3756eb9fccf3e823255c0a8ea7f73f59b0a7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c6a7a6f_cf502105",
+        "filename": "roles/prepare-template-for-ansible-deployer-ml2/defaults/main.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-07-28T14:51:41Z",
+      "side": 1,
+      "message": "We don\u0027t use vrouter role",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 11
+      },
+      "revId": "26ff3756eb9fccf3e823255c0a8ea7f73f59b0a7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "364bf3e6_45226ce8",
+        "filename": "roles/prepare-template-for-ansible-deployer-ml2/templates/instances.yaml.j2",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-07-28T14:51:41Z",
+      "side": 1,
+      "message": "{% set control_plane_roles \u003d control_plane_common_roles + control_plane_specific_roles[cloud_orchestrator] -%}\n  {% set data_plane_roles \u003d data_plane_specific_roles[cloud_orchestrator] -%}\n\n  {%- for host in groups[\u0027control-plane\u0027] | unique -%}\n  {{ hostvars[host].inventory_hostname }}:\n    provider: bms\n    ip: \u0027{{ hostvars[host].ansible_default_ipv4.address }}\u0027\n    roles:\n      {% for role in control_plane_roles -%}\n      {{ role }}:\n      {% endfor -%}\n  {% endfor %}\n\n  {%- for host in groups[\u0027data-plane\u0027] | unique -%}\n  {{ hostvars[host].inventory_hostname }}:\n    provider: bms\n    ip: \u0027{{ hostvars[host].ansible_default_ipv4.address }}\u0027\n    roles:\n      {% for role in data_plane_roles -%}\n      {{ role }}:\n      {% endfor -%}\n  {% endfor %}",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 14
+      },
+      "revId": "26ff3756eb9fccf3e823255c0a8ea7f73f59b0a7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e78edc16_368f1620",
+        "filename": "roles/prepare-template-for-ansible-deployer-ml2/templates/kubernetes_config.yaml.j2",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-07-28T14:51:41Z",
+      "side": 1,
+      "message": "We didn\u0027t test our plugin with Kubernetes deployment so we shouldn\u0027t add this to CI I guess.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 0
+      },
+      "revId": "26ff3756eb9fccf3e823255c0a8ea7f73f59b0a7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
