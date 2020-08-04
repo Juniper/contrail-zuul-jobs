@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38318037_274077ba",
+        "filename": "roles/sanitytest-ml2/tasks/main.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-08-04T12:59:57Z",
+      "side": 1,
+      "message": "Please don\u0027t add \u0027become: yes\u0027 everywhere if it\u0027s not needed.",
+      "revId": "f4108ed733e9c8d94e4971055d892ebd51db6e23",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0691210a_847bde30",
+        "filename": "roles/sanitytest-ml2/tasks/main.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-08-04T12:59:57Z",
+      "side": 1,
+      "message": "Remove trailing space",
+      "range": {
+        "startLine": 2,
+        "startChar": 39,
+        "endLine": 2,
+        "endChar": 40
+      },
+      "revId": "f4108ed733e9c8d94e4971055d892ebd51db6e23",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fe9501d_4ac10273",
+        "filename": "roles/sanitytest-ml2/tasks/main.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-08-04T12:59:57Z",
+      "side": 1,
+      "message": "Remember that cloning repository will create additional directory so all the files will be placed in:\n\n\u0027{{ ansible_env.HOME }}\u0027/networking-opencontrail/networking-opencontrail\n\nI think you don\u0027t have to create this directory.",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 129
+      },
+      "revId": "f4108ed733e9c8d94e4971055d892ebd51db6e23",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d8c129d_5f0d2b7a",
+        "filename": "roles/sanitytest-ml2/tasks/main.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-08-04T12:59:57Z",
+      "side": 1,
+      "message": "generate stackrc\n\nAlso if other names start with lowercase this should be started with lowercase as well",
+      "range": {
+        "startLine": 14,
+        "startChar": 8,
+        "endLine": 14,
+        "endChar": 33
+      },
+      "revId": "f4108ed733e9c8d94e4971055d892ebd51db6e23",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "481e05cd_77338c10",
+        "filename": "roles/sanitytest-ml2/tasks/main.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-08-04T12:59:57Z",
+      "side": 1,
+      "message": "I see that most of the project use `become: true`. Switch to that, please.",
+      "range": {
+        "startLine": 24,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 13
+      },
+      "revId": "f4108ed733e9c8d94e4971055d892ebd51db6e23",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "191ddbce_63a25717",
+        "filename": "roles/sanitytest-ml2/tasks/main.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-08-04T12:59:57Z",
+      "side": 1,
+      "message": "Those are integration tests",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 27
+      },
+      "revId": "f4108ed733e9c8d94e4971055d892ebd51db6e23",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37b40f55_02496b58",
+        "filename": "roles/sanitytest-ml2/tasks/main.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-08-04T12:59:57Z",
+      "side": 1,
+      "message": "I think you need to source the stackrc file first so the environment variables are a part of this subshell.",
+      "revId": "f4108ed733e9c8d94e4971055d892ebd51db6e23",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
