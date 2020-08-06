@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4e2188a6_92a77842",
+        "filename": "playbooks/contrail-sanity-kolla-base-ml2/run.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 851
+      },
+      "writtenOn": "2020-08-06T16:06:59Z",
+      "side": 1,
+      "message": "This code is not needed , i have removed it now.",
+      "parentUuid": "3cdf6bfd_378c0d8b",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 17
+      },
+      "revId": "26ff3756eb9fccf3e823255c0a8ea7f73f59b0a7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c6a7a6f_cf502105",
         "filename": "roles/prepare-template-for-ansible-deployer-ml2/defaults/main.yaml",
         "patchSetId": 7
