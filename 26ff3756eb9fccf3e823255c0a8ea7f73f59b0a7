@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "54d4d29a_2596af5f",
+        "filename": "playbooks/contrail-sanity-kolla-base-ml2/run.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 851
+      },
+      "writtenOn": "2020-08-10T18:45:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e2188a6_92a77842",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 17
+      },
+      "revId": "26ff3756eb9fccf3e823255c0a8ea7f73f59b0a7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c6a7a6f_cf502105",
         "filename": "roles/prepare-template-for-ansible-deployer-ml2/defaults/main.yaml",
         "patchSetId": 7
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "4bc70803_b07d09d7",
+        "filename": "roles/prepare-template-for-ansible-deployer-ml2/defaults/main.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 851
+      },
+      "writtenOn": "2020-08-10T18:45:00Z",
+      "side": 1,
+      "message": "This is data_plane_common_role , which is not used part of instances.yaml.j2 template, please check http://logs.opencontrail.org/86/59886/9/check/contrail-sanity-centos7-kolla-queens-ml2/jenkins/97aeec1/instances.yaml for generated instances.yaml for more information.",
+      "parentUuid": "6c6a7a6f_cf502105",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 11
+      },
+      "revId": "26ff3756eb9fccf3e823255c0a8ea7f73f59b0a7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "364bf3e6_45226ce8",
         "filename": "roles/prepare-template-for-ansible-deployer-ml2/templates/instances.yaml.j2",
         "patchSetId": 7
@@ -83,6 +131,30 @@
       "writtenOn": "2020-07-28T14:51:41Z",
       "side": 1,
       "message": "{% set control_plane_roles \u003d control_plane_common_roles + control_plane_specific_roles[cloud_orchestrator] -%}\n  {% set data_plane_roles \u003d data_plane_specific_roles[cloud_orchestrator] -%}\n\n  {%- for host in groups[\u0027control-plane\u0027] | unique -%}\n  {{ hostvars[host].inventory_hostname }}:\n    provider: bms\n    ip: \u0027{{ hostvars[host].ansible_default_ipv4.address }}\u0027\n    roles:\n      {% for role in control_plane_roles -%}\n      {{ role }}:\n      {% endfor -%}\n  {% endfor %}\n\n  {%- for host in groups[\u0027data-plane\u0027] | unique -%}\n  {{ hostvars[host].inventory_hostname }}:\n    provider: bms\n    ip: \u0027{{ hostvars[host].ansible_default_ipv4.address }}\u0027\n    roles:\n      {% for role in data_plane_roles -%}\n      {{ role }}:\n      {% endfor -%}\n  {% endfor %}",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 14
+      },
+      "revId": "26ff3756eb9fccf3e823255c0a8ea7f73f59b0a7",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ace85a7_547c4ac9",
+        "filename": "roles/prepare-template-for-ansible-deployer-ml2/templates/instances.yaml.j2",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 851
+      },
+      "writtenOn": "2020-08-10T18:45:00Z",
+      "side": 1,
+      "message": "Just trying to understand how this logic is different from above code.?",
+      "parentUuid": "364bf3e6_45226ce8",
       "range": {
         "startLine": 14,
         "startChar": 0,
