@@ -1,5 +1,9 @@
 ---
 
+- name: Hack pinning bcrypt
+  command: "pip install 'bcrypt<3.2.0' "
+  become: true
+
 - name: install ansible
   become: true
   pip:
