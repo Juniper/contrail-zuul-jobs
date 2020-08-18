@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1405d27_c0966e81",
+        "filename": "roles/sanitytest-ml2/tasks/main.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-08-18T09:10:37Z",
+      "side": 1,
+      "message": "Don\u0027t ignore errors",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 20
+      },
+      "revId": "76f93ac741c7cea4a21a9a5a5c12c91a6a8dc72c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0537b63f_a5ee0502",
+        "filename": "roles/sanitytest-ml2/tasks/main.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-08-18T09:10:37Z",
+      "side": 1,
+      "message": "It won\u0027t work. Stackrc is a script that exports multiple environment variables. Since every task in ansible opens its own subshell those variables won\u0027t exist in next task. You need to source this file in the same task as you run tests.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 67
+      },
+      "revId": "76f93ac741c7cea4a21a9a5a5c12c91a6a8dc72c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd3094cd_c6bd456d",
+        "filename": "roles/sanitytest-ml2/tasks/main.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-08-18T09:10:37Z",
+      "side": 1,
+      "message": "You don\u0027t need to use absolute path if you specified chdir",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 67
+      },
+      "revId": "76f93ac741c7cea4a21a9a5a5c12c91a6a8dc72c",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
