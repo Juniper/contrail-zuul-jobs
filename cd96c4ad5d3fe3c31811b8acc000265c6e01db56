@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cdfc5377_886d7e1c",
+        "filename": "roles/prepare-template-for-ansible-deployer-ml2/templates/openstack_config.yaml.j2",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-08-21T16:17:14Z",
+      "side": 1,
+      "message": "customize:\n    nova.conf: |\n      [libvirt]\n      virt_type\u003dqemu\n      cpu_mode\u003dnone\n    neutron.conf: |\n      [DEFAULT]\n      router_scheduler_driver\u003dneutron.scheduler.l3_agent_scheduler.LeastRoutersScheduler\n      router_auto_schedule\u003dtrue\n      enable_snat_by_default\u003dfalse\n      [service_providers]\n      service_provider\u003dL3_ROUTER_NAT:TF:networking_opencontrail.l3.service_provider.TFL3ServiceProvider\n      [quotas]\n      quota_network\u003d-1\n      quota_subnet\u003d-1\n      quota_port\u003d-1\n      quota_router\u003d-1\n      quota_floatingip\u003d-1\n      quota_security_group\u003d-1\n      quota_security_group_rule\u003d-1\n    neutron/ml2_conf.ini: |\n      [ml2]\n      type_drivers\u003dvlan,local,gre,vxlan\n      tenant_network_types\u003dvlan,local\n      extension_drivers\u003dport_security\n      mechanism_drivers\u003dopencontrail,openvswitch,linuxbridge\n      [ml2_type_vlan]\n      network_vlan_ranges\u003dpublic:1:1000,vhost:1:1000",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 19
+      },
+      "revId": "cd96c4ad5d3fe3c31811b8acc000265c6e01db56",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2892e168_9af576d4",
+        "filename": "roles/sanitytest-ml2/tasks/main.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-08-21T16:17:14Z",
+      "side": 1,
+      "message": "- name: run integration tests\n  args:\n    chdir: \"{{ ansible_env.HOME }}/networking-opencontrail\"\n  command: |\n    source stackrc\n    stestr -c networking_opencontrail/tests/integration/.stestr.conf run --concurrency\u003d1",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 88
+      },
+      "revId": "cd96c4ad5d3fe3c31811b8acc000265c6e01db56",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
