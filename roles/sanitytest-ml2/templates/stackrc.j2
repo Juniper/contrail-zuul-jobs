@@ -1,0 +1,17 @@
+export OS_PROJECT_DOMAIN_NAME=default
+export OS_USER_DOMAIN_NAME=default
+export OS_PROJECT_NAME=service
+export OS_TENANT_NAME=admin
+export OS_USERNAME=admin
+export OS_PASSWORD=contrail123
+export OS_AUTH_URL=http://"{{ hostvars[groups['control-plane'][0]].ansible_default_ipv4.address }}":5000/v3
+export OS_INTERFACE=internal
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=RegionOne
+export CONTROLLER_IP="{{ hostvars[groups['control-plane'][0]].ansible_default_ipv4.address }}"
+export KEYSTONE_USER=neutron
+export KEYSTONE_PASSWORD=contrail123
+export KEYSTONE_PROJECT=service
+export KEYSTONE_PROJECT_DOMAIN_ID=default
+export CONTRAIL_IP="{{ hostvars[groups['control-plane'][0]].ansible_default_ipv4.address }}"
+export PROVIDER=public

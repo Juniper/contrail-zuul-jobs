@@ -47,6 +47,18 @@
     nodeset: c7-systest-c-aio
 
 - job:
+    name: contrail-sanity-centos7-kolla-queens-ml2
+    parent: contrail-sanity-kolla-base-ml2
+    voting: False
+    required-projects:
+      - name: tungstenfabric/tf-kolla-ansible
+        override-checkout: contrail/queens
+    vars:
+      openstack_version: queens
+      kolla_version: queens
+    nodeset: c7-systest-c-aio
+
+- job:
     name: contrail-sanity-centos7-kolla-queens-multinode
     parent: contrail-sanity-kolla-base
     required-projects:
