@@ -1,0 +1,33 @@
+---
+
+- name: install docker
+  copy:
+    src: "{{ item }}"
+    dest: "."
+    mode: '0755'
+  with_items:
+    - setup.sh
+  become: true
+
+- name: install required kernel packages
+  apt:
+    update_cache: yes
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - linux-headers-4.15.0-101-generic
+    - linux-image-4.15.0-101-generic
+    - linux-modules-4.15.0-101-generic
+  become: true
+
+- name: build vrouter on ubuntu 1804
+  command: |
+    sudo docker run --privileged \
+        -v /etc/os-release:/etc/os-release \
+        -v /etc/lsb-release:/etc/lsb-release \
+        -v /usr/src:/usr/src \
+        -v /lib/modules:/lib/modules \
+        -v /dev:/dev \
+        -v /bin:/host/bin \
+        '{{ contrail_docker_registry }}/contrail-vrouter-kernel-build-init:{{ contrail_version }}'
+  become: true
