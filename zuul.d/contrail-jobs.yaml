@@ -371,6 +371,20 @@
           label: centos-7-4-builder
 
 - job:
+    name: contrail-ub18-vrouter
+    voting: false
+    parent: contrail-base2
+    description: |
+      This job builds vrouter for ubuntu 1804
+    irrelevant-files:
+      - specs/.*
+    run: playbooks/contrail-ub18-vrouter/main.yaml
+    nodeset:
+      nodes:
+        - name: builder
+          label: ubuntu-bionic-builder-small
+
+- job:
     name: pep8-check
     required-projects:
       - tungstenfabric/tf-api-client
