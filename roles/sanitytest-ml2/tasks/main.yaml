@@ -23,6 +23,7 @@
   yum:
     name: python-ipaddress
     state: absent
+  become: true
 
 - name: install test requirements
   pip:
