@@ -21,8 +21,8 @@ sudo apt-cache policy docker-ce
 # Finally, install Docker
 sudo apt-get install -y docker-ce
 
-Docker should now be installed, the daemon started
+# Docker should now be installed, the daemon started
 sudo systemctl status docker
 
 # If you want to avoid typing sudo whenever you run the docker command, add your username to the docker group
-#sudo usermod -aG docker ${USER}
+# sudo usermod -aG docker ${USER}
