@@ -30,8 +30,6 @@
 
     - command: make rpm
 
-    - command: make containers
-
     - command: make deployers
 
     - name: list built packages
