@@ -13,6 +13,10 @@
         - ci-test-publish-infra-doc
         - ci-test-publish-infra-doc-unit
         - ci-test-publish-rpm-artifactory
+        - contrail-sanity-centos7-kolla-queens-ml2:
+            dependencies:
+              - contrail-build-test-containers
+              - contrail-build-containers-centos7
         - zuul-jobs-linters:
             voting: False
         - noop:
