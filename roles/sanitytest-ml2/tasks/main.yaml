@@ -25,17 +25,23 @@
     state: absent
   become: true
 
+- name: Remove the ipaddress package
+  yum:
+    name: python-pip
+    state: present
+  become: true
+
 - name: install test requirements
-  pip:
-    requirements: "{{ ansible_env.HOME }}/networking-opencontrail/test-requirements.txt"
+  command: |
+    pip install -r {{ ansible_env.HOME }}/networking-opencontrail/test-requirements.txt
 
 - name: install lower-constraints
-  pip:
-    requirements: "{{ ansible_env.HOME }}/networking-opencontrail/lower-constraints.txt"
+  command: |
+    pip2 install -r {{ ansible_env.HOME }}/networking-opencontrail/lower-constraints.txt
+  become: true
 
 - name: run integration tests
   args:
     chdir: "{{ ansible_env.HOME }}/networking-opencontrail"
-  command: |
-    source stackrc
-    stestr -c networking_opencontrail/tests/integration/.stestr.conf run --concurrency=1
+  shell: "source {{ ansible_env.HOME }}/networking-opencontrail/stackrc && stestr -c networking_opencontrail/tests/integration/.stestr.conf run --concurrency=2"
+  become: true  
