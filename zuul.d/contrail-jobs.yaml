@@ -382,6 +382,8 @@
       nodes:
         - name: builder
           label: ubuntu-bionic-builder-small
+    vars:
+      setup_docker_registry: true
 
 - job:
     name: pep8-check

@@ -33,5 +33,5 @@
         -v /lib/modules:/lib/modules \
         -v /dev:/dev \
         -v /bin:/host/bin \
-        '{{ contrail_docker_registry }}/contrail-vrouter-kernel-build-init:{{ contrail_version }}'
+        '{{ contrail_docker_registry }}/contrail-vrouter-kernel-build-init:{{ contrail_container_tag }}'
   become: true
