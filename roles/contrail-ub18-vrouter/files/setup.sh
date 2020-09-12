@@ -1,7 +1,7 @@
 #!/bin/bash -xe
 
 # update your existing list of packages
-sudo apt update
+sudo apt-get -y update
 
 # Next, install a few prerequisite packages which let apt use packages over HTTPS
 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
