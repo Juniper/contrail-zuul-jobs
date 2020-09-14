@@ -1,10 +1,10 @@
 #!/bin/bash -xe
 
-# update your existing list of packages
+# Update your existing list of packages
 sudo apt-get -y update && sleep 30
 
-# some apt processes prevent from proceeding further
-sudo killall apt apt-get || true
+# Some unattended upgrades lock frontend, kill them
+sudo kill -9 $(sudo lsof /var/lib/dpkg/lock-frontend | tr -s ' ' | cut -d ' ' -f2 | tail -1)
 
 # Next, install a few prerequisite packages which let apt use packages over HTTPS
 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
