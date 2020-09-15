@@ -1,4 +1,7 @@
 ---
 - hosts: all
   roles:
-     - contrail-ub18-vrouter
+    - zuul-include-vars
+    - role: add-insecure-registry
+      new_registry: '{{ contrail_docker_registry }}'
+    - contrail-ub18-vrouter
