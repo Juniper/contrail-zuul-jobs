@@ -19,8 +19,8 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt-get -y update && sleep 30
 
 # configure insecure registry for ci-repo
-sudo mkdir /etc/docker
-echo '{ "insecure-registries":["10.84.5.81:33325"] }' | sudo tee -a /etc/docker/daemon.json
+# sudo mkdir /etc/docker
+# echo '{ "insecure-registries":["10.84.5.81:33325"] }' | sudo tee -a /etc/docker/daemon.json
 
 # Make sure you are about to install from the Docker repo instead of the default Ubuntu repo
 sudo apt-cache policy docker-ce
