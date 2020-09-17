@@ -1,0 +1,14 @@
+---
+- name: "Build container {{ item|replace('/','-') }}"
+  command: "./build.sh {{ item }}"
+  args:
+    chdir: "{{ build_dir }}/containers"
+  become: true
+  register: r1
+  async: 6000
+  poll: 0
+
+- name: save build container task result
+  set_fact:
+    added_container: "{{ added_container | default ([]) + [r1] }}"
+

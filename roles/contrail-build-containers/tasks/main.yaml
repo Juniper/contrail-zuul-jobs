@@ -39,6 +39,14 @@
   args:
     chdir: "{{ docker_build_dir }}/containers"
 
+- name: Prepare container list
+  shell: ./build.sh list | grep -v INFO |grep base
+  become: true
+  register: base_docker_list
+  args:
+    chdir: "{{ docker_build_dir }}/containers"
+
+
 - name: Prepare deployers container list
   shell: ./build.sh list | grep -v INFO
   become: true
@@ -55,6 +63,12 @@
 
 - name: Build microservices
   include: build_container.yaml
+  vars:
+    build_dir: "{{ docker_build_dir }}"
+  with_items: "{{ base_docker_list.stdout_lines }}"
+
+- name: Build microservices
+  include: build_parallel_container.yaml
   vars:
     build_dir: "{{ docker_build_dir }}"
   with_items: "{{ docker_list.stdout_lines }}"
@@ -74,3 +88,10 @@
     build_dir: "{{ deployers_build_dir }}"
   with_items: "{{ deployers_list.stdout_lines }}"
 
+- name: Wait for build container task complete
+  async_status: jid={{ item.ansible_job_id }}
+  with_items: "{{ added_container }}"
+  register: add_container
+  become: true
+  until: add_container.finished
+  retries: 300
