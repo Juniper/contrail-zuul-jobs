@@ -1,5 +1,18 @@
 ---
 
+- name: kill unattended upgrade processes
+  copy:
+    src: "{{ item }}"
+    dest: "."
+    mode: '0755'
+  with_items:
+    - setup.sh
+  become: true
+
+- name: run docker installer
+  command: "bash -xe setup.sh"
+  become: true
+
 - name: install required kernel packages
   apt:
     update_cache: yes
