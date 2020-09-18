@@ -2,7 +2,7 @@
 - hosts: all
   roles:
     - zuul-include-vars
-    - install-docker-daemon
+    - install-ub18-docker
     - role: add-insecure-registry
       new_registry: '{{ contrail_docker_registry }}'
     - contrail-ub18-vrouter
