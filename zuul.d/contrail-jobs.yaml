@@ -393,6 +393,8 @@
       - tungstenfabric/tf-controller
       - name: Juniper/contrail-dpdk
         override-checkout: contrail_dpdk_17_11
+      - name: tungstenfabric/tf-dpdk
+        override-checkout: contrail_dpdk_19_11
       - tungstenfabric/tf-third-party
       - tungstenfabric/tf-packages
       - tungstenfabric/tf-vrouter
