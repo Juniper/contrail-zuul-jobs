@@ -60,8 +60,6 @@
       - tungstenfabric/tf-build
       - tungstenfabric/tf-common
       - tungstenfabric/tf-controller
-      - name: Juniper/contrail-dpdk
-        override-checkout: contrail_dpdk_19_11
       - name: tungstenfabric/tf-dpdk
         override-checkout: contrail_dpdk_19_11
       - tungstenfabric/tf-fabric-utils

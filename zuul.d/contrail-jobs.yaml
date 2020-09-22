@@ -391,7 +391,7 @@
       - tungstenfabric/tf-api-client
       - tungstenfabric/tf-build
       - tungstenfabric/tf-controller
-      - name: Juniper/contrail-dpdk
+      - name: tungstenfabric/tf-dpdk
         override-checkout: contrail_dpdk_17_11
       - name: tungstenfabric/tf-dpdk
         override-checkout: contrail_dpdk_19_11
