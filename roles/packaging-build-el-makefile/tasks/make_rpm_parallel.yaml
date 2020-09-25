@@ -1,0 +1,22 @@
+---
+- name: Run rpmbuild for {{ item }}
+  command: make -f tools/packages/Makefile rpm-{{ item }}
+  args:
+    chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+  environment:
+    BUILDTAG: "{{ build_tag | default(packaging.version.distrib) }}"
+    SRCVER: "{{ packaging.version.upstream }}"
+    SKUTAG: ocata
+    MANIFESTFILE: "{{ ansible_env.HOME }}/manifest.xml"
+    ENABLEMLX: 'TRUE'
+  tags:
+    - skip_ansible_lint
+  retries: 6
+  delay: 20
+  register: r1
+  async: 6000
+  poll: 0
+
+- name: save build rpm task result
+  set_fact:
+    added_rpm: "{{ added_rpm | default ([]) + [r1] }}"

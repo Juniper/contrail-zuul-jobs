@@ -10,7 +10,8 @@
   include: '{{ ansible_distribution|lower }}.yaml'
 
 - name: Get list of makefile targets
-  command: make -f tools/packages/Makefile list
+  # command: make -f tools/packages/Makefile list
+  shell: make -f tools/packages/Makefile list |  sed -e 's/^contrail \b//g' |sed -e 's/ contrail-web-controller\b//g'
   args:
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
   register: rpm_list
@@ -27,7 +28,36 @@
     SKUTAG: ocata
     MANIFESTFILE: "{{ ansible_env.HOME }}/manifest.xml"
 
-- name: Install dependencies and build RPMs
-  include: make_rpm.yaml
+- name: Install dependencies of Group1
+  include: make_deps_parallel.yaml
+  with_items: 
+    - "contrail"
+    - "contrail-web-controller"
+
+- name: Build Group1 RPMs in parallel
+  include: make_rpm_parallel.yaml
+  with_items:
+    - "contrail"
+    - "contrail-web-controller"
+
+- name: Wait for build container task complete
+  async_status: jid={{ item.ansible_job_id }}
+  with_items: "{{ added_rpm }}"
+  register: add_rpm
+  until: add_rpm.finished
+  retries: 6000
+
+- name: Install dependencies in parallel
+  include: make_deps_parallel.yaml
   with_items: "{{ rpm_list.stdout.split(' ') }}"
 
+- name: Build RPMs in parallel
+  include: make_rpm_parallel.yaml
+  with_items: "{{ rpm_list.stdout.split(' ') }}"
+
+- name: Wait for build container task complete
+  async_status: jid={{ item.ansible_job_id }}
+  with_items: "{{ added_rpm }}"
+  register: add_rpm
+  until: add_rpm.finished
+  retries: 1000
