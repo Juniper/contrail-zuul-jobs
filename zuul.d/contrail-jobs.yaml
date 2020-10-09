@@ -226,6 +226,7 @@
 
 - job:
     name: build-third-party-rpms-centos7
+    voting: True
     parent: build-third-party-rpms-base
     nodeset: builder-centos-7
 
