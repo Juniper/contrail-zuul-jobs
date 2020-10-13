@@ -183,7 +183,7 @@
       nodeset has to be assigned to build for a specific target.
     required-projects:
       - tungstenfabric/tf-third-party-packages
-    voting: False
+    voting: True
     run: playbooks/build-third-party-rpms-base/run.yaml
 
 - job:
