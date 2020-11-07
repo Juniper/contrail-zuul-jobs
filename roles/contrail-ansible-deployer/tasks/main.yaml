@@ -9,6 +9,19 @@
     ANSIBLE_STDOUT_CALLBACK: debug
   become: True
 
+- name: reinstall python-requests removed by distutils
+  package:
+    name: python-requests
+    state: present
+  become: True
+  register: res
+  retries: 5
+  until: res | success
+
+- name: install urllib3 to older version
+  command: pip install "urllib3==1.25.4"
+  become: True
+
 - name: Provision OpenStack with install_openstack.yml playbook
   command: ansible-playbook -i inventory/ -e orchestrator=openstack playbooks/install_openstack.yml
   args:
