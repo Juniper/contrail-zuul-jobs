@@ -72,7 +72,7 @@
     name: tpc-{{ item }}
     description: Contrail third-party dependencies
     file: tpc-{{ item }}
-    baseurl: "https://svl-artifactory.juniper.net/artifactory/contrail-tpc/{{ tpc_branch }}/{{ item }}/"
+    baseurl: "http://{{ package_server.fqdn }}/pulp/repos/{{ tpc_branch }}/tpc-{{ item }}/"
     enabled: yes
     gpgcheck: no
   with_items:
