@@ -16,7 +16,7 @@
     chdir: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
   environment:
     BUILDTAG: "{{ build_tag | default(packaging.version.distrib) }}"
-    SRCVER: "{{ packaging.version.upstream }}"
+    SRCVER: "1912.L3.1"
     SKUTAG: ocata
     MANIFESTFILE: "{{ ansible_env.HOME }}/manifest.xml"
     ENABLEMLX: 'TRUE'
