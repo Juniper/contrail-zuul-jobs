@@ -1,5 +1,12 @@
 ---
 
+- name: install ansible old packages
+  command: "pip install {{ item }}"
+  become: true
+  become_user: root
+  with_items:
+    - 'cryptography<3.3.2'
+
 - name: Hack pinning bcrypt
   command: "pip install 'bcrypt<3.2.0' "
   become: true
