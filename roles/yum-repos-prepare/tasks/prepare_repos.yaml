@@ -61,7 +61,7 @@
     name: epel-mirror
     description: CentOS epel mirror
     file: epel
-    baseurl: "http://{{ docker_registry.fqdn }}/pulp/repos/master/epel-77"
+    baseurl: "http://{{ package_server.fqdn }}/pulp/repos/master/epel-77"
     enabled: "{{ use_epel }}"
     gpgcheck: no
   become: yes
@@ -72,7 +72,7 @@
     name: tpc-{{ item }}
     description: Contrail third-party dependencies
     file: tpc-{{ item }}
-    baseurl: "http://svl-artifactory.juniper.net/artifactory/contrail-tpc/{{ tpc_branch }}/{{ item }}/"
+    baseurl: "http://pulp-server.englab.juniper.net/pulp/repos/R2003/tpc-{{ item }}/"
     enabled: yes
     gpgcheck: no
   with_items:
