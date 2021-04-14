@@ -4,7 +4,7 @@ repos_remove:
   - { name: epel, file: epel }
   - { name: epel-source, file: epel }
 repos_file: redhat-mirror
-repos_baseurl: http://{{ docker_registry.fqdn }}/pulp/repos/master
+repos_baseurl: http://{{ package_server.fqdn }}/pulp/repos/master
 repos_add:
   - { name: rhel-7-server-rpms-mirror, repo: rhel-7-server-rpms, description: rhel-7-server-rpms }
   - { name: rhel-7-server-extras-rpms-mirror, repo: rhel-7-server-extra-rpm, description: rhel-7-server-extras-rpms }
