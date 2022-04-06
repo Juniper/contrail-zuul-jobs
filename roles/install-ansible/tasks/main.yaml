@@ -1,11 +1,18 @@
 ---
 
+- name: installing dependencies
+  command: "yum install python2-devel"
+  become: true
+  become_user: root
+
 - name: install ansible old packages
   command: "pip install {{ item }}"
   become: true
   become_user: root
   with_items:
     - 'cryptography<3.3.2'
+    - 'pynacl==1.0.1'
+    - 'netaddr==0.7.19'
 
 - name: Hack pinning bcrypt
   command: "pip install 'bcrypt<3.2.0' "
@@ -18,9 +25,4 @@
     version: '{{ ansible_ver }}'
     state: 'present'
 
-- name: install python-netaddr
-  become: true
-  pip:
-    name: 'netaddr'
-    state: 'present'
 
