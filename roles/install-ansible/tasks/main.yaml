@@ -13,6 +13,9 @@
 
 - name: install ansible
   become: true
+  become_user: root
+  with_items:
+    - 'paramiko<=2.7.1'
   pip:
     name: 'ansible'
     version: '{{ ansible_ver }}'
