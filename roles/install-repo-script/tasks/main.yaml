@@ -1,8 +1,8 @@
 ---
 - name: Install repo script into /usr/local/bin/
   copy:
-    src: repo
-    dest: /usr/local/bin/repo
+    src: repo-1
+    dest: /usr/local/bin/repo mode=a+x
     mode: preserve
   become: True
 

@@ -4,7 +4,7 @@
 
 - name: Download pip installation script
   get_url:
-    url: https://bootstrap.pypa.io/get-pip.py
+    url: https://bootstrap.pypa.io/pip/3.5/get-pip.py
     dest: '{{ ansible_env.HOME }}/get-pip.py'
     mode: 0755
 
