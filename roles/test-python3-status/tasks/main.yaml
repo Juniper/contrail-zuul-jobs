@@ -17,7 +17,7 @@
 
 - name: repo sync controller
   shell: |
-    repo init --no-clone-bundle -q -u https://github.com/Juniper/contrail-vnc -b {{ zuul.branch }}
+    repo init --repo-branch=repo-1 --no-clone-bundle -q -u https://github.com/Juniper/contrail-vnc -b {{ zuul.branch }}
     repo sync --no-clone-bundle
   become: true
 
